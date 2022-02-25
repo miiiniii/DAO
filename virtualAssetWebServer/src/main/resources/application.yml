@@ -3,3 +3,8 @@ server:
   port: 80
 
  
+spring:
+  datasource:
+    url: jdbc:postgresql://146.56.148.187:5432/serverdb
+    username: opc
+    password: Qlalfqjsgh1!
