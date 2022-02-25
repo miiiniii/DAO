@@ -3,10 +3,3 @@ server:
   port: 80
 
  
-#DB접속
-spring:
-  datasource:
-    url: jdbc:oracle:thin:@db_medium?TNS_ADMIN=./src/main/resources/OracleDB_Cloud_Connect_Wallet
-    username: admin
-    password: Qlalfqjsgh1!
-    driver-class-name: oracle.jdbc.OracleDriver
