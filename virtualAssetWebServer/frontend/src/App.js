@@ -1,22 +1,29 @@
-import logo from './logo.svg';
+
 import './App.css';
+import React, {useEffect, useState} from 'react';
+import customAxios from './customAxios';
 
 function App() {
+  const [ip, setIp]=useState('');
+
+  function callback(data){
+    setIp(data);
+  }
+
+  useEffect(
+    ()=>{
+      customAxios('/ip',callback);
+    },[]
+  );
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div>aaaaaaaaaaaaaaaa</div>
+        <ul>
+          {ip}
+        </ul>
+        <div>aaaaaaaaaaaaaaaa</div>
       </header>
     </div>
   );
