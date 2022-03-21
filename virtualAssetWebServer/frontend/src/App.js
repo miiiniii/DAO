@@ -2,20 +2,14 @@
 import './App.css';
 import React, {useEffect, useState} from 'react';
 import {Swiper, SwiperSlide} from "swiper/react";
-import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
+import MainIcon from "./pages/mainIcon.js";
+import Home from "./pages/home.js";
+
+import customAxios from './scripts/customAxios';
 
 
-import customAxios from './customAxios';
-import Asset_blue from './Icons/Asset_blue.png';
-import Asset_white from './Icons/Asset_white.png';
-import Home_blue from './Icons/Home_blue.png';
-import Home_white from './Icons/Home_white.png';
-import Explore_blue from './Icons/Explore_blue.png';
-import Explore_white from './Icons/Explore_white.png';
-import User_blue from './Icons/User_blue.png';
-import User_white from './Icons/User_white.png';
 
 /*※※※※※※※※※※※  새로운 환경이라면 npm i swiper@8.0.7 필수  ※※※※※※※※※※ */
 
@@ -42,9 +36,11 @@ function App() {
     
     */
 
-
+//현 스와이퍼 state
   let [swiper,setSwiper]=useState();
+  //현 아이콘 상태 state
   let [iconState, setIconState]=useState([true, false, false, false]);
+  //아이콘 상태 변경 메소드
   function changeIcon(idx){
     let temp=[false, false, false, false];
     temp[idx-1]=true;
@@ -56,14 +52,20 @@ function App() {
       <header className="App-header">
           <Swiper 
             id='mainWindowContainer'
+            //한페이지에 슬라이드하나
             slidesPerView={1}
+            //슬라이드 사이 간격
             spaceBetween={20}
+            //끝단으로 가면 반대편으로 슬와이프 가능
             loop={true}
+            //스와이퍼 init시 개체를 state에 저장
             onSwiper={(sw)=>(setSwiper(sw))}
-            onSlideChange={()=>(swiper!=undefined?changeIcon((swiper.activeIndex+3)%4+1):console.log())}
+            //스와이프시 이벤트로 아이콘 상태 변경
+            //최초실행시 onslidechange가 먼저 발생해 swiper가 undefined 오류 발생. 예외처리
+            onSlideChange={()=>(swiper!=undefined?changeIcon((swiper.activeIndex+3)%4+1):console.log('swiper is undefined.'))}
             >
             <SwiperSlide id="homeWindow">
-              <div className='mainWindow'></div>
+              <Home className='mainWindow'></Home>
             </SwiperSlide>
             <SwiperSlide id="exploreWindow">
               <div className='mainWindow'></div>
@@ -86,35 +88,7 @@ function App() {
   );
 }
 
-function MainIcon(props){
-  var blue;
-  var white;
-  switch (props.type){
-    case 'home':
-      blue=Home_blue;
-      white=Home_white;
-      break;
-    case 'explore':
-      blue=Explore_blue;
-      white=Explore_white;
-      break;
-    case 'asset':
-      blue=Asset_blue;
-      white=Asset_white;
-      break;
-    case 'user':
-      blue=User_blue;
-      white=User_white;
-      break;
-  }
-  var style='icon'+(props.hl?' highLight':'');
-  return(
-    <span id={props.type+'Button'} className='mainIcon'>
-      <img className={style} src={white}/>
-      <img id='hl' className={'opz '+style} src={blue}/>
-    </span>
-  )
-}
+
 
 
 export default App;
