@@ -1,3 +1,7 @@
+@import url(./font/font.css);
+*{
+  font-family: Eland;
+}
 .App {
   text-align: center;
   height: 100vh;
@@ -44,6 +48,7 @@
   width: 100%;
   border-radius: 7px;
   height: 100%;
+  overflow: hidden;
 }
 #mainWindowContainer{
  padding: 0px 5px 40px 5px;

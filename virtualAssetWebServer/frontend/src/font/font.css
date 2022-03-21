@@ -1,0 +1,63 @@
+@font-face {
+    /* 사용할 폰트의 이름 */
+    font-family: "Roboto";
+    font-display: fallback;
+  
+    /* 
+    src: 사용할 폰트의 위치 및 형식 
+       Safari, Android, iOS => ttf
+       Modern Browsers => woff
+       IE6-IE8 => eot
+    */
+    src: url("./roboto/RobotoCondensed-Regular.ttf") format("truetype"), url("./roboto/RobotoCondensed-Regular.woff")
+        format("woff"), url("./roboto/RobotoCondensed-Regular.eot?iefix") format("embedded-opentype");
+  
+    /* 사용할 폰트의 기본 스타일 */
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Roboto";
+    font-display: fallback;
+    src: url("./roboto/RobotoCondensed-Light.ttf") format("truetype"), url("./roboto/RobotoCondensed-Light.woff")
+        format("woff"), url("./roboto/RobotoCondensed-Light.eot") format("embedded-opentype");
+    font-weight: 100;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "Roboto";
+    font-display: fallback;
+    src: url("./roboto/RobotoCondensed-Bold.ttf") format("truetype"), url("./roboto/RobotoCondensed-Bold.woff")
+        format("woff"), url("./roboto/RobotoCondensed-Bold.eot") format("embedded-opentype");
+    font-weight: Bold;
+    font-style: normal;
+  }
+
+
+
+
+  @font-face {
+    font-family: "Eland";
+    font-display: fallback;
+    src: url("./eland/ELAND L.ttf") format("truetype"), url("./eland/ELAND L.woff")
+        format("woff"), url("./eland/ELAND L.eot?iefix") format("embedded-opentype");
+    font-weight: 100;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Eland";
+    font-display: fallback;
+    src: url("./eland/ELAND M.ttf") format("truetype"), url("./eland/ELAND M.woff")
+        format("woff"), url("./eland/ELAND M.eot?iefix") format("embedded-opentype");
+    font-weight: 600;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Eland";
+    font-display: fallback;
+    src: url("./eland/ELAND B.ttf") format("truetype"), url("./eland/ELAND B.woff")
+        format("woff"), url("./eland/ELAND B.eot?iefix") format("embedded-opentype");
+    font-weight: bold;
+    font-style: normal;
+  }
