@@ -1,0 +1,132 @@
+
+.login_btn{
+    position: absolute;
+    padding:15px 30px;
+    top:50%;
+    left:50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: fit-content;
+    height: fit-content;
+    background: #738CD9;
+    border: 0;
+    border-radius: 100px;
+    font-weight: 900;
+    font-size: larger;
+    color: #F1EDE9;
+    font-family: Eland;
+}
+.topCmt{
+    position: relative;
+    top: 35%;
+}
+.botCmt{
+    font-size: small;
+    position: relative;
+    top:55%;
+}
+.signinBtnWrapper{
+    position: relative;
+    top:55%;
+}
+.signinBtn{
+    font-weight: 600;
+    text-decoration-line: underline;
+    color: #738CD9;
+    padding: 10px;
+}
+
+.test{
+    margin: auto;
+}
+#no_contents{
+    position: relative;
+    top:30%;
+    width:30vw;
+    height:30vw;
+}
+.anounce{
+    position: relative;
+    top:calc(30% + 10px);
+    font-size: larger;
+}
+.myClubBanner{
+    background-color: #2D3031;
+    margin: 7px 10px;
+    width: calc(100% - 30px);
+    padding: 3px 5px 13px;
+    border-radius: 12px;
+}
+.smallInfo{
+    margin:0;
+    font-size: x-small;
+    text-align: left;
+    float: left;
+    padding: 0 5px;
+}
+.right{
+    text-align: right;
+    float: right;
+}
+.bannerTitle{
+    font-size: larger;
+    font-weight: 600;
+    margin:7px 10px 3px;
+    padding-top: 8px;
+    text-align: left;
+}
+.myClubList{
+    padding: 15px 0;
+}
+.smallIcon{
+    display: inline;
+    vertical-align:top;
+    width: 9px;
+    height: 9px;
+}
+.searchFloat{
+    position: fixed;
+    bottom: 10px;
+    margin-left: calc(100% - 65px);
+    width: 50px;
+    height: 50px;
+    background-color: #738CD9;
+    border-radius: 30px;
+    transition: 0.3s;
+    box-shadow: 3px 8px 5px rgba(0, 0, 0, 0.5);
+  }
+  .extend{
+    margin-left: calc(30% - 15px);
+    width: 70%;
+    transition: 0.3s;
+  }
+  
+  .searchIcon{
+    float: right;
+    margin: 10.5px 14.5px 14.5px 10.5px;
+  }
+
+  .searchInput{
+      width: calc(100% - 80px);
+      padding: 7px;
+      margin: 11px;
+      margin-right: 0;
+      float: left;
+      border: 0;
+      border-radius: 30px;
+      transition: 0.3s;
+  }
+
+  .hide{
+      width:0;
+      padding: 7px 0;
+      margin: 11px 0;
+      opacity: 0;
+      transition: 0.3s;
+  }
+  .sh{
+      color: #738CD9;
+  }
+  .mainWindow{
+      
+    overflow: auto;
+  }

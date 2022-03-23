@@ -1,0 +1,56 @@
+.searchBarContainer{
+    width: 100%;
+    height: 70px;
+}
+
+.exploreViewContainer{
+    width: 100%;
+    height: calc(100% - 77px);
+    margin-top: 7px;
+}
+
+.searchBar{
+    width: 100%;
+    height: 100%;
+    background-color: #738CD9;
+    border-radius: 6px;
+}
+
+.searchBar p{
+    margin: 0;
+    padding: 15px 0 15px 15px;
+    font-size: small;
+    text-align: left;
+    float: left;
+    line-height: 20px;
+}
+
+.searchBar img{
+    float:right;
+    padding: 20px 15px 20px ;
+}
+.pubClubBanner{
+    background-color: #2D3031;
+    margin: 7px 10px;
+    width: calc(100% - 30px);
+    padding: 3px 5px 13px;
+    border-radius: 12px;
+}
+
+.tag{
+    display: inline-block;
+    padding:3px 5px 2px;
+    font-size: small;
+    color: #738CD9;
+}
+
+.intro{
+    padding: 0 5px 0 20px;
+    text-align: left;
+    margin: 0;
+    font-size: small;
+}
+.tagContainer{
+    margin: 0;
+    padding-top: 10px;
+}
