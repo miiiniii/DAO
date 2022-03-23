@@ -12,10 +12,11 @@ export default function customAxios(url, callback) {
        * 
        * ※크로스 도메인 이슈: 브라우저에서 다른 도메인으로 URL 요청을 하는 경우 나타나는 보안문제
        */
-      baseURL: 'http://localhost:8080',
+      baseURL: 'http://220.70.59.102:8080',
       withCredentials: true,
     }
   ).then(function (response) {
     callback(response.data);
   });
 }
+

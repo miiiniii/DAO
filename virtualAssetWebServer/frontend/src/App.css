@@ -51,7 +51,7 @@
   overflow: hidden;
 }
 #mainWindowContainer{
- padding: 0px 5px 40px 5px;
+ padding: 0px 5px 0 5px;
  align-items: center;
  width: calc(100vw - 10px);
  height: calc(100vh - 40px);
@@ -61,7 +61,7 @@
   position: relative;
   width: 100vw;
   height: 35px;
-  transform: translateY(-100%);
+  padding-top: 5px;
 }
 
 .mainIcon{
@@ -69,6 +69,7 @@
   height: 30px;
   width: 30px;
   transition: 0.5s;
+  margin: 0 5px;
 }
 
 .icon{
@@ -94,3 +95,4 @@
   transition: 0.5s;
   opacity: 1;
 }
+

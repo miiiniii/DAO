@@ -29,8 +29,17 @@ export default function MainIcon(props){
         break;
     }
     var style='icon'+(props.hl?' highLight':'');
+
+    function IconClick(){
+      if(props.sw.activeIndex===1&&props.index===3)
+      props.sw.slideToLoop(-1);
+      else if(props.sw.activeIndex===4&&props.index===0)
+      props.sw.slideToLoop(4);
+      else
+      props.sw.slideToLoop(props.index);
+    }
     return(
-      <span id={props.type+'Button'} className='mainIcon'>
+      <span id={props.type+'Button'} className='mainIcon' onClick={IconClick}>
         <img className={style} src={white}/>
         <img id='hl' className={'opz '+style} src={blue}/>
       </span>
