@@ -16,23 +16,25 @@
     font-family: Eland;
 }
 .topCmt{
+    font-size: larger;
+    font-weight: 600;
     position: relative;
     top: 35%;
 }
 .botCmt{
-    font-size: small;
+    font-size: medium;
     position: relative;
     top:55%;
 }
 .signinBtnWrapper{
     position: relative;
     top:55%;
+    padding: 15px 0;
 }
 .signinBtn{
     font-weight: 600;
-    text-decoration-line: underline;
     color: #738CD9;
-    padding: 10px;
+    padding: 7px 10px;
 }
 
 .test{
