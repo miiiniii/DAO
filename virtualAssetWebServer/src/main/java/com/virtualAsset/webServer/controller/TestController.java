@@ -133,8 +133,8 @@ public class TestController {
 	@PostMapping("/auth")
 	public String userAuth (HttpServletRequest request){
 		//test value
-		Auth auth=new Auth("test_id","test_name", request.getRemoteAddr());
-		//Auth auth=new Auth(Auth.ErrorCode.FAIL_AUTHENTICATION);
+		//Auth auth=new Auth("test_id","test_name", request.getRemoteAddr());
+		Auth auth=new Auth(Auth.ErrorCode.FAIL_AUTHENTICATION);
 		
 		String json=null;
 		try {

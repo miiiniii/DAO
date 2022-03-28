@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.text.DecimalFormat;
 
 public class ClubBanner {
-	private static DecimalFormat df=new DecimalFormat("#,###.#");
+	private static DecimalFormat df=new DecimalFormat("###.#");
 	private static String[] units= {" ","k","M","G","T"};
 	private String name;
 	private int concludedContractAmount;
