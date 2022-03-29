@@ -1,0 +1,124 @@
+.userTopCmt {
+  font-size: medium;
+  position: relative;
+  top: 35%;
+}
+
+.userBotCmt {
+  font-size: medium;
+  position: relative;
+  top: 55%;
+}
+
+.userViewContainer {
+  width: 100%;
+  height: calc(100% - 77px);
+  margin-top: 7px;
+  transition: 0.4s;
+}
+
+.userAccountBanner {
+  background-color: #2d3031;
+  margin: 7px 10px;
+  width: calc(100% - 30px);
+  padding: 3px 5px 13px;
+  border-radius: 12px;
+}
+
+.userAccountWrapper {
+  display: flex;
+}
+
+.userName {
+  position: relative;
+  text-align: left;
+  font-size: larger;
+  padding: 15px 0 15px 15px;
+  line-height: 20px;
+  transition: 0.2s;
+}
+
+.userID {
+  color: #999897;
+  position: relative;
+  text-align: flex-end;
+  font-size: larger;
+  padding: 15px 15px 15px 15px;
+  line-height: 20px;
+  transition: 0.2s;
+}
+
+.userMenuBanner {
+  background-color: #2d3031;
+  margin: 7px 10px;
+  width: calc(100% - 30px);
+  padding: 3px 5px 13px;
+  border-radius: 12px;
+}
+
+.divHr {
+  height: 2px;
+  color: #464b52;
+  background-color: #464b52;
+  border: none;
+  width: calc(100%-10px);
+}
+
+.login_btn {
+  position: absolute;
+  padding: 15px 30px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: fit-content;
+  height: fit-content;
+  background: #738cd9;
+  border: 0;
+  border-radius: 100px;
+  font-weight: 900;
+  font-size: larger;
+  color: #f1ede9;
+  font-family: Eland;
+}
+
+.signinBtnWrapper {
+  position: relative;
+  top: 55%;
+  padding: 15px 0;
+}
+.signinBtn {
+  font-weight: 600;
+  color: #738cd9;
+  padding: 7px 10px;
+}
+
+.signoutBtnWrapper {
+  padding: 10px 5px 0 20px;
+  text-align: left;
+  margin: 0;
+}
+
+.signoutBtn {
+  font-size: large;
+  font-weight: 600;
+  color: #738cd9;
+}
+
+.mainWindow {
+  overflow: auto;
+}
+
+.mainCmt {
+  padding: 10px 5px 0 20px;
+  text-align: left;
+  margin: 0;
+  font-size: large;
+  font-weight: 900;
+}
+
+.subCmt {
+  padding: 5px 5px 0 20px;
+  text-align: left;
+  margin: 0;
+  font-size: small;
+}
