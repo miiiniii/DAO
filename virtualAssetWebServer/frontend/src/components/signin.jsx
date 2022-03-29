@@ -1,18 +1,7 @@
 import { useEffect, useState } from "react";
-import useScript from "./useScript"
 
 export default function Signin(props) {
-	useScript("https://kit.fontawesome.com/51db22a717.js");
-	const [authId, setAuthId]= useState('');
-	const [authPw, setAuthPw]= useState('');
-	const authIdHandle=(e)=>{
-		setAuthId(e.target.value);
-		console.log(e.target.value)
-	}
-	const authPwHandle=(e)=>{
-	  setAuthPw(e.target.value);
-	  console.log(e.target.value)
-	}
+
 	const authSubmit=(e)=>{
 
 	}
@@ -20,8 +9,8 @@ export default function Signin(props) {
 	return (
 		<div className={'signinBackground'+(props.signinPage==='hide'?' signinPageHide':'')}>
 			<nav>
-				<ul className="nav-container">
-					<li className="nav-item"><span onClick={props.hideSigninPage}><i className="fa fa-arrow-left"></i></span></li>
+				<ul className="nav-container" onClick={props.hideSigninPage}>
+					<li className="nav-item" ><i className="fa fa-arrow-left"></i></li>
 				</ul>
 			</nav>
 			<div className="main-container">
@@ -36,13 +25,13 @@ export default function Signin(props) {
 					<section className="login-section-wrap">
 						<section className="login-input-section-wrap">
 							<div className="login-input-wrap">
-								<input placeholder="아이디" type="text" onChange={authIdHandle}></input>
+								<input placeholder="아이디" type="text"></input>
 							</div>
 							<div className="login-input-wrap password-wrap">
-								<input placeholder="비밀번호" type="password" onChange={authPwHandle}></input>
+								<input placeholder="비밀번호" type="password"></input>
 							</div>
 							<div className="login-stay-sign-in">
-								<i className="far fa-check-circle"></i>
+								<i className="far fa-check-circle"  aria-hidden="true" title="로그인 유지"></i>
 
 								<span style={{ color: "#F1EDE9" }}>로그인 유지</span>
 							</div>

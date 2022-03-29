@@ -2,17 +2,6 @@ import { useState } from "react"
 
 
 export default function Signup(props) {
-  const [authVal, setAuthVal]= useState([,]);
-  const authIdHandle=(e)=>{
-    let ta={...authVal};
-    ta[0]=e.target.value;
-    setAuthVal(ta);
-  }
-  const authPwHandle=(e)=>{
-    let ta={...authVal};
-    ta[1]=e.target.value;
-    setAuthVal(ta);
-  }
   return (
     <div className={'signinBackground'+(props.signupPage==='hide'?' signinPageHide':'')} style={{zIndex:10002}}>
       <nav>
