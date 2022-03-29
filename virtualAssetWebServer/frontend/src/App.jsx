@@ -10,7 +10,8 @@ import Explore from "./components/explore.jsx";
 import StartPage from './components/startPage';
 import Signin from './components/signin';
 import Signup from './components/signup';
-import User from './components/user.jsx';
+
+import useScript from "./scripts/useScript"
 
 import customAxios from './scripts/customAxios';
 
@@ -18,6 +19,7 @@ import customAxios from './scripts/customAxios';
 
 
 function App() {
+  useScript("https://kit.fontawesome.com/51db22a717.js");
   //********임시 로딩타임 1000ms 추후 로딩 기능 넣으면 동적으로 변경*********/
   const tempLoadingTime = 1000;
 
