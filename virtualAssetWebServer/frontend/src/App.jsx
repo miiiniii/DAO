@@ -10,6 +10,7 @@ import Explore from "./components/explore.jsx";
 import StartPage from './components/startPage';
 import Signin from './components/signin';
 import Signup from './components/signup';
+
 import useScript from "./scripts/useScript"
 
 import customAxios from './scripts/customAxios';
@@ -103,7 +104,7 @@ function App() {
             <div className='mainWindow'></div>
           </SwiperSlide>
           <SwiperSlide id="userWindow">
-            <div className='mainWindow'></div>
+            <User className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage}></User>
           </SwiperSlide>
         </Swiper>
         <div className='mainIconContainer'>
