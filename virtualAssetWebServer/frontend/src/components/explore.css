@@ -63,11 +63,11 @@
     padding-top: 10px;
 }
 .exploreBarExt{
-    height: 65vh;
+    height: 35vh;
     transition: 0.4s;
 }
 .exploreViewShort{
-    height: calc(100% - 65vh - 7px);
+    height: calc(100% - 35vh - 7px);
     transition: 0.4s;
 }
 
@@ -113,5 +113,5 @@
     position:relative;
     left: 0;
     padding: 0 calc(50% - 10px) 5px;
-    top:calc(65vh - 95px);
+    top:calc(35vh - 95px);
 }

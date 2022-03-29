@@ -10,6 +10,7 @@ import Explore from "./components/explore.jsx";
 import StartPage from './components/startPage';
 import Signin from './components/signin';
 import Signup from './components/signup';
+import User from './components/user';
 
 import useScript from "./scripts/useScript"
 
