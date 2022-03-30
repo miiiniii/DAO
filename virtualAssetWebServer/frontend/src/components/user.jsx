@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import Logoff from './logoff';
 import "./user.css";
 
 export default function User(props){
@@ -6,21 +7,11 @@ export default function User(props){
          return <UserLogon auth={props.auth} className={props.className}/>;
     }
     else{
-         return <UserLogoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;
+         return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;
     }
     
 }
 
-function UserLogoff(props){
- return(
-     <div className={props.className}>
-         <button className='login_btn' onClick={props.showSigninPage}>로그인</button>
-         <p className='userTopCmt'>로그아웃 상태입니다.<br/> 로그인하고 그룹 투자를 시작 해 보세요.</p>
-         <p className='userBotCmt'>아직 회원이 아니라면?</p>
-         <p className='signinBtnWrapper'><span className='signinBtn' onClick={props.showSignupPage}>회원가입</span></p>
-     </div>
- );
-}
 
 function UserLogon(props) {
     return (

@@ -21,6 +21,7 @@ export default function Explore(props) {
         if (props.sw === undefined || props.sw.realIndex !== 1) return;
         if (result === undefined || result === null) {
             searchAxios(keyword, (data) => {
+                console.log(data);
                 setResult(data)
             });
         }
@@ -110,14 +111,14 @@ function ExploreView(props) {
                     <div className='pubClubBanner' key={"pubClubBanner" + i}>
                         <p className='smallInfo right'>최근 거래 : {contents.recentActivities} 전</p>
                         <p className='bannerTitle'>{contents.name}</p>
-                        <p className='intro'>{contents.intro}</p>
+                        <p className='intro'>{contents.introduce}</p>
                         <div className='tagContainer'>
-                            {contents.tag.map((tag, ii) => (
+                            {contents.tags.map((tag, ii) => (
                                 <div key={'tag' + ii} className='tag'>#{tag}</div>
                             ))}
                         </div>
                         <span className='smallInfo'><img className='smallIcon' src={Contract_white} /> {contents.concludedContract}/{contents.totalContract}</span>
-                        <span className='smallInfo right'>{contents.member} <img className='smallIcon' src={User_white} /></span>
+                        <span className='smallInfo right'>{contents.memberAmount} <img className='smallIcon' src={User_white} /></span>
                     </div>
                 ))}
             </div>

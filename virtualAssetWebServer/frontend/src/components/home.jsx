@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import customAxios from '../scripts/customAxios';
 import "./home.css";
+import Logoff from './logoff';
 
 import No_contents_blue from "../Icons/No_contents_blue.png";
 import User_white from "../Icons/User_white.png";
 import Contract_white from "../Icons/Contract_white.png";
 import Search_white from "../Icons/Search_white.png";
+
 
 
 export default function Home(props){
@@ -21,6 +23,7 @@ export default function Home(props){
                 if (JSON.stringify(data) === JSON.stringify(clubs)) return;
                 if (data === "") setClubs(null);
                 else setClubs(data);
+                console.log(data);
             });
         }
     }, [props.sw === undefined ? false : props.sw.realIndex]);
@@ -30,8 +33,6 @@ export default function Home(props){
             setClubsDisplay(clubs);
             return;
         }
-
-        
         
         setClubsDisplay(Object.values(clubs).filter((oc) => {
             return (oc.name === undefined || oc.name === null)?false:oc.name.includes(searchInput)
@@ -69,21 +70,11 @@ export default function Home(props){
                     inputChange={inputChange}
                 />;
     }else{
-        return <HomeLogoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;
+        return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;
     }
     
 }
 
-function HomeLogoff(props){
- return(
-     <div className={props.className}>
-         <p className='topCmt'>로그아웃 상태입니다.</p>
-         <button className='login_btn' onClick={props.showSigninPage}>로그인</button>
-         <p className='botCmt'>지금 회원가입하고<br />그룹 투자를 시작 해 보세요.</p>
-         <p className='signinBtnWrapper'><span className='signinBtn' onClick={props.showSignupPage}>회원가입</span></p>
-     </div>
- );
-}
 
 function HomeLogon(props) {
 

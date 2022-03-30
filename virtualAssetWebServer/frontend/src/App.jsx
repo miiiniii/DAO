@@ -11,6 +11,8 @@ import StartPage from './components/startPage';
 import Signin from './components/signin';
 import Signup from './components/signup';
 import User from './components/user';
+import Asset from './components/asset';
+
 
 import useScript from "./scripts/useScript"
 
@@ -102,7 +104,7 @@ function App() {
             <Explore className='mainWindow' auth={auth} sw={swiper}></Explore>
           </SwiperSlide>
           <SwiperSlide id="assetWindow">
-            <div className='mainWindow'></div>
+            <Asset className='mainWindow'auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage}></Asset>
           </SwiperSlide>
           <SwiperSlide id="userWindow">
             <User className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage}></User>
