@@ -18,7 +18,7 @@ export default function Home(props){
     useEffect(() => {
         if (props.sw !== undefined && props.sw.realIndex === 0) {
             customAxios('/myClubBanners', (data) => {
-                if (JSON.stringify(data) == JSON.stringify(clubs)) return;
+                if (JSON.stringify(data) === JSON.stringify(clubs)) return;
                 if (data === "") setClubs(null);
                 else setClubs(data);
             });
@@ -60,7 +60,7 @@ export default function Home(props){
 
 
     if(props.auth!==undefined&&props.auth.code===100){
-        return  <Home_logon 
+        return  <HomeLogon 
                     className={props.className} 
                     clubs={clubsDisplay} 
                     auth={props.auth} 
@@ -69,12 +69,12 @@ export default function Home(props){
                     inputChange={inputChange}
                 />;
     }else{
-        return <Home_logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;
+        return <HomeLogoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;
     }
     
 }
 
-function Home_logoff(props){
+function HomeLogoff(props){
  return(
      <div className={props.className}>
          <p className='topCmt'>로그아웃 상태입니다.</p>
@@ -85,7 +85,7 @@ function Home_logoff(props){
  );
 }
 
-function Home_logon(props) {
+function HomeLogon(props) {
 
     //가입한 클럽이 없을때
     if (props.clubs === null) {

@@ -133,7 +133,11 @@ public class TestController {
 	@PostMapping("/auth")
 	public String userAuth (HttpServletRequest request){
 		//test value
+		
+		//로그온 상태로 만들기
 		Auth auth=new Auth("test_id","test_name", request.getRemoteAddr());
+		
+		//로그오프 상태로 만들기
 		//Auth auth=new Auth(Auth.ErrorCode.FAIL_AUTHENTICATION);
 		
 		String json=null;

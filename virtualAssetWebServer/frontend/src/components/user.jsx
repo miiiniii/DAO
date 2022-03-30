@@ -3,15 +3,15 @@ import "./user.css";
 
 export default function User(props){
     if(props.auth!==undefined&&props.auth.code===100){
-         return <User_logon auth={props.auth} />;
+         return <UserLogon auth={props.auth} className={props.className}/>;
     }
     else{
-         return <User_logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;
+         return <UserLogoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;
     }
     
 }
 
-function User_logoff(props){
+function UserLogoff(props){
  return(
      <div className={props.className}>
          <button className='login_btn' onClick={props.showSigninPage}>로그인</button>
@@ -22,9 +22,9 @@ function User_logoff(props){
  );
 }
 
-function User_logon(props) {
+function UserLogon(props) {
     return (
-        <div className='userViewContainer'>
+        <div className={props.className}>
             <div className='userAccountBanner'>
                 <div className='userAccountWrapper'>
                     <p className='userName'>User_Name<br/></p>
