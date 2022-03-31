@@ -21,6 +21,7 @@ export default function Explore(props) {
         if (props.sw === undefined || props.sw.realIndex !== 1) return;
         if (result === undefined || result === null) {
             searchAxios(keyword, (data) => {
+                console.log("explore");
                 console.log(data);
                 setResult(data)
             });

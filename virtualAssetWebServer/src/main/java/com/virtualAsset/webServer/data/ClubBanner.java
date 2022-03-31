@@ -12,18 +12,18 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
 
 public class ClubBanner {
 	private static DecimalFormat df=new DecimalFormat("###.#");
-	private static String[] units= {"","k","M","G","T"};
+	private static String[] units= {"","k","M","G","T","P"};
 	private SimpleDateFormat strToDate=new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-	
+	private String clubId;
 	private String name;
-	private int concludedContractAmount;
-	private int totalContractAmount;
-	private int memberAmount;
+	private long concludedContractAmount;
+	private long totalContractAmount;
+	private long memberAmount;
 	private String introduce;
 	private ArrayList<String> tags;
 	String recentActivities;
 	
-	public ClubBanner(String name, int cca, int tca, int ma, String ra, String intro, ArrayList<String> tags) {
+	public ClubBanner(String clubId, String name, long cca, long tca, long ma, String ra, String intro, ArrayList<String> tags) {
 		this.concludedContractAmount=cca;
 		this.memberAmount=ma;
 		this.name=name;
@@ -36,19 +36,19 @@ public class ClubBanner {
 	public String getName() {
 		return name;
 	}
-	public int getIntConcludedContract() {
+	public long getIntConcludedContract() {
 		return concludedContractAmount;
 	}	
 	public String getStringConcludedContract() {
 		return intToRoundString(concludedContractAmount);
 	}
-	public int getIntTotalContract() {
+	public long getIntTotalContract() {
 		return totalContractAmount;
 	}
 	public String getStringTotalContract() {
 		return intToRoundString(totalContractAmount);
 	}
-	public int getIntMemberAmt() {
+	public long getIntMemberAmt() {
 		return memberAmount;
 	}
 	public String getStringMemberAmt() {
@@ -90,6 +90,7 @@ public class ClubBanner {
 	}
 	public JSONObject toJsonObject() throws JSONException, ParseException {
 		JSONObject temp=new JSONObject();
+		temp.put("clubId", clubId);
 		temp.put("name", name);
 		temp.put("concludedContract", getStringConcludedContract());
 		temp.put("totalContract", getStringTotalContract());
@@ -100,8 +101,9 @@ public class ClubBanner {
 		return temp;
 	}
 	
-	public static String intToRoundString(int val) {
-		int t=1, index=0;
+	public static String intToRoundString(long val) {
+		long t=1;
+		int index=0;
 		 
 		while(val>t*1000) {
 			index++;
