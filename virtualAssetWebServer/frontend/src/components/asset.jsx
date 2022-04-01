@@ -4,6 +4,7 @@ import Logoff from "./logoff";
 import No_contents_blue from "../Icons/No_contents_blue.png";
 import Search_white from "../Icons/Search_white.png";
 import "./asset.css";
+import AssetDetail from "./assetDetail";
 
 export default function Asset(props) {
 
@@ -124,8 +125,8 @@ function AssetLogon(props) {
                               </div>
                          ))}
                     </div>
-
                </div>
+               <AssetDetail></AssetDetail>
           </div>
      );
 }

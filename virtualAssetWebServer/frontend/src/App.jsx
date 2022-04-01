@@ -1,6 +1,6 @@
 
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import './components/style.css';
@@ -80,6 +80,7 @@ function App() {
 
   return (
     <div className="App">
+      <Suspense fallback={<StartPage/>}>
       <div className="touchBlocker" style={{ display: touchBlock ? 'block' : 'none', opacity: touchBlock ? '0.4' : '0' }}></div>
       <header className="App-header">
         <Swiper
@@ -120,6 +121,7 @@ function App() {
       <StartPage startView={startView} />
       <Signin signinPage={signinPage} hideSigninPage={hideSigninPage} showSignupPage={showSignupPage}/>
       <Signup signupPage={signupPage} hideSignupPage={hideSignupPage} showSigninPage={showSigninPage}></Signup>
+      </Suspense>
     </div>
   );
 }

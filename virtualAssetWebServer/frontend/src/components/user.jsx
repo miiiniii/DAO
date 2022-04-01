@@ -18,10 +18,8 @@ function UserLogon(props) {
         <div className={props.className}>
             <div className='userAccountBanner'>
                 <div className='userAccountWrapper'>
-                    <p className='userName'>User_Name<br/></p>
-                    <p className='userID'>#0294<br/></p>
-                    {/* <p className='userName'>{props.auth.name}<br/></p> */}
-                    {/* <p className='userID'>#{props.auth.id}<br/></p> */}
+                    <p className='userName'>{props.auth.name}<br/></p>
+                    <p className='userID'>#{props.auth.id}<br/></p>
                 </div>
                 <hr className='divHr'/>
                 <p className='mainCmt'>개인정보</p>
