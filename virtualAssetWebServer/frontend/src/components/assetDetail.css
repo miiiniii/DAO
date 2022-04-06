@@ -15,13 +15,13 @@
     height: 100%;
     top:0;
 }
-.assetDetialNav{
+.assetDetailNav{
     width: 100%;
     height: 40px;
     background-color: rgb(83, 86, 89);
     border-radius: 10px 10px 0 0;
 }
-.assetDetialCont{
+.assetDetailCont{
     padding: 0 15px 15px;
     width: calc(100% - 30px);
     height: calc(100% - 55px);
@@ -48,18 +48,23 @@
 .valueChangeGraphCont{
     text-align: center;
 }
-.assetDetialCont table td:nth-child(1),td:nth-child(2){
+.assetDetailCont table td:nth-child(1),td:nth-child(2){
     text-align: center;
 }
-.assetDetialCont table td:nth-child(1){
-    width: 68px;
-}
-.assetDetialCont table td:nth-child(2){
+.assetDetailCont table td:nth-child(2){
     width: 22px;
 }
-.assetDetialCont table td:nth-child(3){
+.assetDetailCont table td:nth-child(3){
     text-align: left;
+    width: calc(100% - 90px);
 }
-.assetDetialCont table{
-    width: 100%;
+.assetDetailCont table{
+    border-spacing: 0;
+}
+.chartWrapper{
+    position: relative;
+    background-color: rgb(241,237,233);
+    border-radius: 5px;
+    padding: 4px;
+    margin-top: 5px;
 }

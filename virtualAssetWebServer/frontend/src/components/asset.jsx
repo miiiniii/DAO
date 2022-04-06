@@ -13,7 +13,7 @@ export default function Asset(props) {
      const [searchState, setSearchState] = useState({ extend: false, class: "searchFloat", inputClass: "searchInput hide", searchValue: "" });
      const [searchInput, setSearchInput] = useState();
      const inputChange = (v) => { setSearchInput(v.target.value) };
-
+     const [detailView, setDetailView] = useState({ view: false, assetId: null, assetIndex:null});
 
      useEffect(() => {
           if (props.sw !== undefined && props.sw.realIndex === 2) {
@@ -67,6 +67,11 @@ export default function Asset(props) {
           }));
      }, [searchInput, assets]);
 
+
+     function assetDetailBack() {
+          setDetailView({view: false, assetId:null, assetIndex:null});
+     }
+
      function searchCilck() {
           if (!searchState.extend) setSearchState({ extend: true, class: "searchFloat extend", inputClass: "searchInput", searchValue: "" })
           else setSearchState({ extend: false, class: "searchFloat", inputClass: "searchInput hide", searchValue: "" });
@@ -80,6 +85,9 @@ export default function Asset(props) {
                searchCilck={searchCilck}
                searchState={searchState}
                inputChange={inputChange}
+               assetDetailBack={assetDetailBack}
+               detailView={detailView}
+               setDetailView={setDetailView}
           />;
      }
      else {
@@ -113,20 +121,26 @@ function AssetLogon(props) {
                     </div>
                     <div className="myClubList">
                          {props.assets.map((c, i) => (
-                              <div className="assetBanner" key={c.name + i}>
+                              <div className="assetBanner" key={c.name + i} onClick={()=>props.setDetailView({view: true, assetId:c.assetId, assetIndex:i})}>
                                    <p className="assetTag">
                                         [{c.tag}]
                                         <span className="buyDate">거래일자:{c.buyDate}</span>
                                    </p>
                                    <p className="assetTitle">{c.name}</p>
                                    <p className="assetInfo">가격 : {AddComma(c.currPrice)} {c.currency}</p>
-                                   <p className={"assetInfo valueChange"+(c.valueChange > 0 ? " increase" : (c.valueChange < 0 ? " decrease" : ""))}>{c.valueChange > 0 ? (" ▲ +" + AddComma(Math.abs(c.currPrice-c.buyPrice))+" "+c.currency) : (c.valueChange < 0 ? (" ▼ -" + AddComma(Math.abs(c.currPrice-c.buyPrice))+" "+c.currency) : ("■\xa0\xa0\xa00 "+c.currency))}&nbsp;&nbsp;&nbsp;( {c.valueChange > 0 ? ("+" + Math.abs(c.valueChange).toFixed(2) + "% )") : (c.valueChange < 0 ? ("-" + Math.abs(c.valueChange).toFixed(2) + "% )") : "0% )")}</p>
+                                   <p className={"assetInfo valueChange" + (c.valueChange > 0 ? " increase" : (c.valueChange < 0 ? " decrease" : ""))}>{c.valueChange > 0 ? (" ▲ +" + AddComma(Math.abs(c.currPrice - c.buyPrice)) + " " + c.currency) : (c.valueChange < 0 ? (" ▼ -" + AddComma(Math.abs(c.currPrice - c.buyPrice)) + " " + c.currency) : ("■\xa0\xa0\xa00 " + c.currency))}&nbsp;&nbsp;&nbsp;( {c.valueChange > 0 ? ("+" + Math.abs(c.valueChange).toFixed(2) + "% )") : (c.valueChange < 0 ? ("-" + Math.abs(c.valueChange).toFixed(2) + "% )") : "0% )")}</p>
                                    <p className="assetInfo">구매클럽 : {c.buyClub}</p>
                               </div>
                          ))}
                     </div>
                </div>
-               <AssetDetail></AssetDetail>
+               {props.detailView.view?<AssetDetail
+                    assetDetailBack={props.assetDetailBack}
+                    assetId={props.detailView.assetId}
+                    assetInfo={props.assets[props.detailView.assetIndex]}
+                    view={props.detailView.view}
+               />:<></> }
+               
           </div>
      );
 }
