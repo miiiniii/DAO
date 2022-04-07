@@ -22,6 +22,13 @@ ChartJS.register(
 
 export const options = {
     responsive: true,
+    interaction: {
+        intersect: false,
+        mode: 'index',
+    },
+    tooltip: {
+        usePointStyle: true,
+    },
     plugins: {
         legend: false
     },
@@ -48,7 +55,7 @@ export const options = {
     },
 };
 
-export function makeChartData(price = [0,0,0,0,0,0,0], changes=[0,0,0,0,0,0,0]){
+export function makeChartData(price = [0, 0, 0, 0, 0, 0, 0], changes = [0, 0, 0, 0, 0, 0, 0]) {
     const labels = ['6일 전', '5일 전', '4일 전', '3일 전', '2일 전', '1일 전', '오늘'];
     return {
         labels,
@@ -61,6 +68,7 @@ export function makeChartData(price = [0,0,0,0,0,0,0], changes=[0,0,0,0,0,0,0]){
                 radius: 4,
                 hoverRadius: 7,
                 yAxisID: 'y',
+                pointStyle: 'none',
             },
             {
                 label: '변동',
@@ -69,23 +77,24 @@ export function makeChartData(price = [0,0,0,0,0,0,0], changes=[0,0,0,0,0,0,0]){
                 backgroundColor: "rgba(220,220,220,0)",
                 borderColor: "rgba(200,200,200,0)",
                 fill: { above: 'rgba(255,200,200,0.5)', below: 'rgba(200,200,255,0.5)', target: { value: 0 } },
+                pointStyle: 'none',
             }
         ],
     };
 }
 
 export default function AssetDetail(props) {
-    const [detail, setDetail]=useState({responsible:""});
+    const [detail, setDetail] = useState({ responsible: "" });
 
-    useEffect(()=>{
-        customAxiosData("/assetDetail", {assetId: props.assetId},(data)=>{
+    useEffect(() => {
+        customAxiosData("/assetDetail", { assetId: props.assetId }, (data) => {
             setDetail(data);
             console.log(data);
             data.pastPrice.push(props.assetInfo.currPrice);
             setAssetData(makeChartData(data.pastPrice, data.valueChangeHistory));
         })
-    },[]);
-    const [assetData, setAssetData]=useState(makeChartData());
+    }, []);
+    const [assetData, setAssetData] = useState(makeChartData());
 
     return (< div className="touchBlock" >
         <div className="assetDetail">
@@ -102,12 +111,12 @@ export default function AssetDetail(props) {
                             <tr>
                                 <td>현재가격</td>
                                 <td>:</td>
-                                <td>{AddComma(props.assetInfo.currPrice)+props.assetInfo.currency}</td>
+                                <td>{AddComma(props.assetInfo.currPrice) + props.assetInfo.currency}</td>
                             </tr>
                             <tr>
                                 <td>구매가격</td>
                                 <td>:</td>
-                                <td>{AddComma(props.assetInfo.buyPrice)+props.assetInfo.currency}</td>
+                                <td>{AddComma(props.assetInfo.buyPrice) + props.assetInfo.currency}</td>
                             </tr>
                             <tr>
                                 <td>구매클럽</td>
@@ -135,9 +144,6 @@ export default function AssetDetail(props) {
                             </tr>
                         </tbody>
                     </table>
-
-
-
                 </div>
             </div>
         </div>
