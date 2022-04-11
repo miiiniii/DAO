@@ -5,9 +5,11 @@ import No_contents_blue from "../Icons/No_contents_blue.png";
 import Search_white from "../Icons/Search_white.png";
 import "./asset.css";
 import AssetDetail from "./assetDetail";
+import LoadingSpinner from "./loadingSpinner";
 
 export default function Asset(props) {
 
+     const [isLoaded, setIsLoaded] = useState(false);
      const [assets, setAssets] = useState([]);
      const [assetDisplay, setAssetDisplay] = useState();
      const [searchState, setSearchState] = useState({ extend: false, class: "searchFloat", inputClass: "searchInput hide", searchValue: "" });
@@ -17,12 +19,14 @@ export default function Asset(props) {
 
      useEffect(() => {
           if (props.sw !== undefined && props.sw.realIndex === 2) {
+               setIsLoaded(false);
                customAxios('/myAssets', (data) => {
                     if (JSON.stringify(data) === JSON.stringify(assets)) return;
                     if (data === "") setAssets(null);
                     else setAssets(data);
                     console.log('assets');
                     console.log(data);
+                    setIsLoaded(true);
                });
           }
      }, [props.sw === undefined ? false : props.sw.realIndex]);
@@ -78,6 +82,7 @@ export default function Asset(props) {
      }
 
      if (props.auth !== undefined && props.auth.code === 100) {
+          if(isLoaded){
           return <AssetLogon
                className={props.className}
                assets={assetDisplay}
@@ -88,7 +93,10 @@ export default function Asset(props) {
                assetDetailBack={assetDetailBack}
                detailView={detailView}
                setDetailView={setDetailView}
+               showClubPage={props.showClubPage}
           />;
+          }
+          return <LoadingSpinner></LoadingSpinner>
      }
      else {
           return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage} />;
@@ -127,8 +135,8 @@ function AssetLogon(props) {
                                         <span className="buyDate">거래일자:{c.buyDate}</span>
                                    </p>
                                    <p className="assetTitle">{c.name}</p>
-                                   <p className="assetInfo">가격 : {AddComma(c.currPrice)} {c.currency}</p>
-                                   <p className={"assetInfo valueChange" + (c.valueChange > 0 ? " increase" : (c.valueChange < 0 ? " decrease" : ""))}>{c.valueChange > 0 ? (" ▲ +" + AddComma(Math.abs(c.currPrice - c.buyPrice)) + " " + c.currency) : (c.valueChange < 0 ? (" ▼ -" + AddComma(Math.abs(c.currPrice - c.buyPrice)) + " " + c.currency) : ("■\xa0\xa0\xa00 " + c.currency))}&nbsp;&nbsp;&nbsp;( {c.valueChange > 0 ? ("+" + Math.abs(c.valueChange).toFixed(2) + "% )") : (c.valueChange < 0 ? ("-" + Math.abs(c.valueChange).toFixed(2) + "% )") : "0% )")}</p>
+                                   <p className="assetInfo">가격 : {new Intl.NumberFormat('ko', { style: 'currency', currency: c.currency||'KRW'}).format(c.currPrice)}</p>
+                                   <p className={"assetInfo valueChange" + (c.valueChange > 0 ? " increase" : (c.valueChange < 0 ? " decrease" : ""))}>{c.valueChange > 0 ? (" ▲ +" + new Intl.NumberFormat('ko', { style: 'currency', currency: c.currency||'KRW'}).format(Math.abs(c.currPrice - c.buyPrice))) : (c.valueChange < 0 ? (" ▼ -" + new Intl.NumberFormat('ko', { style: 'currency', currency: c.currency||'KRW'}).format(Math.abs(c.currPrice - c.buyPrice))) : ("■\xa0\xa0\xa0"+new Intl.NumberFormat('ko', { style: 'currency', currency: c.currency||'KRW'}).format(0)))}&nbsp;&nbsp;&nbsp;( {c.valueChange > 0 ? ("+" + Math.abs(c.valueChange).toFixed(2) + "% )") : (c.valueChange < 0 ? ("-" + Math.abs(c.valueChange).toFixed(2) + "% )") : "0% )")}</p>
                                    <p className="assetInfo">구매클럽 : {c.buyClub}</p>
                               </div>
                          ))}
@@ -139,6 +147,7 @@ function AssetLogon(props) {
                     assetId={props.detailView.assetId}
                     assetInfo={props.assets[props.detailView.assetIndex]}
                     view={props.detailView.view}
+                    showClubPage={props.showClubPage}
                />:<></> }
                
           </div>

@@ -41,6 +41,12 @@ function App() {
     }, tempLoadingTime)
   });
 
+  //클럽 페이지 표시 상태
+  const [clubPage, setClubPage]=useState({viewClass:' clubHide'});
+  const showClubPage=()=>setClubPage({viewClass:''})
+  const hideClubPage=()=>setClubPage({viewClass:' clubHide'})
+
+
   //로그인 페이지 표시 상태
   const [signinPage, setSigninPage] = useState('hide');
   const showSigninPage = () => setSigninPage('show');
@@ -50,7 +56,9 @@ function App() {
   //회원가입 페이지 표시 상태
   const [signupPage, setSignupPage] = useState('hide');
   const showSignupPage = () => setSignupPage('show');
-  const hideSignupPage = () => setSignupPage('hide');
+  const hideSignupPage = () => {
+    console.log('aaaaaaaaa');
+    setSignupPage('hide');}
 
   //****main 위에 쓰이는 페이지는 z index 10000으로 설정************
   const [touchBlock, setTouchBlock] = useState(false);
@@ -66,13 +74,13 @@ function App() {
 
   //로그인 검사
   useEffect(
-    () => {
+     () => {
       customAxios('/auth', (data) => {
         setAuth(data);
       });
     }, []
   );
-
+  
 
   //현 아이콘 상태 state
   let [iconState, setIconState] = useState([true, false, false, false]);
@@ -104,16 +112,16 @@ function App() {
             )}
           >
             <SwiperSlide id="homeWindow">
-              <Home className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage} />
+              <Home className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage}  showClubPage={showClubPage}/>
             </SwiperSlide>
             <SwiperSlide id="exploreWindow">
-              <Explore className='mainWindow' auth={auth} sw={swiper}></Explore>
+              <Explore className='mainWindow' auth={auth} sw={swiper} showClubPage={showClubPage}/>
             </SwiperSlide>
             <SwiperSlide id="assetWindow">
-              <Asset className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage}></Asset>
+              <Asset className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showClubPage={showClubPage}/>
             </SwiperSlide>
             <SwiperSlide id="userWindow">
-              <User className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage}></User>
+              <User className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage}/>
             </SwiperSlide>
           </Swiper>
           <div className='mainIconContainer'>
@@ -130,7 +138,7 @@ function App() {
             <Signup signupPage={signupPage} hideSignupPage={hideSignupPage} showSigninPage={showSigninPage} />
           </>
         ) : <></>}
-        <Club auth={auth}/>
+        <Club auth={auth} clubPage={clubPage} hideClubPage={hideClubPage} showSigninPage={showSigninPage}/>
       </Suspense>
     </div>
   );

@@ -7,10 +7,12 @@ import No_contents_blue from "../Icons/No_contents_blue.png";
 import User_white from "../Icons/User_white.png";
 import Contract_white from "../Icons/Contract_white.png";
 import Search_white from "../Icons/Search_white.png";
+import LoadingSpinner from './loadingSpinner';
 
 
 
 export default function Home(props) {
+    const [isLoaded, setIsLoaded] = useState(false);
     const [clubs, setClubs] = useState(null);
     const [clubsDisplay, setClubsDisplay] = useState(null);
     const [searchState, setSearchState] = useState({ extend: false, class: "searchFloat", inputClass: "searchInput hide", searchValue: "" });
@@ -25,6 +27,7 @@ export default function Home(props) {
                 else setClubs(data);
                 console.log("myclub");
                 console.log(data);
+                setIsLoaded(true);
             });
         }
     }, [props.sw === undefined ? false : props.sw.realIndex]);
@@ -62,6 +65,7 @@ export default function Home(props) {
 
 
     if (props.auth !== undefined && props.auth.code === 100) {
+        if(isLoaded){
         return <HomeLogon
             className={props.className}
             clubs={clubsDisplay}
@@ -69,7 +73,10 @@ export default function Home(props) {
             searchCilck={searchCilck}
             searchState={searchState}
             inputChange={inputChange}
+            showClubPage={props.showClubPage}
         />;
+        }
+        return <LoadingSpinner></LoadingSpinner>
     } else {
         return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage} />;
     }
@@ -101,11 +108,11 @@ function HomeLogon(props) {
                     <img className='searchIcon' width={25} height={25} src={Search_white} onClick={props.searchCilck} />
                 </div>
                 {props.clubs.map((contents, index) => (
-                    <div className='myClubBanner' key={contents + index}>
+                    <div className='myClubBanner' key={contents + index} onClick={props.showClubPage}>
                         <p className='smallInfo right'>최근 거래 : {contents.recentActivities} 전</p>
                         <p className='bannerTitle'>{contents.name}</p>
                         <span className='smallInfo'><img className='smallIcon' src={Contract_white} /> {contents.concludedContract}/{contents.totalContract}</span>
-                        <span className='smallInfo right'>{contents.member} <img className='smallIcon' src={User_white} /></span>
+                        <span className='smallInfo right'>{contents.memberAmount} <img className='smallIcon' src={User_white} /></span>
                     </div>
                 ))}
             </div>

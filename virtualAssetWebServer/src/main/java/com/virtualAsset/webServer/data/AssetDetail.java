@@ -28,6 +28,9 @@ public class AssetDetail {
 	public String getResponsible() {
 		return responsible;
 	}
+	public Long getCurrLong() {
+		return currPrice;
+	}
 	public AssetDetail(String assetId, String buyClubId,
 			ArrayList<Long> pastPrice, Long currPrice, String responsible) {
 		super();
@@ -37,6 +40,7 @@ public class AssetDetail {
 		this.responsible = responsible;
 		this.valueChangeHistory=new ArrayList<Double>();
 		valueChangeHistory.add(0.0);
+		this.currPrice=currPrice;
 		for(int i=0; i<pastPrice.size()-1; i++) {
 			valueChangeHistory.add(Double.valueOf(Math.round((Double.valueOf(pastPrice.get(i+1))/Double.valueOf(pastPrice.get(i))-1) *10000))/100);
 		}
@@ -49,7 +53,6 @@ public class AssetDetail {
 		temp.put("pastPrice", new JSONArray(pastPrice));
 		temp.put("buyClubId", buyClubId);
 		temp.put("responsible", responsible);
-		temp.put("pastPrice", new JSONArray(pastPrice));
 		
 		return temp;
 	}

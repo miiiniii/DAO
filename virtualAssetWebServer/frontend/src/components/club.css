@@ -6,12 +6,12 @@
     top: 0%;
     z-index: 800;
     color: #F1EDE9;
-    transition: 0.1s;
+    transition: 0.2s;
     padding: 5px 0;
 }
 
 .clubHide{
-    top: -100%;
+    top: -100vh;
 }
 
 .clubIntroduce{
@@ -23,19 +23,20 @@
     padding: 5px;
 }
 .backBtn{
-    font-size: 24px;
+    position: absolute;
+    font-size: 32px;
     padding: 6px;
+    bottom: 0px;
+    left: 10px;
 }
-
 .noneStyleList{
     list-style: none;
 }
 .clubIntroduce li{
-    margin: 5px 0;
+    margin-bottom: 5px;
 }
 .clubIntroduce li:nth-child(1){
     text-align: left;
-    margin: 6px 0;
 }
 .clubIntroduce li:nth-child(n+2){
     padding: 0 15px;
@@ -50,14 +51,24 @@
     float: right;
 }
 .joinClubBtn{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 20px;
     font-weight: bold;
     display: inline;
     background-color: #738CD9;
     padding: 12px 30px;
     border-radius: 30px;
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%);
+}
+
+
+.infoWrapper{
+    height: calc(100% - 130px);
+    overflow: scroll;
+}
+
+.clubInfoTopSpace{
+    margin-top: 30px;
 }

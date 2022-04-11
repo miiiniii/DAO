@@ -6,8 +6,10 @@ import Search_white from "../Icons/Search_white.png";
 import User_white from "../Icons/User_white.png";
 import Contract_white from "../Icons/Contract_white.png";
 import Close_white from "../Icons/Close_white.png";
+import LoadingSpinner from './loadingSpinner';
 
 export default function Explore(props) {
+    const [isLoaded, setIsLoaded] = useState(false);
     const [sBarExt, setSBarExt] = useState(false);
     const [keyword, setKeyword] = useState([]);
     const [result, setResult] = useState(null);
@@ -20,10 +22,12 @@ export default function Explore(props) {
     useEffect(() => {
         if (props.sw === undefined || props.sw.realIndex !== 1) return;
         if (result === undefined || result === null) {
+            setIsLoaded(false);
             searchAxios(keyword, (data) => {
                 console.log("explore");
                 console.log(data);
-                setResult(data)
+                setResult(data);
+                setIsLoaded(true);
             });
         }
 
@@ -43,10 +47,14 @@ export default function Explore(props) {
     return (
         <>
             <div className={sBarExt ? 'exploreBarContainer exploreBarExt' : 'exploreBarContainer'}>
-                <ExploreBar searchClick={searchClick} closeClick={closeClick} sBarExt={sBarExt}></ExploreBar>
+                <ExploreBar searchClick={searchClick} closeClick={closeClick} sBarExt={sBarExt}/>
             </div>
             <div className={sBarExt ? 'exploreViewContainer exploreViewShort' : 'exploreViewContainer'}>
-                <ExploreView className={props.className} result={result}></ExploreView>
+                {isLoaded?(
+                    <ExploreView className={props.className} result={result} showClubPage={props.showClubPage}/>
+                    ):(<LoadingSpinner></LoadingSpinner>)
+                    }
+                
             </div>
         </>
     )
@@ -109,7 +117,7 @@ function ExploreView(props) {
         <div className={props.className}>
             <div className='pubClubList'>
                 {props.result.map((contents, i) => (
-                    <div className='pubClubBanner' key={"pubClubBanner" + i}>
+                    <div className='pubClubBanner' key={"pubClubBanner" + i} onClick={props.showClubPage}>
                         <p className='smallInfo right'>최근 거래 : {contents.recentActivities} 전</p>
                         <p className='bannerTitle'>{contents.name}</p>
                         <p className='intro'>{contents.introduce}</p>
