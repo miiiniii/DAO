@@ -1,0 +1,37 @@
+.assetBanner{
+    background-color: #2D3031;
+    margin: 7px 10px;
+    width: calc(100% - 40px);
+    padding: 7px 10px;
+    border-radius: 12px;
+}
+.increase{
+    color: #ff3322;
+}
+.decrease{
+    color: #2962ff;
+}
+.buyDate{
+    float: right;
+    text-align: right;
+    color: #b3afac;
+    font-size: 12px;
+}
+.assetTitle{
+    text-align: left;
+    padding: 5px 0 1px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.assetInfo{
+    text-align: left;
+    font-size: 14px;
+    margin: 3px 0;
+}
+.assetTag{
+    text-align: left;
+    font-size: 14px;
+}
+.valueChange{
+    padding-left: 20px;
+}
