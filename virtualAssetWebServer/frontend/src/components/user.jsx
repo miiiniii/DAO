@@ -4,7 +4,7 @@ import "./user.css";
 
 export default function User(props){
     if(props.auth!==undefined&&props.auth.code===100){
-         return <UserLogon auth={props.auth} className={props.className}/>;
+         return <UserLogon auth={props.auth} className={props.className} showSigninPage={props.showSigninPage}/>;
     }
     else{
          return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;

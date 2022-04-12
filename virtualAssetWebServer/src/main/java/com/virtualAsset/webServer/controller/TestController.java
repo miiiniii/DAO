@@ -29,19 +29,23 @@ public class TestController {
 
 	@PostMapping("/assetDetail")
 	public String assetDetail(@RequestBody HashMap<String, Object> requsetHashMap) throws JSONException {
-		HashMap<String, AssetDetail> dataHashMap=new HashMap<String, AssetDetail>();
+		HashMap<String, AssetDetail> dataHashMap = new HashMap<String, AssetDetail>();
 		dataHashMap.put("default", new AssetDetail("default", "default",
-				new ArrayList<Long>(Arrays.asList(35000L,44000L,51000L,55000L,
-						57000L, 53000L)),52000L, "클럽 책임자"));
+				new ArrayList<Long>(Arrays.asList(35000L, 44000L, 51000L, 55000L,
+						57000L, 53000L)),
+				52000L, "클럽 책임자"));
 		dataHashMap.put("example1", new AssetDetail("example1", "example1",
-				new ArrayList<Long>(Arrays.asList(22030070L,22110750L,22395500L,
-						22462110L,22810570L,23310570L)),23085220L, "클럽 책임자"));
+				new ArrayList<Long>(Arrays.asList(22030070L, 22110750L, 22395500L,
+						22462110L, 22810570L, 23310570L)),
+				23085220L, "클럽 책임자"));
 		dataHashMap.put("example2", new AssetDetail("example2", "example2",
-				new ArrayList<Long>(Arrays.asList(1180000L,1180000L,1170000L,
-						1150000L,1140000L,1140000L)),1140000L, "클럽 책임자"));
+				new ArrayList<Long>(Arrays.asList(1180000L, 1180000L, 1170000L,
+						1150000L, 1140000L, 1140000L)),
+				1140000L, "클럽 책임자"));
 		dataHashMap.put("example3", new AssetDetail("example3", "example3",
-				new ArrayList<Long>(Arrays.asList(820220L,894150L,911120L,
-						998020L,1170400L,1251000L)),1001190L, "클럽 책임자"));
+				new ArrayList<Long>(Arrays.asList(820220L, 894150L, 911120L,
+						998020L, 1170400L, 1251000L)),
+				1001190L, "클럽 책임자"));
 		return dataHashMap.get(requsetHashMap.get("assetId")).toJsonObject()
 				.toString();
 	}
@@ -80,11 +84,11 @@ public class TestController {
 				"코로나로 저점이지만 앞으로 전망이 밝은 각종 휴양지를 전문으로 투자하실분들 모십니다.",
 				new ArrayList<String>(Arrays.asList("휴양지", "부동산", "저점")));
 		ClubBanner example2 = new ClubBanner("example2", "홍대 갤러리", 46, 2130,
-				11512, "2022/03/30 9:42:16","홍대 작가 유망주들의 작품 지분 투자", 
+				11512, "2022/03/30 9:42:16", "홍대 작가 유망주들의 작품 지분 투자",
 				new ArrayList<String>(Arrays.asList("그림", "조각")));
 		ClubBanner example3 = new ClubBanner("example3", "동학 개미 운동", 71, 182,
 				85429, "2022/02/15 20:11:02",
-				"소자본으로 항상 세력들에게 끌려다니는 개미들도 뭉치면 강하다!", 
+				"소자본으로 항상 세력들에게 끌려다니는 개미들도 뭉치면 강하다!",
 				new ArrayList<String>(Arrays.asList("국내주식", "해외주식", "세력")));
 
 		return new JSONArray().put(standard.toJsonObject())
