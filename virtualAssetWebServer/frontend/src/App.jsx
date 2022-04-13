@@ -10,8 +10,8 @@ import Explore from "./components/explore.jsx";
 import StartPage from './components/startPage';
 import Signin from './components/signin';
 import Signup from './components/signup';
+import EditProfile from './components/editProfile';
 import User from './components/user';
-
 import useScript from "./scripts/useScript"
 
 import customAxios from './scripts/customAxios';
@@ -39,17 +39,20 @@ function App() {
 
   const [signinPage, setSigninPage] = useState('hide');
   const [signupPage, setSignupPage] = useState('hide');
+  const [editProfilePage, setEditProfilePage] = useState('hide');
 
   const showSigninPage = () =>setSigninPage('show');
   const hideSigninPage = () =>setSigninPage('hide');
   const showSignupPage = () =>setSignupPage('show');
   const hideSignupPage = () =>setSignupPage('hide');
-
+  const showEditProfilePage = () =>setEditProfilePage('show');
+  const hideEditProfilePage = () =>setEditProfilePage('hide');
+  
   //****main 위에 쓰이는 페이지는 z index 10000으로 설정************
   const [touchBlock, setTouchBlock] = useState(false);
   useEffect(()=>{
-    setTouchBlock(signinPage==='show'||signupPage==='show');
-  },[signinPage,signupPage])
+    setTouchBlock(signinPage==='show'||signupPage==='show'||editProfilePage==='show');
+  },[signinPage,signupPage,editProfilePage])
 
 
   const [auth, setAuth] = useState();
@@ -105,7 +108,7 @@ function App() {
             <div className='mainWindow'></div>
           </SwiperSlide>
           <SwiperSlide id="userWindow">
-            <User className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage}></User>
+            <User className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showEditProfilePage={showEditProfilePage}></User>
           </SwiperSlide>
         </Swiper>
         <div className='mainIconContainer'>
@@ -118,6 +121,7 @@ function App() {
       <StartPage startView={startView} />
       <Signin signinPage={signinPage} hideSigninPage={hideSigninPage} showSignupPage={showSignupPage}/>
       <Signup signupPage={signupPage} hideSignupPage={hideSignupPage} showSigninPage={showSigninPage}></Signup>
+      <EditProfile auth={auth} editProfilePage={editProfilePage} hideEditProfilePage={hideEditProfilePage} showEditProfilePage={showEditProfilePage}></EditProfile>
     </div>
   );
 }
