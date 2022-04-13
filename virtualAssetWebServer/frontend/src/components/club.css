@@ -1,0 +1,74 @@
+.clubPage{
+    height: calc(100vh - 10px);
+    width: 100vw;
+    background-color: #222426;
+    position: absolute;
+    top: 0%;
+    z-index: 800;
+    color: #F1EDE9;
+    transition: 0.2s;
+    padding: 5px 0;
+}
+
+.clubHide{
+    top: -100vh;
+}
+
+.clubIntroduce{
+    background-color: #373B40;
+    height: calc(100% - 10px);
+    width: calc(100% - 20px);
+    margin: 0 5px;
+    border-radius: 5px;
+    padding: 5px;
+}
+.backBtn{
+    position: absolute;
+    font-size: 32px;
+    padding: 6px;
+    bottom: 0px;
+    left: 10px;
+}
+.noneStyleList{
+    list-style: none;
+}
+.clubIntroduce li{
+    margin-bottom: 5px;
+}
+.clubIntroduce li:nth-child(1){
+    text-align: left;
+}
+.clubIntroduce li:nth-child(n+2){
+    padding: 0 15px;
+}
+.clubIntroduce li:nth-child(n+4){
+    text-align: left;
+}
+.clubIntroduce li h3{
+    display: inline-block;
+}
+.rightCmt{
+    float: right;
+}
+.joinClubBtn{
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    font-weight: bold;
+    display: inline;
+    background-color: #738CD9;
+    padding: 12px 30px;
+    border-radius: 30px;
+}
+
+
+.infoWrapper{
+    height: calc(100% - 130px);
+    overflow: scroll;
+}
+
+.clubInfoTopSpace{
+    margin-top: 30px;
+}

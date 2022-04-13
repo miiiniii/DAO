@@ -20,6 +20,15 @@
   }
 }
 
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .App-header {
   background-color: #222426;
   min-height: 100vh;
@@ -35,14 +44,7 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+
 .mainWindow{
   background-color: #373B40;
   width: 100%;
@@ -104,4 +106,14 @@
   left: 0%;
   width: 100vw;
   height: 100vh;
+}
+
+.roundStyle{
+  background-color: aliceblue;
+  border: 0;
+  padding: 7px;
+  border-radius: 30px;
+}
+.link{
+  color: cornflowerblue;
 }

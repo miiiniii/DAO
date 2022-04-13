@@ -63,22 +63,18 @@
     padding-top: 10px;
 }
 .exploreBarExt{
-    height: 65vh;
+    height: 35vh;
     transition: 0.4s;
 }
 .exploreViewShort{
-    height: calc(100% - 65vh - 7px);
+    height: calc(100% - 35vh - 7px);
     transition: 0.4s;
 }
 
 .exploreInput{
     position: absolute;
     left: 112px;
-    top: 70px;
-    background-color: aliceblue;
-    border: 0;
-    border-radius: 30px;
-    padding: 7px;
+    top: -50px;
     width: calc(100% - 185px);
     height: 31px;
     transition: 0.2s;
@@ -86,7 +82,7 @@
 }
 
 .hideUp{
-    top:-30px;
+    top:-50px;
     opacity: 0;
     transition: 0.2s;
 }
@@ -94,14 +90,28 @@
 
 .exploreType{
     position: absolute;
-    background-color: aliceblue;
-    left: 10px;
+    right: -70px;
     top: 70px;
-    border: 0;
-    padding: 7px;
-    border-radius: 30px;
     transition: 0.2s;
     opacity: 0;
+    width: 80px;
+}
+
+.typeShow{
+    opacity: 1;
+    right: 10px;
+}
+.sortType{
+    position: absolute;
+    right: -70px;
+    top: 105px;
+    transition: 0.2s;
+    opacity: 0;
+    width: 80px;
+}
+.sortTypeShow{
+    opacity: 1;
+    right: 10px;
 }
 
 .show{
@@ -113,5 +123,5 @@
     position:relative;
     left: 0;
     padding: 0 calc(50% - 10px) 5px;
-    top:calc(65vh - 95px);
+    top:calc(35vh - 95px);
 }

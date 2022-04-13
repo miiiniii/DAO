@@ -9,8 +9,8 @@ export default function Signin(props) {
 	return (
 		<div className={'signinBackground'+(props.signinPage==='hide'?' signinPageHide':'')}>
 			<nav>
-				<ul className="nav-container" onClick={props.hideSigninPage}>
-					<li className="nav-item" ><i className="fa fa-arrow-left"></i></li>
+				<ul className="nav-container">
+					<li className="nav-item" ><span onClick={props.hideSigninPage}><i className="fa fa-arrow-left"></i></span></li>
 				</ul>
 			</nav>
 			<div className="main-container">
