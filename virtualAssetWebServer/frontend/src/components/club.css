@@ -1,13 +1,13 @@
 .clubPage{
-    height: calc(100vh - 10px);
+    height: 100vh;
     width: 100vw;
     background-color: #222426;
     position: absolute;
     top: 0%;
-    z-index: 800;
+    z-index: 10000;
     color: #F1EDE9;
     transition: 0.2s;
-    padding: 5px 0;
+    overflow: hidden;
 }
 
 .clubHide{
@@ -23,14 +23,34 @@
     padding: 5px;
 }
 .backBtn{
-    position: absolute;
     font-size: 32px;
-    padding: 6px;
-    bottom: 0px;
-    left: 10px;
+    line-height: 32px;
+    padding: 7px 8px 2px;
+    float: left;
 }
 .noneStyleList{
     list-style: none;
+}
+.channelName{
+    float: left;
+    max-width: calc(100% - 64px);
+    padding: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.clubName{
+    float: left;
+    max-width: calc(100% - 64px);
+    min-width: calc(100% - 108px);
+    padding: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.clubNavBar{
+    height: 45px;
+    line-height: 45px;
+    font-size: 24px;
+    font-weight: 600;
 }
 .clubIntroduce li{
     margin-bottom: 5px;
@@ -71,4 +91,93 @@
 
 .clubInfoTopSpace{
     margin-top: 30px;
+}
+
+.chatWindowWrapper{
+    left:0;
+    background-color: #373B40;
+    height: calc(100% - 50px);
+    width: calc(100% - 10px);
+    position: absolute;
+    margin: 0 5px 5px;
+    border-radius: 5px;
+}
+
+.clubWindowWrapper{
+    transform: translateX(39%);
+    background-color: #2c2f33;
+    height: calc(100% - 50px);
+    width: calc(70%);
+    position: absolute;
+    margin: 0 5px 5px;
+    border-radius: 5px;
+}
+
+.channelWindowWrapper{
+    left:0;
+    background-color: #2c2f33;
+    height: calc(100% - 50px);
+    width: calc(70%);
+    position: absolute;
+    margin: 0 5px 5px;
+    border-radius: 5px;
+}
+.channelView{
+    left:calc(70% + 5px);
+}
+.clubView{
+    left:calc(-70% - 5px);
+}
+
+.transition{
+    transition: .1s;
+}
+.chatNavBar{
+    border-radius: 5px 5px 0 0;
+    background-color: #42464d;
+    height: 35px;
+    line-height: 35px;
+    font-size: 20px;
+}
+.chatInputBar{
+    height: 45px;
+    line-height: 45px;
+    border-radius: 0 0 5px 5px;
+    background-color: #373B40;
+    overflow: hidden;
+}
+.chatWrapper{
+    height: calc(100% - 80px);
+    overflow-y: scroll;
+    clip: auto;
+    word-break: break-all;
+    padding: 0 8px;
+}
+.circleBtn{
+    height: 35px;
+    width: 35px;
+    margin: 5px;
+    background-color: #adaaa7;
+    border-radius: 20px;
+    transition: 0.2s;
+}
+.chatInput{
+    position: absolute;
+    left: 90px;
+    margin: 5px;
+    background-color: #adaaa7;
+    border-radius: 20px;
+    padding: 9px 12px;
+    width: calc(100% - 130px);
+    border: 0;
+    font-size: 15px;
+    line-height: 17px;
+    transition: 0.2s;
+}
+.chatExtend{
+    left: 0;
+    width: calc(100% - 80px);
+}
+.hideBtn{
+    display: none;
 }

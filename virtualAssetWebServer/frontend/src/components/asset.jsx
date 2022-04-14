@@ -19,9 +19,11 @@ export default function Asset(props) {
 
      useEffect(() => {
           if (props.sw !== undefined && props.sw.realIndex === 2) {
-               setIsLoaded(false);
                customAxios('/myAssets', (data) => {
-                    if (JSON.stringify(data) === JSON.stringify(assets)) return;
+                    if (JSON.stringify(data) === JSON.stringify(assets)) {
+                         setIsLoaded(true);
+                         return;
+                    }
                     if (data === "") setAssets(null);
                     else setAssets(data);
                     console.log('assets');
@@ -96,7 +98,7 @@ export default function Asset(props) {
                showClubPage={props.showClubPage}
           />;
           }
-          return <LoadingSpinner></LoadingSpinner>
+          return <div className={props.className}><LoadingSpinner></LoadingSpinner></div>
      }
      else {
           return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage} />;
@@ -152,9 +154,4 @@ function AssetLogon(props) {
                
           </div>
      );
-}
-
-function AddComma(num) {
-     var regexp = /\B(?=(\d{3})+(?!\d))/g;
-     return num.toString().replace(regexp, ',');
 }

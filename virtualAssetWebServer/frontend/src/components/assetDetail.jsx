@@ -59,7 +59,14 @@ export const options = {
                         label += context.parsed.y + '%';
                     }
                     return label;
-                }
+                },
+                labelTextColor: function (context) {
+                    let label = context.dataset.label || '';
+                    if (label === '가격') return;
+                    if (context.parsed.y < 0) return '#2962ff'
+                    if (context.parsed.y > 0) return '#ff3322'
+                    return;
+                },
             }
         },
     },
@@ -148,20 +155,24 @@ export default function AssetDetail(props) {
 
     const [assetData, setAssetData] = useState(makeChartData());
 
-    return (< div className="touchBlock">
-        <div className="assetDetail">
-            <div className="assetDetailNav"><div className="assetDetailBack" onClick={props.assetDetailBack}><i className="fa fa-arrow-left"></i></div><div className="assetDetailTitle">{props.assetInfo.name}</div></div>
+    return (
+        <div>
+            <div className={"touchBlock blur"} onClick={props.assetDetailBack}>
+            </div >
+            <div className="assetDetail">
+                <div className="assetDetailNav"><div className="assetDetailBack" onClick={props.assetDetailBack}><i className="fa fa-arrow-left"></i></div><div className="assetDetailTitle">{props.assetInfo.name}</div></div>
 
-            <AssetDetailCont
-                isLoaded={isLoaded}
-                currencyFormat={currencyFormat}
-                detail={detail}
-                assetData={assetData}
-                assetInfo={props.assetInfo}
-            ></AssetDetailCont>
+                <AssetDetailCont
+                    isLoaded={isLoaded}
+                    currencyFormat={currencyFormat}
+                    detail={detail}
+                    assetData={assetData}
+                    assetInfo={props.assetInfo}
+                    showClubPage={props.showClubPage}
+                ></AssetDetailCont>
 
-        </div>
-    </div >)
+            </div>
+        </div>)
 }
 
 function AssetDetailCont(props) {
@@ -188,7 +199,7 @@ function AssetDetailCont(props) {
                     <tr>
                         <td>구매클럽</td>
                         <td>:</td>
-                        <td className="link" onClick={props.showClubPage}>{props.assetInfo.buyClub}</td>
+                        <td className="link" ><p onClick={props.showClubPage}>{props.assetInfo.buyClub}</p></td>
                     </tr>
                     <tr>
                         <td>거래일자</td>
@@ -208,18 +219,18 @@ function AssetDetailCont(props) {
                     <tr>
                         <td>책임자</td>
                         <td>:</td>
-                        <td className="link">{props.detail.responsible}</td>
+                        <td className="link"><p>{props.detail.responsible}</p></td>
                     </tr>
                     <tr>
                         <td>계약서</td>
                         <td>:</td>
-                        <td className="link">계약서 보기</td>
+                        <td className="link"><p>계약서 보기</p></td>
                     </tr>
                 </tbody>
             </table>
         </div>)
     }
-    return (<div className="assetDetailCont" style={{textAlign:'center'}}>
-        <LoadingSpinner/>
+    return (<div className="assetDetailCont" style={{ textAlign: 'center' }}>
+        <LoadingSpinner />
     </div>)
 }

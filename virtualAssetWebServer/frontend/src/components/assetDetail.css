@@ -1,3 +1,9 @@
+
+
+@keyframes blurring{
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
 .assetDetail{
     position: absolute;
     width: 95%;
@@ -9,12 +15,21 @@
     border-radius: 10px;
     box-shadow: 3px 8px 5px rgba(0, 0, 0, 0.5);
     transition: 0.5s;
+    animation: blurring 0.1s linear 1 alternate;
 }
 .touchBlock{
     position: absolute;
     width: 100%;
     height: 100%;
     top:0;
+    border-radius: 7px;
+}
+.link p{
+    display: inline;
+}
+.blur{
+    backdrop-filter: blur(2px);
+    animation: blurring 0.1s linear 1 alternate;
 }
 .assetDetailNav{
     width: 100%;

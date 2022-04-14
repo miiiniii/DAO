@@ -76,7 +76,8 @@ export default function Home(props) {
             showClubPage={props.showClubPage}
         />;
         }
-        return <LoadingSpinner></LoadingSpinner>
+        return (
+        <div className='mainWindow'><LoadingSpinner></LoadingSpinner></div>)
     } else {
         return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage} />;
     }
