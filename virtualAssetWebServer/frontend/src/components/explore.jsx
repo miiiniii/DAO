@@ -52,7 +52,7 @@ export default function Explore(props) {
             <div className={sBarExt ? 'exploreViewContainer exploreViewShort' : 'exploreViewContainer'}>
                 {isLoaded?(
                     <ExploreView className={props.className} result={result} showClubPage={props.showClubPage}/>
-                    ):(<LoadingSpinner></LoadingSpinner>)
+                    ):(<div className={props.className}><LoadingSpinner></LoadingSpinner></div>)
                     }
                 
             </div>
