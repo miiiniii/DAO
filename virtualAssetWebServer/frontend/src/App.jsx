@@ -63,8 +63,8 @@ function App() {
   //****main 위에 쓰이는 페이지는 z index 10000으로 설정************
   const [touchBlock, setTouchBlock] = useState(false);
   useEffect(() => {
-    setTouchBlock(signinPage === 'show' || signupPage === 'show');
-  }, [signinPage, signupPage])
+    setTouchBlock(signinPage === 'show' || signupPage === 'show'|| clubPage.viewClass==='');
+  }, [signinPage, signupPage,clubPage])
 
   //로그인 세션
   const [auth, setAuth] = useState();
