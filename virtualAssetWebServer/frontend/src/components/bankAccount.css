@@ -1,0 +1,90 @@
+:root {
+  --body-background-color: #4b525a;
+  --font-color: #f1ede9;
+  --highlight-font-color: #738cd9;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.bankAccountBackground {
+  z-index: 10001;
+  position: absolute;
+  top: 0%;
+  width: 100vw;
+  height: 100vh;
+  background: var(--body-background-color);
+  transition: 0.3s, opacity 0s;
+}
+
+.itemName{
+  padding: 10px 5px 0 20px;
+  text-align: left;
+  margin: 0;
+  font-size: large;
+  font-weight: 900;
+  color: #f1ede9;
+}
+
+.valueBanner {
+  background-color: #2d3031;
+  margin: 7px 10px;
+  width: calc(100% - 30px);
+  padding: 3px 5px 13px;
+  border-radius: 12px;
+}
+
+.editValueWrap {
+  border-radius: 4px;
+  width: 180px;
+  height: 37px;
+  background: #2d3031;
+}
+
+.editValueWrap input {
+  color: #f1ede9;
+  border: none;
+  width: 220px;
+  font-size: 21px;
+  margin-left: 12px;
+  margin-top: 5px;
+  height: 37px;
+  background: #2d3031;
+}
+
+input:focus {
+  outline: none;
+}
+
+.fixedValue{
+  color:#738cd9;
+  padding: 10px 5px 0 20px;
+  text-align: left;
+  margin: 0;
+  font-size: large;
+  font-weight: 900;
+}
+
+.saveBtn{
+  position: relative;
+  padding:15px 30px;
+  top:7%;
+  transform: translateX(-50%) translateY(-50%);
+  width: fit-content;
+  height: fit-content;
+  background: #738CD9;
+  border: 0;
+  border-radius: 100px;
+  font-weight: 900;
+  font-size: larger;
+  color: #F1EDE9;
+  font-family: Eland;
+}
+
+.signinPageHide{
+  opacity: 0;
+  top:-100%;
+  transition: 0.3s;
+}

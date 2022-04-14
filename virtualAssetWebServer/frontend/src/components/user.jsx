@@ -30,7 +30,7 @@ function UserLogon(props) {
             </div>
             <div className='userMenuBanner'>
                 <p className='mainCmt'>결제</p>
-                <p className='subCmt'>등록된 계좌 조회ㆍ계좌 등록</p>
+                <p className='subCmt' onClick={props.showBankAccountPage} auth={props.auth}>등록된 계좌 조회ㆍ계좌 등록</p>
                 <p className='mainCmt'>거래</p>
                 <p className='subCmt'>거래 목록 조회</p>
             </div>
