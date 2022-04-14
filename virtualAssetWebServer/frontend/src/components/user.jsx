@@ -4,7 +4,7 @@ import "./user.css";
 
 export default function User(props){
     if(props.auth!==undefined&&props.auth.code===100){
-         return <UserLogon auth={props.auth} className={props.className}/>;
+         return <UserLogon auth={props.auth} className={props.className} showSigninPage={props.showSigninPage} showEditProfilePage={props.showEditProfilePage}/>;
     }
     else{
          return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;
@@ -23,7 +23,7 @@ function UserLogon(props) {
                 </div>
                 <hr className='divHr'/>
                 <p className='mainCmt'>개인정보</p>
-                <p className='subCmt'>개인정보 조회ㆍ변경</p>
+                <p className='subCmt' onClick={props.showEditProfilePage} auth={props.auth}>개인정보 조회ㆍ변경</p>
                 <p className='signoutBtnWrapper'>
                     <span className='signoutBtn' onClick={props.showSigninPage}>로그아웃</span>
                 </p>
