@@ -34,9 +34,9 @@ export default function Signin(props) {
 								<input placeholder="비밀번호" type="password"></input>
 							</div>
 							<div className="login-stay-sign-in">
-								<div class="round">
+								<div className="round">
 									<input type="checkbox" checked={checked} onChange={handleChange} id="rememberMe"/>
-									<label for="rememberMe"></label>
+									<label htmlFor="rememberMe"></label>
 								</div>
 								<span style={{ color: "#F1EDE9" }}>로그인 유지</span>
 							</div>
