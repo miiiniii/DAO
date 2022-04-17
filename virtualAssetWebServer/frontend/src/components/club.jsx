@@ -121,11 +121,17 @@ function ClubChat(props) {
         while (true) {
             if (e.target.clientHeight == e.target.scrollHeight || e.target.rows > 4) break;
             e.target.rows = e.target.rows + 1;
+            let c = document.getElementsByClassName("chatInputBar");
+            console.log(c);
+            c.height = c.height + 15;
         }
         while (true) {
             if (e.target.rows == 1) break;
             e.target.rows = e.target.rows - 1;
+            let c = document.getElementsByClassName("chatInputBar");
+            c.height = c.height - 15;
             if (e.target.clientHeight < e.target.scrollHeight) {
+                c.height = c.height + 15;
                 e.target.rows = e.target.rows + 1;
                 break;
             }

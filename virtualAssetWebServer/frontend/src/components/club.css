@@ -141,13 +141,11 @@
 }
 .chatInputBar{
     height: 45px;
-    line-height: 45px;
     border-radius: 0 0 5px 5px;
     background-color: #373B40;
     overflow: hidden;
 }
 .chatWrapper{
-    height: calc(100% - 80px);
     overflow-y: scroll;
     clip: auto;
     word-break: break-all;
@@ -180,4 +178,7 @@
 }
 .hideBtn{
     display: none;
+}
+.submit{
+    bottom: 0;
 }
