@@ -121,6 +121,28 @@
     position: absolute;
     margin: 0 5px 5px;
     border-radius: 5px;
+    text-align: left;
+}
+.channelWindowWrapper ul{
+    list-style: none;
+}
+.channelWindowWrapper li{
+    padding: 8px 10px;
+    margin: 5px;
+}
+.channelWindowWrapper ul li:nth-last-child(1){
+    padding: 8px 10px 8px 10px;
+    margin: 5px 5px 0 5px;
+}
+.channelWindowWrapper details{
+    margin: 10px;
+    padding:8px;
+    background-color: #3b3e43;
+    border-radius: 8px;
+    transition: .2s;
+}
+.channelWindowWrapper summary{
+    font-weight: bold;
 }
 .channelView{
     left:calc(70% + 5px);
@@ -147,7 +169,7 @@
     background-color: #373B40;
     overflow: hidden;
 }
-.chatWrapper{
+.chatView{
     overflow-y: scroll;
     clip: auto;
     word-break: break-all;
@@ -189,4 +211,52 @@
 }
 .submit{
     bottom: 0;
+}
+.chat{
+    text-align: left;
+    margin: 16px 0;
+}
+.chatUserPic{
+    display: inline-block;
+    vertical-align: top;
+    height: 40px;
+    width: 40px;
+    background-color: #738CD9;
+    border-radius: 12px;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+}
+.chatContents{
+    display: inline-block;
+    width: calc(100% - 53px);
+    margin-left: 5px;
+}
+.chatSenderRole{
+    display: inline-block;
+    font-weight: bold;
+}
+.sendTime{
+    display: inline-block;
+    font-size: small;
+    color: #9f9c99;
+}
+.chatSender{
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 8px;
+}
+.editted::after{
+    font-weight: bold;
+    content: ' (수정)';
+}
+pre{
+    margin-top: 5px;
+    word-break: break-all;
+    white-space: pre-wrap;
+}
+
+.currChannel{
+    background-color: #738CD9;
+    border-radius: 20px;
 }

@@ -83,8 +83,3 @@ input:focus {
   font-family: Eland;
 }
 
-.signinPageHide{
-  opacity: 0;
-  top:-100%;
-  transition: 0.3s;
-}

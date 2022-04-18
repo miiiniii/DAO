@@ -256,6 +256,6 @@ input:focus {
 
 .signinPageHide{
   opacity: 0;
-  top:-100%;
+  top:-110vh;
   transition: 0.3s;
 }

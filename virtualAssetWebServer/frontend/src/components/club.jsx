@@ -152,8 +152,32 @@ function ClubChat(props) {
             + (props.clubView.mode === "club" ? '-70% + ' : (props.clubView.mode === "channel" ? "70% + " : '')) 
             + props.clubView.magX + 'px)' } : {}}
             onClick={props.onClick}>
-        <div className="chatNavBar">@채널 이름<div className="channel"></div><div className="info"></div></div>
-        <div className="chatWrapper" style={{ height: 'calc(100% - ' + (63 + textareaRows * 17) + 'px)' }}>채팅 내용aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
+        <div className="chatNavBar">@휴게실<div className="channel"></div><div className="info"></div></div>
+        <div className="chatView" style={{ height: 'calc(100% - ' + (63 + textareaRows * 17) + 'px)' }}>
+            <div className="chatWrapper">
+                <Chat 
+                userPic={null}
+                role="직책"
+                userName="유저 이름"
+                sendTime="4월 18일 오전 11:17"
+                isEditted={true}
+                contents="채팅 내용"/>
+                <Chat 
+                userPic={null}
+                role="직책"
+                userName="기ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㄴ유저 이름"
+                sendTime="4월 18일 오전 11:17"
+                isEditted={true}
+                contents="채팅 내용"/>
+                <Chat 
+                userPic={null}
+                role="직책"
+                userName="유저 이름"
+                sendTime="4월 18일 오전 11:17"
+                isEditted={true}
+                contents="기ㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㅣㄴ 채팅 내용"/>
+            </div>
+        </div>
         <div className="chatInputBar">
             <textarea
                 className={"chatInput" + (!isChatNull ? ' chatExtend' : '')}
@@ -171,7 +195,31 @@ function ClubChat(props) {
 
 function ClubChannels(props) {
     return (<div className={"channelWindowWrapper" + (props.clubView.magX === 0 ? " transition" : "") + (props.clubView.mode === "club" ? " clubView" : "")} style={(props.clubView.magX !== 0 && props.clubView.mode === "") ? { left: props.clubView.magX > 0 ? 0 : props.clubView.magX } : {}}>
-        channel
+        <details open='true'>
+            <summary >공지사항</summary>
+            <ul>
+                <ChannelList channelName='클럽 규칙'/>
+                <ChannelList channelName='거래 소식'/>
+                <ChannelList channelName='공지사항'/>
+            </ul>
+        </details>
+        <details open='true'>
+            <summary>공개채널</summary>
+            <ul>
+                <ChannelList channelName='휴게실' isSelected='true'/>
+                <ChannelList channelName='정보'/>
+                <ChannelList channelName='유머'/>
+                <ChannelList channelName='거래 제안'/>
+            </ul>
+        </details>        
+        <details open='true'>
+            <summary>거래 전용</summary>
+            <ul>
+                <ChannelList channelName='상품 이름1' members='23' tag='품목'/>
+                <ChannelList channelName='상품 이름2' members='55' tag='품목'/>
+                <ChannelList channelName='상품 이름3' privateMent='계약 완료'/>
+            </ul>
+        </details>
     </div>)
 }
 
@@ -179,4 +227,26 @@ function ClubInfos(props) {
     return (<div className={"clubWindowWrapper" + (props.clubView.magX === 0 ? " transition" : "") + (props.clubView.mode === "channel" ? " channelView" : "")} style={(props.clubView.magX !== 0 && props.clubView.mode === "") ? { left: props.clubView.magX < 0 ? 0 : props.clubView.magX } : {}}>
         clubinfo
     </div>)
+}
+
+
+
+function Chat(props){
+    return(
+        <div className="chat">
+            <div>
+            <div className="chatUserPic">{props.userPic||'DAO'}</div>
+            <div className="chatContents">
+                <div className="chatSenderRole">[{props.role}]&nbsp;</div><p className="chatSender">{props.userName}</p><p className={"sendTime"+(props.isEditted?' editted':'')}>{props.sendTime}</p>
+                <pre>{props.contents}</pre>
+            </div>
+            </div>
+        </div>
+    )
+}
+
+function ChannelList(props){
+    return(
+        <li className={props.isSelected||false?'currChannel':''} style={(props.privateMent!=null)?{opacity:'0.5'}:{}}>{(props.icon!=null)?(<img src={props.icon}/>):''}{props.channelName}{props.privateMent!=null?(<span style={{fontSize:'small'}}>&nbsp;[{props.privateMent}]</span>):''}{props.tag!=null?(<span style={{fontSize:'small'}}>&nbsp;#{props.tag}</span>):''}{props.members!=null?(<span style={{float:'right',fontSize:'small'}}>{props.members}<div className="userIcon"><div></div><div></div></div></span>):''}</li>
+    )
 }

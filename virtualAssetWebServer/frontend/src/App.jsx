@@ -128,7 +128,6 @@ function App() {
       <StartPage startView={startView} />
       <Signin signinPage={signinPage} hideSigninPage={hideSigninPage} showSignupPage={showSignupPage} />
       <Signup signupPage={signupPage} hideSignupPage={hideSignupPage} showSigninPage={showSigninPage} />
-
       <Club auth={auth} clubPage={clubPage} hideClubPage={hideClubPage} showSigninPage={showSigninPage} />
       <EditProfile auth={auth} editProfilePage={editProfilePage} hideEditProfilePage={hideEditProfilePage} showEditProfilePage={showEditProfilePage}></EditProfile>
       {/* <BankAccount auth={auth} editBankAccountPage={bankAccountPage} hideBankAccountPage={hideBankAccountPage} showBankAccountPage={showBankAccountPage}></BankAccount> */}
