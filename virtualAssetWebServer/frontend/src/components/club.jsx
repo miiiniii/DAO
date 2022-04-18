@@ -66,7 +66,7 @@ export default function Club(props) {
             >
                 <ClubChannels clubView={clubView}></ClubChannels>
                 <ClubInfos clubView={clubView}></ClubInfos>
-                <ClubChat clubView={clubView}></ClubChat>
+                <ClubChat clubView={clubView} onClick={()=>{setClubView({ magX: 0, mode: '' })}}></ClubChat>
             </div>
         </div>)
     }
@@ -115,54 +115,56 @@ function ClubIntrduce(props) {
 }
 
 function ClubChat(props) {
-    const [chatFocused, setHideBtn] = useState(false);
+    const [isChatNull,setIsChatNull] =useState(true);
     const [textareaRows, setTextareaRows] = useState(1);
     const autoSizing = (e) => {
+        let c=document.getElementsByClassName('chatInputBar')[0];
         while (true) {
-            if (e.target.clientHeight == e.target.scrollHeight || e.target.rows > 4) break;
+            if (e.target.clientHeight === e.target.scrollHeight || e.target.rows > 4) break;
             e.target.rows = e.target.rows + 1;
-            let c = document.getElementsByClassName("chatInputBar");
-            console.log(c);
-            c.height = c.height + 15;
+            
         }
         while (true) {
-            if (e.target.rows == 1) break;
+            if (e.target.rows === 1) break;
             e.target.rows = e.target.rows - 1;
-            let c = document.getElementsByClassName("chatInputBar");
-            c.height = c.height - 15;
             if (e.target.clientHeight < e.target.scrollHeight) {
-                c.height = c.height + 15;
                 e.target.rows = e.target.rows + 1;
                 break;
             }
         }
-
+        c.style.height=(30+17*e.target.rows)+'px';
         setTextareaRows(e.target.rows);
     }
     const chatChange = (e) => {
-        setHideBtn(true);
         autoSizing(e);
+        setIsChatNull(document.getElementsByTagName('textarea')[0].value==='');
+        console.log(document.getElementsByTagName('textarea')[0].value==='');
     }
     const chatBlur = (e) => {
-        setHideBtn(false);
         autoSizing(e);
     }
-    return (<div className={"chatWindowWrapper" + (props.clubView.magX === 0 ? " transition" : "") + (props.clubView.mode === "channel" ? " channelView" : "") + (props.clubView.mode === "club" ? " clubView" : "")} style={props.clubView.magX !== 0 ? { left: 'calc(' + (props.clubView.mode === "club" ? '-70% + ' : (props.clubView.mode === "channel" ? "70% + " : '')) + props.clubView.magX + 'px)' } : {}}>
-        <div className="chatNavBar">@채널 이름</div>
+    return (
+    <div className={"chatWindowWrapper" 
+                    + (props.clubView.magX === 0 ? " transition" : "") 
+                    + (props.clubView.mode === "channel" ? " channelView" : "") 
+                    + (props.clubView.mode === "club" ? " clubView" : "")} 
+    style={props.clubView.magX !== 0 ? { left: 'calc(' 
+            + (props.clubView.mode === "club" ? '-70% + ' : (props.clubView.mode === "channel" ? "70% + " : '')) 
+            + props.clubView.magX + 'px)' } : {}}
+            onClick={props.onClick}>
+        <div className="chatNavBar">@채널 이름<div className="channel"></div><div className="info"></div></div>
         <div className="chatWrapper" style={{ height: 'calc(100% - ' + (63 + textareaRows * 17) + 'px)' }}>채팅 내용aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</div>
         <div className="chatInputBar">
-            <div className="circleBtn submit" style={chatFocused ? { position: 'absolute', left: 0, bottom: 45 } : { position: 'absolute', left: 0, bottom: 0 }}></div>
-            <div className={"circleBtn" + (chatFocused ? ' hideBtn' : '')} style={{ position: 'absolute', left: 0 }}></div>
-            <div className={"circleBtn" + (chatFocused ? ' hideBtn' : '')} style={{ position: 'absolute', left: 45 }}></div>
             <textarea
-                className={"chatInput" + (chatFocused ? ' chatExtend' : '')}
+                className={"chatInput" + (!isChatNull ? ' chatExtend' : '')}
                 placeholder="메세지 입력"
                 rows={1}
                 onChange={chatChange}
                 onBlur={chatBlur}
                 onTransitionEnd={autoSizing}>
             </textarea>
-            <div className="circleBtn submit" style={chatFocused ? { position: 'relative', left: 'calc(100% - 45px)' } : { position: 'relative', left: 'calc(100% - 5px)' }}></div>
+            <div className="circleBtn submit" style={!isChatNull ? { position: 'relative', left: 'calc(100% - 45px)' } : { position: 'relative', left: 'calc(100% - 5px)' }}></div>
+            <div className="circleBtn submit" style={!isChatNull ? { position: 'absolute', left: 0, bottom: 45 } : { position: 'absolute', left: 0, bottom: 0 }}></div>
         </div>
     </div>)
 }

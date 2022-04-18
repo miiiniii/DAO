@@ -30,22 +30,10 @@ public class TestController {
 	@PostMapping("/assetDetail")
 	public String assetDetail(@RequestBody HashMap<String, Object> requsetHashMap) throws JSONException {
 		HashMap<String, AssetDetail> dataHashMap = new HashMap<String, AssetDetail>();
-		dataHashMap.put("default", new AssetDetail("default", "default",
-				new ArrayList<Long>(Arrays.asList(35000L, 44000L, 51000L, 55000L,
-						57000L, 53000L)),
-				52000L, "클럽 책임자"));
-		dataHashMap.put("example1", new AssetDetail("example1", "example1",
-				new ArrayList<Long>(Arrays.asList(22030070L, 22110750L, 22395500L,
-						22462110L, 22810570L, 23310570L)),
-				23085220L, "클럽 책임자"));
-		dataHashMap.put("example2", new AssetDetail("example2", "example2",
-				new ArrayList<Long>(Arrays.asList(1180000L, 1180000L, 1170000L,
-						1150000L, 1140000L, 1140000L)),
-				1140000L, "클럽 책임자"));
-		dataHashMap.put("example3", new AssetDetail("example3", "example3",
-				new ArrayList<Long>(Arrays.asList(820220L, 894150L, 911120L,
-						998020L, 1170400L, 1251000L)),
-				1001190L, "클럽 책임자"));
+		dataHashMap.put("default", new AssetDetail("default", "default",new ArrayList<Long>(Arrays.asList(35000L, 44000L, 51000L, 55000L,57000L, 53000L)),52000L, "클럽 책임자"));
+		dataHashMap.put("example1", new AssetDetail("example1", "example1",new ArrayList<Long>(Arrays.asList(22030070L, 22110750L, 22395500L,22462110L, 22810570L, 23310570L)),23085220L, "클럽 책임자"));
+		dataHashMap.put("example2", new AssetDetail("example2", "example2",new ArrayList<Long>(Arrays.asList(1180000L, 1180000L, 1170000L,1150000L, 1140000L, 1140000L)),1140000L, "클럽 책임자"));
+		dataHashMap.put("example3", new AssetDetail("example3", "example3",new ArrayList<Long>(Arrays.asList(820220L, 894150L, 911120L,998020L, 1170400L, 1251000L)),1001190L, "클럽 책임자"));
 		return dataHashMap.get(requsetHashMap.get("assetId")).toJsonObject()
 				.toString();
 	}

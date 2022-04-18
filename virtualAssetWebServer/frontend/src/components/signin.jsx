@@ -5,7 +5,10 @@ export default function Signin(props) {
 	const authSubmit=(e)=>{
 
 	}
-
+	const [checked, setChecked] = useState(false);
+	const handleChange = () => {
+		setChecked(!checked);
+	  };
 	return (
 		<div className={'signinBackground'+(props.signinPage==='hide'?' signinPageHide':'')}>
 			<nav>
@@ -31,8 +34,10 @@ export default function Signin(props) {
 								<input placeholder="비밀번호" type="password"></input>
 							</div>
 							<div className="login-stay-sign-in">
-								<i className="far fa-check-circle"  aria-hidden="true" title="로그인 유지"></i>
-
+								<div className="round">
+									<input type="checkbox" checked={checked} onChange={handleChange} id="rememberMe"/>
+									<label htmlFor="rememberMe"></label>
+								</div>
 								<span style={{ color: "#F1EDE9" }}>로그인 유지</span>
 							</div>
 						</section>
