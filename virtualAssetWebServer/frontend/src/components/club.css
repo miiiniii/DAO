@@ -89,7 +89,7 @@
     overflow: scroll;
 }
 
-.clubInfoTopSpace{
+.clubIntroTopSpace{
     margin-top: 30px;
 }
 
@@ -129,6 +129,7 @@
 .channelWindowWrapper li{
     padding: 8px 10px;
     margin: 5px;
+    transition: 0.2s;
 }
 .channelWindowWrapper ul li:nth-last-child(1){
     padding: 8px 10px 8px 10px;
@@ -259,4 +260,69 @@ pre{
 .currChannel{
     background-color: #738CD9;
     border-radius: 20px;
+}
+
+.userIcon{
+    display: inline-block;
+    height:1em;
+    width:0.8em;
+    margin-left: 3px;
+    overflow:hidden ;
+    border-radius: 0.1em;
+}
+.userIcon>div:nth-child(1){
+    position: relative;
+    height: 0.4em;
+    width: 0.4em;
+    border-radius: 1em;
+    background-color: #F1EDE9;
+    margin: auto;
+    margin-bottom: 0.1em;
+}
+.userIcon>div:nth-child(2){
+    position: relative;
+    height: 1.5em;
+    width: 0.8em;
+    border-radius: 0.4em;
+    background-color: #F1EDE9;
+    margin: auto;
+}
+.channelBanner *{
+    vertical-align: bottom;
+}
+
+.memberList{
+    font-size: 1em;
+    word-break: break-all;
+    text-overflow: ellipsis;
+    margin: 5px 5px 5px 10px;
+}
+
+.memberListProfilePic{
+    display: inline-block;
+    height: 1.4em;
+    width: 1.4em;
+    border-radius: 0.7em;
+    background-color: #738CD9;
+    vertical-align: middle;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 1.4em;
+}
+.memberListWrapper{
+    height: calc(100% - calc(15vh + 45px));
+    padding: 20px 15px;
+    text-align: left;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.memberListWrapper details{
+    margin: 20px 0;
+}
+.clubSettingWrapper{
+    line-height: 6vh;
+    height: 15vh;
+    background-color: #3b3e43;
+    margin: 0 5px 5px 5px;
+    border-radius: 5px;
 }

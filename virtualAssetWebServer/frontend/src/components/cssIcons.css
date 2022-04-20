@@ -1,0 +1,43 @@
+.cssIconBase{
+    vertical-align: middle;
+    position: relative;
+}
+.cssIconSettingsCenter{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    height: 32%;
+    width: 32%;
+    border-radius: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+.cssIconSettingsTooth{
+    position: absolute;
+    border-radius: 20%;
+    height: 20%;
+    width: 16%;
+    left: 42%;
+    top: 6%;
+    transform-origin: 50% 220%;
+}
+.cssIconSettingsTooth:nth-child(2){
+    transform: rotate(45deg);
+}
+.cssIconSettingsTooth:nth-child(3){
+    transform: rotate(90deg);
+}
+.cssIconSettingsTooth:nth-child(4){
+    transform: rotate(135deg);
+}
+.cssIconSettingsTooth:nth-child(5){
+    transform: rotate(180deg);
+}
+.cssIconSettingsTooth:nth-child(6){
+    transform: rotate(225deg);
+}
+.cssIconSettingsTooth:nth-child(7){
+    transform: rotate(270deg);
+}
+.cssIconSettingsTooth:nth-child(8){
+    transform: rotate(315deg);
+}
