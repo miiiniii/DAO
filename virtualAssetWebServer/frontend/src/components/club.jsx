@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./club.css";
-import Icon_Settings from "./cssIcons";
+import Icon_Settings,{Icon_Contract, Icon_Search,Icon_Board} from "./cssIcons";
 
 export default function Club(props) {
     const [touchStart, setTouchStart] = useState({ coord: null, timeStamp: null });
@@ -337,11 +337,10 @@ function ClubInfos(props) {
             </details>
         </div>
         <div className="clubSettingWrapper" >
-            <Icon_Settings size='6vh' margin='1vh' />
-            <Icon_Settings size='6vh' margin='1vh' />
-            <Icon_Settings size='6vh' margin='1vh' />
-            <Icon_Settings size='6vh' margin='1vh' />
-            <Icon_Settings size='6vh' margin='1vh' />
+            <Icon_Search size='5vh' margin='1vh' />
+            <Icon_Contract size='5vh' margin='1vh' />
+            <Icon_Board size='5vh' margin='1vh' />
+            <Icon_Settings size='5vh' margin='1vh' />
         </div>
     </div>)
 }
