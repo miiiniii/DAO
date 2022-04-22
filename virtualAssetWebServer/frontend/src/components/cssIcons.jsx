@@ -5,11 +5,12 @@ export default function Icon_Settings(props) {
         <div className='cssIconBase'
             onClick={props.onClick || null}
             style={{
-                display: props.display || 'inline-block',
+                display: props.display || ((props.float || null) == null ? 'inline-block' : 'block'),
                 margin: (props.margin || '0') + ' ' + (props.margin || '0') + ' 0 ' + (props.margin || '0'),
                 padding: props.padding || 0,
                 height: (props.size || '50px'),
                 width: (props.size || '50px'),
+                float: props.float || 'none',
             }}>
             <div className='cssIconSettingsCenter' style={{ borderColor: props.color || '#f1ede9', borderStyle: 'solid', borderWidth: 'calc(' + props.size + '* 0.16)' }}></div>
             <div className='cssIconSettingsTooth' style={{ backgroundColor: props.color || '#f1ede9' }}></div>
@@ -27,11 +28,12 @@ export function Icon_Board(props) {
     return (<div className='cssIconBase'
         onClick={props.onClick || null}
         style={{
-            display: props.display || 'inline-block',
+            display: props.display || ((props.float || null) == null ? 'inline-block' : 'block'),
             margin: (props.margin || '0') + ' ' + (props.margin || '0') + ' 0 ' + (props.margin || '0'),
             padding: props.padding || 0,
             height: (props.size || '50px'),
             width: (props.size || '50px'),
+            float: props.float || 'none',
         }}>
         <div className='cssIconBoardBody' style={{ borderColor: props.color || '#f1ede9', borderStyle: 'solid', borderWidth: 'calc(' + props.size + '* 0.10)' }}></div>
         <div className='cssIconBoardRope'
@@ -50,19 +52,19 @@ export function Icon_Board(props) {
                 borderTopColor: 'transparent',
                 borderLeftColor: 'transparent',
                 borderRightColor: 'transparent',
-                height:'0',
-                width:'0',
-                top:'28%',
-                left:'20%'
+                height: '0',
+                width: '0',
+                top: '28%',
+                left: '20%'
             }}>
         </div>
         <div className='cssIconBoard' style={{
             backgroundColor: props.color || '#f1ede9',
-            height:'11%',
-            width:'10%',
-            left:'60%',
-            top:'65%',
-            transform:'rotate(-39deg)'
+            height: '11%',
+            width: '10%',
+            left: '60%',
+            top: '65%',
+            transform: 'rotate(-39deg)'
         }}></div>
         <div className='cssIconBoard'
             style={{
@@ -72,12 +74,12 @@ export function Icon_Board(props) {
                 borderTopColor: 'transparent',
                 borderLeftColor: 'transparent',
                 borderRightColor: 'transparent',
-                height:'0',
-                width:'0',
-                top:'53%',
-                left:'58%'
+                height: '0',
+                width: '0',
+                top: '53%',
+                left: '58%'
             }}>        </div>
-            <div className='cssIconBoard'
+        <div className='cssIconBoard'
             style={{
                 borderColor: props.color || '#f1ede9',
                 borderStyle: 'solid',
@@ -85,10 +87,10 @@ export function Icon_Board(props) {
                 borderTopColor: 'transparent',
                 borderLeftColor: 'transparent',
                 borderRightColor: 'transparent',
-                height:'0',
-                width:'0',
-                top:'62%',
-                left:'65%'
+                height: '0',
+                width: '0',
+                top: '62%',
+                left: '65%'
             }}>
         </div>
     </div>)
@@ -98,13 +100,14 @@ export function Icon_Search(props) {
     return (<div className='cssIconBase'
         onClick={props.onClick || null}
         style={{
-            display: props.display || 'inline-block',
+            display: props.display || ((props.float || null) == null ? 'inline-block' : 'block'),
             margin: (props.margin || '0') + ' ' + (props.margin || '0') + ' 0 ' + (props.margin || '0'),
             padding: props.padding || 0,
             height: (props.size || '50px'),
             width: (props.size || '50px'),
+            float: props.float || 'none',
         }}>
-        <div className='cssIconSearchLens' style={{ borderColor: props.color || '#f1ede9', borderStyle: 'solid', borderWidth: 'calc(' + props.size + '* 0.10)' }}></div>
+        <div className='cssIconSearchLens' style={{ borderColor: props.color || '#f1ede9', borderStyle: 'solid', borderWidth: 'calc( ' + props.size + 'px * 0.08 )' }}></div>
         <div className='cssIconSearchConnecter' style={{ backgroundColor: props.color || '#f1ede9' }}></div>
         <div className='cssIconSearchHandle' style={{ backgroundColor: props.color || '#f1ede9' }}></div>
     </div>)
@@ -114,11 +117,12 @@ export function Icon_Contract(props) {
     return (<div className='cssIconBase'
         onClick={props.onClick || null}
         style={{
-            display: props.display || 'inline-block',
+            display: props.display || ((props.float || null) == null ? 'inline-block' : 'block'),
             margin: (props.margin || '0') + ' ' + (props.margin || '0') + ' 0 ' + (props.margin || '0'),
             padding: props.padding || 0,
             height: (props.size || '50px'),
             width: (props.size || '50px'),
+            float: props.float || 'none',
         }}>
         <div className='cssIconContractBodyLeft'
             style={{

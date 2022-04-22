@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
+import NaverLogin, { KakaoLogin } from "./externalLogin";
 
 export default function Signin(props) {
 
-	const authSubmit=(e)=>{
+	const authSubmit = (e) => {
 
 	}
 	const [checked, setChecked] = useState(false);
 	const handleChange = () => {
 		setChecked(!checked);
-	  };
+	};
+
 	return (
-		<div className={'signinBackground'+(props.signinPage==='hide'?' signinPageHide':'')}>
+		<div className={'signinBackground' + (props.signinPage === 'hide' ? ' signinPageHide' : '')}>
 			<nav>
 				<ul className="nav-container">
 					<li className="nav-item" ><span onClick={props.hideSigninPage}><i className="fa fa-arrow-left"></i></span></li>
@@ -35,7 +37,7 @@ export default function Signin(props) {
 							</div>
 							<div className="login-stay-sign-in">
 								<div className="round">
-									<input type="checkbox" checked={checked} onChange={handleChange} id="rememberMe"/>
+									<input type="checkbox" checked={checked} onChange={handleChange} id="rememberMe" />
 									<label htmlFor="rememberMe"></label>
 								</div>
 								<span style={{ color: "#F1EDE9" }}>로그인 유지</span>
@@ -47,7 +49,11 @@ export default function Signin(props) {
 					</section>
 					<div className="login-sign-up-wrap">
 						<p style={{ marginTop: '10px', color: "#F1EDE9" }}>아직 회원이 아니라면?</p>
-						<p style={{ marginTop: '15px',  color: '#738CD9' }}><span className="signinBtn" onClick={props.showSignupPage}>회원가입</span></p>
+						<p style={{ marginTop: '15px', color: '#738CD9' }}><span className="signinBtn" onClick={props.showSignupPage}>DAO회원가입</span></p>
+						<br/>
+						<br/>
+						<p style={{ color: '#F1EDE9',marginBottom:'8px', opacity:'0.8'}}>소셜 계정으로 간편가입</p>
+						<NaverLogin/><KakaoLogin/>
 					</div>
 				</div>
 			</div>

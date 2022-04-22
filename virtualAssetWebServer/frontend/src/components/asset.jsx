@@ -6,6 +6,7 @@ import Search_white from "../Icons/Search_white.png";
 import "./asset.css";
 import AssetDetail from "./assetDetail";
 import LoadingSpinner from "./loadingSpinner";
+import { Icon_Search } from "./cssIcons";
 
 export default function Asset(props) {
 
@@ -78,7 +79,7 @@ export default function Asset(props) {
           setDetailView({view: false, assetId:null, assetIndex:null});
      }
 
-     function searchCilck() {
+     function searchClick() {
           if (!searchState.extend) setSearchState({ extend: true, class: "searchFloat extend", inputClass: "searchInput", searchValue: "" })
           else setSearchState({ extend: false, class: "searchFloat", inputClass: "searchInput hide", searchValue: "" });
      }
@@ -89,7 +90,7 @@ export default function Asset(props) {
                className={props.className}
                assets={assetDisplay}
                auth={props.auth}
-               searchCilck={searchCilck}
+               searchClick={searchClick}
                searchState={searchState}
                inputChange={inputChange}
                assetDetailBack={assetDetailBack}
@@ -127,7 +128,7 @@ function AssetLogon(props) {
                <div className="myAssetList">
                     <div className={props.searchState.class}>
                          <input className={props.searchState.inputClass} type="text" placeholder="검색어를 입력하세요." onChange={props.inputChange} />
-                         <img className='searchIcon' width={25} height={25} src={Search_white} onClick={props.searchCilck} />
+                    <Icon_Search size={34} onClick={props.searchClick} margin='7.5px' float='right'/>
                     </div>
                     <div className="myClubList">
                          {props.assets.map((c, i) => (

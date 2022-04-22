@@ -1,19 +1,28 @@
 import { useEffect, useState } from "react";
 import "./club.css";
-import Icon_Settings,{Icon_Contract, Icon_Search,Icon_Board} from "./cssIcons";
+import Icon_Settings, { Icon_Contract, Icon_Search, Icon_Board } from "./cssIcons";
 
 export default function Club(props) {
     const [touchStart, setTouchStart] = useState({ coord: null, timeStamp: null });
     const [touchState, setTouchState] = useState('none');
     const [touchEnd, setTouchEnd] = useState({ coord: null, timeStamp: null });
     const [clubView, setClubView] = useState({ magX: 0, mode: '' });
-
+    const [clubSettingView, setClubSettingView]= useState(false);
     function handleTouchStart(e) {
         setTouchStart({ coord: e.targetTouches[0], timeStamp: e.timeStamp });
     }
     useEffect(() => {
         setClubView({ magX: 0, mode: '' });
     }, [props.clubPage.viewClass])
+
+    function clubBackClick(){
+        if(clubSettingView){
+            setClubSettingView(false);
+            return;
+        }
+        props.hideClubPage();
+    }
+
     function handleTouchMove(e) {
         if (touchState === 'none') {
             let deltaX = e.targetTouches[0].clientX - touchStart.coord.clientX;
@@ -61,27 +70,49 @@ export default function Club(props) {
 
     if (props.auth !== undefined && props.auth.code === 100) {
         return (<div className={"clubPage" + props.clubPage.viewClass}>
-            <p className="clubNavBar"><span className="backBtn" onClick={props.hideClubPage}><i className="fa fa-arrow-left"></i></span><span className="clubName">클럽 이름</span></p>
+            <p className="clubNavBar"><span className="backBtn" onClick={clubBackClick}><i className="fa fa-arrow-left"></i></span><span className="clubName">클럽 이름</span></p>
             <div className="clubComponemtWarpper"
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
             >
                 <ClubChannels clubView={clubView} />
-                <ClubInfos clubView={clubView} />
+                <ClubInfos clubView={clubView} setClubSettingView={setClubSettingView} />
                 <ClubChat clubView={clubView}
                     onClick={() => { setClubView({ magX: 0, mode: '' }) }} />
             </div>
+            {clubSettingView?(
+                            <div className="clubSettingPage">
+                            <h1>클럽 설정</h1>
+                            <div className="settingGroup">
+                                <h3>사용자 설정</h3>
+                                <hr />
+                                <p className="settingGroupElement">클럽 내부 닉네임</p>
+                                <p className="settingGroupElement">알림 설정</p>
+                                <p className="settingGroupElement settingCaution">클럽 나가기</p>
+                            </div>
+                            <div className="settingGroup">
+                                <h3>클럽 관리</h3>
+                                <hr />
+                                <p className="settingGroupElement">멤버 관리</p>
+                                <p className="settingGroupElement">채널 관리</p>
+                                <p className="settingGroupElement">직책 관리</p>
+                                <p className="settingGroupElement settingCaution">클럽 해산</p>
+                            </div>
+                        </div>
+            ):(
+                <></>
+            ) }
         </div>)
     }
 
     if (props.auth === undefined || props.auth.code !== 100) {
         return (<div className={"clubPage" + props.clubPage.viewClass}>
-            <ClubIntrduce hideClubPage={props.hideClubPage} showSigninPage={props.showSigninPage}></ClubIntrduce>
+            <ClubIntrduce hideClubPage={clubBackClick} showSigninPage={props.showSigninPage}></ClubIntrduce>
         </div>)
     }
     return (<div className={"clubPage" + props.clubPage.viewClass}>
-        <ClubIntrduce hideClubPage={props.hideClubPage} showSigninPage={props.showSigninPage}></ClubIntrduce>
+        <ClubIntrduce hideClubPage={clubBackClick} showSigninPage={props.showSigninPage}></ClubIntrduce>
     </div>)
 }
 
@@ -142,7 +173,6 @@ function ClubChat(props) {
     const chatChange = (e) => {
         autoSizing(e);
         setIsChatNull(document.getElementsByTagName('textarea')[0].value === '');
-        console.log(document.getElementsByTagName('textarea')[0].value === '');
     }
     const chatBlur = (e) => {
         autoSizing(e);
@@ -336,11 +366,11 @@ function ClubInfos(props) {
                 <MemberList userId='유저 이름' />
             </details>
         </div>
-        <div className="clubSettingWrapper" >
+        <div className="clubServiceWrapper" >
             <Icon_Search size='5vh' margin='1vh' />
             <Icon_Contract size='5vh' margin='1vh' />
             <Icon_Board size='5vh' margin='1vh' />
-            <Icon_Settings size='5vh' margin='1vh' />
+            <Icon_Settings size='5vh' margin='1vh' onClick={()=>{props.setClubSettingView(true)}}/>
         </div>
     </div>)
 }
@@ -369,7 +399,7 @@ function ChannelList(props) {
 
 function MemberList(props) {
     return (<div className="memberList">
-        <div className="memberListProfilePic" style={{ backgroundImage: (props.userPic || "none")}}></div>{props.userId}
+        <div className="memberListProfilePic" style={{ backgroundImage: (props.userPic || "none") }}></div>{props.userId}
     </div>)
 }
 

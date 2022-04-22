@@ -8,7 +8,7 @@ import User_white from "../Icons/User_white.png";
 import Contract_white from "../Icons/Contract_white.png";
 import Search_white from "../Icons/Search_white.png";
 import LoadingSpinner from './loadingSpinner';
-
+import {Icon_Search} from './cssIcons';
 
 
 export default function Home(props) {
@@ -54,7 +54,7 @@ export default function Home(props) {
     }, [searchInput, clubs]);
 
 
-    function searchCilck() {
+    function searchClick() {
         if (!searchState.extend) setSearchState({ extend: true, class: "searchFloat extend", inputClass: "searchInput", searchValue: "" })
         else setSearchState({ extend: false, class: "searchFloat", inputClass: "searchInput hide", searchValue: "" });
     }
@@ -70,7 +70,7 @@ export default function Home(props) {
             className={props.className}
             clubs={clubsDisplay}
             auth={props.auth}
-            searchCilck={searchCilck}
+            searchClick={searchClick}
             searchState={searchState}
             inputChange={inputChange}
             showClubPage={props.showClubPage}
@@ -106,7 +106,7 @@ function HomeLogon(props) {
             <div className="myClubList">
                 <div className={props.searchState.class}>
                     <input className={props.searchState.inputClass} type="text" placeholder="검색어를 입력하세요." onChange={props.inputChange} />
-                    <img className='searchIcon' width={25} height={25} src={Search_white} onClick={props.searchCilck} />
+                    <Icon_Search size={34} onClick={props.searchClick} margin='7.5px' float='right'/>
                 </div>
                 {props.clubs.map((contents, index) => (
                     <div className='myClubBanner' key={contents + index} onClick={props.showClubPage}>
