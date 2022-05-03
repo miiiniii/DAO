@@ -23,6 +23,56 @@ import customAxios from './scripts/customAxios';
 
 function App() {
   useScript("https://kit.fontawesome.com/51db22a717.js");
+
+  //******************XMPP script***************************************/
+  const { client, xml, jid } = require("@xmpp/client");
+  const debug = require("@xmpp/debug");
+
+  function xmppstart(name) {
+    const xmpp = client({
+      service: "ws://223.194.70.105:52222/websoket",
+      domain: "raft02",
+      resource: "example",
+      username:"test",
+      password:"test",
+    });
+
+    debug(xmpp, true);
+    xmpp.on("error", (err) => {
+      console.error(err);
+      xmpp.stop();
+    });
+
+    xmpp.on("offline", () => {
+      console.log("offline");
+    });
+
+    xmpp.on("stanza", async (stanza) => {
+      if (stanza.is("message")) {
+        await xmpp.send(xml("presence", { type: "unavailable" }));
+        await xmpp.stop();
+      }
+    });
+
+    xmpp.on("online", async (address) => {
+      // Makes itself available
+      await xmpp.send(xml("presence"));
+
+      // Sends a chat message to itself
+      const message = xml(
+        "message",
+        { type: "chat", to: address },
+        xml("body", {}, "hello world"),
+      );
+      await xmpp.send(message);
+    });
+
+    xmpp.start().catch(console.error);
+  }
+
+
+
+
   //********임시 로딩타임 1000ms 추후 로딩 기능 넣으면 동적으로 변경*********/
   const tempLoadingTime = 1000;
 
@@ -43,7 +93,7 @@ function App() {
   const [signupPage, setSignupPage] = useState('hide');
   const [editProfilePage, setEditProfilePage] = useState('hide');
   const [clubPage, setClubPage] = useState({ viewClass: ' clubHide' });
-  const [bankAccountPage, setBankAccountPage]=useState('hide');
+  const [bankAccountPage, setBankAccountPage] = useState('hide');
 
   const showClubPage = () => setClubPage({ viewClass: '' })
   const hideClubPage = () => setClubPage({ viewClass: ' clubHide' })
@@ -53,14 +103,14 @@ function App() {
   const hideSignupPage = () => setSignupPage('hide');
   const showEditProfilePage = () => setEditProfilePage('show');
   const hideEditProfilePage = () => setEditProfilePage('hide');
-  const showBankAccountPage = () =>setBankAccountPage('show');
-  const hideBankAccountPage = () =>setBankAccountPage('hide');
+  const showBankAccountPage = () => setBankAccountPage('show');
+  const hideBankAccountPage = () => setBankAccountPage('hide');
 
   //****main 위에 쓰이는 페이지는 z index 10000으로 설정************
   const [touchBlock, setTouchBlock] = useState(false);
-  useEffect(()=>{
-    setTouchBlock(signinPage==='show'||signupPage==='show' || clubPage.viewClass === '' ||editProfilePage==='show'||bankAccountPage==='show');
-  },[signinPage,signupPage,clubPage,editProfilePage,bankAccountPage])
+  useEffect(() => {
+    setTouchBlock(signinPage === 'show' || signupPage === 'show' || clubPage.viewClass === '' || editProfilePage === 'show' || bankAccountPage === 'show');
+  }, [signinPage, signupPage, clubPage, editProfilePage, bankAccountPage])
 
   const [auth, setAuth] = useState();
 
@@ -72,6 +122,7 @@ function App() {
     () => {
       customAxios('/auth', (data) => {
         setAuth(data);
+        xmppstart(data.id);
       });
     }, []
   );

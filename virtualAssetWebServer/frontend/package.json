@@ -6,6 +6,8 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "@xmpp/client": "^0.13.1",
+    "@xmpp/debug": "^0.13.0",
     "axios": "^0.26.1",
     "chart.js": "^3.7.1",
     "http-proxy-middleware": "^2.0.4",

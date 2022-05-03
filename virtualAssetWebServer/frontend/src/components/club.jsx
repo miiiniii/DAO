@@ -325,7 +325,7 @@ function ClubChat(props) {
 function ClubChannels(props) {
     return (<div className={"channelWindowWrapper" + (props.clubView.magX === 0 ? " transition" : "") + (props.clubView.mode === "club" ? " clubView" : "")} style={(props.clubView.magX !== 0 && props.clubView.mode === "") ? { left: props.clubView.magX > 0 ? 0 : props.clubView.magX } : {}}>
         <details open={true}>
-            <summary>공지사항 <Icon_Edit size='21px' float='right'/> </summary>
+            <summary>공지사항</summary>
             <ul>
                 <ChannelList channelName='클럽 규칙' />
                 <ChannelList channelName='거래 소식' />

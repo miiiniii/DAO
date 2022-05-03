@@ -199,8 +199,8 @@ export function Icon_Plus(props){
         width: (props.size || '50px'),
         float: props.float || 'none',
     }}>
-        <div className='cssIconPlus' style={props.minus||false?{opacity:0}:{}}/>
-        <div className='cssIconPlus'/>
+        <div className='cssIconPlus' style={{opacity: props.minus||false?0:1,backgroundColor: props.backgroundColor||'#4b525a'}}/>
+        <div className='cssIconPlus' style={{backgroundColor: props.backgroundColor||'#4b525a'}}/>
     </div>)
 }
 
