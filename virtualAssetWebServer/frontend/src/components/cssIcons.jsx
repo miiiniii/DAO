@@ -187,3 +187,35 @@ export function Icon_Contract(props) {
 
     </div>)
 }
+
+export function Icon_Plus(props){
+    return(<div className='cssIconBase'
+    onClick={props.onClick || null}
+    style={{
+        display: props.display || ((props.float || null) == null ? 'inline-block' : 'block'),
+        margin: (props.margin || '0') + ' ' + (props.margin || '0') + ' 0 ' + (props.margin || '0'),
+        padding: props.padding || 0,
+        height: (props.size || '50px'),
+        width: (props.size || '50px'),
+        float: props.float || 'none',
+    }}>
+        <div className='cssIconPlus' style={props.minus||false?{opacity:0}:{}}/>
+        <div className='cssIconPlus'/>
+    </div>)
+}
+
+export function Icon_Edit(props){
+    return(<div className='cssIconBase'
+    onClick={props.onClick || null}
+    style={{
+        display: props.display || ((props.float || null) == null ? 'inline-block' : 'block'),
+        margin: (props.margin || '0') + ' ' + (props.margin || '0') + ' 0 ' + (props.margin || '0'),
+        padding: props.padding || 0,
+        height: (props.size || '50px'),
+        width: (props.size || '50px'),
+        float: props.float || 'none',
+    }}>
+        <div className='cssIconPlus' style={props.minus||false?{opacity:0}:{}}/>
+        <div className='cssIconPlus'/>
+    </div>)
+}

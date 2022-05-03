@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./club.css";
-import Icon_Settings, { Icon_Contract, Icon_Search, Icon_Board } from "./cssIcons";
+import Icon_Settings, { Icon_Contract, Icon_Search, Icon_Board, Icon_Plus, Icon_Edit } from "./cssIcons";
 
 export default function Club(props) {
     const [touchStart, setTouchStart] = useState({ coord: null, timeStamp: null });
@@ -150,8 +150,8 @@ function ClubIntrduce(props) {
 }
 
 function ClubChat(props) {
-    const [isChatNull, setIsChatNull] = useState(true);
-    const [textareaRows, setTextareaRows] = useState(1);
+    const [chatFocus, setChatFocus] = useState(false);
+    const [inputBarHeight, setInputBarHeight] = useState(1);
     const autoSizing = (e) => {
         let c = document.getElementsByClassName('chatInputBar')[0];
         while (true) {
@@ -167,16 +167,35 @@ function ClubChat(props) {
                 break;
             }
         }
-        c.style.height = (30 + 17 * e.target.rows) + 'px';
-        setTextareaRows(e.target.rows);
+        if(!chatFocus){
+            c.style.height = (30 + 17 * e.target.rows) + 'px';
+            setInputBarHeight(30 + 17 * e.target.rows)
+        }else{
+            c.style.height = (70 + 17 * e.target.rows) + 'px';
+            setInputBarHeight(70 + 17 * e.target.rows)
+        }
     }
     const chatChange = (e) => {
         autoSizing(e);
-        setIsChatNull(document.getElementsByTagName('textarea')[0].value === '');
+        setChatFocus(document.getElementsByTagName('textarea')[0].value !== '');
     }
-    const chatBlur = (e) => {
-        autoSizing(e);
-    }
+    useEffect(()=>{
+        let row=document.getElementsByClassName('chatInput').length==0?1:document.getElementsByClassName('chatInput')[0].rows;
+        let t=document.getElementsByClassName('chatInputBar')[0];
+        if(t==null)return;
+        if(!chatFocus){
+            t.style.height=(30 + 17 * row) + 'px';
+            setInputBarHeight(30 + 17 * row)
+        }else{
+            t.style.height=(70 + 17 * row) + 'px';
+            setInputBarHeight(70 + 17 * row)
+        }
+    },[chatFocus])
+    useEffect(()=>{
+        if((props.clubView.mode==='channel'||props.clubView.mode==='club')&&document.getElementsByTagName('textarea')[0].value === ''){
+            setChatFocus(false);
+        }
+    },[props.clubView.mode])
     return (
         <div className={"chatWindowWrapper"
             + (props.clubView.magX === 0 ? " transition" : "")
@@ -189,7 +208,7 @@ function ClubChat(props) {
             } : {}}
             onClick={props.onClick}>
             <div className="chatNavBar">@휴게실<div className="channel"></div><div className="info"></div></div>
-            <div className="chatView" style={{ height: 'calc(100% - ' + (63 + textareaRows * 17) + 'px)' }}>
+            <div className="chatView" style={{ height: 'calc(100% - ' + (33 + inputBarHeight) + 'px)' }}>
                 <div className="chatWrapper">
                     <Chat
                         userPic={null}
@@ -286,15 +305,19 @@ function ClubChat(props) {
             </div>
             <div className="chatInputBar">
                 <textarea
-                    className={"chatInput" + (!isChatNull ? ' chatExtend' : '')}
+                    className={"chatInput" + (chatFocus ? ' chatExtend' : '')}
                     placeholder="메세지 입력"
                     rows={1}
                     onChange={chatChange}
-                    onBlur={chatBlur}
+                    onBlur={autoSizing}
                     onTransitionEnd={autoSizing}>
                 </textarea>
-                <div className="circleBtn submit" style={!isChatNull ? { position: 'relative', left: 'calc(100% - 45px)' } : { position: 'relative', left: 'calc(100% - 5px)' }}></div>
-                <div className="circleBtn submit" style={!isChatNull ? { position: 'absolute', left: 0, bottom: 45 } : { position: 'absolute', left: 0, bottom: 0 }}></div>
+                <div className="circleBtn" onClick={()=>setChatFocus(!chatFocus)}><Icon_Plus size='100%' minus={chatFocus}/></div>
+                <div className="circleBtn" style={chatFocus?{bottom:0, left:'180px'}:{bottom:'-45px', left:'180px'}}></div>
+                <div className="circleBtn" style={chatFocus?{bottom:0, left:'135px'}:{bottom:'-45px', left:'135px'}}></div>
+                <div className="circleBtn" style={chatFocus?{bottom:0, left:'90px' }:{bottom:'-45px', left:'90px' }}></div>
+                <div className="circleBtn" style={chatFocus?{bottom:0, left:'45px' }:{bottom:'-45px', left:'45px' }}></div>
+                <div className="circleBtn" style={chatFocus?{bottom:0}:{bottom:'-45px'}}></div>
             </div>
         </div>)
 }
@@ -302,7 +325,7 @@ function ClubChat(props) {
 function ClubChannels(props) {
     return (<div className={"channelWindowWrapper" + (props.clubView.magX === 0 ? " transition" : "") + (props.clubView.mode === "club" ? " clubView" : "")} style={(props.clubView.magX !== 0 && props.clubView.mode === "") ? { left: props.clubView.magX > 0 ? 0 : props.clubView.magX } : {}}>
         <details open={true}>
-            <summary >공지사항</summary>
+            <summary>공지사항 <Icon_Edit size='21px' float='right'/> </summary>
             <ul>
                 <ChannelList channelName='클럽 규칙' />
                 <ChannelList channelName='거래 소식' />

@@ -122,6 +122,7 @@
     margin: 0 5px 5px;
     border-radius: 5px;
     text-align: left;
+    overflow-y: scroll;
 }
 .channelWindowWrapper ul{
     list-style: none;
@@ -169,12 +170,15 @@
     border-radius: 0 0 5px 5px;
     background-color: #373B40;
     overflow: hidden;
+    transform: 0;
+    transition: height .2s;
 }
 .chatView{
     overflow-y: scroll;
     clip: auto;
     word-break: break-all;
     padding: 0 8px;
+    transition: height .2s;
 }
 .circleBtn{
     height: 35px;
@@ -183,29 +187,28 @@
     background-color: #adaaa7;
     border-radius: 20px;
     transition: 0.2s;
+    display: inline-block;
+    position: absolute;
+    left: 0;
 }
 .chatInput{
     position: absolute;
-    left: 90px;
+    left: 45px;
     margin: 5px;
     background-color: #adaaa7;
     border-radius: 20px;
     padding: 9px 12px;
-    width: calc(100% - 130px);
+    width: calc(100% - 85px);
     border: 0;
     font-size: 15px;
     line-height: 17px;
-    transition: 0.2s;
     resize: none;
-
+    overflow-y: hidden;
+    transition: .2s;
 }
 .chatInput:focus{
     outline-color: #738CD9;
     border: 0;
-}
-.chatExtend{
-    left: 0;
-    width: calc(100% - 80px);
 }
 .hideBtn{
     display: none;

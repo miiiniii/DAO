@@ -145,3 +145,23 @@
 .cssIconBoard{
     position: absolute;
 }
+
+
+.cssIconPlus{
+    background-color: #4b525a;
+    border-radius: 100px;
+    position: absolute;
+    transform: translateX(-50%) translateY(-50%);
+    left: 50%;
+    top:50%;
+    transition: .2s;
+}
+.cssIconPlus:nth-child(1){
+    height: 60%;
+    width: 10%;
+}
+
+.cssIconPlus:nth-child(2){
+    width: 60%;
+    height: 10%;
+}
