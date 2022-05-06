@@ -1,17 +1,8 @@
-:root {
-  --body-background-color: #4b525a;
-  --font-color: #f1ede9;
-  --highlight-font-color: #738cd9;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
 
 .editProfileBackground {
   z-index: 10001;
   position: absolute;
+overflow: auto;
   top: 0%;
   width: 100vw;
   height: 100vh;
