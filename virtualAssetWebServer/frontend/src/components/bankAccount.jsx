@@ -1,14 +1,57 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
+import customAxios from "../scripts/customAxios";
+import Logoff from "./logoff";
+import LoadingSpinner from "./loadingSpinner";
 import './bankAccount.css';
+import './style.css';
 
 export default function BankAccount(props) {
 
-	const authSubmit=(e)=>{
+	const [isLoaded, setIsLoaded] = useState(false);
+     const [bankAccounts, setBankAccounts] = useState([]);
+     const [bankAccountDisplay, setBankAccountDisplay] = useState();
 
+     useEffect(() => {
+		 if(props.bankAccountPage==='show'){
+			customAxios('/bankAccount', (data) => {
+				if (JSON.stringify(data) === JSON.stringify(bankAccounts)) {
+						setIsLoaded(true);
+						return;
+				}
+				if (data === "") setBankAccounts(null);
+				else setBankAccounts(data);
+				console.log('bankAccounts');
+				console.log(data);
+				setIsLoaded(true);
+			});
+			setBankAccountDisplay(bankAccounts);
+	 }
+});
+
+		  if (props.auth !== undefined && props.auth.code === 100) {
+			if(isLoaded){
+				
+			return <BankAccountLogon
+				props={props}
+				 className={props.className}
+				 bankName={props.bankName}
+				 accountNumber={props.accountNumber}
+				 bankAccounts={bankAccountDisplay}
+				 auth={props.auth}
+				 hideBankAccountPage={props.hideBankAccountPage}
+			/>;
+			}
+			return <div className={props.className}><LoadingSpinner></LoadingSpinner></div>
+	   }
+	   else {
+			return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage} />;
+	   }
 	}
 
+	function BankAccountLogon(props) {
+		console.log(props.props);
 	return (
-		<div className={'bankAccountBackground'+(props.bankAccountPage==='hide'?' signinPageHide':'')} style={{zIndex:10002}}>
+		<div className={'bankAccountBackground'+(props.bankAccountPage==='hide'?' bankAccountHide':'')} style={{zIndex:10002}}>
 			<nav>
 				<ul className="nav-container">
 					<li className="nav-item" ><span onClick={props.hideBankAccountPage}><i className="fa fa-arrow-left"></i></span></li>
@@ -16,8 +59,10 @@ export default function BankAccount(props) {
 				</ul>
 			</nav>
 			<div className={props.className}>
-				</div>
-			<button className='saveBtn' onClick={props.showSigninPage}>계좌 등록</button>
+				<div className="bankAccountListInfo">등록된 계좌목록</div>
+				<div className="accountInfoBanner"></div>
+			</div>
+			<button className='addAccountBtn' onClick={props.hideBankAccountPage}>계좌 등록</button>
 		</div>
 	)
 }

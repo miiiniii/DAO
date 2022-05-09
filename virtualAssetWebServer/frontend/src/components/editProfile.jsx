@@ -8,7 +8,7 @@ export default function EditProfile(props) {
 	}
 
 	return (
-		<div className={'editProfileBackground'+(props.editProfilePage==='hide'?' editProfileHide':'')} style={{zIndex:10002}}>
+		<div className={'editProfileBackground'+(props.editProfilePage==='hide'?'editProfileHide':'')} style={{zIndex:10002}}>
 			<nav>
 				<ul className="nav-container">
 					<li className="nav-item" ><span onClick={props.hideEditProfilePage}><i className="fa fa-arrow-left"></i></span></li>
@@ -55,7 +55,7 @@ export default function EditProfile(props) {
 					</div>	
 				</div>
 			</div>
-			<button className='saveBtn' onClick={props.showSigninPage}>저장</button>
+			<button className='saveBtn' onClick={props.hideEditProfilePage}>저장</button>
 		</div>
 	)
 }

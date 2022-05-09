@@ -1,10 +1,34 @@
 import React, {useEffect, useState} from 'react';
-import Logoff from './logoff';
+import customAxios from "../scripts/customAxios";
+import Logoff from "./logoff";
+import LoadingSpinner from "./loadingSpinner";
+import './bankAccount.css';
 import "./user.css";
 
 export default function User(props){
+	const [isLoaded, setIsLoaded] = useState(false);
+     const [bankAccounts, setBankAccounts] = useState([]);
+     const [bankAccountDisplay, setBankAccountDisplay] = useState();
+
+     useEffect(() => {
+	if (props.sw !== undefined && props.sw.realIndex === 3){
+		customAxios('/bankAccount', (data) => {
+			if (JSON.stringify(data) === JSON.stringify(bankAccounts)) {
+					setIsLoaded(true);
+					return;
+			}
+			if (data === "") setBankAccounts(null);
+			else setBankAccounts(data);
+			console.log('bankAccounts');
+			console.log(data);
+            console.log(props);
+			setIsLoaded(true);
+		});
+	}
+},[props.sw === undefined ? false : props.sw.realIndex]);
+
     if(props.auth!==undefined&&props.auth.code===100){
-         return <UserLogon auth={props.auth} className={props.className} showSigninPage={props.showSigninPage} showEditProfilePage={props.showEditProfilePage}/>;
+         return <UserLogon auth={props.auth} className={props.className} showSigninPage={props.showSigninPage} showEditProfilePage={props.showEditProfilePage} showBankAccountPage={props.showBankAccountPage}/>;
     }
     else{
          return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;
