@@ -3,7 +3,6 @@ import customAxios from "../scripts/customAxios";
 import Logoff from "./logoff";
 import LoadingSpinner from "./loadingSpinner";
 import './bankAccount.css';
-import './style.css';
 
 export default function BankAccount(props) {
 
@@ -12,13 +11,13 @@ export default function BankAccount(props) {
      const [bankAccountDisplay, setBankAccountDisplay] = useState();
 
      useEffect(() => {
-		 if(props.bankAccountPage==='show'){
+		 if(props.bankAccountPage !== 'hide'){
 			customAxios('/bankAccount', (data) => {
 				if (JSON.stringify(data) === JSON.stringify(bankAccounts)) {
-						setIsLoaded(true);
-						return;
+					setIsLoaded(true);
+					return;
 				}
-				if (data === "") setBankAccounts(null);
+				if (data === '') setBankAccounts(null);
 				else setBankAccounts(data);
 				console.log('bankAccounts');
 				console.log(data);
@@ -30,15 +29,14 @@ export default function BankAccount(props) {
 
 		  if (props.auth !== undefined && props.auth.code === 100) {
 			if(isLoaded){
-				
+				console.log(props);
 			return <BankAccountLogon
-				props={props}
-				 className={props.className}
-				 bankName={props.bankName}
-				 accountNumber={props.accountNumber}
-				 bankAccounts={bankAccountDisplay}
-				 auth={props.auth}
-				 hideBankAccountPage={props.hideBankAccountPage}
+				className={props.className}
+				bankName={props.bankName}
+				accountNumber={props.accountNumber}
+				bankAccounts={bankAccountDisplay}
+				auth={props.auth}
+				bankAccountPage={props.bankAccountPage}
 			/>;
 			}
 			return <div className={props.className}><LoadingSpinner></LoadingSpinner></div>
@@ -49,7 +47,7 @@ export default function BankAccount(props) {
 	}
 
 	function BankAccountLogon(props) {
-		console.log(props.props);
+		console.log(props);
 	return (
 		<div className={'bankAccountBackground'+(props.bankAccountPage==='hide'?' bankAccountHide':'')} style={{zIndex:10002}}>
 			<nav>
@@ -58,9 +56,14 @@ export default function BankAccount(props) {
 					<li className="nav-item"><p>결제</p></li>
 				</ul>
 			</nav>
-			<div className={props.className}>
+			<div className={props.bankAccounts}>
 				<div className="bankAccountListInfo">등록된 계좌목록</div>
-				<div className="accountInfoBanner"></div>
+					{props.bankAccounts.map((c, i) => (
+                              <div className="accountInfoBanner" key={c.name + i}>
+                                   <p className="bankName">{c.bankName}</p>
+                                   <p className="accountNumber">{c.accountNumber}</p>
+                              </div>
+                    ))}
 			</div>
 			<button className='addAccountBtn' onClick={props.hideBankAccountPage}>계좌 등록</button>
 		</div>

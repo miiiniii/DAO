@@ -20,7 +20,7 @@ public class WebConfig implements WebMvcConfigurer {
 		// *안성찬
 		// 회사*/registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://192.168.30.11:3000");
 		// *권예빈 로컬*/
-		registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://175.124.178.52:3000");
+		registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://192.168.0.9:3000");
 
 	}
 
