@@ -24,7 +24,10 @@
     color: #f1ede9;
   }
 
-  
+  .myAccountList{
+    padding: 15px 0;
+}
+
   .accountInfoBanner {
     background-color: #2d3031;
     margin: 7px 10px;

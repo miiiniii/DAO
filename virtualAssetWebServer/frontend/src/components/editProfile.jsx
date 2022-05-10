@@ -4,10 +4,10 @@ import './editProfile.css';
 export default function EditProfile(props) {
 
 	const authSubmit=(e)=>{
-
+		
 	}
-
 	return (
+		
 		<div className={'editProfileBackground'+(props.editProfilePage==='hide'?'editProfileHide':'')} style={{zIndex:10002}}>
 			<nav>
 				<ul className="nav-container">

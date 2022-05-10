@@ -1,14 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import customAxios from "../scripts/customAxios";
 import Logoff from "./logoff";
-import LoadingSpinner from "./loadingSpinner";
-import './bankAccount.css';
 import "./user.css";
 
 export default function User(props){
 	
    if(props.auth!==undefined&&props.auth.code===100){
-         return <UserLogon auth={props.auth} className={props.className} showSigninPage={props.showSigninPage} showEditProfilePage={props.showEditProfilePage} showBankAccountPage={props.showBankAccountPage}/>;
+         return <UserLogon auth={props.auth} className={props.className}  sw={props.sw.indexReal}  showSigninPage={props.showSigninPage} showEditProfilePage={props.showEditProfilePage} showBankAccountPage={props.showBankAccountPage}/>;
     }
     else{
          return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;
@@ -18,6 +15,7 @@ export default function User(props){
 
 
 function UserLogon(props) {
+    console.log("Hi this is user page");
     return (
         <div className={props.className}>
             <div className='userAccountBanner'>
