@@ -10,21 +10,20 @@ export default function BankAccount(props) {
      const [bankAccounts, setBankAccounts] = useState([]);
      const [bankAccountDisplay, setBankAccountDisplay] = useState();
 
-     useEffect(() => {
-		console.log(props);   
+     useEffect(() => { 
 		customAxios('/bankAccount', (data) => {
-			   if (JSON.stringify(data) === JSON.stringify(bankAccounts)) {
-				   setIsLoaded(true);
-				   return;
-			   }
-			   if (data === '') setBankAccounts(null);
-			   else setBankAccounts(data);
-			   console.log('bankAccounts');
-			   console.log(data);
-			   setIsLoaded(true);
-		   });
+			if (JSON.stringify(data) === JSON.stringify(bankAccounts)) {
+				setIsLoaded(true);
+				return;
+			}
+			if (data === '') setBankAccounts(null);
+			else setBankAccounts(data);
+			console.log('bankAccounts');
+			console.log(data);
+			setIsLoaded(true);
+		});
 		   setBankAccountDisplay(bankAccounts);
-},[]);
+});
 
 		  if (props.auth !== undefined && props.auth.code === 100) {
 			if(isLoaded){
