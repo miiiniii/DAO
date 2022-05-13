@@ -8,13 +8,24 @@ import AssetDetail from "./assetDetail";
 import LoadingSpinner from "./loadingSpinner";
 import { Icon_Search } from "./cssIcons";
 
-export default function Asset(props) {
 
+/**
+ * 자산 뷰 컴포넌트
+ */
+
+export default function Asset(props) {
+     //로딩 스피너 띄우기 위한 bool 변수.
      const [isLoaded, setIsLoaded] = useState(false);
+     //서버에서 받아온 자산 데이터 저장
      const [assets, setAssets] = useState([]);
+     //목록에 띄워줄 자산. 검색기능을 쓰면 asset중 조건에 맞게 필터링해서 이 변수에 저장됨. 
      const [assetDisplay, setAssetDisplay] = useState();
+     //검색창 상태 저장 변수
      const [searchState, setSearchState] = useState({ extend: false, class: "searchFloat", inputClass: "searchInput hide", searchValue: "" });
+     //검색 조건 변수
      const [searchInput, setSearchInput] = useState();
+
+     //
      const inputChange = (v) => { setSearchInput(v.target.value) };
      const [detailView, setDetailView] = useState({ view: false, assetId: null, assetIndex:null});
 
