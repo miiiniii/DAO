@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import Logoff from './logoff';
+import Logoff from "./logoff";
 import "./user.css";
 
 export default function User(props){
-    if(props.auth!==undefined&&props.auth.code===100){
-         return <UserLogon auth={props.auth} className={props.className} showSigninPage={props.showSigninPage} showEditProfilePage={props.showEditProfilePage}/>;
+
+   if(props.auth!==undefined&&props.auth.code===100){
+         return <UserLogon auth={props.auth} className={props.className}  showSigninPage={props.showSigninPage} showEditProfilePage={props.showEditProfilePage} showBankAccountPage={props.showBankAccountPage}/>;
     }
     else{
          return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;

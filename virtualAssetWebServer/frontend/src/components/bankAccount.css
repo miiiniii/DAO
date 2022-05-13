@@ -1,0 +1,68 @@
+
+.bankAccountBackground {
+    z-index: 10001;
+    position: absolute;
+    overflow: auto;
+    top: 0%;
+    width: 100vw;
+    height: 100vh;
+    background: var(--body-background-color);
+    transition: 0.3s, opacity 0s;
+  }
+  
+  .bankAccountHide{
+    opacity: 0;
+    top:-100vh;
+    transition: 0.3s;
+  }
+
+  .bankAccountListInfo{
+    padding: 10px 5px 0 20px;
+    text-align: left;
+    margin: 0;
+    font-size: 14px;
+    color: #f1ede9;
+  }
+
+  .myAccountList{
+    padding: 15px 0;
+}
+
+  .accountInfoBanner {
+    background-color: #2d3031;
+    margin: 7px 10px;
+    width: calc(100% - 30px);
+    padding: 3px 5px 13px;
+    border-radius: 12px;
+  }
+
+  .bankName{
+    padding: 10px 5px 0 20px;
+    text-align: left;
+    margin: 0;
+    font-size: medium;
+    color: #f1ede9;
+  }
+  
+  .accountNumber{
+    padding: 10px 5px 0 20px;
+    text-align: left;
+    margin: 0;
+    font-size: medium;
+    color: #f1ede9;
+  }
+  
+  .addAccountBtn{
+    position: relative;
+    padding:15px 30px;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    background: #738CD9;
+    border: 0;
+    border-radius: 100px;
+    font-weight: 900;
+    font-size: larger;
+    color: #F1EDE9;
+    font-family: Eland;
+  }
+  

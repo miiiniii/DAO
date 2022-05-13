@@ -153,7 +153,7 @@ function App() {
             <Asset className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showClubPage={showClubPage} />
           </SwiperSlide>
           <SwiperSlide id="userWindow">
-            <User className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showEditProfilePage={showEditProfilePage} showBankAccountPage={showBankAccountPage}></User>
+            <User className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showEditProfilePage={showEditProfilePage} showBankAccountPage={showBankAccountPage} />
           </SwiperSlide>
         </Swiper>
         <div className='mainIconContainer'>
@@ -167,8 +167,8 @@ function App() {
       <Signin signinPage={signinPage} hideSigninPage={hideSigninPage} showSignupPage={showSignupPage} />
       <Signup signupPage={signupPage} hideSignupPage={hideSignupPage} showSigninPage={showSigninPage} />
       <Club auth={auth} clubPage={clubPage} hideClubPage={hideClubPage} showSigninPage={showSigninPage} />
-      <EditProfile auth={auth} editProfilePage={editProfilePage} hideEditProfilePage={hideEditProfilePage} showEditProfilePage={showEditProfilePage}></EditProfile>
-      {/* <BankAccount auth={auth} editBankAccountPage={bankAccountPage} hideBankAccountPage={hideBankAccountPage} showBankAccountPage={showBankAccountPage}></BankAccount> */}
+      <EditProfile auth={auth} editProfilePage={editProfilePage} hideEditProfilePage={hideEditProfilePage} showEditProfilePage={showEditProfilePage} />
+      <BankAccount auth={auth} bankAccountPage={bankAccountPage} hideBankAccountPage={hideBankAccountPage} showBankAccountPage={showBankAccountPage} />
     </div>
   );
 }
