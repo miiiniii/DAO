@@ -295,7 +295,6 @@ module.exports = function (webpackEnv) {
     resolve: {
       extensions: [".ts", ".js"],
       fallback: {
-        "child_process": false,
         // and also other packages that are not found
       },
       // This allows you to set a fallback for where webpack should look for modules.

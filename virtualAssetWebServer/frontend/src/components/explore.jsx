@@ -87,7 +87,7 @@ function ExploreBar(props) {
 
     return (
         <div className='exploreBar'>
-            <Icon_Search size={43} onClick={props.searchClick}  margin='14px' float='right'/>
+            <Icon_Search size='43px' onClick={props.searchClick}  margin='14px' float='right'/>
             <select className='roundStyle exploreType'>
                 <option value='all'>전체</option>
                 <option value='tag'>태그</option>

@@ -107,7 +107,7 @@ export function Icon_Search(props) {
             width: (props.size || '50px'),
             float: props.float || 'none',
         }}>
-        <div className='cssIconSearchLens' style={{ borderColor: props.color || '#f1ede9', borderStyle: 'solid', borderWidth: 'calc( ' + props.size + 'px * 0.08 )' }}></div>
+        <div className='cssIconSearchLens' style={{ borderColor: props.color || '#f1ede9', borderStyle: 'solid', borderWidth: 'calc( ' + props.size + ' * 0.08 )' }}></div>
         <div className='cssIconSearchConnecter' style={{ backgroundColor: props.color || '#f1ede9' }}></div>
         <div className='cssIconSearchHandle' style={{ backgroundColor: props.color || '#f1ede9' }}></div>
     </div>)
