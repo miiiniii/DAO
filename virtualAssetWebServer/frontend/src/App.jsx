@@ -22,41 +22,6 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 function App() {
   useScript("https://kit.fontawesome.com/51db22a717.js");
-  //******************XMPP script***************************************/
-  const { client, xml } = require("@xmpp/client");
-  const debug = require("@xmpp/debug");
-
-  function xmppstart(name) {
-    //* 
-    const credentials={username:'admin',password:'admin'};
-    const xmpp = client({
-      jid: "admin@raftserver",
-      service: "ws://223.194.70.105:52222/ws",
-      domain: "raftserver",
-      credentials: credentials,
-      username: "admin",
-      password: "admin",
-    });
-    debug(xmpp, true);
-    xmpp.on("error", (err) => {
-      xmpp.stop();
-    });
-
-    xmpp.on("offline", () => {
-      console.log("offline");
-    });
-    xmpp.on("stanza", async (stanza) => {
-      if (stanza.is("message")) {
-        await xmpp.send(xml("presence", { type: "unavailable" }));
-        await xmpp.stop();
-      }
-    });
-    xmpp.on("online", async (address) => {
-    });
-    console.log(xmpp)
-    console.log(xmpp.start());
-    //*/
-  }
 
 
 
@@ -109,7 +74,6 @@ function App() {
     () => {
       customAxios('/auth', (data) => {
         setAuth(data);
-        xmppstart(data.id);
       });
     }, []
   );
@@ -130,7 +94,6 @@ function App() {
       <header className="App-header">
         <Swiper
           id='mainWindowContainer'
-
           //한페이지에 슬라이드하나
           slidesPerView={1}
           //슬라이드 사이 간격

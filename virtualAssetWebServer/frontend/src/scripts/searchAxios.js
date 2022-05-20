@@ -3,7 +3,7 @@ import TEST_IP from './setTestIp';
 export default function searchAxios(keywords, callback) {
   axios(
     {
-      url: '/api/publicClub',
+      url: '/api/publicCommunity',
       method: 'post',
 
       /**

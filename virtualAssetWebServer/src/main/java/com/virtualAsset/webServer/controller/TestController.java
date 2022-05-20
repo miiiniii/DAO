@@ -19,14 +19,16 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.virtualAsset.webServer.data.AssetDetail;
 import com.virtualAsset.webServer.data.AssetInfo;
 import com.virtualAsset.webServer.data.Auth;
-import com.virtualAsset.webServer.data.ClubBanner;
+import com.virtualAsset.webServer.data.CommunityBanner;
 import com.virtualAsset.webServer.data.BankAccount;
 
+
+/*데이터 베이스 바인드 하기전 임시로 더미데이터를 보내주는 컨트롤러*/
+//각 데이터 모델에 toJsonObject 함수를 구현줘야함
 @RestController
 @RequestMapping("/api")
 public class TestController {
 	private static ObjectMapper mapper = new ObjectMapper();
-
 	@PostMapping("/assetDetail")
 	public String assetDetail(@RequestBody HashMap<String, Object> requsetHashMap) throws JSONException {
 		HashMap<String, AssetDetail> dataHashMap = new HashMap<String, AssetDetail>();
@@ -72,20 +74,20 @@ public class TestController {
 		// return null;
 	}
 
-	@PostMapping("/publicClub")
+	@PostMapping("/publicCommunity")
 	public String pubClub(HttpServletRequest request) throws JSONException, ParseException {
 		// test value
-		ClubBanner standard = new ClubBanner("default", "클럽이름", 26, 180, 111,
+		CommunityBanner standard = new CommunityBanner("default", "클럽이름", 26, 180, 111,
 				"2022/03/30 16:22:45", "클럽 소개글\n클럽 소개글",
 				new ArrayList<String>(Arrays.asList("품목", "품목", "품목", "품목")));
-		ClubBanner example1 = new ClubBanner("example1", "휴양지 공동 개발", 15, 22,
+		CommunityBanner example1 = new CommunityBanner("example1", "휴양지 공동 개발", 15, 22,
 				411, "2021/03/29 20:11:02",
 				"코로나로 저점이지만 앞으로 전망이 밝은 각종 휴양지를 전문으로 투자하실분들 모십니다.",
 				new ArrayList<String>(Arrays.asList("휴양지", "부동산", "저점")));
-		ClubBanner example2 = new ClubBanner("example2", "홍대 갤러리", 46, 2130,
+		CommunityBanner example2 = new CommunityBanner("example2", "홍대 갤러리", 46, 2130,
 				11512, "2022/03/30 9:42:16", "홍대 작가 유망주들의 작품 지분 투자",
 				new ArrayList<String>(Arrays.asList("그림", "조각")));
-		ClubBanner example3 = new ClubBanner("example3", "동학 개미 운동", 71, 182,
+		CommunityBanner example3 = new CommunityBanner("example3", "동학 개미 운동", 71, 182,
 				85429, "2022/02/15 20:11:02",
 				"소자본으로 항상 세력들에게 끌려다니는 개미들도 뭉치면 강하다!",
 				new ArrayList<String>(Arrays.asList("국내주식", "해외주식", "세력")));
@@ -98,17 +100,17 @@ public class TestController {
 				.toString();
 	}
 
-	@PostMapping("/myClubBanners")
+	@PostMapping("/myCommunityBanners")
 	public String myClub(HttpServletRequest request) throws JSONException, ParseException {
 		// test value
-		ClubBanner standard = new ClubBanner("default", "클럽이름", 26, 180, 111, "2022/03/30 16:22:45", "클럽 소개글\n클럽 소개글",
+		CommunityBanner standard = new CommunityBanner("default", "클럽이름", 26, 180, 111, "2022/03/30 16:22:45", "클럽 소개글\n클럽 소개글",
 				new ArrayList<String>(Arrays.asList("품목", "품목", "품목", "품목")));
-		ClubBanner example1 = new ClubBanner("example1", "휴양지 공동 개발", 15, 22, 411, "2021/03/29 20:11:02",
+		CommunityBanner example1 = new CommunityBanner("example1", "휴양지 공동 개발", 15, 22, 411, "2021/03/29 20:11:02",
 				"코로나로 저점이지만 앞으로 전망이 밝은 각종 휴양지를 전문으로 투자하실분들 모십니다.",
 				new ArrayList<String>(Arrays.asList("휴양지", "부동산", "저점")));
-		ClubBanner example2 = new ClubBanner("example2", "홍대 갤러리", 46, 2130, 11512, "2022/03/30 9:42:16",
+		CommunityBanner example2 = new CommunityBanner("example2", "홍대 갤러리", 46, 2130, 11512, "2022/03/30 9:42:16",
 				"홍대 작가 유망주들의 작품 지분 투자", new ArrayList<String>(Arrays.asList("그림", "조각")));
-		ClubBanner example3 = new ClubBanner("example3", "동학 개미 운동", 71, 182, 85429, "2022/02/15 20:11:02",
+		CommunityBanner example3 = new CommunityBanner("example3", "동학 개미 운동", 71, 182, 85429, "2022/02/15 20:11:02",
 				"소자본으로 항상 세력들에게 끌려다니는 개미들도 뭉치면 강하다!", new ArrayList<String>(Arrays.asList("국내주식", "해외주식", "세력")));
 
 		return new JSONArray().put(standard.toJsonObject()).put(standard.toJsonObject()).put(example1.toJsonObject())
@@ -126,7 +128,7 @@ public class TestController {
 		Auth auth = new Auth("test_id", "test_name", request.getRemoteAddr());
 
 		// 로그오프 상태로 만들기
-		// Auth auth = new Auth(Auth.ErrorCode.FAIL_AUTHENTICATION);
+		 //Auth auth = new Auth(Auth.ErrorCode.FAIL_AUTHENTICATION);
 
 		String json = null;
 		try {

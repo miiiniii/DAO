@@ -10,35 +10,48 @@ import Search_white from "../Icons/Search_white.png";
 import LoadingSpinner from './loadingSpinner';
 import {Icon_Search} from './cssIcons';
 
-
+/**
+ * 홈 탭 컴포넌트
+ */
 export default function Home(props) {
+    /*컨텐츠가 모두 로드되면 true, 아니면 false */
     const [isLoaded, setIsLoaded] = useState(false);
-    const [clubs, setClubs] = useState(null);
-    const [clubsDisplay, setClubsDisplay] = useState(null);
-    const [searchState, setSearchState] = useState({ extend: false, class: "searchFloat", inputClass: "searchInput hide", searchValue: "" });
+
+    /*내가 가입한 커뮤니티 리스트*/
+    const [community, setCommunity] = useState(null);
+
+    /*홈탭에서 검색할깨 키워드로 필터링된 커뮤니티 리스트*/
+    const [communityDisplay, setCommunityDisplay] = useState(null);
+
+    /*검색 플로팅 버튼 상태*/
+    const [searchState, setSearchState] = useState({ extend: false, class: "searchFloat", inputClass: "searchInput hide"});
+    /*검색 키워드*/
     const [searchInput, setSearchInput] = useState();
+    /*검색 인풋 함수*/
     const inputChange = (v) => { setSearchInput(v.target.value) };
 
+    //내 커뮤니티 불러오기
     useEffect(() => {
         if (props.sw !== undefined && props.sw.realIndex === 0) {
-            customAxios('/myClubBanners', (data) => {
-                if (JSON.stringify(data) === JSON.stringify(clubs)) return;
-                if (data === "") setClubs(null);
-                else setClubs(data);
-                console.log("myclub");
+            customAxios('/myCommunityBanners', (data) => {
+                if (JSON.stringify(data) === JSON.stringify(community)) return;
+                if (data === "") setCommunity(null);
+                else setCommunity(data);
+                console.log("myCommunity");
                 console.log(data);
                 setIsLoaded(true);
             });
         }
     }, [props.sw === undefined ? false : props.sw.realIndex]);
 
+    //
     useEffect(() => {
         if (searchInput === undefined || searchInput === null || searchInput === "") {
-            setClubsDisplay(clubs);
+            setCommunityDisplay(community);
             return;
         }
 
-        setClubsDisplay(Object.values(clubs).filter((oc) => {
+        setCommunityDisplay(Object.values(community).filter((oc) => {
             return (oc.name === undefined || oc.name === null) ? false : oc.name.includes(searchInput)
         }).map(v => {
             const t = { ...v };
@@ -51,12 +64,12 @@ export default function Home(props) {
             </span>;
             return t;
         }));
-    }, [searchInput, clubs]);
+    }, [searchInput, community]);
 
 
     function searchClick() {
-        if (!searchState.extend) setSearchState({ extend: true, class: "searchFloat extend", inputClass: "searchInput", searchValue: "" })
-        else setSearchState({ extend: false, class: "searchFloat", inputClass: "searchInput hide", searchValue: "" });
+        if (!searchState.extend) setSearchState({ extend: true, class: "searchFloat extend", inputClass: "searchInput"})
+        else setSearchState({ extend: false, class: "searchFloat", inputClass: "searchInput hide"});
     }
 
 
@@ -68,7 +81,7 @@ export default function Home(props) {
         if(isLoaded){
         return <HomeLogon
             className={props.className}
-            clubs={clubsDisplay}
+            clubs={communityDisplay}
             auth={props.auth}
             searchClick={searchClick}
             searchState={searchState}

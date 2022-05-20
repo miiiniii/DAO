@@ -10,11 +10,24 @@ import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 
-public class ClubBanner {
+import com.virtualAsset.webServer.data.CommunityIntroduce.TradeHistory;
+
+
+/**
+ * 커뮤니티 배너 데이터 모델
+ * <pre>
+ *<b>History:<b/>
+ *     안성찬, 1.0, 2022.5.13 작성
+ * @author 안성찬
+ * @version 1.0, 2022.5.13
+ * @see TradeHistory
+ * @see None
+ */
+public class CommunityBanner {
 	private static DecimalFormat df=new DecimalFormat("###.#");
 	private static String[] units= {"","k","M","G","T","P"};
 	private SimpleDateFormat strToDate=new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
-	private String clubId;
+	private String communityId;
 	private String name;
 	private long concludedContractAmount;
 	private long totalContractAmount;
@@ -22,14 +35,30 @@ public class ClubBanner {
 	private String introduce;
 	private ArrayList<String> tags;
 	String recentActivities;
-	
-	public ClubBanner(String clubId, String name, long cca, long tca, long ma, String ra, String intro, ArrayList<String> tags) {
-		this.concludedContractAmount=cca;
-		this.memberAmount=ma;
+	/**
+	 * @param communityId 커뮤니티 소개글
+	 * @param name 커뮤니티 이름
+	 * @param concludedContractAmount 체결된 계약 수
+	 * @param totalContractAmount 총 계약 수
+	 * @param memberAmount 맴버 수
+	 * @param recentActivities 최든 활동
+	 * @param introduce 소개글
+	 * @param tags 취급 품목
+	 */
+	public CommunityBanner(String communityId, 
+			String name, 
+			long concludedContractAmount, 
+			long totalContractAmount, 
+			long memberAmount, 
+			String recentActivities, 
+			String introduce, 
+			ArrayList<String> tags) {
+		this.concludedContractAmount=concludedContractAmount;
+		this.memberAmount=memberAmount;
 		this.name=name;
-		this.recentActivities=ra;
-		this.totalContractAmount=tca;
-		this.introduce=intro;
+		this.recentActivities=recentActivities;
+		this.totalContractAmount=totalContractAmount;
+		this.introduce=introduce;
 		this.tags=new ArrayList<String>(tags);
 	}
 	
@@ -63,6 +92,11 @@ public class ClubBanner {
 	public ArrayList<String> getTags(){
 		return tags;
 	}
+	
+	/**
+	 * @return 최근 활동 n분/시간/일/개월/년 전 으로 파싱
+	 * @throws ParseException
+	 */
 	public String getRecentActivitiesDiff() throws ParseException {
 		Date d=strToDate.parse(recentActivities);
 		int diff=(int) ((System.currentTimeMillis()-d.getTime())/1000);
@@ -88,9 +122,14 @@ public class ClubBanner {
 		}
 		return diff+"초";
 	}
+	/**
+	 * @return Json으로 인코딩해 반환
+	 * @throws JSONException
+	 * @throws ParseException
+	 */
 	public JSONObject toJsonObject() throws JSONException, ParseException {
 		JSONObject temp=new JSONObject();
-		temp.put("clubId", clubId);
+		temp.put("clubId", communityId);
 		temp.put("name", name);
 		temp.put("concludedContract", getStringConcludedContract());
 		temp.put("totalContract", getStringTotalContract());
@@ -101,6 +140,14 @@ public class ClubBanner {
 		return temp;
 	}
 	
+	/**<pre>
+	 *long을 k/M/G/T/P 등 1000^n단위로 파싱해서 소수점 둘째자리에서 반올림
+	 *1234 -> 1.2k
+	 *1234567 -> 1.2M
+	 *</pre>
+	 * @param val 파싱할 값
+	 * @return 파싱된 String 값
+	 */
 	public static String intToRoundString(long val) {
 		long t=1;
 		int index=0;
