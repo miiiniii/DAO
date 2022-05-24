@@ -33,20 +33,20 @@ public class TestController {
 	public String assetDetail(@RequestBody HashMap<String, Object> requsetHashMap) throws JSONException {
 		HashMap<String, AssetDetail> dataHashMap = new HashMap<String, AssetDetail>();
 		dataHashMap.put("default", new AssetDetail("default", "default",
-				new ArrayList<Long>(Arrays.asList(35000L, 44000L, 51000L, 55000L, 57000L, 53000L)), 52000L, "클럽 책임자"));
+				new ArrayList<Long>(Arrays.asList(35000L, 44000L, 51000L, 55000L, 57000L, 53000L)), 52000L, "커뮤니티 책임자"));
 		dataHashMap.put("example1",
 				new AssetDetail("example1", "example1",
 						new ArrayList<Long>(
 								Arrays.asList(22030070L, 22110750L, 22395500L, 22462110L, 22810570L, 23310570L)),
-						23085220L, "클럽 책임자"));
+						23085220L, "커뮤니티 책임자"));
 		dataHashMap.put("example2",
 				new AssetDetail("example2", "example2",
 						new ArrayList<Long>(Arrays.asList(1180000L, 1180000L, 1170000L, 1150000L, 1140000L, 1140000L)),
-						1140000L, "클럽 책임자"));
+						1140000L, "커뮤니티 책임자"));
 		dataHashMap.put("example3",
 				new AssetDetail("example3", "example3",
 						new ArrayList<Long>(Arrays.asList(820220L, 894150L, 911120L, 998020L, 1170400L, 1251000L)),
-						1001190L, "클럽 책임자"));
+						1001190L, "커뮤니티 책임자"));
 		return dataHashMap.get(requsetHashMap.get("assetId")).toJsonObject()
 				.toString();
 	}
@@ -55,7 +55,7 @@ public class TestController {
 	public String myAsset(HttpServletRequest request) throws JSONException {
 		// test val
 		AssetInfo standard = new AssetInfo("default", "상품명",
-				"2022/03/11 14:25:15", "클럽명", "품목", 52000, 52000, "KRW");
+				"2022/03/11 14:25:15", "커뮤니티명", "품목", 52000, 52000, "KRW");
 		AssetInfo example1 = new AssetInfo("example1", "제주 힐링 리조트",
 				"2022/03/11 14:25:15", "휴양지 공동 개발", "부동산", 15000000,
 				23085220, "KRW");
@@ -77,8 +77,8 @@ public class TestController {
 	@PostMapping("/publicCommunity")
 	public String pubClub(HttpServletRequest request) throws JSONException, ParseException {
 		// test value
-		CommunityBanner standard = new CommunityBanner("default", "클럽이름", 26, 180, 111,
-				"2022/03/30 16:22:45", "클럽 소개글\n클럽 소개글",
+		CommunityBanner standard = new CommunityBanner("default", "커뮤니티이름", 26, 180, 111,
+				"2022/03/30 16:22:45", "커뮤니티 소개글\n커뮤니티 소개글",
 				new ArrayList<String>(Arrays.asList("품목", "품목", "품목", "품목")));
 		CommunityBanner example1 = new CommunityBanner("example1", "휴양지 공동 개발", 15, 22,
 				411, "2021/03/29 20:11:02",
@@ -103,7 +103,7 @@ public class TestController {
 	@PostMapping("/myCommunityBanners")
 	public String myClub(HttpServletRequest request) throws JSONException, ParseException {
 		// test value
-		CommunityBanner standard = new CommunityBanner("default", "클럽이름", 26, 180, 111, "2022/03/30 16:22:45", "클럽 소개글\n클럽 소개글",
+		CommunityBanner standard = new CommunityBanner("default", "커뮤니티이름", 26, 180, 111, "2022/03/30 16:22:45", "커뮤니티 소개글\n커뮤니티 소개글",
 				new ArrayList<String>(Arrays.asList("품목", "품목", "품목", "품목")));
 		CommunityBanner example1 = new CommunityBanner("example1", "휴양지 공동 개발", 15, 22, 411, "2021/03/29 20:11:02",
 				"코로나로 저점이지만 앞으로 전망이 밝은 각종 휴양지를 전문으로 투자하실분들 모십니다.",

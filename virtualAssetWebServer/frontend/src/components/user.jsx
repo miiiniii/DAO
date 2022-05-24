@@ -17,6 +17,11 @@ export default function User(props){
 function UserLogon(props) {
     return (
         <div className={props.className}>
+            <br/>
+            <br/>
+            <h2>설정</h2>
+            <br/>
+            <br/>
             <div className='userAccountBanner'>
                 <div className='userAccountWrapper'>
                     <p className='userName'>{props.auth.name}<br/></p>

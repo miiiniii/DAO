@@ -121,6 +121,9 @@ function HomeLogon(props) {
                     <input className={props.searchState.inputClass} type="text" placeholder="검색어를 입력하세요." onChange={props.inputChange} />
                     <Icon_Search size='34px' onClick={props.searchClick} margin='7.5px' float='right'/>
                 </div>
+                <br/>
+                <h2>가입한 커뮤니티</h2>
+                <br/>
                 {props.clubs.map((contents, index) => (
                     <div className='myClubBanner' key={contents + index} onClick={props.showClubPage}>
                         <p className='smallInfo right'>최근 거래 : {contents.recentActivities} 전</p>
