@@ -9,17 +9,33 @@ import Close_white from "../Icons/Close_white.png";
 import LoadingSpinner from './loadingSpinner';
 import { Icon_Search } from './cssIcons';
 
+/**
+ * 탐색탭 컴포넌트
+ * @param sw as Swiper
+ * @param showClubPage as function
+ */
 export default function Explore(props) {
+
+    /*컨텐츠가 모두 로드되면 true, 아니면 false */
     const [isLoaded, setIsLoaded] = useState(false);
+
+    /*탐색바가 확장상태면 true, 아니면 false */
     const [sBarExt, setSBarExt] = useState(false);
+
+    /*검색 키워드 리스트*/
     const [keyword, setKeyword] = useState([]);
+
+    /*키워드로 검색된 결과를 저장하는 리스트 */
     const [result, setResult] = useState(null);
+
+    /*탐색바 내부 핫키워드 랭킹 리스트*/
     const [hotKeyword, setHotKeyword] = useState(null);
+
+    /*탐색바 내부 거래량 많은 키워드 랭킹 리스트*/
     const [mostDealedKeyword, setMostDealedKeyword] = useState(null);
-    const [newsBanner, setNewsBanner] = useState(null);
 
 
-
+    //첫 로드시 기본 노출 리스트를 서버에 요청
     useEffect(() => {
         if (props.sw === undefined || props.sw.realIndex !== 1) return;
         if (result === undefined || result === null) {
@@ -34,6 +50,8 @@ export default function Explore(props) {
 
     }, [props.sw === undefined ? false : props.sw.realIndex, keyword]);
 
+    //돋보기 버튼으로 탐색바 확장하고 확장된 상태에서는 검색 실행하는 함수.
+    //서버로 검색키워드를 보내면 서버에서 결과를 보내주는 식으로 구현할 예정.
     const searchClick = () => {
         if (!sBarExt) setSBarExt(true);
         else {
@@ -41,6 +59,7 @@ export default function Explore(props) {
         }
     }
 
+    //탐색바가 확장되면 하단에 나오는 축소버튼의 기능 함수.
     const closeClick = () => {
         if (sBarExt) setSBarExt(false);
     }
@@ -61,7 +80,11 @@ export default function Explore(props) {
     )
 }
 
+/**
+ * 탐색 바 컴포넌트
+ */
 function ExploreBar(props) {
+    //확장 상태일때
     if (props.sBarExt) {
         return (
             <div className='exploreBar'>
@@ -84,10 +107,10 @@ function ExploreBar(props) {
             </div>
         )
     }
-
+    //축소 상태일때
     return (
         <div className='exploreBar'>
-            <Icon_Search size={43} onClick={props.searchClick}  margin='14px' float='right'/>
+            <Icon_Search size='43px' onClick={props.searchClick}  margin='14px' float='right'/>
             <select className='roundStyle exploreType'>
                 <option value='all'>전체</option>
                 <option value='tag'>태그</option>
@@ -106,7 +129,10 @@ function ExploreBar(props) {
     )
 }
 
+//검색된 커뮤니티 목록 컴포넌트
 function ExploreView(props) {
+    //검색결과가 없을때
+    //검색결과가 없다고 알려줄 안내페이지 제작해야함.
     if (props.result === null) {
         return (
             <div className={props.className}>
@@ -114,6 +140,7 @@ function ExploreView(props) {
             </div>
         )
     }
+    //검색결과 있을때
     return (
         <div className={props.className}>
             <div className='pubClubList'>

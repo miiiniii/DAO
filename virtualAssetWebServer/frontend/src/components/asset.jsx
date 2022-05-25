@@ -139,9 +139,12 @@ function AssetLogon(props) {
                <div className="myAssetList">
                     <div className={props.searchState.class}>
                          <input className={props.searchState.inputClass} type="text" placeholder="검색어를 입력하세요." onChange={props.inputChange} />
-                    <Icon_Search size={34} onClick={props.searchClick} margin='7.5px' float='right'/>
+                    <Icon_Search size='34px' onClick={props.searchClick} margin='7.5px' float='right'/>
                     </div>
                     <div className="myClubList">
+                         <br/>
+                         <h2>내 자산</h2>
+                         <br/>
                          {props.assets.map((c, i) => (
                               <div className="assetBanner" key={c.name + i} onClick={()=>props.setDetailView({view: true, assetId:c.assetId, assetIndex:i})}>
                                    <p className="assetTag">

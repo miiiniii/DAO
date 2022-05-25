@@ -18,58 +18,10 @@ import Asset from './components/asset';
 import Club from './components/club';
 import customAxios from './scripts/customAxios';
 
-
-
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 function App() {
   useScript("https://kit.fontawesome.com/51db22a717.js");
-
-  //******************XMPP script***************************************/
-  const { client, xml, jid } = require("@xmpp/client");
-  const debug = require("@xmpp/debug");
-
-  function xmppstart(name) {
-    const xmpp = client({
-      service: "ws://223.194.70.105:52222/websoket",
-      domain: "raft02",
-      resource: "example",
-      username:"test",
-      password:"test",
-    });
-
-    debug(xmpp, true);
-    xmpp.on("error", (err) => {
-      console.error(err);
-      xmpp.stop();
-    });
-
-    xmpp.on("offline", () => {
-      console.log("offline");
-    });
-
-    xmpp.on("stanza", async (stanza) => {
-      if (stanza.is("message")) {
-        await xmpp.send(xml("presence", { type: "unavailable" }));
-        await xmpp.stop();
-      }
-    });
-
-    xmpp.on("online", async (address) => {
-      // Makes itself available
-      await xmpp.send(xml("presence"));
-
-      // Sends a chat message to itself
-      const message = xml(
-        "message",
-        { type: "chat", to: address },
-        xml("body", {}, "hello world"),
-      );
-      await xmpp.send(message);
-    });
-
-    xmpp.start().catch(console.error);
-  }
-
 
 
 
@@ -122,7 +74,6 @@ function App() {
     () => {
       customAxios('/auth', (data) => {
         setAuth(data);
-        xmppstart(data.id);
       });
     }, []
   );
@@ -143,7 +94,6 @@ function App() {
       <header className="App-header">
         <Swiper
           id='mainWindowContainer'
-
           //한페이지에 슬라이드하나
           slidesPerView={1}
           //슬라이드 사이 간격
@@ -151,12 +101,12 @@ function App() {
           //끝단으로 가면 반대편으로 슬와이프 가능
           loop={true}
           //스와이프시 이벤트로 아이콘 상태 변경
-          onSlideChange={(sw) => (
-            setSwiper(sw),
+          onSlideChange={(sw) => {
+            setSwiper(sw)
             changeIcon((sw.realIndex))
-          )}
+          }}
         >
-          <SwiperSlide id="homeWindow">
+          <SwiperSlide id = "homeWindow">
             <Home className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showClubPage={showClubPage} />
           </SwiperSlide>
           <SwiperSlide id="exploreWindow">

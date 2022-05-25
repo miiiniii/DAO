@@ -313,7 +313,7 @@ pre{
     line-height: 1.4em;
 }
 .memberListWrapper{
-    height: calc(100% - calc(7vh + 45px));
+    height: calc(100% - calc(15vw + 45px));
     padding: 20px 15px;
     text-align: left;
     overflow-y: scroll;
@@ -323,7 +323,7 @@ pre{
     margin: 20px 0;
 }
 .clubServiceWrapper{
-    height: 7vh;
+    height: 15vw;
     background-color: #3b3e43;
     margin: 0 5px 5px 5px;
     border-radius: 5px;

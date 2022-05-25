@@ -390,10 +390,10 @@ function ClubInfos(props) {
             </details>
         </div>
         <div className="clubServiceWrapper" >
-            <Icon_Search size='5vh' margin='1vh' />
-            <Icon_Contract size='5vh' margin='1vh' />
-            <Icon_Board size='5vh' margin='1vh' />
-            <Icon_Settings size='5vh' margin='1vh' onClick={()=>{props.setClubSettingView(true)}}/>
+            <Icon_Search size='11vw' margin='2vw' />
+            <Icon_Contract size='11vw' margin='2vw' />
+            <Icon_Board size='11vw' margin='2vw' />
+            <Icon_Settings size='11vw' margin='2vw' onClick={()=>{props.setClubSettingView(true)}}/>
         </div>
     </div>)
 }
