@@ -79,20 +79,21 @@ export default function Home(props) {
 
     if (props.auth !== undefined && props.auth.code === 100) {
         if(isLoaded){
-        return <HomeLogon
-            className={props.className}
+        return (
+        <HomeLogon
+            className='mainWindow'
             clubs={communityDisplay}
             auth={props.auth}
             searchClick={searchClick}
             searchState={searchState}
             inputChange={inputChange}
             showClubPage={props.showClubPage}
-        />;
+        />)
         }
         return (
         <div className='mainWindow'><LoadingSpinner></LoadingSpinner></div>)
     } else {
-        return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage} />;
+        return <Logoff className='mainWindow' showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage} />;
     }
 
 }
@@ -103,7 +104,7 @@ function HomeLogon(props) {
     //가입한 클럽이 없을때
     if (props.clubs === null) {
         return (
-            <div className={props.className}>
+            <div className="mainWindow">
                 <img id="no_contents" src={No_contents_blue} alt="img_no_contents" />
                 <p className='anounce'>안녕하세요, {props.auth.name}님!<br />
                     아직 가입한 클럽이 없어요.</p>
@@ -115,7 +116,7 @@ function HomeLogon(props) {
 
     //클럽이 있을때
     return (
-        <div className={props.className}>
+        <div className="mainWindow">
             <div className="myClubList">
                 <div className={props.searchState.class}>
                     <input className={props.searchState.inputClass} type="text" placeholder="검색어를 입력하세요." onChange={props.inputChange} />
