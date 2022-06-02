@@ -1,7 +1,9 @@
 @import url(./font/font.css);
-*{
+
+* {
   font-family: Eland;
 }
+
 .App {
   text-align: center;
   height: 100vh;
@@ -24,6 +26,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -45,28 +48,40 @@
 }
 
 
-.mainWindow{
+.mainWindow {
   background-color: #373B40;
-  width: 100%;
+  width: calc(100vw - 10px);
   border-radius: 7px;
   height: 100%;
   overflow: hidden;
 }
-#mainWindowContainer{
- padding: 0px 5px 0 5px;
- align-items: center;
- width: calc(100vw - 10px);
- height: calc(100vh - 40px);
+
+#windowView {
+  position: absolute;
+  top: 0;
+  width: 100vw;
+  height: calc(100vh - 40px);
+  overflow: scroll;
+  display: flex;
+  flex-direction: row;
 }
 
-.mainIconContainer{
-  position: relative;
+.mainWindowContainer {
+  padding: 0px 5px 0 5px;
+  align-items: center;
+  width: calc(100vw - 10px);
+  height: calc(100vh - 40px);
+}
+
+.mainIconContainer {
+  position: absolute;
+  bottom: 0px;
   width: 100vw;
   height: 35px;
   padding-top: 5px;
 }
 
-.mainIcon{
+.mainIcon {
   display: inline-block;
   height: 30px;
   width: 30px;
@@ -74,7 +89,7 @@
   margin: 0 5px;
 }
 
-.icon{
+.icon {
   position: absolute;
   left: inherit;
   padding: 7.5px;
@@ -85,12 +100,12 @@
 }
 
 
-.opz{
+.opz {
   opacity: 0;
   transition: 0.5s;
 }
 
-.highLight{
+.highLight {
   padding: 0;
   height: 30px;
   width: 30px;
@@ -98,7 +113,7 @@
   opacity: 1;
 }
 
-.touchBlocker{
+.touchBlocker {
   z-index: 2000;
   position: absolute;
   background-color: #F1EDE9;
@@ -108,12 +123,13 @@
   height: 100vh;
 }
 
-.roundStyle{
+.roundStyle {
   background-color: aliceblue;
   border: 0;
   padding: 7px;
   border-radius: 30px;
 }
-.link{
+
+.link {
   color: cornflowerblue;
 }

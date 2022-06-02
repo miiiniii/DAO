@@ -87,11 +87,81 @@ function App() {
     temp[idx] = true;
     setIconState(temp);
   }
+  const [touchStart, setTouchStart] = useState({ coord: null, timeStamp: null });
+  const [touchState, setTouchState] = useState('none');
+  const [touchEnd, setTouchEnd] = useState({ coord: null, timeStamp: null });
+  const [currMainWindow, setCurrMainWindow] = useState('home');
+  useEffect(()=>{
+
+  },[currMainWindow])
+  function handleTouchStart(e) {
+    setTouchStart({ coord: e.targetTouches[0], timeStamp: e.timeStamp });
+  }
+  function handleTouchMove(e) {
+    if (touchState === 'none') {
+      let deltaX = e.targetTouches[0].clientX - touchStart.coord.clientX;
+      let deltaY = e.targetTouches[0].clientY - touchStart.coord.clientY;
+      if (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10) {
+        if (Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+          setTouchState('true');
+          setTouchEnd({ coord: e.targetTouches[0], timeStamp: e.timeStamp });
+          setCurrMainWindow({ magX: deltaX, mode: currMainWindow });
+        }
+        else {
+          setTouchState('discard');
+        }
+      }
+    }
+    if (touchState === 'true') {
+      setTouchEnd({ coord: e.targetTouches[0], timeStamp: e.timeStamp });
+      let deltaX = e.targetTouches[0].clientX - touchStart.coord.clientX;
+      deltaX = deltaX > (window.innerWidth * 0.7 + 5) ? (window.innerWidth * 0.7 + 5) : deltaX;
+      deltaX = deltaX < -(window.innerWidth * 0.7 + 5) ? -(window.innerWidth * 0.7 + 5) : deltaX;
+      setCurrMainWindow({ magX: deltaX, mode: currMainWindow });
+    }
+  }
+
+  function handleTouchEnd(e) {
+    let mode = currMainWindow;
+    if (touchEnd.timeStamp !== null && touchState !== 'discard') {
+      if ((Math.abs(touchStart.coord.clientX - touchEnd.coord.clientX) > window.innerWidth / 2.5)
+        || (Math.abs(touchStart.coord.clientX - touchEnd.coord.clientX)
+          > (touchEnd.timeStamp - touchStart.timeStamp) / 5)) {
+        if (touchEnd.coord.clientX - touchStart.coord.clientX) {
+
+        }
+      }
+    }
+    setTouchState('none');
+    setTouchEnd({ coord: null, timeStamp: null });
+    setCurrMainWindow({ magX: 0, mode: mode });
+  }
 
   return (
     <div className="App">
       <div className="touchBlocker" style={{ display: touchBlock ? 'block' : 'none', opacity: touchBlock ? '0.4' : '0' }}></div>
       <header className="App-header">
+        <div id='windowView'>
+          <div id="home" className='mainWindowContainer'>
+            <Home className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showClubPage={showClubPage} />
+          </div>
+          <div id="explore" className='mainWindowContainer'>
+            <Explore className='mainWindow' auth={auth} sw={swiper} showSigninPage={showSigninPage} showClubPage={showClubPage} />
+          </div>
+          <div id="asset" className='mainWindowContainer'>
+            <Asset className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showClubPage={showClubPage} />
+          </div>
+          <div id="user" className='mainWindowContainer'>
+            <User className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showEditProfilePage={showEditProfilePage} showBankAccountPage={showBankAccountPage} />
+          </div>
+        </div>
+        <div className='mainIconContainer'>
+          <MainIcon type='home' hl={iconState[0]} sw={swiper} index={0} />
+          <MainIcon type='explore' hl={iconState[1]} sw={swiper} index={1} />
+          <MainIcon type='asset' hl={iconState[2]} sw={swiper} index={2} />
+          <MainIcon type='user' hl={iconState[3]} sw={swiper} index={3} />
+        </div>
+        {/*
         <Swiper
           id='mainWindowContainer'
           //한페이지에 슬라이드하나
@@ -110,7 +180,7 @@ function App() {
             <Home className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showClubPage={showClubPage} />
           </SwiperSlide>
           <SwiperSlide id="exploreWindow">
-            <Explore className='mainWindow' auth={auth} sw={swiper} showClubPage={showClubPage} />
+            <Explore className='mainWindow' auth={auth} sw={swiper} showSigninPage={showSigninPage} showClubPage={showClubPage} />
           </SwiperSlide>
           <SwiperSlide id="assetWindow">
             <Asset className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showClubPage={showClubPage} />
@@ -119,6 +189,7 @@ function App() {
             <User className='mainWindow' auth={auth} sw={swiper} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showEditProfilePage={showEditProfilePage} showBankAccountPage={showBankAccountPage} />
           </SwiperSlide>
         </Swiper>
+      */}
         <div className='mainIconContainer'>
           <MainIcon type='home' hl={iconState[0]} sw={swiper} index={0} />
           <MainIcon type='explore' hl={iconState[1]} sw={swiper} index={1} />

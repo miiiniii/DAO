@@ -21,7 +21,7 @@ function UserLogon(props) {
             <br/>
             <h2>설정</h2>
             <br/>
-            <br/>
+            <br/>  
             <div className='userAccountBanner'>
                 <div className='userAccountWrapper'>
                     <p className='userName'>{props.auth.name}<br/></p>
