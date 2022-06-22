@@ -5,6 +5,10 @@ server:
  
 spring:
   datasource:
-    url: jdbc:postgresql://146.56.148.187:5432/serverdb
-    username: opc
-    password: Qlalfqjsgh1!
+    url: jdbc:postgresql://223.194.70.105:22822/dao
+    username: admin
+    password: wowsan808@!@#$
+    platform: postgres
+    
+    
+    

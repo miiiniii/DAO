@@ -32,7 +32,7 @@ export default function Home(props) {
 
     //내 커뮤니티 불러오기
     useEffect(() => {
-        if (props.sw !== undefined && props.sw.realIndex === 0) {
+        if (props.currMainWindow === 0) {
             customAxios('/myCommunityBanners', (data) => {
                 if (JSON.stringify(data) === JSON.stringify(community)) return;
                 if (data === "") setCommunity(null);
@@ -42,7 +42,7 @@ export default function Home(props) {
                 setIsLoaded(true);
             });
         }
-    }, [props.sw === undefined ? false : props.sw.realIndex]);
+    }, [props.currMainWindow]);
 
     //
     useEffect(() => {

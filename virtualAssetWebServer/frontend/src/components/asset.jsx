@@ -30,7 +30,7 @@ export default function Asset(props) {
      const [detailView, setDetailView] = useState({ view: false, assetId: null, assetIndex:null});
 
      useEffect(() => {
-          if (props.sw !== undefined && props.sw.realIndex === 2) {
+          if (props.currMainWindow === 2) {
                customAxios('/myAssets', (data) => {
                     if (JSON.stringify(data) === JSON.stringify(assets)) {
                          setIsLoaded(true);
@@ -43,7 +43,7 @@ export default function Asset(props) {
                     setIsLoaded(true);
                });
           }
-     }, [props.sw === undefined ? false : props.sw.realIndex]);
+     }, [props.currMainWindow]);
 
      useEffect(() => {
           if (searchInput === undefined || searchInput === null || searchInput === "") {

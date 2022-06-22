@@ -11,7 +11,7 @@ import { Icon_Search } from './cssIcons';
 
 /**
  * 탐색탭 컴포넌트
- * @param sw as Swiper
+ * @param currMainWindow as Integer
  * @param showClubPage as function
  */
 export default function Explore(props) {
@@ -37,7 +37,7 @@ export default function Explore(props) {
 
     //첫 로드시 기본 노출 리스트를 서버에 요청
     useEffect(() => {
-        if (props.sw === undefined || props.sw.realIndex !== 1) return;
+        if (props.currMainWindow !== 1) return;
         if (result === undefined || result === null) {
             setIsLoaded(false);
             searchAxios(keyword, (data) => {
@@ -48,7 +48,7 @@ export default function Explore(props) {
             });
         }
 
-    }, [props.sw === undefined ? false : props.sw.realIndex, keyword]);
+    }, [props.currMainWindow, keyword]);
 
     //돋보기 버튼으로 탐색바 확장하고 확장된 상태에서는 검색 실행하는 함수.
     //서버로 검색키워드를 보내면 서버에서 결과를 보내주는 식으로 구현할 예정.

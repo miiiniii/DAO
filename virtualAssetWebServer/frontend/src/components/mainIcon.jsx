@@ -28,15 +28,11 @@ export default function MainIcon(props){
         white=User_white;
         break;
     }
-    var style='icon'+(props.hl?' highLight':'');
+    let style='icon'+(props.hl?' highLight':'');
 
     function IconClick(){
-      if(props.sw.activeIndex===1&&props.index===3)
-      props.sw.slideToLoop(-1);
-      else if(props.sw.activeIndex===4&&props.index===0)
-      props.sw.slideToLoop(4);
-      else
-      props.sw.slideToLoop(props.index);
+      if(props.currMainWindow!=props.index)
+      props.setIndex(props.index);
     }
     return(
       <span id={props.type+'Button'} className='mainIcon' onClick={IconClick}>
