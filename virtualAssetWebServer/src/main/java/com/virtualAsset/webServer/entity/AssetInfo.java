@@ -1,4 +1,4 @@
-package com.virtualAsset.webServer.data;
+package com.virtualAsset.webServer.entity;
 
 
 

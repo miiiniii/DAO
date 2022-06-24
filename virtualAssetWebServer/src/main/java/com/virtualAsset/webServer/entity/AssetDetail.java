@@ -1,4 +1,4 @@
-package com.virtualAsset.webServer.data;
+package com.virtualAsset.webServer.entity;
 import java.util.ArrayList;
 
 import org.springframework.boot.configurationprocessor.json.JSONArray;
@@ -15,7 +15,6 @@ import org.springframework.boot.configurationprocessor.json.JSONObject;
  * @version 1.0, 2022.5.13
  * @see None
  */
-
 public class AssetDetail {
 	private String assetId;
 	private ArrayList<Double> valueChangeHistory;

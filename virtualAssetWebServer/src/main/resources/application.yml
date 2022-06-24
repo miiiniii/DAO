@@ -2,13 +2,20 @@
 server:
   port: 8080
 
- 
+
+
+#database config
 spring:
   datasource:
+    driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://223.194.70.105:22822/dao
     username: admin
     password: wowsan808@!@#$
     platform: postgres
     
     
-    
+mybatis:
+  mapper-locations: mapper/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.virtulAsset.webServer

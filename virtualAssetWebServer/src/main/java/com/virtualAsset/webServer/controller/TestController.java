@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.virtualAsset.webServer.data.AssetDetail;
-import com.virtualAsset.webServer.data.AssetInfo;
-import com.virtualAsset.webServer.data.Auth;
-import com.virtualAsset.webServer.data.CommunityBanner;
-import com.virtualAsset.webServer.data.BankAccount;
+import com.virtualAsset.webServer.entity.AssetDetail;
+import com.virtualAsset.webServer.entity.AssetInfo;
+import com.virtualAsset.webServer.entity.Auth;
+import com.virtualAsset.webServer.entity.BankAccount;
+import com.virtualAsset.webServer.entity.CommunityBanner;
 
 
 /*데이터 베이스 바인드 하기전 임시로 더미데이터를 보내주는 컨트롤러*/

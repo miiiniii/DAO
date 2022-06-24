@@ -1,4 +1,9 @@
-package com.virtualAsset.webServer.data;
+package com.virtualAsset.webServer.entity;
+
+import org.apache.ibatis.type.Alias;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * 사용자 계정 데이터 모델
@@ -9,20 +14,15 @@ package com.virtualAsset.webServer.data;
  * @version 1.0, 2022.5.13
  * @see ErrorCode
  */
+@Alias("AuthEntity")
+@Getter
+@Setter
 public class Auth {
-	private String id;
-	private String name;
-	private String connectIP;
+	String id;
+	String name;
+	String connectIP;
 	private ErrorCode errorCode = ErrorCode.NULL_SESSION;
-	public String getId() {
-		return id;
-	}
-	public String getName() {
-		return name;
-	}
-	public String getIP() {
-		return connectIP;
-	}
+
 	/**
 	 * @return errorCode.code
 	 * @see ErrorCode

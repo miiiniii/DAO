@@ -1,4 +1,4 @@
-package com.virtualAsset.webServer.data;
+package com.virtualAsset.webServer.entity;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -10,7 +10,7 @@ import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
 
-import com.virtualAsset.webServer.data.CommunityIntroduce.TradeHistory;
+import com.virtualAsset.webServer.entity.CommunityIntroduce.TradeHistory;
 
 
 /**

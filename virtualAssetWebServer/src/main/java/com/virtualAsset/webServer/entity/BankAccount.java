@@ -1,4 +1,4 @@
-package com.virtualAsset.webServer.data;
+package com.virtualAsset.webServer.entity;
 
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
