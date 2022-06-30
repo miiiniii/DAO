@@ -129,7 +129,7 @@ function HomeLogon(props) {
                     <div className='myClubBanner' key={contents + index} onClick={props.showClubPage}>
                         <p className='smallInfo right'>최근 거래 : {contents.recentActivities} 전</p>
                         <p className='bannerTitle'>{contents.name}</p>
-                        <span className='smallInfo'><img className='smallIcon' src={Contract_white} /> {contents.concludedContract}/{contents.totalContract}</span>
+                        <span className='smallInfo'><img className='smallIcon' src={Contract_white} /> {contents.concludedContractAmount}/{contents.totalContractAmount}</span>
                         <span className='smallInfo right'>{contents.memberAmount} <img className='smallIcon' src={User_white} /></span>
                     </div>
                 ))}

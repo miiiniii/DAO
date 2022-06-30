@@ -7,15 +7,18 @@ server:
 #database config
 spring:
   datasource:
+    sql-script-encoding: utf-8
+    initialization-mode: always
+    platform: postgres
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://223.194.70.105:22822/dao
+    jdbc-url: jdbc:postgresql://223.194.70.105:22822/dao
     username: admin
     password: wowsan808@!@#$
-    platform: postgres
     
     
 mybatis:
-  mapper-locations: mapper/**/*.xml
+#  mapper-locations: mapper/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
-  type-aliases-package: com.virtulAsset.webServer
+    call-setters-on-nulls: true
+#  type-aliases-package: com.virtulAsset.webServer.entity

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.virtualAsset.webServer.dataAccessObject.CommunityBannerDAO">
+
+	<resultMap id="CommunityBannerResult" type="com.virtualAsset.webServer.entity.CommunityBannerEntity">
+		<result column="community_id" property="id" jdbcType="INTEGER" javaType="Integer"/>
+		<result column="community_name" property="name" jdbcType="VARCHAR" javaType="String"/>
+		<result column="community_concluded_contract_amount" property="concludedContractAmount" jdbcType="INTEGER" javaType="Integer"/>
+		<result column="community_total_contract_amount" property="totalContractAmount" jdbcType="INTEGER" javaType="Integer"/>
+		<result column="community_member_amount" property="memberAmount" jdbcType="INTEGER" javaType="Integer"/>
+		<result column="community_introduce" property="introduce" jdbcType="VARCHAR" javaType="String"/>
+		<result column="community_tags" property="tags" jdbcType="VARCHAR" javaType="String"/>
+		<result column="community_recent_activity" property="recentActivity" jdbcType="TIMESTAMP" javaType="Integer"/>
+	</resultMap>
+	
+    <select id="selectAllBanners" resultMap="CommunityBannerResult">
+        select
+            "community_id",
+            "community_name",
+            "community_concluded_contract_amount",
+            "community_total_contract_amount",
+            "community_member_amount",
+            "community_introduce",
+            "community_tags",
+            "community_recent_activity"
+        from
+            "community"
+    </select>
+</mapper>

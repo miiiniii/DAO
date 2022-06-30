@@ -133,7 +133,7 @@ function ExploreBar(props) {
 function ExploreView(props) {
     //검색결과가 없을때
     //검색결과가 없다고 알려줄 안내페이지 제작해야함.
-    if (props.result === null) {
+    if (props.result === "") {
         return (
             <div className={props.className}>
 
@@ -141,6 +141,7 @@ function ExploreView(props) {
         )
     }
     //검색결과 있을때
+    console.log("result:"+props.result);
     return (
         <div className={props.className}>
             <div className='pubClubList'>
@@ -154,7 +155,7 @@ function ExploreView(props) {
                                 <div key={'tag' + ii} className='tag'>#{tag}</div>
                             ))}
                         </div>
-                        <span className='smallInfo'><img className='smallIcon' src={Contract_white} /> {contents.concludedContract}/{contents.totalContract}</span>
+                        <span className='smallInfo'><img className='smallIcon' src={Contract_white} /> {contents.concludedContractAmount}/{contents.totalContractAmount}</span>
                         <span className='smallInfo right'>{contents.memberAmount} <img className='smallIcon' src={User_white} /></span>
                     </div>
                 ))}
