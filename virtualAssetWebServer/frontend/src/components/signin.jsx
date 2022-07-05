@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import NaverLogin, { KakaoLogin } from "./externalLogin";
+import loginAxios from "../scripts/loginAxios";
 
 export default function Signin(props) {
 
 	const authSubmit = (e) => {
-
+		var authVal = {id: document.getElementById("loginId").value, pw: document.getElementById("loginPw").value};
+		loginAxios(authVal, (data)=>{
+			if(data.code==100)props.setAuth(authVal);
+			console.log(data);
+		})
 	}
 	const [checked, setChecked] = useState(false);
 	const handleChange = () => {
@@ -30,10 +35,10 @@ export default function Signin(props) {
 					<section className="login-section-wrap">
 						<section className="login-input-section-wrap">
 							<div className="login-input-wrap">
-								<input placeholder="아이디" type="text"></input>
+								<input id="loginId" placeholder="아이디" type="text"></input>
 							</div>
 							<div className="login-input-wrap password-wrap">
-								<input placeholder="비밀번호" type="password"></input>
+								<input id="loginPw" placeholder="비밀번호" type="password"></input>
 							</div>
 							<div className="login-stay-sign-in">
 								<div className="round">
@@ -44,7 +49,7 @@ export default function Signin(props) {
 							</div>
 						</section>
 						<div className="login-button-wrap">
-							<button>로그인</button>
+							<button onClick={authSubmit}>로그인</button>
 						</div>
 					</section>
 					<div className="login-sign-up-wrap">

@@ -14,7 +14,7 @@ import useScript from "./scripts/useScript"
 import BankAccount from './components/bankAccount';
 import Asset from './components/asset';
 import Club from './components/club';
-import customAxios from './scripts/customAxios';
+import customAxiosData from './scripts/customAxiosData';
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
@@ -67,10 +67,12 @@ function App() {
   //로그인 검사
   useEffect(
     () => {
-      customAxios('/auth', (data) => {
-        setAuth(data);
+      if(auth==null)return;
+      customAxiosData('/auth', auth, (data) => {
+        if(data.code==100)setAuth(auth);
+        setAuth(null);
       });
-    }, []
+    }, [auth]
   );
 
 
@@ -310,7 +312,7 @@ function App() {
         </div>
       </header>
       <StartPage startView={startView} />
-      <Signin signinPage={signinPage} hideSigninPage={hideSigninPage} showSignupPage={showSignupPage} />
+      <Signin signinPage={signinPage} hideSigninPage={hideSigninPage} showSignupPage={showSignupPage} setAuth={setAuth} />
       <Signup signupPage={signupPage} hideSignupPage={hideSignupPage} showSigninPage={showSigninPage} />
       <Club auth={auth} clubPage={clubPage} hideClubPage={hideClubPage} showSigninPage={showSigninPage} />
       <EditProfile auth={auth} editProfilePage={editProfilePage} hideEditProfilePage={hideEditProfilePage} showEditProfilePage={showEditProfilePage} />

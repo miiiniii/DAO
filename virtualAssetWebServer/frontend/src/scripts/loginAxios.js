@@ -1,9 +1,9 @@
 import axios from 'axios';
 import TEST_IP from './setTestIp';
-export default function searchAxios(authVal, callback) {
+export default function loginAxios(authVal, callback) {
   axios(
     {
-      url: '/api/publicClub',
+      url: '/api/auth',
       method: 'post',
 
       /**
