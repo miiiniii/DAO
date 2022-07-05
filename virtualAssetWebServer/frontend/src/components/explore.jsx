@@ -47,7 +47,6 @@ export default function Explore(props) {
                 setIsLoaded(true);
             });
         }
-
     }, [props.currMainWindow, keyword]);
 
     //돋보기 버튼으로 탐색바 확장하고 확장된 상태에서는 검색 실행하는 함수.
@@ -136,12 +135,10 @@ function ExploreView(props) {
     if (props.result === "") {
         return (
             <div className={props.className}>
-
+                
             </div>
         )
     }
-    //검색결과 있을때
-    console.log("result:"+props.result);
     return (
         <div className={props.className}>
             <div className='pubClubList'>
@@ -151,7 +148,7 @@ function ExploreView(props) {
                         <p className='bannerTitle'>{contents.name}</p>
                         <p className='intro'>{contents.introduce}</p>
                         <div className='tagContainer'>
-                            {contents.tags.map((tag, ii) => (
+                            {contents.tags.split(':').map((tag, ii) => (
                                 <div key={'tag' + ii} className='tag'>#{tag}</div>
                             ))}
                         </div>

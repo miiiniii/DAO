@@ -28,4 +28,15 @@
         from
             "community"
     </select>
+    <select id="selectMyBanners" resultMap="CommunityBannerResult">
+        select
+            "community_id",
+            "community_name",
+            "community_concluded_contract_amount",
+            "community_total_contract_amount",
+            "community_member_amount",
+            "community_recent_activity"
+        from
+            "community"
+    </select>
 </mapper>
