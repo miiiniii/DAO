@@ -25,17 +25,18 @@ import com.virtualAsset.webServer.entity.Auth;
 import com.virtualAsset.webServer.entity.BankAccount;
 import com.virtualAsset.webServer.entity.CommunityBannerEntity;
 
-
 /*데이터 베이스 바인드 하기전 임시로 더미데이터를 보내주는 컨트롤러*/
 @RestController
 @RequestMapping("/api")
 public class TestController {
 	private static ObjectMapper mapper = new ObjectMapper();
+
 	@PostMapping("/assetDetail")
 	public String assetDetail(@RequestBody HashMap<String, Object> requsetHashMap) throws JSONException {
 		HashMap<String, AssetDetail> dataHashMap = new HashMap<String, AssetDetail>();
 		dataHashMap.put("default", new AssetDetail("default", "default",
-				new ArrayList<Long>(Arrays.asList(35000L, 44000L, 51000L, 55000L, 57000L, 53000L)), 52000L, "커뮤니티 책임자"));
+				new ArrayList<Long>(Arrays.asList(35000L, 44000L, 51000L, 55000L, 57000L, 53000L)), 52000L,
+				"커뮤니티 책임자"));
 		dataHashMap.put("example1",
 				new AssetDetail("example1", "example1",
 						new ArrayList<Long>(
@@ -78,21 +79,18 @@ public class TestController {
 
 	@Autowired
 	private CommunityBannerDAO communityBannerDAO;
-	
-	
+
 	@PostMapping("/publicCommunity")
 	public List<CommunityBannerEntity> pubClub(HttpServletRequest request) throws JSONException, ParseException {
 
 		return communityBannerDAO.selectAllBanners();
 	}
 
-	
 	@PostMapping("/myCommunityBanners")
 	public List<CommunityBannerEntity> myClub(HttpServletRequest request) throws JSONException, ParseException {
-		
-		
+
 		return communityBannerDAO.selectMyBanners("");
-		
+
 	}
 
 	@PostMapping("/auth")
@@ -103,7 +101,7 @@ public class TestController {
 		Auth auth = new Auth("test_id", "test_name", request.getRemoteAddr());
 
 		// 로그오프 상태로 만들기
-		 //Auth auth = new Auth(Auth.ErrorCode.FAIL_AUTHENTICATION);
+		// Auth auth = new Auth(Auth.ErrorCode.FAIL_AUTHENTICATION);
 
 		String json = null;
 		try {
@@ -118,15 +116,7 @@ public class TestController {
 	public String bankAccount(HttpServletRequest request) throws JSONException {
 		// test val
 		BankAccount standard = new BankAccount("한국은행", "1230456078900");
-		BankAccount example1 = new BankAccount("우리은행", "1212343456567");
-		BankAccount example2 = new BankAccount("기업은행", "0987654321");
-		BankAccount example3 = new BankAccount("하나은행", "112233445566");
-		BankAccount example4 = new BankAccount("카카오뱅크", "009988776655");
 
-		return new JSONArray().put(example1.toJsonObject())
-				.put(example1.toJsonObject()).put(example2.toJsonObject())
-				.put(example3.toJsonObject()).put(example4.toJsonObject())
-				.put(standard.toJsonObject()).put(standard.toJsonObject())
-				.put(standard.toJsonObject()).toString();
+		return new JSONArray().put(standard.toJsonObject()).toString();
 	}
 }

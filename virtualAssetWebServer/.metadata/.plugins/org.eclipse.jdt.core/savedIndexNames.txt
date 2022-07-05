@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+C:\Users\yevinKwon\Desktop\VirtualAsset-WebServer-1\virtualAssetWebServer\.metadata\.plugins\org.eclipse.jdt.core
