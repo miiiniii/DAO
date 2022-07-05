@@ -40,7 +40,8 @@ export default function BankAccount(props) {
 			return <div className={props.className}><LoadingSpinner></LoadingSpinner></div>
 	   }
 	   else {
-			return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage} />;
+			return <div></div>
+			// return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage} />;
 	   }
 	}
 

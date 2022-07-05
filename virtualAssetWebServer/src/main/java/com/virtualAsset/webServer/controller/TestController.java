@@ -27,18 +27,19 @@ import com.virtualAsset.webServer.entity.BankAccount;
 import com.virtualAsset.webServer.entity.CommunityBannerEntity;
 import com.virtualAsset.webServer.service.CommunityService;
 
-
 /*데이터 베이스 바인드 하기전 임시로 더미데이터를 보내주는 컨트롤러*/
 //각 데이터 모델에 toJsonObject 함수를 구현줘야함
 @RestController
 @RequestMapping("/api")
 public class TestController {
 	private static ObjectMapper mapper = new ObjectMapper();
+
 	@PostMapping("/assetDetail")
 	public String assetDetail(@RequestBody HashMap<String, Object> requsetHashMap) throws JSONException {
 		HashMap<String, AssetDetail> dataHashMap = new HashMap<String, AssetDetail>();
 		dataHashMap.put("default", new AssetDetail("default", "default",
-				new ArrayList<Long>(Arrays.asList(35000L, 44000L, 51000L, 55000L, 57000L, 53000L)), 52000L, "커뮤니티 책임자"));
+				new ArrayList<Long>(Arrays.asList(35000L, 44000L, 51000L, 55000L, 57000L, 53000L)), 52000L,
+				"커뮤니티 책임자"));
 		dataHashMap.put("example1",
 				new AssetDetail("example1", "example1",
 						new ArrayList<Long>(
@@ -82,41 +83,44 @@ public class TestController {
 	@PostMapping("/publicCommunity")
 	public String pubClub(HttpServletRequest request) throws JSONException, ParseException {
 		/*
-		// test value
-		CommunityBanner standard = new CommunityBanner("default", "커뮤니티이름", 26, 180, 111,
-				"2022/03/30 16:22:45", "커뮤니티 소개글\n커뮤니티 소개글",
-				new ArrayList<String>(Arrays.asList("품목", "품목", "품목", "품목")));
-		CommunityBanner example1 = new CommunityBanner("example1", "휴양지 공동 개발", 15, 22,
-				411, "2021/03/29 20:11:02",
-				"코로나로 저점이지만 앞으로 전망이 밝은 각종 휴양지를 전문으로 투자하실분들 모십니다.",
-				new ArrayList<String>(Arrays.asList("휴양지", "부동산", "저점")));
-		CommunityBanner example2 = new CommunityBanner("example2", "홍대 갤러리", 46, 2130,
-				11512, "2022/03/30 9:42:16", "홍대 작가 유망주들의 작품 지분 투자",
-				new ArrayList<String>(Arrays.asList("그림", "조각")));
-		CommunityBanner example3 = new CommunityBanner("example3", "동학 개미 운동", 71, 182,
-				85429, "2022/02/15 20:11:02",
-				"소자본으로 항상 세력들에게 끌려다니는 개미들도 뭉치면 강하다!",
-				new ArrayList<String>(Arrays.asList("국내주식", "해외주식", "세력")));
-
-		return new JSONArray().put(standard.toJsonObject())
-				.put(standard.toJsonObject()).put(example1.toJsonObject())
-				.put(example2.toJsonObject()).put(example3.toJsonObject())
-				.put(standard.toJsonObject()).put(standard.toJsonObject())
-				.put(standard.toJsonObject()).put(standard.toJsonObject())
-				.toString();
-		*/
+		 * // test value
+		 * CommunityBanner standard = new CommunityBanner("default", "커뮤니티이름", 26, 180,
+		 * 111,
+		 * "2022/03/30 16:22:45", "커뮤니티 소개글\n커뮤니티 소개글",
+		 * new ArrayList<String>(Arrays.asList("품목", "품목", "품목", "품목")));
+		 * CommunityBanner example1 = new CommunityBanner("example1", "휴양지 공동 개발", 15,
+		 * 22,
+		 * 411, "2021/03/29 20:11:02",
+		 * "코로나로 저점이지만 앞으로 전망이 밝은 각종 휴양지를 전문으로 투자하실분들 모십니다.",
+		 * new ArrayList<String>(Arrays.asList("휴양지", "부동산", "저점")));
+		 * CommunityBanner example2 = new CommunityBanner("example2", "홍대 갤러리", 46,
+		 * 2130,
+		 * 11512, "2022/03/30 9:42:16", "홍대 작가 유망주들의 작품 지분 투자",
+		 * new ArrayList<String>(Arrays.asList("그림", "조각")));
+		 * CommunityBanner example3 = new CommunityBanner("example3", "동학 개미 운동", 71,
+		 * 182,
+		 * 85429, "2022/02/15 20:11:02",
+		 * "소자본으로 항상 세력들에게 끌려다니는 개미들도 뭉치면 강하다!",
+		 * new ArrayList<String>(Arrays.asList("국내주식", "해외주식", "세력")));
+		 * 
+		 * return new JSONArray().put(standard.toJsonObject())
+		 * .put(standard.toJsonObject()).put(example1.toJsonObject())
+		 * .put(example2.toJsonObject()).put(example3.toJsonObject())
+		 * .put(standard.toJsonObject()).put(standard.toJsonObject())
+		 * .put(standard.toJsonObject()).put(standard.toJsonObject())
+		 * .toString();
+		 */
 		return null;
 	}
 
 	@Autowired
 	private CommunityBannerDAO communityBannerDAO;
-	
+
 	@PostMapping("/myCommunityBanners")
 	public List<CommunityBannerEntity> myClub(HttpServletRequest request) throws JSONException, ParseException {
-		
-		
+
 		return communityBannerDAO.selectAllBanners();
-		
+
 	}
 
 	@PostMapping("/auth")
@@ -127,7 +131,7 @@ public class TestController {
 		Auth auth = new Auth("test_id", "test_name", request.getRemoteAddr());
 
 		// 로그오프 상태로 만들기
-		 //Auth auth = new Auth(Auth.ErrorCode.FAIL_AUTHENTICATION);
+		// Auth auth = new Auth(Auth.ErrorCode.FAIL_AUTHENTICATION);
 
 		String json = null;
 		try {
@@ -142,15 +146,7 @@ public class TestController {
 	public String bankAccount(HttpServletRequest request) throws JSONException {
 		// test val
 		BankAccount standard = new BankAccount("한국은행", "1230456078900");
-		BankAccount example1 = new BankAccount("우리은행", "1212343456567");
-		BankAccount example2 = new BankAccount("기업은행", "0987654321");
-		BankAccount example3 = new BankAccount("하나은행", "112233445566");
-		BankAccount example4 = new BankAccount("카카오뱅크", "009988776655");
 
-		return new JSONArray().put(example1.toJsonObject())
-				.put(example1.toJsonObject()).put(example2.toJsonObject())
-				.put(example3.toJsonObject()).put(example4.toJsonObject())
-				.put(standard.toJsonObject()).put(standard.toJsonObject())
-				.put(standard.toJsonObject()).toString();
+		return new JSONArray().put(standard.toJsonObject()).toString();
 	}
 }
