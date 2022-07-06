@@ -48,7 +48,11 @@ function App() {
   const showClubPage = () => setClubPage({ viewClass: '' })
   const hideClubPage = () => setClubPage({ viewClass: ' clubHide' })
   const showSigninPage = () => setSigninPage('show');
-  const hideSigninPage = () => setSigninPage('hide');
+  const hideSigninPage = () => {
+    document.getElementById("loginId").value="";
+    document.getElementById("loginPw").value="";
+    setSigninPage('hide')
+  };
   const showSignupPage = () => setSignupPage('show');
   const hideSignupPage = () => setSignupPage('hide');
   const showEditProfilePage = () => setEditProfilePage('show');
@@ -64,16 +68,7 @@ function App() {
 
   const [auth, setAuth] = useState();
 
-  //로그인 검사
-  useEffect(
-    () => {
-      if(auth==null)return;
-      customAxiosData('/auth', auth, (data) => {
-        if(data.code==100)setAuth(auth);
-        setAuth(null);
-      });
-    }, [auth]
-  );
+
 
 
   //현 아이콘 상태 state
@@ -301,7 +296,7 @@ function App() {
             <Asset className='mainWindow' auth={auth} currMainWindow={currMainWindow} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showClubPage={showClubPage} />
           </div>
           <div id="user" className='mainWindowContainer'>
-            <User className='mainWindow' auth={auth} currMainWindow={currMainWindow} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showEditProfilePage={showEditProfilePage} showBankAccountPage={showBankAccountPage} />
+            <User className='mainWindow' auth={auth} setAuth={setAuth} currMainWindow={currMainWindow} showSignupPage={showSignupPage} showSigninPage={showSigninPage} showEditProfilePage={showEditProfilePage} showBankAccountPage={showBankAccountPage} />
           </div>
         </div>
         <div className='mainIconContainer'>

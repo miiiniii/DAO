@@ -18,12 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.virtualAsset.webServer.commons.StatusCodes;
+import com.virtualAsset.webServer.dataAccessObject.AuthDAO;
 import com.virtualAsset.webServer.dataAccessObject.CommunityBannerDAO;
 import com.virtualAsset.webServer.entity.AssetDetail;
 import com.virtualAsset.webServer.entity.AssetInfo;
-import com.virtualAsset.webServer.entity.Auth;
+import com.virtualAsset.webServer.entity.AuthEntity;
 import com.virtualAsset.webServer.entity.BankAccount;
 import com.virtualAsset.webServer.entity.CommunityBannerEntity;
+import com.virtualAsset.webServer.jsonObject.AuthValJSon;
+import com.virtualAsset.webServer.jsonObject.DefaultJSonBody;
+
+import net.minidev.json.JSONObject;
 
 /*데이터 베이스 바인드 하기전 임시로 더미데이터를 보내주는 컨트롤러*/
 @RestController
@@ -92,31 +98,23 @@ public class TestController {
 		return communityBannerDAO.selectMyBanners("");
 
 	}
-
+	@Autowired
+	private AuthDAO authDAO;
+	
 	@PostMapping("/auth")
-	public String userAuth(HttpServletRequest request) {
-		// test value
-
-		// 로그온 상태로 만들기
-		Auth auth = new Auth("test_id", "test_name", request.getRemoteAddr());
-
-		// 로그오프 상태로 만들기
-		//Auth auth = new Auth(Auth.ErrorCode.FAIL_AUTHENTICATION);
-
-		String json = null;
-		try {
-			json = mapper.writeValueAsString(auth);
-		} catch (JsonProcessingException e) {
-			json = "auth failed. " + e.toString();
+	public DefaultJSonBody userAuth(@RequestBody JSONObject authVal, HttpServletRequest request) {
+		String userPw= authDAO.getPassword(authVal.getAsString("id"));
+		if(userPw!=null&&userPw.equals(authVal.getAsString("pw"))) {
+			AuthEntity authEntity= authDAO.getUserInfo(authVal.getAsString("id"));
+			return new AuthValJSon(StatusCodes.AUTH_SUCCESS, authEntity);
 		}
-		return json;
+		return new DefaultJSonBody(StatusCodes.FAIL_AUTHENTICATION);
 	}
 
 	@PostMapping("/bankAccount")
 	public String bankAccount(HttpServletRequest request) throws JSONException {
 		// test val
 		BankAccount standard = new BankAccount("한국은행", "1230456078900");
-
 		return new JSONArray().put(standard.toJsonObject()).toString();
 	}
 }

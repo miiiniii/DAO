@@ -95,7 +95,7 @@ export default function Asset(props) {
           else setSearchState({ extend: false, class: "searchFloat", inputClass: "searchInput hide", searchValue: "" });
      }
 
-     if (props.auth !== undefined && props.auth.code === 100) {
+     if (props.auth !== undefined && props.auth.code === 1000) {
           if(isLoaded){
           return <AssetLogon
                className={props.className}

@@ -77,7 +77,7 @@ export default function Home(props) {
 
 
 
-    if (props.auth !== undefined && props.auth.code === 100) {
+    if (props.auth !== undefined && props.auth.code === 1000) {
         if(isLoaded){
         return (
         <HomeLogon

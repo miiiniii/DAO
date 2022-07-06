@@ -4,8 +4,13 @@ import "./user.css";
 
 export default function User(props){
 
-   if(props.auth!==undefined&&props.auth.code===100){
-         return <UserLogon auth={props.auth} className={props.className}  zshowSigninPage={props.showSigninPage} showEditProfilePage={props.showEditProfilePage} showBankAccountPage={props.showBankAccountPage}/>;
+    const onLogout=()=>{
+        props.setAuth(undefined);
+        props.showSigninPage();
+    }
+
+   if(props.auth!==undefined&&props.auth.code===1000){
+         return <UserLogon auth={props.auth} onLogout={onLogout} className={props.className}  showEditProfilePage={props.showEditProfilePage} showBankAccountPage={props.showBankAccountPage}/>;
     }
     else{
          return <Logoff className={props.className} showSigninPage={props.showSigninPage} showSignupPage={props.showSignupPage}/>;
@@ -24,14 +29,14 @@ function UserLogon(props) {
             <br/>  
             <div className='userAccountBanner'>
                 <div className='userAccountWrapper'>
-                    <p className='userName'>{props.auth.name}<br/></p>
-                    <p className='userID'>#{props.auth.id}<br/></p>
+                    <p className='userName'>{props.auth.userInfo.nick}<br/></p>
+                    <p className='userID'>#{props.auth.userInfo.id}<br/></p>
                 </div>
                 <hr className='divHr'/>
                 <p className='mainCmt'>개인정보</p>
                 <p className='subCmt' onClick={props.showEditProfilePage} auth={props.auth}>개인정보 조회ㆍ변경</p>
                 <p className='signoutBtnWrapper'>
-                    <span className='signoutBtn' onClick={props.showSigninPage}>로그아웃</span>
+                    <span className='signoutBtn' onClick={props.onLogout}>로그아웃</span>
                 </p>
             </div>
             <div className='userMenuBanner'>

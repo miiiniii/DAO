@@ -3,9 +3,6 @@ package com.virtualAsset.webServer.entity;
 import java.io.Serializable;
 
 public class CommunityBannerEntity implements Serializable{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	public Integer getId() {
 		return id;

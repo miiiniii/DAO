@@ -6,8 +6,12 @@ export default function Signin(props) {
 
 	const authSubmit = (e) => {
 		var authVal = {id: document.getElementById("loginId").value, pw: document.getElementById("loginPw").value};
+		console.log(authVal);
 		loginAxios(authVal, (data)=>{
-			if(data.code==100)props.setAuth(authVal);
+			if(data.code===1000){
+				props.setAuth(data);
+				props.hideSigninPage();
+			}
 			console.log(data);
 		})
 	}
