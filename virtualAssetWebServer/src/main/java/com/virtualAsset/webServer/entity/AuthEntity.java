@@ -2,13 +2,9 @@ package com.virtualAsset.webServer.entity;
 
 import java.io.Serializable;
 
-import org.apache.ibatis.type.Alias;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import lombok.Getter;
-import lombok.Setter;
 
 
 public class AuthEntity implements Serializable{
@@ -43,6 +39,7 @@ public class AuthEntity implements Serializable{
 		try {
 			return mapper.writeValueAsString(this);
 		} catch (JsonProcessingException e) {
+			e.printStackTrace();
 			// TODO Auto-generated catch block
 			return e.getMessage();
 		}

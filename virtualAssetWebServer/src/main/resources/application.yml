@@ -14,11 +14,14 @@ spring:
     jdbc-url: jdbc:postgresql://223.194.70.105:22822/dao
     username: admin
     password: wowsan808@!@#$
-    
-    
+  profiles:
+# 개발환경
+    active: dev
+# 배포환경
+#     active: prod    
+
+
 mybatis:
-#  mapper-locations: mapper/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
     call-setters-on-nulls: true
-#  type-aliases-package: com.virtulAsset.webServer.entity

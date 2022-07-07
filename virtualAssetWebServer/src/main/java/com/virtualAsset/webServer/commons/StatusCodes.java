@@ -1,7 +1,8 @@
 package com.virtualAsset.webServer.commons;
 
 public enum StatusCodes {
-	NULL_SESSION(0),
+	CLASS_TO_JSON_FAIL(2000),
+	FAIL_ACCESS_DB(505),
 	AUTH_SUCCESS(1000),
 	SESSION_OVERLAP(1212),
 	SESSION_EXPIRE(1211),

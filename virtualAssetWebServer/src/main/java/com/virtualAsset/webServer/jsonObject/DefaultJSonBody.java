@@ -36,8 +36,8 @@ public class DefaultJSonBody implements Serializable{
 		try {
 			return mapper.writeValueAsString(this);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			return e.getMessage();
+			e.printStackTrace();
+			return "{\"status\":\""+StatusCodes.CLASS_TO_JSON_FAIL.name()+"\",\"code\":"+StatusCodes.CLASS_TO_JSON_FAIL.getCode() +"}";
 		}
 	}
 }

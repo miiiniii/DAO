@@ -18,7 +18,7 @@
 
 
 	<dependencies>
-		
+
 		<!--session-->
 		<!--
 		<dependency>
@@ -43,7 +43,7 @@
 			<artifactId>jsch</artifactId>
 			<version>0.1.53</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-rest</artifactId>
@@ -52,8 +52,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
-		
+
+
 		<!-- postgresql 의존성 -->
 		<dependency>
 			<groupId>org.postgresql</groupId>

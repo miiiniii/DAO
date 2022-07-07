@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
@@ -35,11 +37,16 @@ import net.minidev.json.JSONObject;
 @RestController
 @RequestMapping("/api")
 public class TestController {
-	private static ObjectMapper mapper = new ObjectMapper();
-
+	private ObjectMapper mapper=new ObjectMapper();
+	private final Logger logger= LoggerFactory.getLogger(this.getClass());
 	@PostMapping("/assetDetail")
-	public String assetDetail(@RequestBody HashMap<String, Object> requsetHashMap) throws JSONException {
+	public String assetDetail(@RequestBody HashMap<String, Object> requsetHashMap) throws JSONException, JsonProcessingException {
+		
+		logger.info(mapper.writeValueAsString(requsetHashMap));
+		
 		HashMap<String, AssetDetail> dataHashMap = new HashMap<String, AssetDetail>();
+		
+		
 		dataHashMap.put("default", new AssetDetail("default", "default",
 				new ArrayList<Long>(Arrays.asList(35000L, 44000L, 51000L, 55000L, 57000L, 53000L)), 52000L,
 				"커뮤니티 책임자"));
@@ -104,7 +111,7 @@ public class TestController {
 	@PostMapping("/auth")
 	public DefaultJSonBody userAuth(@RequestBody JSONObject authVal, HttpServletRequest request) {
 		String userPw= authDAO.getPassword(authVal.getAsString("id"));
-		if(userPw!=null&&userPw.equals(authVal.getAsString("pw"))) {
+		if(userPw!=null&&userPw.equals(authVal.getAsString("pw"))) { 
 			AuthEntity authEntity= authDAO.getUserInfo(authVal.getAsString("id"));
 			return new AuthValJSon(StatusCodes.AUTH_SUCCESS, authEntity);
 		}
