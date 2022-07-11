@@ -37,16 +37,17 @@ import net.minidev.json.JSONObject;
 @RestController
 @RequestMapping("/api")
 public class TestController {
-	private ObjectMapper mapper=new ObjectMapper();
-	private final Logger logger= LoggerFactory.getLogger(this.getClass());
+	private ObjectMapper mapper = new ObjectMapper();
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
 	@PostMapping("/assetDetail")
-	public String assetDetail(@RequestBody HashMap<String, Object> requsetHashMap) throws JSONException, JsonProcessingException {
-		
+	public String assetDetail(@RequestBody HashMap<String, Object> requsetHashMap)
+			throws JSONException, JsonProcessingException {
+
 		logger.info(mapper.writeValueAsString(requsetHashMap));
-		
+
 		HashMap<String, AssetDetail> dataHashMap = new HashMap<String, AssetDetail>();
-		
-		
+
 		dataHashMap.put("default", new AssetDetail("default", "default",
 				new ArrayList<Long>(Arrays.asList(35000L, 44000L, 51000L, 55000L, 57000L, 53000L)), 52000L,
 				"커뮤니티 책임자"));
@@ -105,14 +106,15 @@ public class TestController {
 		return communityBannerDAO.selectMyBanners("");
 
 	}
+
 	@Autowired
 	private AuthDAO authDAO;
-	
+
 	@PostMapping("/auth")
 	public DefaultJSonBody userAuth(@RequestBody JSONObject authVal, HttpServletRequest request) {
-		String userPw= authDAO.getPassword(authVal.getAsString("id"));
-		if(userPw!=null&&userPw.equals(authVal.getAsString("pw"))) { 
-			AuthEntity authEntity= authDAO.getUserInfo(authVal.getAsString("id"));
+		String userPw = authDAO.getPassword(authVal.getAsString("id"));
+		if (userPw != null && userPw.equals(authVal.getAsString("pw"))) {
+			AuthEntity authEntity = authDAO.getUserInfo(authVal.getAsString("id"));
 			return new AuthValJSon(StatusCodes.AUTH_SUCCESS, authEntity);
 		}
 		return new DefaultJSonBody(StatusCodes.FAIL_AUTHENTICATION);
@@ -121,7 +123,7 @@ public class TestController {
 	@PostMapping("/bankAccount")
 	public String bankAccount(HttpServletRequest request) throws JSONException {
 		// test val
-		BankAccount standard = new BankAccount("한국은행", "1230456078900");
+		BankAccount standard = new BankAccount("케이뱅크", "123456789000");
 		return new JSONArray().put(standard.toJsonObject()).toString();
 	}
 }
