@@ -66,3 +66,12 @@
     font-family: Eland;
   }
   
+  .no_accounts{
+    position: relative;
+    top : calc(30% + 25px);
+    font-size: larger;
+    padding: 15px 5px 0 20px;
+    text-align: middle;
+    margin: 0;
+    color: #f1ede9;
+  }
