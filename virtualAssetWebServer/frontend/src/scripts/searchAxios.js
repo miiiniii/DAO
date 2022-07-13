@@ -3,8 +3,11 @@ import TEST_IP from './setTestIp';
 export default function searchAxios(keywords, callback) {
   axios(
     {
-      url: '/api/publicCommunity',
-      method: 'post',
+      url: '/api/search',
+      method: 'get',
+      params: {
+        name : '투자'
+      },
 
       /**
        * 개발 환경에서의 크로스 도메인 이슈를 해결하기 위한 코드로
