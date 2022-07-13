@@ -132,7 +132,7 @@ function ExploreBar(props) {
 function ExploreView(props) {
     //검색결과가 없을때
     //검색결과가 없다고 알려줄 안내페이지 제작해야함.
-    if (props.result === "") {
+    if (props.result.data === "") {
         return (
             <div className={props.className}>
                 
@@ -142,7 +142,7 @@ function ExploreView(props) {
     return (
         <div className={props.className}>
             <div className='pubClubList'>
-                {props.result.map((contents, i) => (
+                {props.result.data.map((contents, i) => (
                     <div className='pubClubBanner' key={"pubClubBanner" + i} onClick={props.showClubPage}>
                         <p className='smallInfo right'>최근 거래 : {contents.recentActivities} 전</p>
                         <p className='bannerTitle'>{contents.name}</p>
