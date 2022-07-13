@@ -16,9 +16,9 @@ public class WebConfig implements WebMvcConfigurer {
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 
-		/* 안성찬 로컬*/registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://211.193.12.31:3000");
+		//* 안성찬 로컬*/registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://211.193.12.31:3000");
 		//* 안성찬 회사*/registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://192.168.30.14:3000");
-		//*권예빈 로컬*/registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://221.139.151.211:3000");
+		/*권예빈 로컬*/registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://192.168.0.20:3000");
 
 		// registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://192.168.0.4:3000");
 	}
