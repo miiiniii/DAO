@@ -68,7 +68,7 @@ export default function Club(props) {
         setClubView({ magX: 0, mode: mode });
     }
 
-    if (props.auth !== undefined && props.auth.code === 100) {
+    if (props.auth !== undefined && props.auth.code === 1000) {
         return (<div className={"clubPage" + props.clubPage.viewClass}>
             <p className="clubNavBar"><span className="backBtn" onClick={clubBackClick}><i className="fa fa-arrow-left"></i></span><span className="clubName">클럽 이름</span></p>
             <div className="clubComponemtWarpper"
