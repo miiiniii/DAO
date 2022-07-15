@@ -1,12 +1,16 @@
 import axios from 'axios';
 import TEST_IP from './setTestIp';
 export default function searchAxios(keywords, callback) {
+  
+  const {title, tag, intro} = keywords;
   axios(
     {
       url: '/api/search',
       method: 'get',
       params: {
-        name : '투자'
+        name : title,
+        tags : tag,
+        introduce : intro
       },
 
       /**
