@@ -13,14 +13,22 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class ExploreServiceTest {
 
-    @Autowired private ExploreService exploreService;
+    @Autowired
+    private ExploreService exploreService;
 
     @Test
-    void searchTest(){
+    void searchTest() {
         CommunitySearchCond query = CommunitySearchCond.builder()
                 .name("홍대")
                 .build();
         List<ExploreReadUseCase.FindCommunityBannerResult> communityAllWithFilter = exploreService.getCommunityAllWithFilter(query);
-        System.out.println("communityAllWithFilter = " + communityAllWithFilter);
+
+        CommunitySearchCond queryTags = CommunitySearchCond.builder()
+                .tags("부동산")
+                .build();
+        List<ExploreReadUseCase.FindCommunityBannerResult> communityAllWithTags = exploreService.getCommunityAllWithFilter(queryTags);
+        System.out.println("communityAllWithTags = " + communityAllWithTags);
+
+
     }
 }
