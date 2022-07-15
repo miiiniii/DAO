@@ -36,6 +36,10 @@
             <if test="introduce != null and introduce != ''">
                 and community_introduce like concat('%', #{introduce}, '%')
             </if>
+
+            <if test="tags != null and tags != ''">
+                and concat(':',community_tags, ':') like concat('%:', #{tags}, ':%')
+            </if>
         </where>
     </select>
 </mapper>
