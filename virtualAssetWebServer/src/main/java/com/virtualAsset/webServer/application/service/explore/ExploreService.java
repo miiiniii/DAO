@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Slf4j
 @Service
@@ -30,6 +29,7 @@ public class ExploreService implements ExploreReadUseCase {
                 .map(CommunityBannerEntity::toCommunityBanner).toList();
 
 
+        // TODO: 2022/07/13 예외처리 추후 추가
         return communityBanners.stream()
                 .map(FindCommunityBannerResult::findByCommunityBanner)
                 .collect(Collectors.toList());
