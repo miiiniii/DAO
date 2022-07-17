@@ -29,17 +29,33 @@
         from
         "community"
         <where>
-            <if test="name != null and name != ''">
-                and community_name like concat('%', #{name}, '%')
-            </if>
 
-            <if test="introduce != null and introduce != ''">
-                and community_introduce like concat('%', #{introduce}, '%')
-            </if>
+                <choose>
 
-            <if test="tags != null and tags != ''">
-                and concat(':',community_tags, ':') like concat('%:', #{tags}, ':%')
-            </if>
+                    <when test="filterType == 'all'">
+                        and community_name like concat('%', #{text}, '%') or
+                        community_introduce like concat('%', #{text}, '%') or
+                        concat(':',community_tags, ':') like concat('%:', #{text}, ':%')
+                    </when>
+
+                    <when test="filterType == 'all' and text == '' or text == null">
+                        and 1=1;
+                    </when>
+
+                    <when test="filterType == 'title'">
+                        and community_name like concat('%', #{text}, '%')
+                    </when>
+
+                    <when test="filterType == 'intro'">
+                        and community_introduce like concat('%', #{text}, '%')
+                    </when>
+
+                    <when test="filterType == 'tag'">
+                        and concat(':',community_tags, ':') like concat('%:', #{text}, ':%')
+                    </when>
+
+                </choose>
+
         </where>
     </select>
 </mapper>
