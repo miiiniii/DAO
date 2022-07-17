@@ -19,15 +19,12 @@ class ExploreServiceTest {
     @Test
     void searchTest() {
         CommunitySearchCond query = CommunitySearchCond.builder()
-                .name("홍대")
+                .filterType("tags")
+                .text("부동산")
                 .build();
         List<ExploreReadUseCase.FindCommunityBannerResult> communityAllWithFilter = exploreService.getCommunityAllWithFilter(query);
 
-        CommunitySearchCond queryTags = CommunitySearchCond.builder()
-                .tags("부동산")
-                .build();
-        List<ExploreReadUseCase.FindCommunityBannerResult> communityAllWithTags = exploreService.getCommunityAllWithFilter(queryTags);
-        System.out.println("communityAllWithTags = " + communityAllWithTags);
+        System.out.println("communityAllWithTags = " + communityAllWithFilter);
 
 
     }

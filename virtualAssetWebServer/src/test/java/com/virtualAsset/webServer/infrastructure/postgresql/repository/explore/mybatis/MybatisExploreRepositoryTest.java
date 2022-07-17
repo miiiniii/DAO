@@ -26,10 +26,12 @@ class MybatisExploreRepositoryTest {
 
 
         CommunitySearchCond cond1 = CommunitySearchCond.builder()
-                .name("투")
+                .filterType("title")
+                .text("투")
                 .build();
         CommunitySearchCond cond2 = CommunitySearchCond.builder()
-                .name("유찾모")
+                .filterType("title")
+                .text("유찾모")
                 .build();
 
         List<CommunityBannerEntity> result = communityRepository.findAll(cond1);
