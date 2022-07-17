@@ -8,6 +8,7 @@ import Contract_white from "../Icons/Contract_white.png";
 import Close_white from "../Icons/Close_white.png";
 import LoadingSpinner from './loadingSpinner';
 import { Icon_Search } from './cssIcons';
+import { useCallback } from 'react';
 
 /**
  * 탐색탭 컴포넌트
@@ -24,13 +25,10 @@ export default function Explore(props) {
 
     /*검색 키워드 리스트*/
     const [keyword, setKeyword] = useState({
-        title : '',
-        tag : '',
-        intro : ''
+        text: '',
+        filterType: 'all'
     });
 
-    /* 어떤 필터를 선택했는지 담는 변수*/
-    const [selectedFilter, setSelectedFilter] = useState('');
 
     /*키워드로 검색된 결과를 저장하는 리스트 */
     const [result, setResult] = useState(null);
@@ -68,30 +66,30 @@ export default function Explore(props) {
                 setResult(data);
                 setIsLoaded(true);
             });
-            setKeyword({
-                title : '',
-                tag : '',
-                intro : ''
-            })
         }
     }
 
     //탐색바가 확장되면 하단에 나오는 축소버튼의 기능 함수.
-    const closeClick = () => {
+    const closeClick = useCallback(() => {
         if (sBarExt) setSBarExt(false);
-    }
+    }, [sBarExt]);
+
 
     const onFilterSelected = (e) => {    
-        setSelectedFilter(e.target.value);
-    }
-
-    const onKeywordInput = (e) => {
-        console.log('filter : ' + selectedFilter);
         setKeyword({
             ...keyword,
-            [selectedFilter] : e.target.value
+            filterType: e.target.value
         });
     }
+
+    const onKeywordInput = useCallback((e) => {
+        setKeyword({
+            ...keyword,
+            text : e.target.value
+        });
+    }, [keyword]);
+
+    
 
     return (
         <>
