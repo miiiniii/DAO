@@ -2,15 +2,15 @@ import axios from 'axios';
 import TEST_IP from './setTestIp';
 export default function searchAxios(keywords, callback) {
   
-  const {title, tag, intro} = keywords;
+  const {text, filterType} = keywords;
+  console.log('sending keywords',keywords);
   axios(
     {
       url: '/api/search',
       method: 'get',
       params: {
-        name : title,
-        tags : tag,
-        introduce : intro
+        text: text,
+        filterType: filterType
       },
 
       /**
@@ -24,6 +24,7 @@ export default function searchAxios(keywords, callback) {
       withCredentials: true,
     }
   ).then(function (response) {
+    console.log('response: ', response);
     callback(response.data);
   });
 }
