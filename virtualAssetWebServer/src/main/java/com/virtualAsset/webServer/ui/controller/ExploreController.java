@@ -26,13 +26,12 @@ public class ExploreController {
     private final ExploreService exploreService;
 
     @GetMapping("/search")
-    public ResponseEntity<ApiResponseView<List<CommunityBannerView>>> getCommunityBanner(@RequestParam(value = "name", required = false) String name
-            , @RequestParam(value = "introduce", required = false) String introduce, @RequestParam(value = "tags", required = false) String tags){
+    public ResponseEntity<ApiResponseView<List<CommunityBannerView>>> getCommunityBanner(@RequestParam(value = "text", required = false) String text,
+                                                                                         @RequestParam(value = "filterType") String filterType){
 
         CommunitySearchCond query = CommunitySearchCond.builder()
-                .name(name)
-                .introduce(introduce)
-                .tags(tags)
+                .text(text)
+                .filterType(filterType)
                 .build();
 
         List<ExploreReadUseCase.FindCommunityBannerResult> results = exploreService.getCommunityAllWithFilter(query);
