@@ -8,9 +8,7 @@ import lombok.Data;
 @Builder
 public class CommunitySearchCond {
 
-
-    private final String name;
-    private final String tags;
-    private final String introduce;
+    private final String text;
+    private final String filterType;
 
 }
