@@ -7,18 +7,21 @@ server:
 #database config
 spring:
   datasource:
-    sql-script-encoding: utf-8
-    initialization-mode: always
-    platform: postgres
-    driver-class-name: org.postgresql.Driver
-    jdbc-url: jdbc:postgresql://223.194.70.105:22822/dao
-    username: admin
-    password: wowsan808@!@#$
+    hikari:
+      driver-class-name: org.postgresql.Driver
+      username: admin
+      password: wowsan808@!@#$
+      jdbc-url: jdbc:postgresql://223.194.70.105:22822/dao
   profiles:
 # 개발환경
     active: dev
+  sql:
+    init:
+      encoding: utf-8
+      mode: always
+      platform: postgres
 # 배포환경
-#     active: prod    
+#     active: prod   
 
 
 mybatis:

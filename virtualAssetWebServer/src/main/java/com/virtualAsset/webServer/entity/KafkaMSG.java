@@ -2,28 +2,16 @@ package com.virtualAsset.webServer.entity;
 
 import java.io.Serializable;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Builder
+@Data
 public class KafkaMSG implements Serializable {
 	private String author;
 	private String content;
 	private String timestamp;
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getTimestamp() {
-		return timestamp;
-	}
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
-	}
+	
 	@Override
 	public String toString() {
 		return "Message{" +
@@ -32,10 +20,15 @@ public class KafkaMSG implements Serializable {
                 ", timestamp='" + timestamp + '\'' +
                 '}';
 	}
-	public KafkaMSG(String author, String content) {
+	public KafkaMSG() {
+		
+	}
+	
+	public KafkaMSG(String author, String content, String timestamp) {
 		super();
 		this.author = author;
 		this.content = content;
+		this.timestamp=timestamp;
 	}
-
+	
 }

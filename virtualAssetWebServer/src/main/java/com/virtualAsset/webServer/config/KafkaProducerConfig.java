@@ -3,6 +3,8 @@ package com.virtualAsset.webServer.config;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.IntegerSerializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,22 +20,24 @@ import com.virtualAsset.webServer.entity.KafkaMSG;
 @EnableKafka
 @Configuration
 public class KafkaProducerConfig {
+	
+	@Bean
+	public KafkaTemplate<String, KafkaMSG> kafkaTemplate() {
+		return new KafkaTemplate<>(producerFactory());
+	}
+	
 	@Bean
 	public ProducerFactory<String, KafkaMSG> producerFactory(){
-		return new DefaultKafkaProducerFactory<>(producerConfigurations());
+		return new DefaultKafkaProducerFactory<>(producerConfigurations(), new StringSerializer(), new JsonSerializer<>());
 	}
 	
 	@Bean
 	public Map<String, Object> producerConfigurations(){
 		Map<String, Object> configurations = new HashMap<>();
-        configurations.put(org.apache.kafka.clients.producer.ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConstants.KAFKA_BROKER);
-        configurations.put(org.apache.kafka.clients.producer.ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-        configurations.put(org.apache.kafka.clients.producer.ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
+        configurations.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KafkaConstants.KAFKA_BROKER);
+        configurations.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
+        configurations.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
         return configurations;
 	}
 	
-    @Bean
-    public KafkaTemplate<String, KafkaMSG> kafkaTemplate() {
-        return new KafkaTemplate<>(producerFactory());
-    }
 }

@@ -25,12 +25,10 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @RequestMapping(value="/api/kafka")
 public class KafkaController {
-	
-	private final Logger log = LoggerFactory.getLogger(this.getClass());
     
     @Autowired
     private KafkaTemplate<String, KafkaMSG> kafkaTemplate;
-
+    
     @PostMapping(value = "/publish")
     public void sendMessage(@RequestBody KafkaMSG message) {
         log.info("Produce message : " + message.toString());
@@ -41,10 +39,11 @@ public class KafkaController {
             throw new RuntimeException(e);
         }
     }
-
+    
     @MessageMapping("/sendMessage")
     @SendTo("/topic/group")
     public KafkaMSG broadcastGroupMessage(@Payload KafkaMSG message) {
         return message;
     }
+    
 }
