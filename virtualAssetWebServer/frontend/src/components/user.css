@@ -38,11 +38,29 @@
   transition: 0.2s;
 }
 
+.userNameLogoff {
+  position: relative;
+  text-align: left;
+  font-size: larger;
+  padding: 15px 0 15px 15px;
+  line-height: 20px;
+  transition: 0.2s;
+}
+
 .userID {
   color: #999897;
   position: relative;
   text-align: flex-end;
   font-size: larger;
+  padding: 15px 15px 15px 15px;
+  line-height: 20px;
+  transition: 0.2s;
+}
+
+.userIDLogoff {
+  color: #464b52;
+  position: relative;
+  text-align: flex-end;
   padding: 15px 15px 15px 15px;
   line-height: 20px;
   transition: 0.2s;
@@ -81,11 +99,6 @@
   font-family: Eland;
 }
 
-.signinBtnWrapper {
-  position: relative;
-  top: 55%;
-  padding: 15px 0;
-}
 .signinBtn {
   font-weight: 600;
   color: #738cd9;
@@ -94,6 +107,17 @@
 
 .signoutBtnWrapper {
   padding: 10px 5px 0 20px;
+  text-align: left;
+  margin: 0;
+}
+
+.signinText{
+  font-weight: 600;
+  color: #738cd9;
+}
+
+.signinTextWrapper{
+  padding: 5px 5px 0 20px;
   text-align: left;
   margin: 0;
 }
@@ -116,9 +140,18 @@
   font-weight: 900;
 }
 
+
 .subCmt {
   padding: 5px 5px 0 20px;
   text-align: left;
   margin: 0;
   font-size: small;
+}
+
+.subCmtLogoff {
+  padding: 5px 5px 0 20px;
+  text-align: left;
+  margin: 0;
+  font-size: small;
+  color: #464b52;
 }
