@@ -1,9 +1,10 @@
 
-import { Icon_Plus } from "./cssIcons";
+import { IconPlus } from "./cssIcons";
 import { useEffect, useState } from "react";
 import SocketJsClient from "react-stomp";
 import TEST_IP from "../scripts/setTestIp";
 import chatAPI from "../scripts/chatAxios";
+import customAxios from "../scripts/customAxios";
 
 function ClubChat(props) {
 
@@ -13,8 +14,8 @@ function ClubChat(props) {
         console.log("Message Received ", msg);
         setChatMessages(chatMessasges.concat(msg));
     }
-    const handleMessageSubmit = (msg) => {
-        chatAPI.sendMessage(props.auth.userInfo.nick, msg,(res)=>{
+    const handleMessageSubmit = (msg, contentType) => {
+        chatAPI.sendMessage(props.auth.userInfo.nick, contentType, msg,(res)=>{
             console.log("sent",res);
         });
     }
@@ -22,6 +23,13 @@ function ClubChat(props) {
     useEffect(()=>{
         console.log("chatList",chatMessasges);
     },[chatMessasges])
+
+    useEffect(()=>{
+        customAxios("/getMsgs",(res)=>{
+            console.log("get past messages",res);
+            setChatMessages(res.concat(chatMessasges));
+        })
+    },[props.clubPage.veiwClass])
 
     const formattingTimestamp = (timestamp) => {
         const date = new Date(timestamp);
@@ -36,7 +44,7 @@ function ClubChat(props) {
             let txt= document.getElementById("chatSubmit").value;
             if (txt===""||txt==="\n")return false;
             document.getElementById("chatSubmit").value="";
-            handleMessageSubmit(txt);
+            handleMessageSubmit(txt, "msg");
             return false;
         }
     }
@@ -104,8 +112,6 @@ function ClubChat(props) {
                 <SocketJsClient
                     url={`http://${TEST_IP}:8080/api/my-chat/`}
                     topics={["/topic/group"]}
-                    onConnect={console.log("connected!")}
-                    onDisconnect={console.log("disconnected!")}
                     onMessage={(msg) => onMessageReceived(msg)}
                     debug={true}
                 />
@@ -117,8 +123,9 @@ function ClubChat(props) {
                             role="직책"
                             userName={c.author}
                             sendTime={formattingTimestamp(c.timestamp)}
-                            isEditted={false}
-                            contents={c.content} />
+                            isEdited={c.isEdited}
+                            contents={c.content}
+                            contentType={c.contentType} />
                     ))}
 
                 </div>
@@ -134,7 +141,7 @@ function ClubChat(props) {
                     onTransitionEnd={autoSizing}
                     onKeyDown={onKeyDown}>
                 </textarea>
-                <div className="circleBtn" onClick={() => setChatFocus(!chatFocus)}><Icon_Plus size='100%' minus={chatFocus} /></div>
+                <div className="circleBtn" onClick={() => setChatFocus(!chatFocus)}><IconPlus size='100%' minus={chatFocus} /></div>
                 <div className="circleBtn" style={chatFocus ? { bottom: 0, left: '180px' } : { bottom: '-45px', left: '180px' }}></div>
                 <div className="circleBtn" style={chatFocus ? { bottom: 0, left: '135px' } : { bottom: '-45px', left: '135px' }}></div>
                 <div className="circleBtn" style={chatFocus ? { bottom: 0, left: '90px' } : { bottom: '-45px', left: '90px' }}></div>

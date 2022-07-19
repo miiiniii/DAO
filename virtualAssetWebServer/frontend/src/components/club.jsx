@@ -80,7 +80,7 @@ export default function Club(props) {
             >
                 <ClubChannels clubView={clubView} />
                 <ClubInfos clubView={clubView} setClubSettingView={setClubSettingView} />
-                <ClubChat clubView={clubView} auth={props.auth}
+                <ClubChat clubView={clubView} clubPage={props.clubPage} auth={props.auth}
                     onClick={() => { setClubView({ magX: 0, mode: '' }) }} />
             </div>
             {clubSettingView?(

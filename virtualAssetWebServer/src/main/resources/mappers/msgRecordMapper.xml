@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.virtualAsset.webServer.dataAccessObject.MsgRecordDAO">
+
+	<resultMap id="recordMsg" type="com.virtualAsset.webServer.entity.KafkaMSG">
+		<result column="author" property="author" jdbcType="VARCHAR" javaType="String"/>
+		<result column="content_type" property="contentType" jdbcType="VARCHAR" javaType="String"/>
+		<result column="content" property="content" jdbcType="VARCHAR" javaType="String"/>
+		<result column="timestamp" property="timestamp" jdbcType="VARCHAR" javaType="String"/>
+		<result column="topic" property="topic" jdbcType="VARCHAR" javaType="String"/>
+		<result column="is_edited" property="isEdited" jdbcType="BOOLEAN" javaType="boolean"/>
+	</resultMap>
+	<select id="selectAllMessages" resultMap="recordMsg">
+        select
+            "author",
+            "content_type",
+            "content",
+            "timestamp",
+            "topic",
+            "is_edited"
+        from
+            "chat_msgs"
+    </select>
+    <insert id="insertMessage" parameterType="com.virtualAsset.webServer.entity.KafkaMSG">
+    	insert into chat_msgs(author, content_type, content, timestamp, topic, is_edited)
+    	values(
+    		#{author},
+    		#{contentType},
+    		#{content},
+    		#{timestamp},
+    		#{topic},
+    		#{isEdited}
+    	)
+    </insert>
+</mapper>

@@ -6,9 +6,8 @@ import Logoff from './logoff';
 import No_contents_blue from "../Icons/No_contents_blue.png";
 import User_white from "../Icons/User_white.png";
 import Contract_white from "../Icons/Contract_white.png";
-import Search_white from "../Icons/Search_white.png";
 import LoadingSpinner from './loadingSpinner';
-import {Icon_Search} from './cssIcons';
+import {IconSearch} from './cssIcons';
 
 /**
  * 홈 탭 컴포넌트
@@ -120,7 +119,7 @@ function HomeLogon(props) {
             <div className="myClubList">
                 <div className={props.searchState.class}>
                     <input className={props.searchState.inputClass} type="text" placeholder="검색어를 입력하세요." onChange={props.inputChange} />
-                    <Icon_Search size='34px' onClick={props.searchClick} margin='7.5px' float='right'/>
+                    <IconSearch size='34px' onClick={props.searchClick} margin='7.5px' float='right'/>
                 </div>
                 <br/>
                 <h2>가입한 커뮤니티</h2>
@@ -129,8 +128,8 @@ function HomeLogon(props) {
                     <div className='myClubBanner' key={contents + index} onClick={props.showClubPage}>
                         <p className='smallInfo right'>최근 거래 : {contents.recentActivities} 전</p>
                         <p className='bannerTitle'>{contents.name}</p>
-                        <span className='smallInfo'><img className='smallIcon' src={Contract_white} /> {contents.concludedContractAmount}/{contents.totalContractAmount}</span>
-                        <span className='smallInfo right'>{contents.memberAmount} <img className='smallIcon' src={User_white} /></span>
+                        <span className='smallInfo'><img className='smallIcon' src={Contract_white} alt=""/> {contents.concludedContractAmount}/{contents.totalContractAmount}</span>
+                        <span className='smallInfo right'>{contents.memberAmount} <img className='smallIcon' src={User_white} alt="" /></span>
                     </div>
                 ))}
             </div>

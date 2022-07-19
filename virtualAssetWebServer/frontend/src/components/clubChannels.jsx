@@ -32,7 +32,7 @@ function ClubChannels(props) {
 
 function ChannelList(props) {
     return (
-        <li className={(props.isSelected || false ? 'currChannel ' : '') + 'channelBanner'} style={(props.privateMent != null) ? { opacity: '0.5' } : {}}>{(props.icon != null) ? (<img src={props.icon} />) : ''}{props.channelName}{props.privateMent != null ? (<span style={{ fontSize: 'small' }}>&nbsp;[{props.privateMent}]</span>) : ''}{props.tag != null ? (<span style={{ fontSize: 'small' }}>&nbsp;#{props.tag}</span>) : ''}{props.members != null ? (<span style={{ float: 'right', fontSize: '0.8em' }}>{props.members}<div className="userIcon"><div></div><div></div></div></span>) : ''}</li>
+        <li className={(props.isSelected || false ? 'currChannel ' : '') + 'channelBanner'} style={(props.privateMent != null) ? { opacity: '0.5' } : {}}>{(props.icon != null) ? (<img src={props.icon} alt="img"/>) : ''}{props.channelName}{props.privateMent != null ? (<span style={{ fontSize: 'small' }}>&nbsp;[{props.privateMent}]</span>) : ''}{props.tag != null ? (<span style={{ fontSize: 'small' }}>&nbsp;#{props.tag}</span>) : ''}{props.members != null ? (<span style={{ float: 'right', fontSize: '0.8em' }}>{props.members}<div className="userIcon"><div></div><div></div></div></span>) : ''}</li>
     )
 }
 

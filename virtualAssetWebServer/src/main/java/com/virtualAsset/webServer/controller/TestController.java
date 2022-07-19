@@ -21,16 +21,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.virtualAsset.webServer.commons.KafkaConstants;
 import com.virtualAsset.webServer.commons.StatusCodes;
 import com.virtualAsset.webServer.dataAccessObject.AuthDAO;
 import com.virtualAsset.webServer.dataAccessObject.CommunityBannerDAO;
+import com.virtualAsset.webServer.dataAccessObject.MsgRecordDAO;
 import com.virtualAsset.webServer.entity.AssetDetail;
 import com.virtualAsset.webServer.entity.AssetInfo;
 import com.virtualAsset.webServer.entity.AuthEntity;
 import com.virtualAsset.webServer.entity.BankAccount;
 import com.virtualAsset.webServer.entity.CommunityBannerEntity;
-import com.virtualAsset.webServer.jsonObject.AuthValJSon;
-import com.virtualAsset.webServer.jsonObject.DefaultJSonBody;
+import com.virtualAsset.webServer.entity.KafkaMSG;
+import com.virtualAsset.webServer.responseBody.AuthValResponseBody;
+import com.virtualAsset.webServer.responseBody.DefaultResponseBody;
 
 import net.minidev.json.JSONObject;
 
@@ -110,16 +113,23 @@ public class TestController {
 	}
 
 	@Autowired
+	MsgRecordDAO msgRecordDAO;
+	@PostMapping("/getMsgs")
+	public List<KafkaMSG> getMsgs(HttpServletRequest request){
+		return msgRecordDAO.selectAllMessages(KafkaConstants.KAFKA_TOPIC);
+	}
+	
+	@Autowired
 	private AuthDAO authDAO;
 
 	@PostMapping("/auth")
-	public DefaultJSonBody userAuth(@RequestBody JSONObject authVal, HttpServletRequest request) {
+	public DefaultResponseBody userAuth(@RequestBody JSONObject authVal, HttpServletRequest request) {
 		String userPw = authDAO.getPassword(authVal.getAsString("id"));
 		if (userPw != null && userPw.equals(authVal.getAsString("pw"))) {
 			AuthEntity authEntity = authDAO.getUserInfo(authVal.getAsString("id"));
-			return new AuthValJSon(StatusCodes.AUTH_SUCCESS, authEntity);
+			return new AuthValResponseBody(StatusCodes.AUTH_SUCCESS, authEntity);
 		}
-		return new DefaultJSonBody(StatusCodes.FAIL_AUTHENTICATION);
+		return new DefaultResponseBody(StatusCodes.FAIL_AUTHENTICATION);
 	}
 
 	@PostMapping("/bankAccount")
