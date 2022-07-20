@@ -3,6 +3,7 @@ import "./club.css";
 import ClubChannels from "./clubChannels";
 import ClubChat from "./clubChats";
 import ClubInfos from "./clubInfos";
+import ContractForm from "./contractForm"
 
 export default function Club(props) {
     const [touchStart, setTouchStart] = useState({ coord: null, timeStamp: null });
