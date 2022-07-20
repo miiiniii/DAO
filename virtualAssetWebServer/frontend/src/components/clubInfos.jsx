@@ -40,7 +40,7 @@ function ClubInfos(props) {
         </div>
         <div className="clubServiceWrapper" >
             <IconSearch size='11vw' margin='2vw' />
-            <IconContract size='11vw' margin='2vw' />
+            <IconContract size='11vw' margin='2vw' onClick={()=>{props.setWriteContract(true)}}/>
             <IconBoard size='11vw' margin='2vw' />
             <IconSettings size='11vw' margin='2vw' onClick={()=>{props.setClubSettingView(true)}}/>
         </div>
