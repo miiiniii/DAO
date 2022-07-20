@@ -15,10 +15,10 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		/*안성찬 로컬*/final String ip= "211.193.12.31";
+		//*안성찬 로컬*/final String ip= "211.193.12.31";
 		//*안성찬 회사*/final String ip= "192.168.30.14";
 		//*권예빈 로컬*/final String ip= "221.139.151.211";
-		
+		/*지상은 로컬*/final String ip="172.30.1.34";
 		//*양식*/final String ip= "127.0.0.1";
 		
 		
