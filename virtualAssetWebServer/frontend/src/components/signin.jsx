@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import NaverLogin, { KakaoLogin } from "./externalLogin";
 import loginAxios from "../scripts/loginAxios";
 
@@ -39,10 +39,25 @@ export default function Signin(props) {
 					<section className="login-section-wrap">
 						<section className="login-input-section-wrap">
 							<div className="login-input-wrap">
-								<input id="loginId" placeholder="아이디" type="text"></input>
+								<input id="loginId" 
+									placeholder="아이디" 
+									type="text"
+									onKeyDown={(e)=>{
+										if(e.key==="Enter"){
+											document.getElementById("loginPw").focus();
+										}
+									}}/>
 							</div>
 							<div className="login-input-wrap password-wrap">
-								<input id="loginPw" placeholder="비밀번호" type="password"></input>
+								<input id="loginPw" 
+								placeholder="비밀번호" 
+								type="password"
+								onKeyDown={(e)=>{
+									if(e.key==="Enter"){
+										authSubmit();
+									}
+								}}
+								onSubmit={authSubmit}/>
 							</div>
 							<div className="login-stay-sign-in">
 								<div className="round">

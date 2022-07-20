@@ -5,31 +5,148 @@ import SocketJsClient from "react-stomp";
 import TEST_IP from "../scripts/setTestIp";
 import chatAPI from "../scripts/chatAxios";
 import customAxios from "../scripts/customAxios";
+import customAxiosData from "../scripts/customAxiosData";
+import { useRef } from "react";
+import LoadingSpinner from "./loadingSpinner";
 
 function ClubChat(props) {
+    //chat view 스크롤
+
 
     //메세지 송수신
     const [chatMessasges, setChatMessages] = useState([]);
+    const [noMoreMsg, setNoMoreMsg] = useState(false);
+    const msgLoading = useRef(false);
+
     const onMessageReceived = (msg) => {
         console.log("Message Received ", msg);
+        if(msg.author===props.auth.userInfo.nick){
+            msg.isMine=true;
+        }
+        else{
+            msg.isMine=false;
+        }
         setChatMessages(chatMessasges.concat(msg));
     }
     const handleMessageSubmit = (msg, contentType) => {
-        chatAPI.sendMessage(props.auth.userInfo.nick, contentType, msg,(res)=>{
-            console.log("sent",res);
+        chatAPI.sendMessage(props.auth.userInfo.nick, contentType, msg, (res) => {
+            console.log("sent", res);
         });
     }
 
-    useEffect(()=>{
-        console.log("chatList",chatMessasges);
-    },[chatMessasges])
-
-    useEffect(()=>{
-        customAxios("/getMsgs",(res)=>{
-            console.log("get past messages",res);
-            setChatMessages(res.concat(chatMessasges));
+    const addDateSeparation = (chatList) => {
+        var temps=document.getElementsByClassName("dateSeparator");
+        for(var i=0; i <temps.length; i++){
+            temps[i].remove();
+        }
+        var msgDate = null;
+        chatList.map((c, i) => {
+            let tempDate = new Date(c.timestamp).toLocaleDateString()
+            //map debug
+            //console.log(`dateSeparation map ${i}: msgDate=${msgDate}, tempDate=${tempDate}, separation=${msgDate!==tempDate}`)
+            if (msgDate === null) {
+                msgDate = tempDate;
+                return;
+            }
+            if (msgDate !== tempDate) {
+                document.getElementsByClassName("chat")[i]
+                .insertAdjacentHTML("beforebegin", `<div class="dateSeparator">${msgDate}</div>`);
+            }
+            msgDate = tempDate;
+            return;
         })
-    },[props.clubPage.veiwClass])
+        if (msgDate !== new Date().toLocaleDateString()) {
+            document.getElementsByClassName("chat")[chatList.length-1]
+            .insertAdjacentHTML("afterend", `<div class="dateSeparator">${msgDate}</div>`);
+        }
+    }
+
+    const [scrollLock, setScrollLock] = useState(true);
+    const scrollBottom = () => {
+        let chatView = document.getElementsByClassName("chatView")[0];
+        chatView.scrollTop = chatView.scrollHeight;
+    }
+    useEffect(() => {
+        console.log("chatList", chatMessasges.length);
+        if (scrollLock) {
+            scrollBottom();
+        }
+        if(chatMessasges.length!==0)setTimeout(()=>addDateSeparation(chatMessasges),10);
+    }, [chatMessasges])
+
+    const getMoreMessages = (index) => {
+        customAxiosData("/getMsgsFrom", { index: index }, (res) => {
+            if (res.length !== 0) {
+                res=res.map((c,i)=>{
+                    if(c.author===props.auth.userInfo.nick){
+                        c.isMine=true;
+                    }
+                    else{
+                        c.isMine=false;
+                    }
+                    return c;
+                })
+                console.log(`get past messages from ${index} to ${res[0].msgId}`, res);
+                setChatMessages(res.concat(chatMessasges));
+                scrollPosition(res.length);
+            }
+            else {
+                setNoMoreMsg(true);
+            }
+            msgLoading.current = false;
+        })
+    }
+
+    useEffect(() => {
+        console.log("props.clubPage.viewClass === '' =>", props.clubPage.viewClass === '')
+        if (props.clubPage.viewClass === '') {
+            if (chatMessasges.length === 0) {
+                customAxios("/getMsgsLast", (res) => {
+                    res=res.map((c,i)=>{
+                        if(c.author===props.auth.userInfo.nick){
+                            c.isMine=true;
+                        }
+                        else{
+                            c.isMine=false;
+                        }
+                        return c;
+                    })
+                    console.log("get past messages", res);
+                    setChatMessages(res.concat(chatMessasges));
+                    scrollPosition(res.length);
+                    if (res.length < 30) setNoMoreMsg(true);
+                })
+            }
+        } else {
+            if (chatMessasges.length !== 0) {
+                console.log("del messages");
+                setNoMoreMsg(false);
+                setChatMessages([]);
+            }
+        }
+    }, [props.clubPage.viewClass])
+
+    const scrollPosition = (length) => {
+        console.log("scrollPosition");
+        let addedHeight = 0;
+        Array.from(document.getElementsByClassName("chat")).map((c, i) => {
+            if (i >= length) return false;
+            addedHeight = addedHeight + c.clientHeight;
+            return;
+        });
+        document.getElementsByClassName("chatView")[0].scrollTop += addedHeight;
+    }
+
+    const chatScrollHandle = (e) => {
+        if (e.target.clientHeight + e.target.scrollTop === e.target.scrollHeight) setScrollLock(true);
+        else {
+            if (scrollLock) setScrollLock(false);
+        }
+        if (props.clubPage.viewClass === '' && !noMoreMsg && !msgLoading.current && e.target.scrollTop <= 500) {
+            msgLoading.current = true;
+            getMoreMessages(chatMessasges[0].msgId);
+        }
+    }
 
     const formattingTimestamp = (timestamp) => {
         const date = new Date(timestamp);
@@ -41,9 +158,9 @@ function ClubChat(props) {
     const onKeyDown = (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
-            let txt= document.getElementById("chatSubmit").value;
-            if (txt===""||txt==="\n")return false;
-            document.getElementById("chatSubmit").value="";
+            let txt = document.getElementById("chatSubmit").value;
+            if (txt === "" || txt === "\n") return false;
+            document.getElementById("chatSubmit").value = "";
             handleMessageSubmit(txt, "msg");
             return false;
         }
@@ -108,13 +225,18 @@ function ClubChat(props) {
             } : {}}
             onClick={props.onClick}>
             <div className="chatNavBar">@휴게실<div className="channel"></div><div className="info"></div></div>
-            <div className="chatView" style={{ height: 'calc(100% - ' + (33 + inputBarHeight) + 'px)' }}>
+            <div className="chatView"
+                style={{ height: 'calc(100% - ' + (33 + inputBarHeight) + 'px)' }}
+                onScroll={chatScrollHandle}
+                onscrollStart={chatScrollHandle}>
+
                 <SocketJsClient
                     url={`http://${TEST_IP}:8080/api/my-chat/`}
                     topics={["/topic/group"]}
                     onMessage={(msg) => onMessageReceived(msg)}
                     debug={true}
                 />
+                <MsgLoader noMoreMsg={noMoreMsg} />
                 <div className="chatWrapper">
                     {chatMessasges.map((c, i) => (
                         <Chat
@@ -125,7 +247,8 @@ function ClubChat(props) {
                             sendTime={formattingTimestamp(c.timestamp)}
                             isEdited={c.isEdited}
                             contents={c.content}
-                            contentType={c.contentType} />
+                            contentType={c.contentType}
+                            isMine={c.isMine} />
                     ))}
 
                 </div>
@@ -156,17 +279,46 @@ function ClubChat(props) {
 
 
 function Chat(props) {
+    if(props.isMine){
+        return (
+            <div className="chat">
+                <div>
+                    <div className="chatUserPic" style={{ backgroundImage: props.userPic || "none" }}>{props.userPic || 'DAO'}</div>
+                    <div className="chatContents">
+                        <div className="chatSenderRole">[{props.role}]&nbsp;</div><p className="chatSender">{props.userName}</p><p className={"sendTime" + (props.isEdited ? ' edited' : '')}>{props.sendTime}</p>
+                        <pre>{props.contents}</pre>
+                    </div>
+                </div>
+            </div>
+        )
+    }
     return (
         <div className="chat">
             <div>
                 <div className="chatUserPic" style={{ backgroundImage: props.userPic || "none" }}>{props.userPic || 'DAO'}</div>
                 <div className="chatContents">
-                    <div className="chatSenderRole">[{props.role}]&nbsp;</div><p className="chatSender">{props.userName}</p><p className={"sendTime" + (props.isEditted ? ' editted' : '')}>{props.sendTime}</p>
+                    <div className="chatSenderRole">[{props.role}]&nbsp;</div><p className="chatSender">{props.userName}</p><p className={"sendTime" + (props.isEdited ? ' edited' : '')}>{props.sendTime}</p>
                     <pre>{props.contents}</pre>
                 </div>
             </div>
         </div>
     )
 }
+
+function MsgLoader(props) {
+    if (props.noMoreMsg) {
+        return (
+            <div className="msgLoader">
+                이전 메세지가 없습니다.
+            </div>
+        )
+    }
+    return (
+        <div className="msgLoader">
+            <LoadingSpinner scale="0.3"></LoadingSpinner>
+        </div>
+    )
+}
+
 
 export default ClubChat;

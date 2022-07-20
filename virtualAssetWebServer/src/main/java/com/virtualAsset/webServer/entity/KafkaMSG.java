@@ -9,6 +9,7 @@ import lombok.Data;
 @Data
 public class KafkaMSG implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private Long msgId;
 	private String author;
 	@Builder.Default
 	private String contentType="msg";
@@ -30,8 +31,9 @@ public class KafkaMSG implements Serializable {
 		
 	}
 	
-	public KafkaMSG(String author, String contentType, String content, String timestamp,String topic, boolean isEdited) {
+	public KafkaMSG(Long msgId, String author, String contentType, String content, String timestamp,String topic, boolean isEdited) {
 		super();
+		this.msgId=msgId;
 		this.author = author;
 		this.contentType=contentType;
 		this.content = content;

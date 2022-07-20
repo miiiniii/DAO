@@ -180,6 +180,7 @@
     padding: 0 8px;
     transition: height .2s;
 }
+
 .circleBtn{
     height: 35px;
     width: 35px;
@@ -218,8 +219,25 @@
 }
 .chat{
     text-align: left;
-    margin: 32px 0;
+    padding: 16px 0;
 }
+
+.dateSeparator{
+    display: inline-block;
+    border-radius: 50px;
+    width: 50%;
+    padding: 8px;
+    background-color: #738dd93d;
+    margin: 20px 0;
+}
+
+.msgLoader{
+    height: 100px;
+    line-height: 100px;
+    font-weight: 600;
+    font-size: large;
+}
+
 .chatUserPic{
     display: inline-block;
     vertical-align: top;
@@ -250,7 +268,7 @@
     font-weight: bold;
     margin-right: 8px;
 }
-.editted::after{
+.edited::after{
     font-weight: bold;
     content: ' (수정)';
 }

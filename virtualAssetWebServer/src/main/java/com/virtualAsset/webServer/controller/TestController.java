@@ -35,21 +35,22 @@ import com.virtualAsset.webServer.entity.KafkaMSG;
 import com.virtualAsset.webServer.responseBody.AuthValResponseBody;
 import com.virtualAsset.webServer.responseBody.DefaultResponseBody;
 
+import lombok.extern.slf4j.Slf4j;
 import net.minidev.json.JSONObject;
 
 /*데이터 베이스 바인드 하기전 임시로 더미데이터를 보내주는 컨트롤러*/
+@Slf4j
 @RestController
 @CrossOrigin
 @RequestMapping("/api")
 public class TestController {
 	private ObjectMapper mapper = new ObjectMapper();
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@PostMapping("/assetDetail")
 	public String assetDetail(@RequestBody HashMap<String, Object> requsetHashMap)
 			throws JSONException, JsonProcessingException {
 
-		logger.info(mapper.writeValueAsString(requsetHashMap));
+		log.info(mapper.writeValueAsString(requsetHashMap));
 
 		HashMap<String, AssetDetail> dataHashMap = new HashMap<String, AssetDetail>();
 
@@ -118,6 +119,17 @@ public class TestController {
 	public List<KafkaMSG> getMsgs(HttpServletRequest request){
 		return msgRecordDAO.selectAllMessages(KafkaConstants.KAFKA_TOPIC);
 	}
+	@PostMapping("/getMsgsLast")
+	public List<KafkaMSG> getMsgsLast(HttpServletRequest request){
+		return msgRecordDAO.selectLast30Messages(KafkaConstants.KAFKA_TOPIC);
+	}
+	
+	@PostMapping("/getMsgsFrom")
+	public List<KafkaMSG> getMsgsFrom(@RequestBody JSONObject data, HttpServletRequest request){
+		log.info(data.getAsString("index"));
+		return msgRecordDAO.select30MessagesFrom(KafkaConstants.KAFKA_TOPIC, (int)data.getAsNumber("index"));
+	}
+	
 	
 	@Autowired
 	private AuthDAO authDAO;

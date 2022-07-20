@@ -14,7 +14,7 @@ spring:
       jdbc-url: jdbc:postgresql://223.194.70.105:22822/dao
   profiles:
 # 개발환경
-    active: dev
+    active: prod
   sql:
     init:
       encoding: utf-8
