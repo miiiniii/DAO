@@ -3,6 +3,7 @@ import "./club.css";
 import ClubChannels from "./clubChannels";
 import ClubChat from "./clubChats";
 import ClubInfos from "./clubInfos";
+import ContractForm from "./contractForm"
 
 export default function Club(props) {
     const [touchStart, setTouchStart] = useState({ coord: null, timeStamp: null });
@@ -10,6 +11,9 @@ export default function Club(props) {
     const [touchEnd, setTouchEnd] = useState({ coord: null, timeStamp: null });
     const [clubView, setClubView] = useState({ magX: 0, mode: '' });
     const [clubSettingView, setClubSettingView]= useState(false);
+    const [writeContract,setWriteContract]=useState(false);
+    const [contractType,setContractType]=useState();
+    const [viewContract,setViewContract]=useState(false);
     function handleTouchStart(e) {
         setTouchStart({ coord: e.targetTouches[0], timeStamp: e.timeStamp });
     }
@@ -22,8 +26,20 @@ export default function Club(props) {
             setClubSettingView(false);
             return;
         }
+        else if(writeContract){
+            setWriteContract(false);
+            setViewContract(true);
+            return;
+        }
         props.hideClubPage();
     }
+
+    useEffect(()=>{
+    // 디비에서 해당 클럽의 타입 받아와서 setContractType 으로 세팅
+    // 아래 코드는 임시로 set 하는 코드
+    // setContractType('art') // 예술품
+    setContractType('rEstate') //부동산
+    })
 
     function handleTouchMove(e) {
         if (touchState === 'none') {
@@ -79,7 +95,7 @@ export default function Club(props) {
                 onTouchEnd={handleTouchEnd}
             >
                 <ClubChannels clubView={clubView} />
-                <ClubInfos clubView={clubView} setClubSettingView={setClubSettingView} />
+                <ClubInfos clubView={clubView} setClubSettingView={setClubSettingView} setWriteContract={setWriteContract}/>
                 <ClubChat clubView={clubView} clubPage={props.clubPage} auth={props.auth}
                     onClick={() => { setClubView({ magX: 0, mode: '' }) }} />
             </div>
@@ -105,6 +121,15 @@ export default function Club(props) {
             ):(
                 <></>
             ) }
+            {writeContract?(
+                <div className="clubSettingPage">
+                     <div>
+                         <ContractForm hideWriteContract={clubBackClick} type={contractType} viewContract={viewContract}/>
+                     </div>
+                </div>
+            ):(
+                <></>
+            )}
         </div>)
     }
 

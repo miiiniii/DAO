@@ -260,3 +260,12 @@ input:focus {
   top:-120%;
   transition: 0.3s;
 }
+
+.message{
+  white-space: pre-wrap;
+  width: 70vw;
+  font-size: 16px;
+  margin-left: 10px;
+  margin-top: 7px;
+  color: #f1ede9;
+}
