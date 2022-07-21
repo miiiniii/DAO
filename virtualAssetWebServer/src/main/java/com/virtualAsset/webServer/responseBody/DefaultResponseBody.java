@@ -11,15 +11,22 @@ import lombok.Data;
 @Data
 public class DefaultResponseBody implements Serializable{
 	private static final long serialVersionUID = 1L;
-	String status;
-	int code;
-	public DefaultResponseBody(String status, int code) {
+	private String status;
+	private int code;
+	private String statusMessage;
+	public DefaultResponseBody(String status, int code, String statusMessage) {
 		this.status=status;
 		this.code=code;
+		this.statusMessage=statusMessage;
+	}
+	public DefaultResponseBody(String status, int code) {
+		this(status, code, status);
+	}
+	public DefaultResponseBody(StatusCodes statusCodes, String statusMessage) {
+		this(statusCodes.name(), statusCodes.getCode(), statusMessage);
 	}
 	public DefaultResponseBody(StatusCodes statusCodes) {
-		this.status = statusCodes.name();
-		this.code= statusCodes.getCode();
+		this(statusCodes, statusCodes.name());
 	}
 	
 	public String toString() {
@@ -28,7 +35,11 @@ public class DefaultResponseBody implements Serializable{
 			return mapper.writeValueAsString(this);
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
-			return "{\"status\":\""+StatusCodes.CLASS_TO_JSON_FAIL.name()+"\",\"code\":"+StatusCodes.CLASS_TO_JSON_FAIL.getCode() +"}";
+			return "{\"status\":\""
+					+StatusCodes.CLASS_TO_JSON_FAIL.name()
+					+"\",\"code\":"
+					+StatusCodes.CLASS_TO_JSON_FAIL.getCode() 
+					+"}";
 		}
 	}
 }

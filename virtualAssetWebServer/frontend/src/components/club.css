@@ -177,7 +177,6 @@
     overflow-y: scroll;
     clip: auto;
     word-break: break-all;
-    padding: 0 8px;
     transition: height .2s;
 }
 
@@ -219,8 +218,16 @@
 }
 .chat{
     text-align: left;
-    padding: 16px 0;
+    padding: 16px 8px;
+    border-radius: 8px;
+    background-color: #2c2f3300;
+    transition: background-color .1s;
 }
+
+.chatTouchAnimation{
+    background-color: #2c2f33;
+}
+
 
 .dateSeparator{
     display: inline-block;

@@ -13,6 +13,15 @@
 		<result column="topic" property="topic" jdbcType="VARCHAR" javaType="String"/>
 		<result column="is_edited" property="isEdited" jdbcType="BOOLEAN" javaType="boolean"/>
 	</resultMap>
+	
+	<update id="updateMessage" parameterType="com.virtualAsset.webServer.entity.KafkaMSG">
+        update
+            "content" = #{content},
+            "is_edited" = #{isEdited}
+        where 
+            "msg_id" = #{msgId}
+    </update>
+    
 	<select id="selectAllMessages" resultMap="recordMsg">
         select
         	"msg_id",

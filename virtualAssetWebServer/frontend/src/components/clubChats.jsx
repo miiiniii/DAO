@@ -8,39 +8,43 @@ import customAxios from "../scripts/customAxios";
 import customAxiosData from "../scripts/customAxiosData";
 import { useRef } from "react";
 import LoadingSpinner from "./loadingSpinner";
+import "react-contexify/dist/ReactContexify.css";
+import {
+    Menu,
+    Item,
+    Separator,
+    Submenu,
+    useContextMenu,
+    theme,
+    animation
+} from "react-contexify";
+
 
 function ClubChat(props) {
-    //chat view 스크롤
 
-
-    //메세지 송수신
+    const [chatFocus, setChatFocus] = useState(false);
+    const [inputBarHeight, setInputBarHeight] = useState(1);
     const [chatMessasges, setChatMessages] = useState([]);
+    const [scrollLock, setScrollLock] = useState(true);
     const [noMoreMsg, setNoMoreMsg] = useState(false);
     const msgLoading = useRef(false);
+    const [chatTouchEvent, setChatTouchEvent] = useState();
 
-    const onMessageReceived = (msg) => {
-        console.log("Message Received ", msg);
-        if(msg.author===props.auth.userInfo.nick){
-            msg.isMine=true;
-        }
-        else{
-            msg.isMine=false;
-        }
-        setChatMessages(chatMessasges.concat(msg));
-    }
-    const handleMessageSubmit = (msg, contentType) => {
-        chatAPI.sendMessage(props.auth.userInfo.nick, contentType, msg, (res) => {
-            console.log("sent", res);
-        });
-    }
 
-    const addDateSeparation = (chatList) => {
-        var temps=document.getElementsByClassName("dateSeparator");
-        for(var i=0; i <temps.length; i++){
+
+    //날짜 분기선
+    const delDateSeparation = () => {
+        var temps = document.getElementsByClassName("dateSeparator");
+        for (var i = temps.length - 1; i > -1; i--) {
+            console.log(`delete separator date:${temps[i].textContent}`);
             temps[i].remove();
         }
+    }
+
+    const addDateSeparation = () => {
+        delDateSeparation();
         var msgDate = null;
-        chatList.map((c, i) => {
+        Array.from(chatMessasges).map((c, i) => {
             let tempDate = new Date(c.timestamp).toLocaleDateString()
             //map debug
             //console.log(`dateSeparation map ${i}: msgDate=${msgDate}, tempDate=${tempDate}, separation=${msgDate!==tempDate}`)
@@ -49,40 +53,94 @@ function ClubChat(props) {
                 return;
             }
             if (msgDate !== tempDate) {
+                console.log(`separator added at ${i}, target date:${tempDate}, compare date:${msgDate}`);
                 document.getElementsByClassName("chat")[i]
-                .insertAdjacentHTML("beforebegin", `<div class="dateSeparator">${msgDate}</div>`);
+                    .insertAdjacentHTML("beforebegin", `<div class="dateSeparator">${msgDate}</div>`);
             }
             msgDate = tempDate;
             return;
         })
         if (msgDate !== new Date().toLocaleDateString()) {
-            document.getElementsByClassName("chat")[chatList.length-1]
-            .insertAdjacentHTML("afterend", `<div class="dateSeparator">${msgDate}</div>`);
+            console.log(`separator added at ${chatMessasges.length - 1}, target date:${new Date().toLocaleDateString()}, compare date:${msgDate}`);
+            document.getElementsByClassName("chat")[chatMessasges.length - 1]
+                .insertAdjacentHTML("afterend", `<div class="dateSeparator">${msgDate}</div>`);
         }
+        scrollBottom();
     }
 
-    const [scrollLock, setScrollLock] = useState(true);
+
+    //chat view 스크롤
+
     const scrollBottom = () => {
+        if (!scrollLock) return;
         let chatView = document.getElementsByClassName("chatView")[0];
         chatView.scrollTop = chatView.scrollHeight;
     }
+
     useEffect(() => {
+        if (chatMessasges.length === 0) return;
         console.log("chatList", chatMessasges.length);
-        if (scrollLock) {
-            scrollBottom();
-        }
-        if(chatMessasges.length!==0)setTimeout(()=>addDateSeparation(chatMessasges),10);
+        scrollBottom();
+        if (chatMessasges.length !== 0) setTimeout(() => addDateSeparation(), 10);
     }, [chatMessasges])
+
+    const scrollPosition = (length) => {
+        console.log("scrollPosition");
+        let addedHeight = 0;
+        Array.from(document.getElementsByClassName("chat")).map((c, i) => {
+            if (i >= length) return false;
+            addedHeight = addedHeight + c.clientHeight;
+            return;
+        });
+        document.getElementsByClassName("chatView")[0].scrollTop += addedHeight;
+    }
+
+    const chatScrollHandle = (e) => {
+        if (!scrollLock && e.target.clientHeight + e.target.scrollTop >= e.target.scrollHeight - 10) {
+            console.log("scroll lock on");
+            setScrollLock(true);
+        }
+        else {
+            if (scrollLock) {
+                console.log("scroll lock off");
+                setScrollLock(false);
+            }
+        }
+        if (props.clubPage.viewClass === '' && !noMoreMsg && !msgLoading.current && e.target.scrollTop <= 500) {
+            msgLoading.current = true;
+            getMoreMessages(chatMessasges[0].msgId);
+        }
+    }
+
+
+    //메세지 송수신
+
+    const onMessageReceived = (msg) => {
+        console.log("Message Received ", msg);
+        if (msg.author === props.auth.userInfo.nick) {
+            msg.isMine = true;
+        }
+        else {
+            msg.isMine = false;
+        }
+        setChatMessages(chatMessasges.concat(msg));
+    }
+
+    const handleMessageSubmit = (msg, contentType) => {
+        chatAPI.sendMessage(props.auth.userInfo.nick, contentType, msg, (res) => {
+            console.log("sent", res);
+        });
+    }
 
     const getMoreMessages = (index) => {
         customAxiosData("/getMsgsFrom", { index: index }, (res) => {
             if (res.length !== 0) {
-                res=res.map((c,i)=>{
-                    if(c.author===props.auth.userInfo.nick){
-                        c.isMine=true;
+                res = res.map((c, i) => {
+                    if (c.author === props.auth.userInfo.nick) {
+                        c.isMine = true;
                     }
-                    else{
-                        c.isMine=false;
+                    else {
+                        c.isMine = false;
                     }
                     return c;
                 })
@@ -99,15 +157,16 @@ function ClubChat(props) {
 
     useEffect(() => {
         console.log("props.clubPage.viewClass === '' =>", props.clubPage.viewClass === '')
+        delDateSeparation();
         if (props.clubPage.viewClass === '') {
             if (chatMessasges.length === 0) {
                 customAxios("/getMsgsLast", (res) => {
-                    res=res.map((c,i)=>{
-                        if(c.author===props.auth.userInfo.nick){
-                            c.isMine=true;
+                    res = res.map((c, i) => {
+                        if (c.author === props.auth.userInfo.nick) {
+                            c.isMine = true;
                         }
-                        else{
-                            c.isMine=false;
+                        else {
+                            c.isMine = false;
                         }
                         return c;
                     })
@@ -126,28 +185,7 @@ function ClubChat(props) {
         }
     }, [props.clubPage.viewClass])
 
-    const scrollPosition = (length) => {
-        console.log("scrollPosition");
-        let addedHeight = 0;
-        Array.from(document.getElementsByClassName("chat")).map((c, i) => {
-            if (i >= length) return false;
-            addedHeight = addedHeight + c.clientHeight;
-            return;
-        });
-        document.getElementsByClassName("chatView")[0].scrollTop += addedHeight;
-    }
-
-    const chatScrollHandle = (e) => {
-        if (e.target.clientHeight + e.target.scrollTop === e.target.scrollHeight) setScrollLock(true);
-        else {
-            if (scrollLock) setScrollLock(false);
-        }
-        if (props.clubPage.viewClass === '' && !noMoreMsg && !msgLoading.current && e.target.scrollTop <= 500) {
-            msgLoading.current = true;
-            getMoreMessages(chatMessasges[0].msgId);
-        }
-    }
-
+    //메세지 timestamp formatter
     const formattingTimestamp = (timestamp) => {
         const date = new Date(timestamp);
         let hour = date.getHours() < 10 ? `0${date.getHours()}` : date.getHours();
@@ -155,6 +193,8 @@ function ClubChat(props) {
             date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes();
         return `${hour}:${min}`;
     };
+
+    //입력 이벤트
     const onKeyDown = (e) => {
         if (e.key === "Enter" && !e.shiftKey) {
             e.preventDefault();
@@ -166,9 +206,15 @@ function ClubChat(props) {
         }
     }
 
+    const chatChange = (e) => {
+        autoSizing(e);
+        setChatFocus(document.getElementsByTagName('textarea')[0].value !== '');
+    }
 
-    const [chatFocus, setChatFocus] = useState(false);
-    const [inputBarHeight, setInputBarHeight] = useState(1);
+
+
+
+    //입력란 사이즈 조절
     const autoSizing = (e) => {
         let c = document.getElementsByClassName('chatInputBar')[0];
         while (true) {
@@ -192,10 +238,8 @@ function ClubChat(props) {
             setInputBarHeight(70 + 17 * e.target.rows)
         }
     }
-    const chatChange = (e) => {
-        autoSizing(e);
-        setChatFocus(document.getElementsByTagName('textarea')[0].value !== '');
-    }
+
+    //입력 바 조절
     useEffect(() => {
         let row = document.getElementsByClassName('chatInput').length === 0 ? 1 : document.getElementsByClassName('chatInput')[0].rows;
         let t = document.getElementsByClassName('chatInputBar')[0];
@@ -208,11 +252,87 @@ function ClubChat(props) {
             setInputBarHeight(70 + 17 * row)
         }
     }, [chatFocus])
+
     useEffect(() => {
         if ((props.clubView.mode === 'channel' || props.clubView.mode === 'club') && document.getElementsByTagName('textarea')[0].value === '') {
             setChatFocus(false);
         }
     }, [props.clubView.mode])
+
+
+
+    //context menu
+    const [chatTouchInfo, setChatTouchInfo] = useState({ timer: null, isTouched: false, target:null});
+
+    const { show } = useContextMenu({
+        id: "chatContextMenu"
+    });
+
+    const handleItemClick = ({ event, props, triggerEvent, data }) => {
+        console.log(event, props, triggerEvent, data);
+        switch (event.currentTarget.id) {
+            case "delete":
+              console.log(props.id);
+              break;
+            case "edit":
+              break;
+          }
+    }
+
+    const onContextOpen = (e) => {
+        console.log(e);
+        if(chatTouchInfo.target===null)return;
+        show(e, { props: { id: Number(e.currentTarget.id) } });
+    }
+
+
+    const onChatTouchStart = (e) => {
+        setChatTouchEvent(e);
+        let target = e.target;
+        while (!Array.from(target.classList).includes("chat")) {
+            target = target.parentElement;
+        }
+        setChatTouchInfo({
+            timer:
+                setTimeout((t = target) => {
+                    if (chatTouchInfo.isTouched);
+                    t.classList.add('chatTouchAnimation');
+                }, 100),
+            isTouched: true,
+            target: target
+        });
+    }
+
+    const onChatTouchMove = (e) => {
+        if (Math.abs(e.changedTouches[0].clientX - chatTouchEvent.changedTouches[0].clientX) > 20 || Math.abs(e.changedTouches[0].clientY - chatTouchEvent.changedTouches[0].clientY) > 20) {
+            let target = e.target;
+            while (!Array.from(target.classList).includes("chat")) {
+                target = target.parentElement;
+            }
+            clearTimeout(chatTouchInfo.timer);
+            target.classList.remove('chatTouchAnimation');
+            setChatTouchInfo({ timer: null, isTouched: false, target: null });
+        }
+    }
+
+    const onChatTouchEnd = (e) => {
+        let target = e.target;
+        while (!Array.from(target.classList).includes("chat")) {
+            target = target.parentElement;
+        }
+        if (chatTouchInfo.isTouched) {
+            clearTimeout(chatTouchInfo.timer);
+            target.classList.add('chatTouchAnimation');
+            setTimeout(() => {
+                target.classList.remove('chatTouchAnimation');
+            }, 100);
+            setChatTouchInfo({ timer: null, isTouched: false, target: target });
+        }
+    }
+
+
+
+
     return (
         <div className={"chatWindowWrapper"
             + (props.clubView.magX === 0 ? " transition" : "")
@@ -240,7 +360,8 @@ function ClubChat(props) {
                 <div className="chatWrapper">
                     {chatMessasges.map((c, i) => (
                         <Chat
-                            key={i}
+                            key={c.msgId}
+                            id={c.msgId}
                             userPic={null}
                             role="직책"
                             userName={c.author}
@@ -248,10 +369,18 @@ function ClubChat(props) {
                             isEdited={c.isEdited}
                             contents={c.content}
                             contentType={c.contentType}
-                            isMine={c.isMine} />
+                            isMine={c.isMine}
+                            onContextOpen={onContextOpen}
+                            onChatTouchEnd={onChatTouchEnd}
+                            onChatTouchMove={onChatTouchMove}
+                            onChatTouchStart={onChatTouchStart} />
                     ))}
 
                 </div>
+                <Menu id="chatContextMenu" theme={theme.dark} animation={animation.fade}>
+                    <Item itemID="edit" onClick={handleItemClick}>수정</Item>
+                    <Item itemID="delete" onClick={handleItemClick}>삭제</Item>
+                </Menu>
             </div>
             <div className="chatInputBar">
                 <textarea
@@ -279,21 +408,14 @@ function ClubChat(props) {
 
 
 function Chat(props) {
-    if(props.isMine){
-        return (
-            <div className="chat">
-                <div>
-                    <div className="chatUserPic" style={{ backgroundImage: props.userPic || "none" }}>{props.userPic || 'DAO'}</div>
-                    <div className="chatContents">
-                        <div className="chatSenderRole">[{props.role}]&nbsp;</div><p className="chatSender">{props.userName}</p><p className={"sendTime" + (props.isEdited ? ' edited' : '')}>{props.sendTime}</p>
-                        <pre>{props.contents}</pre>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+
     return (
-        <div className="chat">
+        <div id={props.id} className="chat"
+            onContextMenu={props.onContextOpen}
+            onTouchStart={props.onChatTouchStart}
+            onTouchMove={props.onChatTouchMove}
+            onTouchEnd={props.onChatTouchEnd}
+            >
             <div>
                 <div className="chatUserPic" style={{ backgroundImage: props.userPic || "none" }}>{props.userPic || 'DAO'}</div>
                 <div className="chatContents">
