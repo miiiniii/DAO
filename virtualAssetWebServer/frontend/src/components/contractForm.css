@@ -20,6 +20,16 @@
   justify-content:center;
 }
 
+.contractItem input{
+   color: #f1ede9;
+     border: none;
+     width: 150px;
+     font-size: 17px;
+     height: 23px;
+     background: #2d3031;
+     text-align:center;
+}
+
 .contractListItem{
 
  padding: 10px 5px 10px 20px;
