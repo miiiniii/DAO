@@ -1,38 +1,57 @@
+import { useState } from "react";
+import { useEffect } from "react";
+import { useRef } from "react";
+import customAxiosData from "../scripts/customAxiosData";
 
 
 function ClubChannels(props) {
+    const onChannelClick=(e)=>{
+        props.setSelectedChannel(parseInt(e.target.id));
+        console.log(e.target.id);
+    }
     return (<div className={"channelWindowWrapper" + (props.clubView.magX === 0 ? " transition" : "") + (props.clubView.mode === "club" ? " clubView" : "")} style={(props.clubView.magX !== 0 && props.clubView.mode === "") ? { left: props.clubView.magX > 0 ? 0 : props.clubView.magX } : {}}>
-        <details open={true}>
-            <summary>공지사항</summary>
-            <ul>
-                <ChannelList channelName='클럽 규칙' />
-                <ChannelList channelName='거래 소식' />
-                <ChannelList channelName='공지사항' />
-            </ul>
-        </details>
-        <details open={true}>
-            <summary>공개채널</summary>
-            <ul>
-                <ChannelList channelName='휴게실' isSelected={true} />
-                <ChannelList channelName='정보' />
-                <ChannelList channelName='유머' />
-                <ChannelList channelName='거래 제안' />
-            </ul>
-        </details>
-        <details open={true}>
-            <summary>거래 전용</summary>
-            <ul>
-                <ChannelList channelName='상품 이름1' members='23' tag='품목' />
-                <ChannelList channelName='상품 이름2' members='55' tag='품목' />
-                <ChannelList channelName='상품 이름3' privateMent='계약 완료' />
-            </ul>
-        </details>
+        {props.channelTabs.map((ct,i)=>(
+            <ChannelTab
+                key={ct.id}
+                channels={props.channels.filter(c=>ct.id===c.tabId)}
+                channelTabName={ct.name}
+                selectedChannel={props.selectedChannel}
+                onChannelClick={onChannelClick}
+            />
+        ))}
     </div>)
+}
+
+function ChannelTab(props) {
+    let channels=props.channels.sort((a,b)=>(a.index===b.index?0:(a.index > b.index?1:-1)));
+    return (
+        <details open={true}>
+            <summary>{props.channelTabName}</summary>
+            <ul>
+                {channels.map((c, i) => (
+                    <ChannelList
+                        key={c.id}
+                        channelName={c.name}
+                        channelId={c.id}
+                        isClub={c.club}
+                        channelMembers={c.memberCnt===0?null:c.memberCnt}
+                        contractStatus={c.contractStatus}
+                        isSelected={c.id===props.selectedChannel}
+                        onClick={props.onChannelClick}/>
+                ))}
+            </ul>
+        </details>
+    )
 }
 
 function ChannelList(props) {
     return (
-        <li className={(props.isSelected || false ? 'currChannel ' : '') + 'channelBanner'} style={(props.privateMent != null) ? { opacity: '0.5' } : {}}>{(props.icon != null) ? (<img src={props.icon} alt="img"/>) : ''}{props.channelName}{props.privateMent != null ? (<span style={{ fontSize: 'small' }}>&nbsp;[{props.privateMent}]</span>) : ''}{props.tag != null ? (<span style={{ fontSize: 'small' }}>&nbsp;#{props.tag}</span>) : ''}{props.members != null ? (<span style={{ float: 'right', fontSize: '0.8em' }}>{props.members}<div className="userIcon"><div></div><div></div></div></span>) : ''}</li>
+        <li id={props.channelId}
+            onClick={props.onClick}
+            className={(props.isSelected || false ? 'currChannel ' : '') + 'channelBanner'} 
+            style={(props.contractStatus != null) ? { opacity: '0.5' } : {}}>{(props.icon != null) ? (<img src={props.icon} alt="img" />) : ''}{props.channelName}{props.contractStatus != null ? (<span style={{ fontSize: 'small' }}>&nbsp;[{props.contractStatus}]</span>) : ''}{props.tag != null ? (<span style={{ fontSize: 'small' }}>&nbsp;#{props.tag}</span>) : ''}{props.channelMembers != null ? (<span style={{ float: 'right', fontSize: '0.8em' }}>{props.channelMembers}
+            <div className="userIcon"><div></div><div></div></div></span>) : ''}
+        </li>
     )
 }
 

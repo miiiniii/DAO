@@ -31,6 +31,11 @@ function ClubChat(props) {
     const [chatTouchEvent, setChatTouchEvent] = useState();
 
 
+    //수정요청
+    const requestDeleteMessage=(id)=>{
+        //TODO
+    }
+
 
     //날짜 분기선
     const delDateSeparation = () => {
@@ -96,16 +101,19 @@ function ClubChat(props) {
     }
 
     const chatScrollHandle = (e) => {
-        if (!scrollLock && e.target.clientHeight + e.target.scrollTop >= e.target.scrollHeight - 10) {
-            console.log("scroll lock on");
+        if(props.clubPage.viewClass!=='')return;
+        let lastChatHeight=document.getElementsByClassName("chat");
+        lastChatHeight=lastChatHeight[lastChatHeight.length-1].clientHeight - 40;
+        let isScrollBottom=e.target.clientHeight + e.target.scrollTop >= e.target.scrollHeight - lastChatHeight;
+        if (!scrollLock && isScrollBottom) {
+            console.log("scroll lock on",e.target.clientHeight + e.target.scrollTop,e.target.scrollHeight - lastChatHeight,isScrollBottom);
             setScrollLock(true);
         }
-        else {
-            if (scrollLock) {
-                console.log("scroll lock off");
+        else if (scrollLock && ! isScrollBottom) {
+                console.log("scroll lock off",e.target.clientHeight + e.target.scrollTop,e.target.scrollHeight - lastChatHeight,isScrollBottom);
                 setScrollLock(false);
-            }
         }
+        
         if (props.clubPage.viewClass === '' && !noMoreMsg && !msgLoading.current && e.target.scrollTop <= 500) {
             msgLoading.current = true;
             getMoreMessages(chatMessasges[0].msgId);
@@ -264,17 +272,16 @@ function ClubChat(props) {
     //context menu
     const [chatTouchInfo, setChatTouchInfo] = useState({ timer: null, isTouched: false, target:null});
 
-    const { show } = useContextMenu({
-        id: "chatContextMenu"
-    });
+    const { show } = useContextMenu({id: "chatContextMenu"});
 
-    const handleItemClick = ({ event, props, triggerEvent, data }) => {
-        console.log(event, props, triggerEvent, data);
-        switch (event.currentTarget.id) {
+    const handleItemClick = ({ event, props, triggerEvent}) => {
+        //console.log(event, props, triggerEvent,event.target.parentElement.__reactProps$oxzcr8ujwo.itemID);
+        switch (event.target.parentElement.__reactProps$oxzcr8ujwo.itemID) {
             case "delete":
-              console.log(props.id);
+                console.log("delete:", props.id);
               break;
-            case "edit":
+              case "edit":
+                    console.log("edit:", props.id);
               break;
           }
     }
@@ -333,6 +340,14 @@ function ClubChat(props) {
 
 
 
+    //투표
+    const [showVoteMaker,setShowVoteMaker]=useState(false);
+    const onMakeVoteClick=(e)=>{
+        console.log("make vote");
+
+    }
+
+
     return (
         <div className={"chatWindowWrapper"
             + (props.clubView.magX === 0 ? " transition" : "")
@@ -347,8 +362,7 @@ function ClubChat(props) {
             <div className="chatNavBar">@휴게실<div className="channel"></div><div className="info"></div></div>
             <div className="chatView"
                 style={{ height: 'calc(100% - ' + (33 + inputBarHeight) + 'px)' }}
-                onScroll={chatScrollHandle}
-                onscrollStart={chatScrollHandle}>
+                onScroll={chatScrollHandle}>
 
                 <SocketJsClient
                     url={`http://${TEST_IP}:8080/api/my-chat/`}
@@ -360,7 +374,7 @@ function ClubChat(props) {
                 <div className="chatWrapper">
                     {chatMessasges.map((c, i) => (
                         <Chat
-                            key={c.msgId}
+                            key={i}
                             id={c.msgId}
                             userPic={null}
                             role="직책"
@@ -394,7 +408,7 @@ function ClubChat(props) {
                     onKeyDown={onKeyDown}>
                 </textarea>
                 <div className="circleBtn" onClick={() => setChatFocus(!chatFocus)}><IconPlus size='100%' minus={chatFocus} /></div>
-                <div className="circleBtn" style={chatFocus ? { bottom: 0, left: '180px' } : { bottom: '-45px', left: '180px' }}></div>
+                <div id="makeVote" className="circleBtn" onClick={onMakeVoteClick} style={chatFocus ? { bottom: 0, left: '180px' } : { bottom: '-45px', left: '180px' }}>투표</div>
                 <div className="circleBtn" style={chatFocus ? { bottom: 0, left: '135px' } : { bottom: '-45px', left: '135px' }}></div>
                 <div className="circleBtn" style={chatFocus ? { bottom: 0, left: '90px' } : { bottom: '-45px', left: '90px' }}></div>
                 <div className="circleBtn" style={chatFocus ? { bottom: 0, left: '45px' } : { bottom: '-45px', left: '45px' }}></div>

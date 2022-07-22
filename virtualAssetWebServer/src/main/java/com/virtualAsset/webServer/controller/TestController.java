@@ -25,12 +25,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.virtualAsset.webServer.commons.KafkaConstants;
 import com.virtualAsset.webServer.commons.StatusCodes;
 import com.virtualAsset.webServer.dataAccessObject.AuthDAO;
-import com.virtualAsset.webServer.dataAccessObject.CommunityBannerDAO;
+import com.virtualAsset.webServer.dataAccessObject.CommunityDAO;
 import com.virtualAsset.webServer.dataAccessObject.MsgRecordDAO;
 import com.virtualAsset.webServer.entity.AssetDetail;
 import com.virtualAsset.webServer.entity.AssetInfo;
 import com.virtualAsset.webServer.entity.AuthEntity;
 import com.virtualAsset.webServer.entity.BankAccount;
+import com.virtualAsset.webServer.entity.ChannelEntity;
+import com.virtualAsset.webServer.entity.ChannelTabEntity;
 import com.virtualAsset.webServer.entity.CommunityBannerEntity;
 import com.virtualAsset.webServer.entity.KafkaMSG;
 import com.virtualAsset.webServer.responseBody.AuthValResponseBody;
@@ -93,18 +95,18 @@ public class TestController {
 	}
 
 	@Autowired
-	private CommunityBannerDAO communityBannerDAO;
+	private CommunityDAO communityDAO;
 
 	@PostMapping("/publicCommunity")
 	public List<CommunityBannerEntity> pubClub(HttpServletRequest request) throws JSONException, ParseException {
 
-		return communityBannerDAO.selectAllBanners();
+		return communityDAO.selectAllBanners();
 	}
 
 	@PostMapping("/myCommunityBanners")
 	public List<CommunityBannerEntity> myClub(HttpServletRequest request) throws JSONException, ParseException {
 
-		return communityBannerDAO.selectMyBanners("");
+		return communityDAO.selectMyBanners("");
 
 	}
 
@@ -123,10 +125,27 @@ public class TestController {
 
 	@PostMapping("/getMsgsFrom")
 	public List<KafkaMSG> getMsgsFrom(@RequestBody JSONObject data, HttpServletRequest request) {
-		log.info(data.toString());
+		log.info("getMsgsFrom"+data.toString());
 		return msgRecordDAO.select30MessagesFrom(KafkaConstants.KAFKA_TOPIC, (int) data.getAsNumber("index"));
 	}
-
+	
+	@PostMapping("/enterCommunity")
+	public String enterClub(@RequestBody JSONObject data, HttpServletRequest request) {
+		log.info("enterCommunity"+data.toString());
+		return (communityDAO.enterCommunity((int)data.getAsNumber("communityId"), data.getAsString("auth")) == 1)?"true":"false";
+	}
+	
+	@PostMapping("/getChannels")
+	public List<ChannelEntity> getChannels(@RequestBody JSONObject data, HttpServletRequest request){
+		log.info("getChannels"+data.toString());
+		return communityDAO.getChannels((int)data.getAsNumber("communityId"));
+	}
+	@PostMapping("/getChannelTabs")
+	public List<ChannelTabEntity> getChannelTabs(@RequestBody JSONObject data, HttpServletRequest request){
+		log.info("getChannelTabs"+data.toString());
+		return communityDAO.getChannelTabs((int)data.getAsNumber("communityId"));
+	}
+	
 	@PostMapping("/editMsg")
 	public DefaultResponseBody editMsg(@RequestBody JSONObject data, HttpServletRequest request) {
 		log.info(data.toString());

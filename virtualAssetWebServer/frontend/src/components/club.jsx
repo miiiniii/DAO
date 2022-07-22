@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import customAxiosData from "../scripts/customAxiosData";
 import "./club.css";
 import ClubChannels from "./clubChannels";
 import ClubChat from "./clubChats";
@@ -14,11 +15,47 @@ export default function Club(props) {
     const [writeContract,setWriteContract]=useState(false);
     const [contractType,setContractType]=useState();
     const [viewContract,setViewContract]=useState(false);
+    const [channels, setChannels]=useState([]);
+    const [isMember,setIsMember]=useState(false);
+    const [isLoading, setIsLoading]=useState(true);
+    const [channelTabs, setChannelTabs]=useState([]);
+    const [selectedChannel, setSelectedChannel]=useState();
+
+    //community 입장시 맴버인지 체크
+    useEffect(() => {
+        if(props.clubPage.viewClass===' clubHide'){
+            setChannels([]);
+            setIsMember(false);
+            setIsLoading(true);
+            return;
+        }
+
+        customAxiosData("/enterCommunity", {auth: props.auth.userInfo.id, communityId:props.clubPage.id}, (data)=>{
+            console.log( "isMember:", data);
+            if(data===true){
+                setIsMember(true);
+                customAxiosData("/getChannels", {communityId:props.clubPage.id}, (data)=>{
+                    console.log( "channels:", data);
+                    setChannels(data);
+                    data.map((c,i)=>{if(c.default){console.log("default",c); setSelectedChannel(c.id); return false;}})
+                })
+                customAxiosData("/getChannelTabs",{communityId:props.clubPage.id},(data)=>{
+                    console.log( "channelTabs:", data);
+                    setChannelTabs(data.sort((a,b)=>(a.index===b.index?0:(a.index > b.index?1:-1))));
+                })
+            }
+        })
+    }, [props.clubPage.viewClass])
+
+
+
+    //터치 핸들러
     function handleTouchStart(e) {
         setTouchStart({ coord: e.targetTouches[0], timeStamp: e.timeStamp });
     }
     useEffect(() => {
         setClubView({ magX: 0, mode: '' });
+
     }, [props.clubPage.viewClass])
 
     function clubBackClick(){
@@ -86,7 +123,9 @@ export default function Club(props) {
         setClubView({ magX: 0, mode: mode });
     }
 
-    if (props.auth !== undefined && props.auth.code === 1000) {
+
+
+    if (props.auth !== undefined && props.auth.code === 1000 && isMember) {
         return (<div className={"clubPage" + props.clubPage.viewClass}>
             <p className="clubNavBar"><span className="backBtn" onClick={clubBackClick}><i className="fa fa-arrow-left"></i></span><span className="clubName">클럽 이름</span></p>
             <div className="clubComponemtWarpper"
@@ -94,10 +133,20 @@ export default function Club(props) {
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}
             >
-                <ClubChannels clubView={clubView} />
-                <ClubInfos clubView={clubView} setClubSettingView={setClubSettingView} setWriteContract={setWriteContract}/>
-                <ClubChat clubView={clubView} clubPage={props.clubPage} auth={props.auth}
-                    onClick={() => { setClubView({ magX: 0, mode: '' }) }} />
+                <ClubChannels
+                    clubView={clubView}
+                    channelTabs={channelTabs}
+                    channels={channels}
+                    selectedChannel={selectedChannel}
+                    setSelectedChannel={setSelectedChannel}
+                />
+                <ClubInfos clubView={clubView} setClubSettingView={setClubSettingView} setWriteContract={setWriteContract} />
+                <ClubChat
+                    clubView={clubView}
+                    clubPage={props.clubPage}
+                    auth={props.auth}
+                    onClick={() => { setClubView({ magX: 0, mode: '' }) }}
+                    selectedChannel={selectedChannel} />
             </div>
             {clubSettingView?(
                             <div className="clubSettingPage">
@@ -133,7 +182,7 @@ export default function Club(props) {
         </div>)
     }
 
-    if (props.auth === undefined || props.auth.code !== 100) {
+    if (props.auth === undefined || props.auth.code !== 1000) {
         return (<div className={"clubPage" + props.clubPage.viewClass}>
             <ClubIntrduce hideClubPage={clubBackClick} showSigninPage={props.showSigninPage}></ClubIntrduce>
         </div>)
@@ -170,8 +219,8 @@ function ClubIntrduce(props) {
                 <li>[품목] 이름<span className="rightCmt">2021.03.13</span></li>
             </ul>
         </div>
-        <span className="backBtn" onClick={props.hideClubPage}><i className="fa fa-arrow-left"></i></span>
         <div className="joinClubBtn">클럽 가입</div>
+        <p style={{bottom:'10px'}}><span className="backBtn" onClick={props.hideClubPage}><i className="fa fa-arrow-left"></i></span></p>
 
     </div>)
 }

@@ -125,11 +125,12 @@ function HomeLogon(props) {
                 <h2>가입한 커뮤니티</h2>
                 <br/>
                 {props.clubs.map((contents, index) => (
-                    <div className='myClubBanner' key={contents + index} onClick={props.showClubPage}>
+                    <div className='myClubBanner' key={contents + index} onClick={()=>{props.showClubPage(contents.id)}}>
                         <p className='smallInfo right'>최근 거래 : {contents.recentActivities} 전</p>
                         <p className='bannerTitle'>{contents.name}</p>
                         <span className='smallInfo'><img className='smallIcon' src={Contract_white} alt=""/> {contents.concludedContractAmount}/{contents.totalContractAmount}</span>
                         <span className='smallInfo right'>{contents.memberAmount} <img className='smallIcon' src={User_white} alt="" /></span>
+                        <input id={contents.name} type='hidden' value={contents.id}/>
                     </div>
                 ))}
             </div>

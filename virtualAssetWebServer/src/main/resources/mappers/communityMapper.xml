@@ -2,41 +2,106 @@
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.virtualAsset.webServer.dataAccessObject.CommunityBannerDAO">
+<mapper
+	namespace="com.virtualAsset.webServer.dataAccessObject.CommunityDAO">
 
 	<resultMap id="CommunityBannerResult" type="com.virtualAsset.webServer.entity.CommunityBannerEntity">
-		<result column="community_id" property="id" jdbcType="INTEGER" javaType="Integer"/>
-		<result column="community_name" property="name" jdbcType="VARCHAR" javaType="String"/>
-		<result column="community_concluded_contract_amount" property="concludedContractAmount" jdbcType="INTEGER" javaType="Integer"/>
-		<result column="community_total_contract_amount" property="totalContractAmount" jdbcType="INTEGER" javaType="Integer"/>
-		<result column="community_member_amount" property="memberAmount" jdbcType="INTEGER" javaType="Integer"/>
-		<result column="community_introduce" property="introduce" jdbcType="VARCHAR" javaType="String"/>
-		<result column="community_tags" property="tags" jdbcType="VARCHAR" javaType="String"/>
-		<result column="community_recent_activity" property="recentActivity" jdbcType="TIMESTAMP" javaType="Integer"/>
+		<result column="community_id" property="id" jdbcType="INTEGER"
+			javaType="Integer" />
+		<result column="community_name" property="name"
+			jdbcType="VARCHAR" javaType="String" />
+		<result column="community_concluded_contract_amount"
+			property="concludedContractAmount" jdbcType="INTEGER"
+			javaType="Integer" />
+		<result column="community_total_contract_amount"
+			property="totalContractAmount" jdbcType="INTEGER" javaType="Integer" />
+		<result column="community_member_amount"
+			property="memberAmount" jdbcType="INTEGER" javaType="Integer" />
+		<result column="community_introduce" property="introduce"
+			jdbcType="VARCHAR" javaType="String" />
+		<result column="community_tags" property="tags"
+			jdbcType="VARCHAR" javaType="String" />
+		<result column="community_recent_activity"
+			property="recentActivity" jdbcType="TIMESTAMP" javaType="Integer" />
+	</resultMap>
+
+	<resultMap type="com.virtualAsset.webServer.entity.ChannelEntity" id="channel">
+		<result column="channel_id" property="id"/>
+		<result column="channel_name" property="name"/>
+		<result column="is_club" property="isClub"/>
+		<result column="channel_member_cnt" property="memberCnt"/>
+		<result column="channel_index" property="index"/>
+		<result column="channel_tab_id" property="tabId"/>
+		<result column="contract_status" property="contractStatus"/>
+		<result column="is_private" property="isPrivate"/>
+		<result column="is_default" property="isDefault"/>
+		
 	</resultMap>
 	
-    <select id="selectAllBanners" resultMap="CommunityBannerResult">
-        select
-            "community_id",
-            "community_name",
-            "community_concluded_contract_amount",
-            "community_total_contract_amount",
-            "community_member_amount",
-            "community_introduce",
-            "community_tags",
-            "community_recent_activity"
-        from
-            "community"
-    </select>
-    <select id="selectMyBanners" resultMap="CommunityBannerResult">
-        select
-            "community_id",
-            "community_name",
-            "community_concluded_contract_amount",
-            "community_total_contract_amount",
-            "community_member_amount",
-            "community_recent_activity"
-        from
-            "community"
-    </select>
+	<resultMap type="com.virtualAsset.webServer.entity.ChannelTabEntity" id="channelTab">
+		<result column="channel_tab_id" property="id"/>
+		<result column="channel_tab_index" property="index"/>
+		<result column="channel_tab_name" property="name"/>
+	</resultMap>
+	
+	<select id="selectAllBanners" resultMap="CommunityBannerResult">
+		select
+		"community_id",
+		"community_name",
+		"community_concluded_contract_amount",
+		"community_total_contract_amount",
+		"community_member_amount",
+		"community_introduce",
+		"community_tags",
+		"community_recent_activity"
+		from
+		"community"
+	</select>
+	<select id="selectMyBanners" resultMap="CommunityBannerResult">
+		select
+		"community_id",
+		"community_name",
+		"community_concluded_contract_amount",
+		"community_total_contract_amount",
+		"community_member_amount",
+		"community_recent_activity"
+		from
+		"community"
+	</select>
+
+	<select id="enterCommunity" resultType="Integer">
+		select count(*) from
+		"community_member"
+		where
+		"community_id" = #{communityId} and "user_id" = #{userId}
+
+	</select>
+	<select id="getChannels" resultMap="channel">
+		select 
+			"channel_id",
+			"channel_name",
+			"is_club",
+			"channel_member_cnt",
+			"contract_status",
+			"channel_index",
+			"channel_tab_id",
+			"is_private",
+			"is_default"
+		from
+		"channel"
+		where
+		"community_id" = #{communityId}
+
+	</select>
+	<select id="getChannelTabs" resultMap="channelTab">
+		select
+			"channel_tab_id",
+			"channel_tab_index",
+			"channel_tab_name"
+		from
+		"channel_tab"
+		where
+		"community_id" = #{communityId}
+
+	</select>
 </mapper>
