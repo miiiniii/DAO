@@ -6,7 +6,8 @@ import User_white from "../Icons/User_white.png";
 import Contract_white from "../Icons/Contract_white.png";
 import Close_white from "../Icons/Close_white.png";
 import LoadingSpinner from './loadingSpinner';
-import { IconSearch } from './cssIcons';
+import { Icon_Search } from './cssIcons';
+import { useCallback } from 'react';
 
 /**
  * 탐색탭 컴포넌트
@@ -22,7 +23,11 @@ export default function Explore(props) {
     const [sBarExt, setSBarExt] = useState(false);
 
     /*검색 키워드 리스트*/
-    const [keyword, setKeyword] = useState([]);
+    const [keyword, setKeyword] = useState({
+        text: '',
+        filterType: 'all'
+    });
+
 
     /*키워드로 검색된 결과를 저장하는 리스트 */
     const [result, setResult] = useState(null);
@@ -53,19 +58,42 @@ export default function Explore(props) {
     const searchClick = () => {
         if (!sBarExt) setSBarExt(true);
         else {
-
+            console.log(keyword);
+            searchAxios(keyword, (data) => {
+                console.log("explore");
+                console.log(data);
+                setResult(data);
+                setIsLoaded(true);
+            });
         }
     }
 
     //탐색바가 확장되면 하단에 나오는 축소버튼의 기능 함수.
-    const closeClick = () => {
+    const closeClick = useCallback(() => {
         if (sBarExt) setSBarExt(false);
+    }, [sBarExt]);
+
+
+    const onFilterSelected = (e) => {    
+        setKeyword({
+            ...keyword,
+            filterType: e.target.value
+        });
     }
+
+    const onKeywordInput = useCallback((e) => {
+        setKeyword({
+            ...keyword,
+            text : e.target.value
+        });
+    }, [keyword]);
+
+    
 
     return (
         <>
             <div className={sBarExt ? 'exploreBarContainer exploreBarExt' : 'exploreBarContainer'}>
-                <ExploreBar searchClick={searchClick} closeClick={closeClick} sBarExt={sBarExt}/>
+                <ExploreBar onKeywordInput={onKeywordInput} onFilterSelected={onFilterSelected} searchClick={searchClick} closeClick={closeClick} sBarExt={sBarExt}/>
             </div>
             <div className={sBarExt ? 'exploreViewContainer exploreViewShort' : 'exploreViewContainer'}>
                 {isLoaded?(
@@ -86,20 +114,19 @@ function ExploreBar(props) {
     if (props.sBarExt) {
         return (
             <div className='exploreBar'>
-                <IconSearch size={43} onClick={props.searchClick}  margin='14px' float='right'/>
-                <select className='roundStyle exploreType typeShow'>
+                <Icon_Search size={43} onClick={props.searchClick}  margin='14px' float='right'/>
+                <select onChange={props.onFilterSelected} className='roundStyle exploreType typeShow'>
                     <option value='all'>전체</option>
                     <option value='tag'>태그</option>
                     <option value='title'>제목</option>
                     <option value='intro'>소개</option>
-                    <option value='content'>제목+소개</option>
                 </select>
                 <select className='roundStyle sortType sortTypeShow'>
                     <option value='recent'>최근순</option>
                     <option value='accuracy'>정확도</option>
                     <option value='popularity'>인기순</option>
                 </select>
-                <input type='search' placeholder='키워드를 입력하세요.' className='roundStyle exploreInput show'></input>
+                <input onChange={props.onKeywordInput} type='search' placeholder='키워드를 입력하세요.' className='roundStyle exploreInput show'></input>
                 <p className='exploreBarCmt hideUp'>지정된 키워드가 없습니다.<br />돋보기를 눌러 원하는 키워드를 설정해보세요!</p>
                 <img className='closeBtn' src={Close_white} width={20} height={20} onClick={props.closeClick} alt=""/>
             </div>
@@ -131,7 +158,7 @@ function ExploreBar(props) {
 function ExploreView(props) {
     //검색결과가 없을때
     //검색결과가 없다고 알려줄 안내페이지 제작해야함.
-    if (props.result === "") {
+    if (props.result.data === "") {
         return (
             <div className={props.className}>
                 
@@ -141,7 +168,7 @@ function ExploreView(props) {
     return (
         <div className={props.className}>
             <div className='pubClubList'>
-                {props.result.map((contents, i) => (
+                {props.result.data.map((contents, i) => (
                     <div className='pubClubBanner' key={"pubClubBanner" + i} onClick={props.showClubPage}>
                         <p className='smallInfo right'>최근 거래 : {contents.recentActivities} 전</p>
                         <p className='bannerTitle'>{contents.name}</p>

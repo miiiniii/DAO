@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 @Configuration
-@MapperScan("com.virtualAsset.webServer.dataAccessObject")
+@MapperScan("com.virtualAsset.webServer")
 public class PostgresqlConfig {
 	@Bean
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception{
