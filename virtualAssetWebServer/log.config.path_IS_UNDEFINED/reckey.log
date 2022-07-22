@@ -1,18 +1,2 @@
-INFO  2022-07-21 00:04:00[SpringApplicationShutdownHook] [SimpleBrokerMessageHandler:137] - Stopping...
-INFO  2022-07-21 00:04:00[SpringApplicationShutdownHook] [SimpleBrokerMessageHandler:137] - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@24ced12a]]
-INFO  2022-07-21 00:04:00[SpringApplicationShutdownHook] [SimpleBrokerMessageHandler:137] - Stopped.
-INFO  2022-07-21 00:04:00[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:307] - [Consumer clientId=consumer-그룹1-1, groupId=그룹1] Revoke previously assigned partitions channel-chat-0
-INFO  2022-07-21 00:04:00[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions revoked: [channel-chat-0]
-INFO  2022-07-21 00:04:00[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:1048] - [Consumer clientId=consumer-그룹1-1, groupId=그룹1] Member consumer-그룹1-1-c3d592c8-57e5-4c3a-a72e-af429aeb7d82 sending LeaveGroup request to coordinator 223.194.70.105:33233 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
-INFO  2022-07-21 00:04:00[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:966] - [Consumer clientId=consumer-그룹1-1, groupId=그룹1] Resetting generation due to: consumer pro-actively leaving the group
-INFO  2022-07-21 00:04:00[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-1, groupId=그룹1] Request joining group due to: consumer pro-actively leaving the group
-INFO  2022-07-21 00:04:00[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaConsumer:1075] - [Consumer clientId=consumer-그룹1-1, groupId=그룹1] Unsubscribed all topics or patterns and assigned partitions
-INFO  2022-07-21 00:04:00[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:966] - [Consumer clientId=consumer-그룹1-1, groupId=그룹1] Resetting generation due to: consumer pro-actively leaving the group
-INFO  2022-07-21 00:04:00[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-1, groupId=그룹1] Request joining group due to: consumer pro-actively leaving the group
-INFO  2022-07-21 00:04:00[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:659] - Metrics scheduler closed
-INFO  2022-07-21 00:04:00[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:663] - Closing reporter org.apache.kafka.common.metrics.JmxReporter
-INFO  2022-07-21 00:04:00[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:669] - Metrics reporters closed
-INFO  2022-07-21 00:04:00[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [AppInfoParser:83] - App info kafka.consumer for consumer-그룹1-1 unregistered
-INFO  2022-07-21 00:04:00[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: Consumer stopped
-INFO  2022-07-21 00:04:00[SpringApplicationShutdownHook] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
-INFO  2022-07-21 00:04:00[SpringApplicationShutdownHook] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+WARN  2022-07-23 00:00:35[HikariPool-1 housekeeper] [HikariPool:780] - HikariPool-1 - Retrograde clock change detected (housekeeper delta=29s858ms), soft-evicting connections from pool.
+INFO  2022-07-23 00:12:32[MessageBroker-7] [WebSocketMessageBrokerStats:128] - WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 14 total, 0 closed abnormally (0 connect failure, 0 send limit, 1 transport error)], stompSubProtocol[processed CONNECT(14)-CONNECTED(14)-DISCONNECT(6)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 159], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 34], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 2, completed tasks = 2594]

@@ -8,7 +8,7 @@ module.exports = function(app) {
 
       //*안성찬 회사*/target: 'http://192.168.30.14:8080',
       //*권예빈 로컬*/target: 'http://192.168.0.20:8080',
-      /*지상은 로컬*/target:'http://172.30.1.34:8080',
+      /*지상은 로컬*/target:'http://172.30.1.35:8080',
       changeOrigin: true,
     })
   );

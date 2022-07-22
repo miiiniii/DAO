@@ -14,6 +14,8 @@ export default function Club(props) {
     const [writeContract,setWriteContract]=useState(false);
     const [contractType,setContractType]=useState();
     const [viewContract,setViewContract]=useState(false);
+    const [sign,setSign]=useState(null);
+
     function handleTouchStart(e) {
         setTouchStart({ coord: e.targetTouches[0], timeStamp: e.timeStamp });
     }
@@ -22,6 +24,18 @@ export default function Club(props) {
     }, [props.clubPage.viewClass])
 
     function clubBackClick(){
+        if(clubSettingView){
+            setClubSettingView(false);
+            return;
+        }
+        else if(writeContract){
+            setWriteContract(false);
+            return;
+        }
+        props.hideClubPage();
+    }
+
+    function sendBtnClick(){
         if(clubSettingView){
             setClubSettingView(false);
             return;
@@ -124,7 +138,7 @@ export default function Club(props) {
             {writeContract?(
                 <div className="clubSettingPage">
                      <div>
-                         <ContractForm hideWriteContract={clubBackClick} type={contractType} viewContract={viewContract}/>
+                         <ContractForm hideWriteContract={sendBtnClick} type={contractType} viewContract={viewContract} setSign={setSign} sign={sign}/>
                      </div>
                 </div>
             ):(
