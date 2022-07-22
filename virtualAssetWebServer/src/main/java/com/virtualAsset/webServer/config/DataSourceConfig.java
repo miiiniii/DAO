@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class DataSourceConfig {
-	@ConfigurationProperties(prefix = "spring.datasource")
+	@ConfigurationProperties(prefix = "spring.datasource.hikari")
 	@Bean
 	public DataSource dataSource() {
 		return DataSourceBuilder.create().build();

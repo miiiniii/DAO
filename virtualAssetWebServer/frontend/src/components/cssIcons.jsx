@@ -1,6 +1,6 @@
 import './cssIcons.css';
 
-export default function Icon_Settings(props) {
+export default function IconSettings(props) {
     return (
         <div className='cssIconBase'
             onClick={props.onClick || null}
@@ -24,7 +24,7 @@ export default function Icon_Settings(props) {
         </div>)
 }
 
-export function Icon_Board(props) {
+export function IconBoard(props) {
     return (<div className='cssIconBase'
         onClick={props.onClick || null}
         style={{
@@ -96,7 +96,7 @@ export function Icon_Board(props) {
     </div>)
 }
 
-export function Icon_Search(props) {
+export function IconSearch(props) {
     return (<div className='cssIconBase'
         onClick={props.onClick || null}
         style={{
@@ -113,7 +113,7 @@ export function Icon_Search(props) {
     </div>)
 }
 
-export function Icon_Contract(props) {
+export function IconContract(props) {
     return (<div className='cssIconBase'
         onClick={props.onClick || null}
         style={{
@@ -188,7 +188,7 @@ export function Icon_Contract(props) {
     </div>)
 }
 
-export function Icon_Plus(props){
+export function IconPlus(props){
     return(<div className='cssIconBase'
     onClick={props.onClick || null}
     style={{
@@ -204,7 +204,7 @@ export function Icon_Plus(props){
     </div>)
 }
 
-export function Icon_Edit(props){
+export function IconEdit(props){
     return(<div className='cssIconBase'
     onClick={props.onClick || null}
     style={{

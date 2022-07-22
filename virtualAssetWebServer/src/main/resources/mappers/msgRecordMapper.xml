@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.virtualAsset.webServer.dataAccessObject.MsgRecordDAO">
+
+	<resultMap id="recordMsg" type="com.virtualAsset.webServer.entity.KafkaMSG">
+		<result column="msg_id" property="msgId" jdbcType="BIGINT" javaType="Long"/>
+		<result column="author" property="author" jdbcType="VARCHAR" javaType="String"/>
+		<result column="content_type" property="contentType" jdbcType="VARCHAR" javaType="String"/>
+		<result column="content" property="content" jdbcType="VARCHAR" javaType="String"/>
+		<result column="timestamp" property="timestamp" jdbcType="VARCHAR" javaType="String"/>
+		<result column="topic" property="topic" jdbcType="VARCHAR" javaType="String"/>
+		<result column="is_edited" property="isEdited" jdbcType="BOOLEAN" javaType="boolean"/>
+	</resultMap>
+	
+	<update id="updateMessage" parameterType="com.virtualAsset.webServer.entity.KafkaMSG">
+        update
+            "content" = #{content},
+            "is_edited" = #{isEdited}
+        where 
+            "msg_id" = #{msgId}
+    </update>
+    
+	<select id="selectAllMessages" resultMap="recordMsg">
+        select
+        	"msg_id",
+            "author",
+            "content_type",
+            "content",
+            "timestamp",
+            "topic",
+            "is_edited"
+        from 
+            "msg_id"
+    </select>
+    <select id="selectLast30Messages" resultMap="recordMsg">
+        select
+        	"msg_id",
+            "author",
+            "content_type",
+            "content",
+            "timestamp",
+            "topic",
+            "is_edited"
+        from (
+        	select * from "chat_msgs" order by "msg_id" DESC limit 30
+        ) sub
+        order by "msg_id" ASC
+            
+    </select>
+    <select id="select30MessagesFrom" resultMap="recordMsg">
+        select
+        	"msg_id",
+            "author",
+            "content_type",
+            "content",
+            "timestamp",
+            "topic",
+            "is_edited"
+        from (
+        	select * from "chat_msgs" where "msg_id" <![CDATA[<]]> ${index} order by "msg_id" DESC limit 30
+        ) sub
+        order by "msg_id" ASC
+            
+    </select>
+    <insert id="insertMessage" parameterType="com.virtualAsset.webServer.entity.KafkaMSG">
+    	insert into chat_msgs(author, content_type, content, timestamp, topic, is_edited)
+    	values(
+    		#{author},
+    		#{contentType},
+    		#{content},
+    		#{timestamp},
+    		#{topic},
+    		#{isEdited}
+    	)
+    </insert>
+</mapper>

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import searchAxios from '../scripts/searchAxios';
 import "./explore.css";
 
-import Search_white from "../Icons/Search_white.png";
 import User_white from "../Icons/User_white.png";
 import Contract_white from "../Icons/Contract_white.png";
 import Close_white from "../Icons/Close_white.png";
@@ -129,14 +128,14 @@ function ExploreBar(props) {
                 </select>
                 <input onChange={props.onKeywordInput} type='search' placeholder='키워드를 입력하세요.' className='roundStyle exploreInput show'></input>
                 <p className='exploreBarCmt hideUp'>지정된 키워드가 없습니다.<br />돋보기를 눌러 원하는 키워드를 설정해보세요!</p>
-                <img className='closeBtn' src={Close_white} width={20} height={20} onClick={props.closeClick} />
+                <img className='closeBtn' src={Close_white} width={20} height={20} onClick={props.closeClick} alt=""/>
             </div>
         )
     }
     //축소 상태일때
     return (
         <div className='exploreBar'>
-            <Icon_Search size='43px' onClick={props.searchClick}  margin='14px' float='right'/>
+            <IconSearch size='43px' onClick={props.searchClick}  margin='14px' float='right'/>
             <select className='roundStyle exploreType'>
                 <option value='all'>전체</option>
                 <option value='tag'>태그</option>
@@ -179,8 +178,8 @@ function ExploreView(props) {
                                 <div key={'tag' + ii} className='tag'>#{tag}</div>
                             ))}
                         </div>
-                        <span className='smallInfo'><img className='smallIcon' src={Contract_white} /> {contents.concludedContractAmount}/{contents.totalContractAmount}</span>
-                        <span className='smallInfo right'>{contents.memberAmount} <img className='smallIcon' src={User_white} /></span>
+                        <span className='smallInfo'><img className='smallIcon' src={Contract_white} alt=""/> {contents.concludedContractAmount}/{contents.totalContractAmount}</span>
+                        <span className='smallInfo right'>{contents.memberAmount} <img className='smallIcon' src={User_white} alt=""/></span>
                     </div>
                 ))}
             </div>

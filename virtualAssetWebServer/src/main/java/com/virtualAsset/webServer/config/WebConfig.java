@@ -1,4 +1,4 @@
-package com.virtualAsset.webServer;
+package com.virtualAsset.webServer.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -15,14 +15,19 @@ public class WebConfig implements WebMvcConfigurer {
 
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-
-		// * 안성찬 로컬
-		// */registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://211.193.12.31:3000");
-		/* 안성찬 회사
-		//*///registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://192.168.30.14:3000");
-		//*권예빈 로컬*/registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://221.139.151.211:3000");
-		/*계용운 로컬*/ registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://localhost:3000");
-		// registry.addMapping("/api/**").allowCredentials(true).allowedOrigins("http://192.168.0.4:3000");
+		/*안성찬 로컬*/final String ip= "211.193.12.31";
+		//*안성찬 회사*/final String ip= "192.168.30.14";
+		//*권예빈 로컬*/final String ip= "192.168.137.179";
+		//*지상은 로컬*/final String ip="172.30.1.34";
+		//*양식*/final String ip= "127.0.0.1";
+		
+		
+		registry.addMapping("/api/**")
+		.allowedOrigins("http://"+ip+":3000")
+		.allowCredentials(true)
+		.allowedMethods("POST","GET")
+		.maxAge(3600);
+		
 	}
 
 }

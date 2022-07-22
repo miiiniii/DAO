@@ -6,7 +6,7 @@ import Search_white from "../Icons/Search_white.png";
 import "./asset.css";
 import AssetDetail from "./assetDetail";
 import LoadingSpinner from "./loadingSpinner";
-import { Icon_Search } from "./cssIcons";
+import { IconSearch } from "./cssIcons";
 
 
 /**
@@ -139,7 +139,7 @@ function AssetLogon(props) {
                <div className="myAssetList">
                     <div className={props.searchState.class}>
                          <input className={props.searchState.inputClass} type="text" placeholder="검색어를 입력하세요." onChange={props.inputChange} />
-                    <Icon_Search size='34px' onClick={props.searchClick} margin='7.5px' float='right'/>
+                    <IconSearch size='34px' onClick={props.searchClick} margin='7.5px' float='right'/>
                     </div>
                     <div className="myClubList">
                          <br/>

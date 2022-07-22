@@ -42,11 +42,12 @@ function App() {
   const [signinPage, setSigninPage] = useState('hide');
   const [signupPage, setSignupPage] = useState('hide');
   const [editProfilePage, setEditProfilePage] = useState('hide');
-  const [clubPage, setClubPage] = useState({ viewClass: ' clubHide' });
+  const [clubPage, setClubPage] = useState({ viewClass: ' clubHide', id: null });
   const [bankAccountPage, setBankAccountPage] = useState('hide');
 
-  const showClubPage = () => setClubPage({ viewClass: '' })
-  const hideClubPage = () => setClubPage({ viewClass: ' clubHide' })
+  const showClubPage = (id) => setClubPage({ viewClass: '', id: id })
+
+  const hideClubPage = () => setClubPage({ viewClass: ' clubHide', id: null })
   const showSigninPage = () => setSigninPage('show');
   const hideSigninPage = () => {
     document.getElementById("loginId").value="";
@@ -66,7 +67,7 @@ function App() {
     setTouchBlock(signinPage === 'show' || signupPage === 'show' || clubPage.viewClass === '' || editProfilePage === 'show' || bankAccountPage === 'show');
   }, [signinPage, signupPage, clubPage, editProfilePage, bankAccountPage])
 
-  const [auth, setAuth] = useState();
+  const [auth, setAuth] = useState({status: "LOG_OFF", code: 0, userInfo:{id:null, name:null, nick: null}});
 
 
 

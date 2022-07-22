@@ -2,40 +2,44 @@ package com.virtualAsset.webServer.entity;
 
 import java.io.Serializable;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Builder
+@Data
 public class KafkaMSG implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private Long msgId;
 	private String author;
+	@Builder.Default
+	private String contentType="msg";
 	private String content;
 	private String timestamp;
-	public String getAuthor() {
-		return author;
-	}
-	public void setAuthor(String author) {
-		this.author = author;
-	}
-	public String getContent() {
-		return content;
-	}
-	public void setContent(String content) {
-		this.content = content;
-	}
-	public String getTimestamp() {
-		return timestamp;
-	}
-	public void setTimestamp(String timestamp) {
-		this.timestamp = timestamp;
-	}
+	private String topic;
+	@Builder.Default
+	private boolean isEdited = false;
 	@Override
 	public String toString() {
 		return "Message{" +
                 "author='" + author + '\'' +
+                ", contentType='"+contentType+"'"+
                 ", content='" + content + '\'' +
                 ", timestamp='" + timestamp + '\'' +
                 '}';
 	}
-	public KafkaMSG(String author, String content) {
-		super();
-		this.author = author;
-		this.content = content;
+	public KafkaMSG() {
+		
 	}
-
+	
+	public KafkaMSG(Long msgId, String author, String contentType, String content, String timestamp,String topic, boolean isEdited) {
+		super();
+		this.msgId=msgId;
+		this.author = author;
+		this.contentType=contentType;
+		this.content = content;
+		this.timestamp=timestamp;
+		this.isEdited=isEdited;
+		this.topic=topic;
+	}
+	
 }

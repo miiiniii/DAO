@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import NaverLogin, { KakaoLogin } from "./externalLogin";
 import loginAxios from "../scripts/loginAxios";
 
 export default function Signin(props) {
+	const [loginMessage, setLoginMessage] = React.useState("");
+	const [isLogin, setIsLogin] = React.useState(false);
 
 	const authSubmit = (e) => {
 		var authVal = {id: document.getElementById("loginId").value, pw: document.getElementById("loginPw").value};
@@ -11,6 +13,12 @@ export default function Signin(props) {
 			if(data.code===1000){
 				props.setAuth(data);
 				props.hideSigninPage();
+				setLoginMessage("");
+				setIsLogin(true);
+			}
+			else if(data.code===1111){
+				setLoginMessage("아이디 또는 비밀번호를 잘못 입력했습니다. \n 입력하신 내용을 다시 확인해주세요.");
+				setIsLogin(false);
 			}
 			console.log(data);
 		})
@@ -39,10 +47,25 @@ export default function Signin(props) {
 					<section className="login-section-wrap">
 						<section className="login-input-section-wrap">
 							<div className="login-input-wrap">
-								<input id="loginId" placeholder="아이디" type="text"></input>
+								<input id="loginId" 
+									placeholder="아이디" 
+									type="text"
+									onKeyDown={(e)=>{
+										if(e.key==="Enter"){
+											document.getElementById("loginPw").focus();
+										}
+									}}/>
 							</div>
 							<div className="login-input-wrap password-wrap">
-								<input id="loginPw" placeholder="비밀번호" type="password"></input>
+								<input id="loginPw" 
+								placeholder="비밀번호" 
+								type="password"
+								onKeyDown={(e)=>{
+									if(e.key==="Enter"){
+										authSubmit();
+									}
+								}}
+								onSubmit={authSubmit}/>
 							</div>
 							<div className="login-stay-sign-in">
 								<div className="round">
@@ -56,8 +79,9 @@ export default function Signin(props) {
 							<button onClick={authSubmit}>로그인</button>
 						</div>
 					</section>
+					<p className="message"> {loginMessage} </p>
 					<div className="login-sign-up-wrap">
-						<p style={{ marginTop: '10px', color: "#F1EDE9" }}>아직 회원이 아니라면?</p>
+						<p style={{ color: "#F1EDE9" }}>아직 회원이 아니라면?</p>
 						<p style={{ marginTop: '15px', color: '#738CD9' }}><span className="signinBtn" onClick={props.showSignupPage}>DAO회원가입</span></p>
 						<br/>
 						<br/>
