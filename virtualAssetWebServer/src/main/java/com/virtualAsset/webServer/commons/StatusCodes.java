@@ -8,8 +8,10 @@ public enum StatusCodes {
 	SESSION_EXPIRE(1211),
 	FAIL_AUTHENTICATION(1111),
 	MSG_SEND_SUCCESS(2000),
-	MSG_SEND_FAIL(2400);
-
+	MSG_SEND_FAIL(2400),
+	REQ_SUCCESS(3000),
+	REQ_FAIL(3400);
+	
 	private final int code;
 	
 	StatusCodes(int code) {

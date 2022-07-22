@@ -1,10 +1,17 @@
 import axios from 'axios';
 import TEST_IP from './setTestIp';
 export default function searchAxios(keywords, callback) {
+  
+  const {text, filterType} = keywords;
+  console.log('sending keywords',keywords);
   axios(
     {
-      url: '/api/publicCommunity',
-      method: 'post',
+      url: '/api/search',
+      method: 'get',
+      params: {
+        text: text,
+        filterType: filterType
+      },
 
       /**
        * 개발 환경에서의 크로스 도메인 이슈를 해결하기 위한 코드로
@@ -17,6 +24,7 @@ export default function searchAxios(keywords, callback) {
       withCredentials: true,
     }
   ).then(function (response) {
+    console.log('response: ', response);
     callback(response.data);
   });
 }

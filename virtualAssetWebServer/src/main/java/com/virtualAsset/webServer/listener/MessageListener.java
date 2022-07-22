@@ -24,7 +24,6 @@ public class MessageListener {
             groupId = KafkaConstants.GROUP_ID
     )
     public void listen(KafkaMSG message) {
-
         log.info("sending via kafka listener..");
         template.convertAndSend("/topic/group", message);
     }

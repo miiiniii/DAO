@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.virtualAsset.webServer.infrastructure.postgresql.repository.explore.mybatis.ExploreMapper">
+
+    <resultMap id="CommunityBannerResult" type="com.virtualAsset.webServer.infrastructure.postgresql.entity.community.CommunityBannerEntity">
+        <result column="community_id" property="id" jdbcType="INTEGER" javaType="Integer"/>
+        <result column="community_name" property="name" jdbcType="VARCHAR" javaType="String"/>
+        <result column="community_concluded_contract_amount" property="concludedContractAmount" jdbcType="INTEGER" javaType="Integer"/>
+        <result column="community_total_contract_amount" property="totalContractAmount" jdbcType="INTEGER" javaType="Integer"/>
+        <result column="community_member_amount" property="memberAmount" jdbcType="INTEGER" javaType="Integer"/>
+        <result column="community_introduce" property="introduce" jdbcType="VARCHAR" javaType="String"/>
+        <result column="community_tags" property="tags" jdbcType="VARCHAR" javaType="String"/>
+        <result column="community_recent_activity" property="recentActivity" jdbcType="TIMESTAMP" javaType="Integer"/>
+    </resultMap>
+
+
+    <select id="findAll" resultMap="CommunityBannerResult">
+        select
+        "community_id",
+        "community_name",
+        "community_concluded_contract_amount",
+        "community_total_contract_amount",
+        "community_member_amount",
+        "community_introduce",
+        "community_tags",
+        "community_recent_activity"
+        from
+        "community"
+        <where>
+
+                <choose>
+
+                    <when test="filterType == 'all'">
+                        and community_name like concat('%', #{text}, '%') or
+                        community_introduce like concat('%', #{text}, '%') or
+                        concat(':',community_tags, ':') like concat('%:', #{text}, ':%')
+                    </when>
+
+                    <when test="filterType == 'all' and text == '' or text == null">
+                        and 1=1;
+                    </when>
+
+                    <when test="filterType == 'title'">
+                        and community_name like concat('%', #{text}, '%')
+                    </when>
+
+                    <when test="filterType == 'intro'">
+                        and community_introduce like concat('%', #{text}, '%')
+                    </when>
+
+                    <when test="filterType == 'tag'">
+                        and concat(':',community_tags, ':') like concat('%:', #{text}, ':%')
+                    </when>
+
+                </choose>
+
+        </where>
+    </select>
+</mapper>
