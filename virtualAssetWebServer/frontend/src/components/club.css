@@ -414,3 +414,27 @@ pre{
     color: rgb(238, 75, 75);
     font-weight: bold;
 }
+
+
+.voteWrapper{
+    margin-top: 10px;
+    padding:3% 5%;
+    max-width: 70%;
+    min-width: 200px;
+    background-color: #738dd93d;
+    border-radius: 20px;
+}
+
+.voteWrapper>p{
+    margin: 10px 0;
+}
+
+.voteSelection{
+    margin: 4px 0;
+    padding: 9px;
+    border-radius: 7px;
+    color: #222426;
+    background-color: #d4d9e9;
+    text-overflow: clip;
+    transition: .1s;
+}

@@ -6,7 +6,7 @@ import User_white from "../Icons/User_white.png";
 import Contract_white from "../Icons/Contract_white.png";
 import Close_white from "../Icons/Close_white.png";
 import LoadingSpinner from './loadingSpinner';
-import { Icon_Search } from './cssIcons';
+import { IconSearch } from './cssIcons';
 import { useCallback } from 'react';
 
 /**
@@ -114,7 +114,7 @@ function ExploreBar(props) {
     if (props.sBarExt) {
         return (
             <div className='exploreBar'>
-                <Icon_Search size={43} onClick={props.searchClick}  margin='14px' float='right'/>
+                <IconSearch size={43} onClick={props.searchClick}  margin='14px' float='right'/>
                 <select onChange={props.onFilterSelected} className='roundStyle exploreType typeShow'>
                     <option value='all'>전체</option>
                     <option value='tag'>태그</option>

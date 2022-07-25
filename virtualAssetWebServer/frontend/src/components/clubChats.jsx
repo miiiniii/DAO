@@ -343,10 +343,12 @@ function ClubChat(props) {
     //투표
     const [showVoteMaker,setShowVoteMaker]=useState(false);
     const onMakeVoteClick=(e)=>{
-        console.log("make vote");
-
+        let data={voteName:"테스트 투표", voteSelection:[{id: 1, name:"1번 선택지"},{id: 2, name:"2번 선택지"},{id: 3, name:"3번 선택지"},{id: 4, name:"4번 선택지"}]}
+        chatAPI.sendMessage(props.auth.userInfo.nick,"vote",JSON.stringify(data),(res)=>{
+            console.log("vote sent", res);
+        })
+        console.log(data);
     }
-
 
     return (
         <div className={"chatWindowWrapper"
@@ -373,7 +375,7 @@ function ClubChat(props) {
                 <MsgLoader noMoreMsg={noMoreMsg} />
                 <div className="chatWrapper">
                     {chatMessasges.map((c, i) => (
-                        <Chat
+                            <Message
                             key={i}
                             id={c.msgId}
                             userPic={null}
@@ -419,8 +421,77 @@ function ClubChat(props) {
 
 
 
-
-
+function Message(props){
+    switch(props.contentType){
+        case "msg":
+            return(
+                <Chat
+                id={props.id}
+                userPic={null}
+                role="직책"
+                userName={props.userName}
+                sendTime={props.sendTime}
+                isEdited={props.isEdited}
+                contents={props.contents}
+                contentType={props.contentType}
+                isMine={props.isMine}
+                onContextOpen={props.onContextOpen}
+                onChatTouchEnd={props.onChatTouchEnd}
+                onChatTouchMove={props.onChatTouchMove}
+                onChatTouchStart={props.onChatTouchStart} />
+            )
+            case"vote":
+            return(
+                <Vote
+                id={props.id}
+                userPic={null}
+                role="직책"
+                userName={props.userName}
+                sendTime={props.sendTime}
+                isEdited={props.isEdited}
+                contents={props.contents}
+                contentType={props.contentType}
+                isMine={props.isMine}
+                onContextOpen={props.onContextOpen}
+                onChatTouchEnd={props.onChatTouchEnd}
+                onChatTouchMove={props.onChatTouchMove}
+                onChatTouchStart={props.onChatTouchStart}/>
+            )
+    }
+}
+function Vote(props){
+    let content=JSON.parse(props.contents)
+    const onClickVoteSelection=(e, id)=>{
+        console.log(id);
+        document.getElementsByName(`vote-${id}`).forEach((c,i)=>{
+            c.parentElement.classList.remove("voteSelectted");
+        })
+        document.getElementById(id).parentElement.classList.add("voteSelectted")
+    }
+    return(
+        <div id={props.id} className="chat"
+        onContextMenu={props.onContextOpen}
+        onTouchStart={props.onChatTouchStart}
+        onTouchMove={props.onChatTouchMove}
+        onTouchEnd={props.onChatTouchEnd}
+        >
+            <div>
+                <div className="chatUserPic" style={{ backgroundImage: props.userPic || "none" }}>{props.userPic || 'DAO'}</div>
+                <div className="chatContents">
+                    <div className="chatSenderRole">[{props.role}]&nbsp;</div><p className="chatSender">{props.userName}</p><p className={"sendTime" + (props.isEdited ? ' edited' : '')}>{props.sendTime}</p>
+                    <div className="voteWrapper">
+                        <p style={{fontSize:"20px"}}>{content.voteName}</p>
+                        {content.voteSelection.map((c,i)=>(
+                            <div className="voteSelection" onClick={(e,id=`vote-${props.id}.${c.id}`)=>{onClickVoteSelection(e,id)}}>
+                                <input className="voteInput" type={"radio"} id={`vote-${props.id}.${c.id}`} name={`vote-${props.id}`} key={"s"+i}/><label for={`vote-${props.id}.${c.id}`}>{c.name}</label>
+                            </div>
+                        ))}
+                        </div>
+                </div>
+            </div>
+        </div>
+    )
+}
 function Chat(props) {
 
     return (
