@@ -431,10 +431,24 @@ pre{
 
 .voteSelection{
     margin: 4px 0;
-    padding: 9px;
+    padding: 5px 9px;
     border-radius: 7px;
-    color: #222426;
-    background-color: #d4d9e9;
+    background-color: #d4d9e923;
     text-overflow: clip;
     transition: .1s;
+}
+.openVote{
+    padding: 13px 0 3px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.voteDesc{
+    display: -webkit-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: left;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    font-size: 12px;
 }

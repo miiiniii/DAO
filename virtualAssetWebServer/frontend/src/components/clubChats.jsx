@@ -2,9 +2,10 @@
 import { IconPlus } from "./cssIcons";
 import { useEffect, useState } from "react";
 import SocketJsClient from "react-stomp";
+import StompJs from "stompjs";
+import SockJS from "sockjs-client";
 import TEST_IP from "../scripts/setTestIp";
 import chatAPI from "../scripts/chatAxios";
-import customAxios from "../scripts/customAxios";
 import customAxiosData from "../scripts/customAxiosData";
 import { useRef } from "react";
 import LoadingSpinner from "./loadingSpinner";
@@ -21,7 +22,10 @@ import {
 
 
 function ClubChat(props) {
-
+    const sockJS= SockJS(`http://${TEST_IP}:8080/api/my-chat/`);
+    const client= new StompJs.Client({
+        brokerURL:'/api/my-chat/'
+    })
     const [chatFocus, setChatFocus] = useState(false);
     const [inputBarHeight, setInputBarHeight] = useState(1);
     const [chatMessasges, setChatMessages] = useState([]);
@@ -103,6 +107,7 @@ function ClubChat(props) {
     const chatScrollHandle = (e) => {
         if(props.clubPage.viewClass!=='')return;
         let lastChatHeight=document.getElementsByClassName("chat");
+        if (lastChatHeight.length ===0 )return;
         lastChatHeight=lastChatHeight[lastChatHeight.length-1].clientHeight - 40;
         let isScrollBottom=e.target.clientHeight + e.target.scrollTop >= e.target.scrollHeight - lastChatHeight;
         if (!scrollLock && isScrollBottom) {
@@ -135,13 +140,14 @@ function ClubChat(props) {
     }
 
     const handleMessageSubmit = (msg, contentType) => {
-        chatAPI.sendMessage(props.auth.userInfo.nick, contentType, msg, (res) => {
+        console.log(props.currChannelId);
+        chatAPI.sendMessage(props.auth.userInfo.nick, contentType, props.currChannelId, msg, (res) => {
             console.log("sent", res);
         });
     }
 
     const getMoreMessages = (index) => {
-        customAxiosData("/getMsgsFrom", { index: index }, (res) => {
+        customAxiosData("/getMsgsFrom", { index: index, channel:props.currChannelId }, (res) => {
             if (res.length !== 0) {
                 res = res.map((c, i) => {
                     if (c.author === props.auth.userInfo.nick) {
@@ -166,9 +172,11 @@ function ClubChat(props) {
     useEffect(() => {
         console.log("props.clubPage.viewClass === '' =>", props.clubPage.viewClass === '')
         delDateSeparation();
+        
+        setChatMessages([]);
         if (props.clubPage.viewClass === '') {
             if (chatMessasges.length === 0) {
-                customAxios("/getMsgsLast", (res) => {
+                customAxiosData("/getMsgsLast", {channel: props.currChannelId }, (res) => {
                     res = res.map((c, i) => {
                         if (c.author === props.auth.userInfo.nick) {
                             c.isMine = true;
@@ -191,7 +199,7 @@ function ClubChat(props) {
                 setChatMessages([]);
             }
         }
-    }, [props.clubPage.viewClass])
+    }, [props.clubPage.viewClass, props.currChannelId])
 
     //메세지 timestamp formatter
     const formattingTimestamp = (timestamp) => {
@@ -343,7 +351,7 @@ function ClubChat(props) {
     //투표
     const [showVoteMaker,setShowVoteMaker]=useState(false);
     const onMakeVoteClick=(e)=>{
-        let data={voteName:"테스트 투표", voteSelection:[{id: 1, name:"1번 선택지"},{id: 2, name:"2번 선택지"},{id: 3, name:"3번 선택지"},{id: 4, name:"4번 선택지"}]}
+        let data={voteName:"테스트 투표",voteDesc:"테스트 투표의 설명은 이렇게 보이게 됩니다. 길면 두줄만 보여주고 자른 후 투표창에서 전문을 보여주는게 깔끔하지 싶습니다.", voteSelection:[{id: 1, name:"1번 선택지"},{id: 2, name:"2번 선택지"},{id: 3, name:"3번 선택지"},{id: 4, name:"4번 선택지"}]}
         chatAPI.sendMessage(props.auth.userInfo.nick,"vote",JSON.stringify(data),(res)=>{
             console.log("vote sent", res);
         })
@@ -365,13 +373,13 @@ function ClubChat(props) {
             <div className="chatView"
                 style={{ height: 'calc(100% - ' + (33 + inputBarHeight) + 'px)' }}
                 onScroll={chatScrollHandle}>
-
+                {/* 
                 <SocketJsClient
-                    url={`http://${TEST_IP}:8080/api/my-chat/`}
-                    topics={["/topic/group"]}
+                    url={`http://${TEST_IP}:8080/api/my-chat/`} 
+                    topics={["/topic/channel/"+props.currChannelId]}
                     onMessage={(msg) => onMessageReceived(msg)}
                     debug={true}
-                />
+                />*/}
                 <MsgLoader noMoreMsg={noMoreMsg} />
                 <div className="chatWrapper">
                     {chatMessasges.map((c, i) => (
@@ -461,32 +469,30 @@ function Message(props){
 }
 function Vote(props){
     let content=JSON.parse(props.contents)
-    const onClickVoteSelection=(e, id)=>{
-        console.log(id);
-        document.getElementsByName(`vote-${id}`).forEach((c,i)=>{
-            c.parentElement.classList.remove("voteSelectted");
-        })
-        document.getElementById(id).parentElement.classList.add("voteSelectted")
+    const onOpenVoteClick=(e,id)=>{
+        console.log("openVote - ",id,e);
     }
-    return(
+    return (
         <div id={props.id} className="chat"
-        onContextMenu={props.onContextOpen}
-        onTouchStart={props.onChatTouchStart}
-        onTouchMove={props.onChatTouchMove}
-        onTouchEnd={props.onChatTouchEnd}
+            onContextMenu={props.onContextOpen}
+            onTouchStart={props.onChatTouchStart}
+            onTouchMove={props.onChatTouchMove}
+            onTouchEnd={props.onChatTouchEnd}
         >
             <div>
                 <div className="chatUserPic" style={{ backgroundImage: props.userPic || "none" }}>{props.userPic || 'DAO'}</div>
                 <div className="chatContents">
                     <div className="chatSenderRole">[{props.role}]&nbsp;</div><p className="chatSender">{props.userName}</p><p className={"sendTime" + (props.isEdited ? ' edited' : '')}>{props.sendTime}</p>
                     <div className="voteWrapper">
-                        <p style={{fontSize:"20px"}}>{content.voteName}</p>
-                        {content.voteSelection.map((c,i)=>(
-                            <div className="voteSelection" onClick={(e,id=`vote-${props.id}.${c.id}`)=>{onClickVoteSelection(e,id)}}>
-                                <input className="voteInput" type={"radio"} id={`vote-${props.id}.${c.id}`} name={`vote-${props.id}`} key={"s"+i}/><label for={`vote-${props.id}.${c.id}`}>{c.name}</label>
+                        <p style={{ fontSize: "20px" }}>{content.voteName}</p>
+                        <div className="voteDesc">{content.voteDesc}</div>
+                        {content.voteSelection.map((c, i) => (
+                            <div className="voteSelection">
+                                {c.name}
                             </div>
                         ))}
-                        </div>
+                        <div className="openVote" onClick={(e, id=props.id)=>onOpenVoteClick(e,id)}>투표 보기</div>
+                    </div>
                 </div>
             </div>
         </div>

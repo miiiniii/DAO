@@ -158,6 +158,7 @@ export default function Club(props) {
                 />
                 <ClubInfos clubView={clubView} setClubSettingView={setClubSettingView} setWriteContract={setWriteContract} />
                 <ClubChat
+                    currChannelId={selectedChannel}
                     clubView={clubView}
                     clubPage={props.clubPage}
                     auth={props.auth}

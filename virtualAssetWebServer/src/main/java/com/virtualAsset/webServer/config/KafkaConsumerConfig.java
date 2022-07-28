@@ -24,7 +24,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @EnableKafka
 @Configuration
-public class KafkaConsumerConfiguration {
+public class KafkaConsumerConfig {
 	
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, KafkaMSG> kafkaListenerContainerFactory() {
@@ -44,7 +44,11 @@ public class KafkaConsumerConfiguration {
 
     @Bean
     public ConsumerFactory<String, KafkaMSG> consumerFactory() {
-        return new DefaultKafkaConsumerFactory<>(consumerConfigurations(), new StringDeserializer(), new ErrorHandlingDeserializer<>(new JsonDeserializer<>(KafkaMSG.class)) );
+        return new DefaultKafkaConsumerFactory<>(
+        		consumerConfigurations(), 
+        		new StringDeserializer(), 
+        		new ErrorHandlingDeserializer<>(new JsonDeserializer<>(KafkaMSG.class)) 
+        		);
     }
 
     @Bean
@@ -54,7 +58,7 @@ public class KafkaConsumerConfiguration {
         configurations.put(ConsumerConfig.GROUP_ID_CONFIG, KafkaConstants.GROUP_ID);
         configurations.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
         configurations.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
-        //configurations.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        //configurations.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "latest");
         return configurations;
     }
 }

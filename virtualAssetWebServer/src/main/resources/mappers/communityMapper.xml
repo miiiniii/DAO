@@ -67,6 +67,15 @@
 		"community_recent_activity"
 		from
 		"community"
+		where
+		"community_id" in (
+			select
+				"community_member"."community_id"
+			from
+				"community_member"
+			where   
+				"user_id"=#{id}
+		)
 	</select>
 
 	<select id="enterCommunity" resultType="Integer">

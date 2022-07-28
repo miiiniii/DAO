@@ -25,6 +25,6 @@ public class MessageListener {
     )
     public void listen(KafkaMSG message) {
         log.info("sending via kafka listener..");
-        template.convertAndSend("/topic/group", message);
+        template.convertAndSend("/topic/channel/"+message.getTopic(), message);
     }
 }

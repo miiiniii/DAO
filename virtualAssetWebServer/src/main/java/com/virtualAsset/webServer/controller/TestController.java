@@ -8,13 +8,10 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONArray;
 import org.springframework.boot.configurationprocessor.json.JSONException;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -104,9 +101,9 @@ public class TestController {
 	}
 
 	@PostMapping("/myCommunityBanners")
-	public List<CommunityBannerEntity> myClub(HttpServletRequest request) throws JSONException, ParseException {
-
-		return communityDAO.selectMyBanners("");
+	public List<CommunityBannerEntity> myClub(@RequestBody JSONObject data, HttpServletRequest request) throws JSONException, ParseException {
+		
+		return communityDAO.selectMyBanners(data.getAsString("id"));
 
 	}
 
@@ -115,34 +112,34 @@ public class TestController {
 
 	@PostMapping("/getMsgs")
 	public List<KafkaMSG> getMsgs(HttpServletRequest request) {
-		return msgRecordDAO.selectAllMessages(KafkaConstants.KAFKA_TOPIC);
+		return msgRecordDAO.selectAllMessages();
 	}
 
 	@PostMapping("/getMsgsLast")
-	public List<KafkaMSG> getMsgsLast(HttpServletRequest request) {
-		return msgRecordDAO.selectLast30Messages(KafkaConstants.KAFKA_TOPIC);
+	public List<KafkaMSG> getMsgsLast(@RequestBody JSONObject data, HttpServletRequest request) {
+		return msgRecordDAO.selectLast30Messages(data.getAsString("channel"));
 	}
 
 	@PostMapping("/getMsgsFrom")
 	public List<KafkaMSG> getMsgsFrom(@RequestBody JSONObject data, HttpServletRequest request) {
 		log.info("getMsgsFrom"+data.toString());
-		return msgRecordDAO.select30MessagesFrom(KafkaConstants.KAFKA_TOPIC, (int) data.getAsNumber("index"));
+		return msgRecordDAO.select30MessagesFrom(data.getAsString("channel"), (int) data.getAsNumber("index"));
 	}
 	
 	@PostMapping("/enterCommunity")
 	public String enterClub(@RequestBody JSONObject data, HttpServletRequest request) {
-		log.info("enterCommunity"+data.toString());
+		log.info("enterCommunity["+request.getRemoteAddr()+"]: data="+data.toString());
 		return (communityDAO.enterCommunity((int)data.getAsNumber("communityId"), data.getAsString("auth")) == 1)?"true":"false";
 	}
 	
 	@PostMapping("/getChannels")
 	public List<ChannelEntity> getChannels(@RequestBody JSONObject data, HttpServletRequest request){
-		log.info("getChannels"+data.toString());
+		log.info("getChannels["+request.getRemoteAddr()+"]: data="+data.toString());
 		return communityDAO.getChannels((int)data.getAsNumber("communityId"));
 	}
 	@PostMapping("/getChannelTabs")
 	public List<ChannelTabEntity> getChannelTabs(@RequestBody JSONObject data, HttpServletRequest request){
-		log.info("getChannelTabs"+data.toString());
+		log.info("getChannelTabs["+request.getRemoteAddr()+"]: data="+data.toString());
 		return communityDAO.getChannelTabs((int)data.getAsNumber("communityId"));
 	}
 	

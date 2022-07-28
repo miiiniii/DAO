@@ -24,6 +24,7 @@ public class KafkaMSG implements Serializable {
                 "author='" + author + '\'' +
                 ", contentType='"+contentType+"'"+
                 ", content='" + content + '\'' +
+                ", topic='" + topic + '\'' +
                 ", timestamp='" + timestamp + '\'' +
                 '}';
 	}
@@ -31,7 +32,7 @@ public class KafkaMSG implements Serializable {
 		
 	}
 	
-	public KafkaMSG(Long msgId, String author, String contentType, String content, String timestamp,String topic, boolean isEdited) {
+	public KafkaMSG(Long msgId, String author, String contentType, String topic, String content, String timestamp, boolean isEdited) {
 		super();
 		this.msgId=msgId;
 		this.author = author;

@@ -17,11 +17,12 @@ const chatAPI = {
         }).catch((e) => console.log(e));
     },
 
-    sendMessage: (username, contentType, text, callback) => {
+    sendMessage: (username, contentType, topic, text, callback) => {
         let msg = {
             author: username,
             contentType: contentType,
             content: text,
+            topic: topic,
         };
         axios(
             {

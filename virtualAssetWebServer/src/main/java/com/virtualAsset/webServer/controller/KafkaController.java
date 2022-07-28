@@ -38,9 +38,8 @@ public class KafkaController {
     
     @PostMapping(value = "/publish")
     public DefaultResponseBody sendMessage(@RequestBody KafkaMSG message) {
-        log.info("Produce message : " + message.toString());
         message.setTimestamp(LocalDateTime.now().toString());
-        message.setTopic(KafkaConstants.KAFKA_TOPIC);
+        log.info("Produce message : " + message.toString());
         try {
             kafkaTemplate.send(KafkaConstants.KAFKA_TOPIC, message).get();
         } catch (Exception e) {

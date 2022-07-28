@@ -8,6 +8,7 @@ import User_white from "../Icons/User_white.png";
 import Contract_white from "../Icons/Contract_white.png";
 import LoadingSpinner from './loadingSpinner';
 import {IconSearch} from './cssIcons';
+import customAxiosData from '../scripts/customAxiosData';
 
 /**
  * 홈 탭 컴포넌트
@@ -32,7 +33,7 @@ export default function Home(props) {
     //내 커뮤니티 불러오기
     useEffect(() => {
         if (props.currMainWindow === 0) {
-            customAxios('/myCommunityBanners', (data) => {
+            customAxiosData('/myCommunityBanners',{id:props.auth.userInfo.id}, (data) => {
                 if (JSON.stringify(data) === JSON.stringify(community)) return;
                 if (data === "") setCommunity(null);
                 else setCommunity(data);
@@ -41,7 +42,7 @@ export default function Home(props) {
                 setIsLoaded(true);
             });
         }
-    }, [props.currMainWindow]);
+    }, [props.currMainWindow, props.auth]);
 
     //
     useEffect(() => {
