@@ -1,0 +1,642 @@
+INFO  2022-07-29 10:23:32[kafka-coordinator-heartbeat-thread | 그룹1] [ConsumerCoordinator:912] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Group coordinator 223.194.70.105:33233 (id: 2147483646 rack: null) is unavailable or invalid due to cause: coordinator unavailable.isDisconnected: true. Rediscovery will be attempted.
+INFO  2022-07-29 10:23:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:849] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Discovered group coordinator 223.194.70.105:33233 (id: 2147483646 rack: null)
+INFO  2022-07-29 10:23:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:1141] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Attempt to heartbeat with Generation{generationId=581, memberId='consumer-그룹1-3-d7699bd8-3a09-4be0-9758-8b2204c2d7a6', protocol='range'} and group instance id Optional.empty failed due to UNKNOWN_MEMBER_ID, resetting generation
+INFO  2022-07-29 10:23:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:966] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Resetting generation due to: encountered UNKNOWN_MEMBER_ID from HEARTBEAT response
+INFO  2022-07-29 10:23:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: encountered UNKNOWN_MEMBER_ID from HEARTBEAT response
+INFO  2022-07-29 10:23:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:691] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Giving away all assigned partitions as lost since generation has been reset,indicating that consumer is no longer part of the group
+INFO  2022-07-29 10:23:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:326] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Lost previously assigned partitions channel-chat-0
+INFO  2022-07-29 10:23:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions lost: [channel-chat-0]
+INFO  2022-07-29 10:23:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions revoked: [channel-chat-0]
+INFO  2022-07-29 10:23:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 10:23:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: need to re-join with the given member-id
+INFO  2022-07-29 10:23:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 10:23:34[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully joined group with generation Generation{generationId=644, memberId='consumer-그룹1-3-21ccaaa0-36cd-4635-8867-8a838b3cc2d9', protocol='range'}
+INFO  2022-07-29 10:23:34[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully synced group in generation Generation{generationId=644, memberId='consumer-그룹1-3-21ccaaa0-36cd-4635-8867-8a838b3cc2d9', protocol='range'}
+INFO  2022-07-29 10:23:34[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[channel-chat-0])
+INFO  2022-07-29 10:23:34[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Adding newly assigned partitions: channel-chat-0
+INFO  2022-07-29 10:23:34[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:818] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Setting offset for partition channel-chat-0 to the committed offset FetchPosition{offset=237, offsetEpoch=Optional.empty, currentLeader=LeaderAndEpoch{leader=Optional[223.194.70.105:33233 (id: 1 rack: null)], epoch=0}}
+INFO  2022-07-29 10:23:34[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: [channel-chat-0]
+INFO  2022-07-29 10:23:37[MessageBroker-7] [WebSocketMessageBrokerStats:128] - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 12 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(12)-CONNECTED(12)-DISCONNECT(6)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 144], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 37], sockJsScheduler[pool size = 8, active threads = 2, queued tasks = 0, completed tasks = 22406]
+INFO  2022-07-29 10:53:01[kafka-coordinator-heartbeat-thread | 그룹1] [ConsumerCoordinator:912] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Group coordinator 223.194.70.105:33233 (id: 2147483646 rack: null) is unavailable or invalid due to cause: coordinator unavailable.isDisconnected: true. Rediscovery will be attempted.
+WARN  2022-07-29 10:53:03[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [NetworkClient:766] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Connection to node 1 (/223.194.70.105:33233) could not be established. Broker may not be available.
+INFO  2022-07-29 10:53:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:849] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Discovered group coordinator 223.194.70.105:33233 (id: 2147483646 rack: null)
+INFO  2022-07-29 10:53:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:1141] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Attempt to heartbeat with Generation{generationId=644, memberId='consumer-그룹1-3-21ccaaa0-36cd-4635-8867-8a838b3cc2d9', protocol='range'} and group instance id Optional.empty failed due to UNKNOWN_MEMBER_ID, resetting generation
+INFO  2022-07-29 10:53:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:966] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Resetting generation due to: encountered UNKNOWN_MEMBER_ID from HEARTBEAT response
+INFO  2022-07-29 10:53:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: encountered UNKNOWN_MEMBER_ID from HEARTBEAT response
+INFO  2022-07-29 10:53:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:691] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Giving away all assigned partitions as lost since generation has been reset,indicating that consumer is no longer part of the group
+INFO  2022-07-29 10:53:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:326] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Lost previously assigned partitions channel-chat-0
+INFO  2022-07-29 10:53:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions lost: [channel-chat-0]
+INFO  2022-07-29 10:53:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions revoked: [channel-chat-0]
+INFO  2022-07-29 10:53:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 10:53:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: need to re-join with the given member-id
+INFO  2022-07-29 10:53:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 10:53:05[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully joined group with generation Generation{generationId=646, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 10:53:05[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully synced group in generation Generation{generationId=646, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 10:53:05[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 10:53:05[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 10:53:05[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+WARN  2022-07-29 10:53:19[HikariPool-1 housekeeper] [HikariPool:788] - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=12h37m56s132ms430µs800ns).
+INFO  2022-07-29 10:53:37[MessageBroker-6] [WebSocketMessageBrokerStats:128] - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 12 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(12)-CONNECTED(12)-DISCONNECT(6)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 144], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 37], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 1, completed tasks = 31468]
+INFO  2022-07-29 10:55:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: group is already rebalancing
+INFO  2022-07-29 10:55:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:307] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Revoke previously assigned partitions 
+INFO  2022-07-29 10:55:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions revoked: []
+INFO  2022-07-29 10:55:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 10:55:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully joined group with generation Generation{generationId=647, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 10:55:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully synced group in generation Generation{generationId=647, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 10:55:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 10:55:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 10:55:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 10:59:54[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: group is already rebalancing
+INFO  2022-07-29 10:59:54[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:307] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Revoke previously assigned partitions 
+INFO  2022-07-29 10:59:54[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions revoked: []
+INFO  2022-07-29 10:59:54[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 10:59:54[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully joined group with generation Generation{generationId=648, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 10:59:54[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully synced group in generation Generation{generationId=648, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 10:59:54[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 10:59:54[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 10:59:54[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 11:05:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: group is already rebalancing
+INFO  2022-07-29 11:05:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:307] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Revoke previously assigned partitions 
+INFO  2022-07-29 11:05:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions revoked: []
+INFO  2022-07-29 11:05:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 11:05:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully joined group with generation Generation{generationId=649, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 11:05:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully synced group in generation Generation{generationId=649, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 11:05:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 11:05:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 11:05:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 11:20:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: group is already rebalancing
+INFO  2022-07-29 11:20:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:307] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Revoke previously assigned partitions 
+INFO  2022-07-29 11:20:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions revoked: []
+INFO  2022-07-29 11:20:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 11:20:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully joined group with generation Generation{generationId=650, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 11:20:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully synced group in generation Generation{generationId=650, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 11:20:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 11:20:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 11:20:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 11:23:37[MessageBroker-8] [WebSocketMessageBrokerStats:128] - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 12 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(12)-CONNECTED(12)-DISCONNECT(6)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 144], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 37], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 1, completed tasks = 31829]
+INFO  2022-07-29 11:53:37[MessageBroker-2] [WebSocketMessageBrokerStats:128] - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 12 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(12)-CONNECTED(12)-DISCONNECT(6)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 144], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 37], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 1, completed tasks = 32190]
+INFO  2022-07-29 12:22:49[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: group is already rebalancing
+INFO  2022-07-29 12:22:49[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:307] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Revoke previously assigned partitions 
+INFO  2022-07-29 12:22:49[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions revoked: []
+INFO  2022-07-29 12:22:49[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 12:22:50[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully joined group with generation Generation{generationId=651, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 12:22:50[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully synced group in generation Generation{generationId=651, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 12:22:50[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 12:22:50[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 12:22:50[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 12:23:37[MessageBroker-6] [WebSocketMessageBrokerStats:128] - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 12 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(12)-CONNECTED(12)-DISCONNECT(6)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 144], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 37], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 1, completed tasks = 32551]
+INFO  2022-07-29 12:30:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: group is already rebalancing
+INFO  2022-07-29 12:30:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:307] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Revoke previously assigned partitions 
+INFO  2022-07-29 12:30:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions revoked: []
+INFO  2022-07-29 12:30:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 12:30:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully joined group with generation Generation{generationId=652, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 12:30:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully synced group in generation Generation{generationId=652, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 12:30:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 12:30:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 12:30:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 12:53:37[MessageBroker-2] [WebSocketMessageBrokerStats:128] - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 12 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(12)-CONNECTED(12)-DISCONNECT(6)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 144], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 37], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 1, completed tasks = 32912]
+INFO  2022-07-29 13:23:37[MessageBroker-2] [WebSocketMessageBrokerStats:128] - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 12 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(12)-CONNECTED(12)-DISCONNECT(6)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 144], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 37], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 1, completed tasks = 33273]
+INFO  2022-07-29 13:30:17[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: group is already rebalancing
+INFO  2022-07-29 13:30:17[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:307] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Revoke previously assigned partitions 
+INFO  2022-07-29 13:30:17[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions revoked: []
+INFO  2022-07-29 13:30:17[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 13:30:17[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully joined group with generation Generation{generationId=653, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 13:30:17[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully synced group in generation Generation{generationId=653, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 13:30:17[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 13:30:17[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 13:30:17[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 13:31:20[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: group is already rebalancing
+INFO  2022-07-29 13:31:20[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:307] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Revoke previously assigned partitions 
+INFO  2022-07-29 13:31:20[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions revoked: []
+INFO  2022-07-29 13:31:20[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 13:31:20[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully joined group with generation Generation{generationId=654, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 13:31:20[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully synced group in generation Generation{generationId=654, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 13:31:20[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 13:31:20[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 13:31:20[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 13:31:26[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: group is already rebalancing
+INFO  2022-07-29 13:31:26[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:307] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Revoke previously assigned partitions 
+INFO  2022-07-29 13:31:26[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions revoked: []
+INFO  2022-07-29 13:31:26[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 13:31:26[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully joined group with generation Generation{generationId=655, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 13:31:26[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:780] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] SyncGroup failed: The group began another rebalance. Need to re-join the group. Sent generation was Generation{generationId=655, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 13:31:26[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 13:31:26[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully joined group with generation Generation{generationId=656, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 13:31:26[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully synced group in generation Generation{generationId=656, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 13:31:26[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 13:31:26[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 13:31:26[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 13:31:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: group is already rebalancing
+INFO  2022-07-29 13:31:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:307] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Revoke previously assigned partitions 
+INFO  2022-07-29 13:31:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions revoked: []
+INFO  2022-07-29 13:31:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 13:31:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully joined group with generation Generation{generationId=657, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 13:31:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Successfully synced group in generation Generation{generationId=657, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'}
+INFO  2022-07-29 13:31:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 13:31:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 13:31:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 13:42:28[restartedMain] [VirtualAssetWebServerApplication:55] - Starting VirtualAssetWebServerApplication using Java 17.0.3 on DESKTOP-QDOJEIP with PID 39380 (C:\Users\violi\Documents\APL2022\VirtualAsset-WebServer\virtualAssetWebServer\target\classes started by violi in C:\Users\violi\Documents\APL2022\VirtualAsset-WebServer\virtualAssetWebServer)
+INFO  2022-07-29 13:42:28[restartedMain] [VirtualAssetWebServerApplication:641] - The following profiles are active: prod
+INFO  2022-07-29 13:42:29[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-07-29 13:42:29[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  2022-07-29 13:42:29[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  2022-07-29 13:42:29[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.56]
+INFO  2022-07-29 13:42:30[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  2022-07-29 13:42:30[restartedMain] [ServletWebServerApplicationContext:290] - Root WebApplicationContext: initialization completed in 1048 ms
+INFO  2022-07-29 13:42:30[restartedMain] [WelcomePageHandlerMapping:53] - Adding welcome page: class path resource [static/index.html]
+INFO  2022-07-29 13:42:31[restartedMain] [OptionalLiveReloadServer:58] - LiveReload server is running on port 35729
+INFO  2022-07-29 13:42:31[restartedMain] [ConsumerConfig:376] - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = latest
+	bootstrap.servers = [223.194.70.105:33233]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-그룹1-4
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = 그룹1
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+
+INFO  2022-07-29 13:42:31[restartedMain] [AppInfoParser:119] - Kafka version: 3.0.0
+INFO  2022-07-29 13:42:31[restartedMain] [AppInfoParser:120] - Kafka commitId: 8cb0a5e9d3441962
+INFO  2022-07-29 13:42:31[restartedMain] [AppInfoParser:121] - Kafka startTimeMs: 1659069751149
+INFO  2022-07-29 13:42:31[restartedMain] [KafkaConsumer:966] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Subscribed to topic(s): channel-chat
+INFO  2022-07-29 13:42:31[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  2022-07-29 13:42:31[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-07-29 13:42:31[restartedMain] [SimpleBrokerMessageHandler:137] - Starting...
+INFO  2022-07-29 13:42:31[restartedMain] [SimpleBrokerMessageHandler:137] - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@755f5f71]]
+INFO  2022-07-29 13:42:31[restartedMain] [SimpleBrokerMessageHandler:137] - Started.
+INFO  2022-07-29 13:42:31[restartedMain] [VirtualAssetWebServerApplication:61] - Started VirtualAssetWebServerApplication in 2.354 seconds (JVM running for 159852.057)
+INFO  2022-07-29 13:42:31[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metadata:287] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Cluster ID: R-4kZ6JRTMq3W1cemP21eA
+INFO  2022-07-29 13:42:31[restartedMain] [ConditionEvaluationDeltaLoggingListener:63] - Condition evaluation unchanged
+INFO  2022-07-29 13:42:31[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:849] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Discovered group coordinator 223.194.70.105:33233 (id: 2147483646 rack: null)
+INFO  2022-07-29 13:42:31[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 13:42:31[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Request joining group due to: need to re-join with the given member-id
+INFO  2022-07-29 13:42:31[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 13:42:31[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Successfully joined group with generation Generation{generationId=658, memberId='consumer-그룹1-4-5fc1dde9-cca4-47dc-ac7e-5f6803692871', protocol='range'}
+INFO  2022-07-29 13:42:31[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Successfully synced group in generation Generation{generationId=658, memberId='consumer-그룹1-4-5fc1dde9-cca4-47dc-ac7e-5f6803692871', protocol='range'}
+INFO  2022-07-29 13:42:31[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 13:42:31[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 13:42:31[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 13:42:32[Thread-25] [SimpleBrokerMessageHandler:137] - Stopping...
+INFO  2022-07-29 13:42:32[Thread-25] [SimpleBrokerMessageHandler:137] - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@755f5f71]]
+INFO  2022-07-29 13:42:32[Thread-25] [SimpleBrokerMessageHandler:137] - Stopped.
+INFO  2022-07-29 13:42:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:1048] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Member consumer-그룹1-4-5fc1dde9-cca4-47dc-ac7e-5f6803692871 sending LeaveGroup request to coordinator 223.194.70.105:33233 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+INFO  2022-07-29 13:42:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:966] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Resetting generation due to: consumer pro-actively leaving the group
+INFO  2022-07-29 13:42:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Request joining group due to: consumer pro-actively leaving the group
+INFO  2022-07-29 13:42:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaConsumer:1075] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Unsubscribed all topics or patterns and assigned partitions
+INFO  2022-07-29 13:42:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:966] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Resetting generation due to: consumer pro-actively leaving the group
+INFO  2022-07-29 13:42:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-4, groupId=그룹1] Request joining group due to: consumer pro-actively leaving the group
+INFO  2022-07-29 13:42:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:659] - Metrics scheduler closed
+INFO  2022-07-29 13:42:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:663] - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+INFO  2022-07-29 13:42:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:669] - Metrics reporters closed
+INFO  2022-07-29 13:42:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [AppInfoParser:83] - App info kafka.consumer for consumer-그룹1-4 unregistered
+INFO  2022-07-29 13:42:32[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: Consumer stopped
+INFO  2022-07-29 13:42:32[restartedMain] [VirtualAssetWebServerApplication:55] - Starting VirtualAssetWebServerApplication using Java 17.0.3 on DESKTOP-QDOJEIP with PID 39380 (C:\Users\violi\Documents\APL2022\VirtualAsset-WebServer\virtualAssetWebServer\target\classes started by violi in C:\Users\violi\Documents\APL2022\VirtualAsset-WebServer\virtualAssetWebServer)
+INFO  2022-07-29 13:42:32[restartedMain] [VirtualAssetWebServerApplication:641] - The following profiles are active: prod
+INFO  2022-07-29 13:42:33[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-07-29 13:42:33[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  2022-07-29 13:42:33[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  2022-07-29 13:42:33[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.56]
+INFO  2022-07-29 13:42:33[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  2022-07-29 13:42:33[restartedMain] [ServletWebServerApplicationContext:290] - Root WebApplicationContext: initialization completed in 998 ms
+INFO  2022-07-29 13:42:34[restartedMain] [WelcomePageHandlerMapping:53] - Adding welcome page: class path resource [static/index.html]
+INFO  2022-07-29 13:42:34[restartedMain] [OptionalLiveReloadServer:58] - LiveReload server is running on port 35729
+INFO  2022-07-29 13:42:34[restartedMain] [ConsumerConfig:376] - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = latest
+	bootstrap.servers = [223.194.70.105:33233]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-그룹1-5
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = 그룹1
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+
+INFO  2022-07-29 13:42:34[restartedMain] [AppInfoParser:119] - Kafka version: 3.0.0
+INFO  2022-07-29 13:42:34[restartedMain] [AppInfoParser:120] - Kafka commitId: 8cb0a5e9d3441962
+INFO  2022-07-29 13:42:34[restartedMain] [AppInfoParser:121] - Kafka startTimeMs: 1659069754796
+INFO  2022-07-29 13:42:34[restartedMain] [KafkaConsumer:966] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Subscribed to topic(s): channel-chat
+INFO  2022-07-29 13:42:34[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  2022-07-29 13:42:34[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-07-29 13:42:34[restartedMain] [SimpleBrokerMessageHandler:137] - Starting...
+INFO  2022-07-29 13:42:34[restartedMain] [SimpleBrokerMessageHandler:137] - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@5e2d58df]]
+INFO  2022-07-29 13:42:34[restartedMain] [SimpleBrokerMessageHandler:137] - Started.
+INFO  2022-07-29 13:42:34[restartedMain] [VirtualAssetWebServerApplication:61] - Started VirtualAssetWebServerApplication in 2.008 seconds (JVM running for 159855.707)
+INFO  2022-07-29 13:42:34[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metadata:287] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Cluster ID: R-4kZ6JRTMq3W1cemP21eA
+INFO  2022-07-29 13:42:34[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:849] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Discovered group coordinator 223.194.70.105:33233 (id: 2147483646 rack: null)
+INFO  2022-07-29 13:42:34[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 13:42:34[restartedMain] [ConditionEvaluationDeltaLoggingListener:63] - Condition evaluation unchanged
+INFO  2022-07-29 13:42:34[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Request joining group due to: need to re-join with the given member-id
+INFO  2022-07-29 13:42:34[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 13:42:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Successfully joined group with generation Generation{generationId=660, memberId='consumer-그룹1-5-2c85a6c5-8b2e-4a68-b9e5-73b4b2fa8025', protocol='range'}
+INFO  2022-07-29 13:42:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Successfully synced group in generation Generation{generationId=660, memberId='consumer-그룹1-5-2c85a6c5-8b2e-4a68-b9e5-73b4b2fa8025', protocol='range'}
+INFO  2022-07-29 13:42:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 13:42:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 13:42:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 13:43:34[MessageBroker-1] [WebSocketMessageBrokerStats:128] - WebSocketSession[0 current WS(0)-HttpStream(0)-HttpPoll(0), 0 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(0)-CONNECTED(0)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 0], sockJsScheduler[pool size = 1, active threads = 1, queued tasks = 0, completed tasks = 0]
+INFO  2022-07-29 13:59:37[Thread-29] [SimpleBrokerMessageHandler:137] - Stopping...
+INFO  2022-07-29 13:59:37[Thread-29] [SimpleBrokerMessageHandler:137] - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@5e2d58df]]
+INFO  2022-07-29 13:59:37[Thread-29] [SimpleBrokerMessageHandler:137] - Stopped.
+INFO  2022-07-29 13:59:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:1048] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Member consumer-그룹1-5-2c85a6c5-8b2e-4a68-b9e5-73b4b2fa8025 sending LeaveGroup request to coordinator 223.194.70.105:33233 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+INFO  2022-07-29 13:59:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:966] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Resetting generation due to: consumer pro-actively leaving the group
+INFO  2022-07-29 13:59:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Request joining group due to: consumer pro-actively leaving the group
+INFO  2022-07-29 13:59:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaConsumer:1075] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Unsubscribed all topics or patterns and assigned partitions
+INFO  2022-07-29 13:59:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:966] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Resetting generation due to: consumer pro-actively leaving the group
+INFO  2022-07-29 13:59:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-5, groupId=그룹1] Request joining group due to: consumer pro-actively leaving the group
+INFO  2022-07-29 13:59:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:659] - Metrics scheduler closed
+INFO  2022-07-29 13:59:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:663] - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+INFO  2022-07-29 13:59:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:669] - Metrics reporters closed
+INFO  2022-07-29 13:59:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [AppInfoParser:83] - App info kafka.consumer for consumer-그룹1-5 unregistered
+INFO  2022-07-29 13:59:37[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: Consumer stopped
+INFO  2022-07-29 13:59:38[restartedMain] [VirtualAssetWebServerApplication:55] - Starting VirtualAssetWebServerApplication using Java 17.0.3 on DESKTOP-QDOJEIP with PID 39380 (C:\Users\violi\Documents\APL2022\VirtualAsset-WebServer\virtualAssetWebServer\target\classes started by violi in C:\Users\violi\Documents\APL2022\VirtualAsset-WebServer\virtualAssetWebServer)
+INFO  2022-07-29 13:59:38[restartedMain] [VirtualAssetWebServerApplication:641] - The following profiles are active: prod
+INFO  2022-07-29 13:59:38[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-07-29 13:59:38[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  2022-07-29 13:59:38[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  2022-07-29 13:59:38[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.56]
+INFO  2022-07-29 13:59:38[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  2022-07-29 13:59:38[restartedMain] [ServletWebServerApplicationContext:290] - Root WebApplicationContext: initialization completed in 875 ms
+INFO  2022-07-29 13:59:39[restartedMain] [WelcomePageHandlerMapping:53] - Adding welcome page: class path resource [static/index.html]
+INFO  2022-07-29 13:59:39[restartedMain] [OptionalLiveReloadServer:58] - LiveReload server is running on port 35729
+INFO  2022-07-29 13:59:39[restartedMain] [ConsumerConfig:376] - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = latest
+	bootstrap.servers = [223.194.70.105:33233]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-그룹1-6
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = 그룹1
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+
+INFO  2022-07-29 13:59:39[restartedMain] [AppInfoParser:119] - Kafka version: 3.0.0
+INFO  2022-07-29 13:59:39[restartedMain] [AppInfoParser:120] - Kafka commitId: 8cb0a5e9d3441962
+INFO  2022-07-29 13:59:39[restartedMain] [AppInfoParser:121] - Kafka startTimeMs: 1659070779667
+INFO  2022-07-29 13:59:39[restartedMain] [KafkaConsumer:966] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Subscribed to topic(s): channel-chat
+INFO  2022-07-29 13:59:39[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  2022-07-29 13:59:39[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-07-29 13:59:39[restartedMain] [SimpleBrokerMessageHandler:137] - Starting...
+INFO  2022-07-29 13:59:39[restartedMain] [SimpleBrokerMessageHandler:137] - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@5f5f6c84]]
+INFO  2022-07-29 13:59:39[restartedMain] [SimpleBrokerMessageHandler:137] - Started.
+INFO  2022-07-29 13:59:39[restartedMain] [VirtualAssetWebServerApplication:61] - Started VirtualAssetWebServerApplication in 1.756 seconds (JVM running for 160880.574)
+INFO  2022-07-29 13:59:39[restartedMain] [ConditionEvaluationDeltaLoggingListener:63] - Condition evaluation unchanged
+INFO  2022-07-29 13:59:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metadata:287] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Cluster ID: R-4kZ6JRTMq3W1cemP21eA
+INFO  2022-07-29 13:59:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:849] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Discovered group coordinator 223.194.70.105:33233 (id: 2147483646 rack: null)
+INFO  2022-07-29 13:59:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 13:59:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Request joining group due to: need to re-join with the given member-id
+INFO  2022-07-29 13:59:39[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 13:59:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Successfully joined group with generation Generation{generationId=661, memberId='consumer-그룹1-6-aeafa1d5-05ef-4e68-a635-1d92bf3ab96e', protocol='range'}
+INFO  2022-07-29 13:59:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Successfully synced group in generation Generation{generationId=661, memberId='consumer-그룹1-6-aeafa1d5-05ef-4e68-a635-1d92bf3ab96e', protocol='range'}
+INFO  2022-07-29 13:59:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 13:59:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 13:59:40[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 13:59:45[http-nio-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  2022-07-29 13:59:45[http-nio-8080-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  2022-07-29 13:59:45[http-nio-8080-exec-1] [DispatcherServlet:547] - Completed initialization in 2 ms
+INFO  2022-07-29 14:00:04[Thread-33] [SimpleBrokerMessageHandler:137] - Stopping...
+INFO  2022-07-29 14:00:04[Thread-33] [SimpleBrokerMessageHandler:137] - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@5f5f6c84]]
+INFO  2022-07-29 14:00:04[Thread-33] [SimpleBrokerMessageHandler:137] - Stopped.
+INFO  2022-07-29 14:00:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:1048] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Member consumer-그룹1-6-aeafa1d5-05ef-4e68-a635-1d92bf3ab96e sending LeaveGroup request to coordinator 223.194.70.105:33233 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+INFO  2022-07-29 14:00:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:966] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Resetting generation due to: consumer pro-actively leaving the group
+INFO  2022-07-29 14:00:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Request joining group due to: consumer pro-actively leaving the group
+INFO  2022-07-29 14:00:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaConsumer:1075] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Unsubscribed all topics or patterns and assigned partitions
+INFO  2022-07-29 14:00:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:966] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Resetting generation due to: consumer pro-actively leaving the group
+INFO  2022-07-29 14:00:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-6, groupId=그룹1] Request joining group due to: consumer pro-actively leaving the group
+INFO  2022-07-29 14:00:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:659] - Metrics scheduler closed
+INFO  2022-07-29 14:00:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:663] - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+INFO  2022-07-29 14:00:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:669] - Metrics reporters closed
+INFO  2022-07-29 14:00:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [AppInfoParser:83] - App info kafka.consumer for consumer-그룹1-6 unregistered
+INFO  2022-07-29 14:00:04[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: Consumer stopped
+INFO  2022-07-29 14:00:04[restartedMain] [VirtualAssetWebServerApplication:55] - Starting VirtualAssetWebServerApplication using Java 17.0.3 on DESKTOP-QDOJEIP with PID 39380 (C:\Users\violi\Documents\APL2022\VirtualAsset-WebServer\virtualAssetWebServer\target\classes started by violi in C:\Users\violi\Documents\APL2022\VirtualAsset-WebServer\virtualAssetWebServer)
+INFO  2022-07-29 14:00:04[restartedMain] [VirtualAssetWebServerApplication:641] - The following profiles are active: prod
+INFO  2022-07-29 14:00:05[restartedMain] [TomcatWebServer:108] - Tomcat initialized with port(s): 8080 (http)
+INFO  2022-07-29 14:00:05[restartedMain] [Http11NioProtocol:173] - Initializing ProtocolHandler ["http-nio-8080"]
+INFO  2022-07-29 14:00:05[restartedMain] [StandardService:173] - Starting service [Tomcat]
+INFO  2022-07-29 14:00:05[restartedMain] [StandardEngine:173] - Starting Servlet engine: [Apache Tomcat/9.0.56]
+INFO  2022-07-29 14:00:05[restartedMain] [[/]:173] - Initializing Spring embedded WebApplicationContext
+INFO  2022-07-29 14:00:05[restartedMain] [ServletWebServerApplicationContext:290] - Root WebApplicationContext: initialization completed in 862 ms
+INFO  2022-07-29 14:00:06[restartedMain] [WelcomePageHandlerMapping:53] - Adding welcome page: class path resource [static/index.html]
+INFO  2022-07-29 14:00:06[restartedMain] [OptionalLiveReloadServer:58] - LiveReload server is running on port 35729
+INFO  2022-07-29 14:00:06[restartedMain] [ConsumerConfig:376] - ConsumerConfig values: 
+	allow.auto.create.topics = true
+	auto.commit.interval.ms = 5000
+	auto.offset.reset = latest
+	bootstrap.servers = [223.194.70.105:33233]
+	check.crcs = true
+	client.dns.lookup = use_all_dns_ips
+	client.id = consumer-그룹1-7
+	client.rack = 
+	connections.max.idle.ms = 540000
+	default.api.timeout.ms = 60000
+	enable.auto.commit = false
+	exclude.internal.topics = true
+	fetch.max.bytes = 52428800
+	fetch.max.wait.ms = 500
+	fetch.min.bytes = 1
+	group.id = 그룹1
+	group.instance.id = null
+	heartbeat.interval.ms = 3000
+	interceptor.classes = []
+	internal.leave.group.on.close = true
+	internal.throw.on.fetch.stable.offset.unsupported = false
+	isolation.level = read_uncommitted
+	key.deserializer = class org.apache.kafka.common.serialization.StringDeserializer
+	max.partition.fetch.bytes = 1048576
+	max.poll.interval.ms = 300000
+	max.poll.records = 500
+	metadata.max.age.ms = 300000
+	metric.reporters = []
+	metrics.num.samples = 2
+	metrics.recording.level = INFO
+	metrics.sample.window.ms = 30000
+	partition.assignment.strategy = [class org.apache.kafka.clients.consumer.RangeAssignor, class org.apache.kafka.clients.consumer.CooperativeStickyAssignor]
+	receive.buffer.bytes = 65536
+	reconnect.backoff.max.ms = 1000
+	reconnect.backoff.ms = 50
+	request.timeout.ms = 30000
+	retry.backoff.ms = 100
+	sasl.client.callback.handler.class = null
+	sasl.jaas.config = null
+	sasl.kerberos.kinit.cmd = /usr/bin/kinit
+	sasl.kerberos.min.time.before.relogin = 60000
+	sasl.kerberos.service.name = null
+	sasl.kerberos.ticket.renew.jitter = 0.05
+	sasl.kerberos.ticket.renew.window.factor = 0.8
+	sasl.login.callback.handler.class = null
+	sasl.login.class = null
+	sasl.login.refresh.buffer.seconds = 300
+	sasl.login.refresh.min.period.seconds = 60
+	sasl.login.refresh.window.factor = 0.8
+	sasl.login.refresh.window.jitter = 0.05
+	sasl.mechanism = GSSAPI
+	security.protocol = PLAINTEXT
+	security.providers = null
+	send.buffer.bytes = 131072
+	session.timeout.ms = 45000
+	socket.connection.setup.timeout.max.ms = 30000
+	socket.connection.setup.timeout.ms = 10000
+	ssl.cipher.suites = null
+	ssl.enabled.protocols = [TLSv1.2, TLSv1.3]
+	ssl.endpoint.identification.algorithm = https
+	ssl.engine.factory.class = null
+	ssl.key.password = null
+	ssl.keymanager.algorithm = SunX509
+	ssl.keystore.certificate.chain = null
+	ssl.keystore.key = null
+	ssl.keystore.location = null
+	ssl.keystore.password = null
+	ssl.keystore.type = JKS
+	ssl.protocol = TLSv1.3
+	ssl.provider = null
+	ssl.secure.random.implementation = null
+	ssl.trustmanager.algorithm = PKIX
+	ssl.truststore.certificates = null
+	ssl.truststore.location = null
+	ssl.truststore.password = null
+	ssl.truststore.type = JKS
+	value.deserializer = class org.springframework.kafka.support.serializer.ErrorHandlingDeserializer
+
+INFO  2022-07-29 14:00:06[restartedMain] [AppInfoParser:119] - Kafka version: 3.0.0
+INFO  2022-07-29 14:00:06[restartedMain] [AppInfoParser:120] - Kafka commitId: 8cb0a5e9d3441962
+INFO  2022-07-29 14:00:06[restartedMain] [AppInfoParser:121] - Kafka startTimeMs: 1659070806333
+INFO  2022-07-29 14:00:06[restartedMain] [KafkaConsumer:966] - [Consumer clientId=consumer-그룹1-7, groupId=그룹1] Subscribed to topic(s): channel-chat
+INFO  2022-07-29 14:00:06[restartedMain] [Http11NioProtocol:173] - Starting ProtocolHandler ["http-nio-8080"]
+INFO  2022-07-29 14:00:06[restartedMain] [TomcatWebServer:220] - Tomcat started on port(s): 8080 (http) with context path ''
+INFO  2022-07-29 14:00:06[restartedMain] [SimpleBrokerMessageHandler:137] - Starting...
+INFO  2022-07-29 14:00:06[restartedMain] [SimpleBrokerMessageHandler:137] - BrokerAvailabilityEvent[available=true, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@57bae40d]]
+INFO  2022-07-29 14:00:06[restartedMain] [SimpleBrokerMessageHandler:137] - Started.
+INFO  2022-07-29 14:00:06[restartedMain] [VirtualAssetWebServerApplication:61] - Started VirtualAssetWebServerApplication in 1.712 seconds (JVM running for 160907.236)
+INFO  2022-07-29 14:00:06[restartedMain] [ConditionEvaluationDeltaLoggingListener:63] - Condition evaluation unchanged
+INFO  2022-07-29 14:00:06[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metadata:287] - [Consumer clientId=consumer-그룹1-7, groupId=그룹1] Cluster ID: R-4kZ6JRTMq3W1cemP21eA
+INFO  2022-07-29 14:00:06[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:849] - [Consumer clientId=consumer-그룹1-7, groupId=그룹1] Discovered group coordinator 223.194.70.105:33233 (id: 2147483646 rack: null)
+INFO  2022-07-29 14:00:06[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-7, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 14:00:06[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-7, groupId=그룹1] Request joining group due to: need to re-join with the given member-id
+INFO  2022-07-29 14:00:06[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:535] - [Consumer clientId=consumer-그룹1-7, groupId=그룹1] (Re-)joining group
+INFO  2022-07-29 14:00:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:591] - [Consumer clientId=consumer-그룹1-7, groupId=그룹1] Successfully joined group with generation Generation{generationId=662, memberId='consumer-그룹1-7-48a96305-19df-40c1-9a78-436230e8388c', protocol='range'}
+INFO  2022-07-29 14:00:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:757] - [Consumer clientId=consumer-그룹1-7, groupId=그룹1] Successfully synced group in generation Generation{generationId=662, memberId='consumer-그룹1-7-48a96305-19df-40c1-9a78-436230e8388c', protocol='range'}
+INFO  2022-07-29 14:00:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:276] - [Consumer clientId=consumer-그룹1-7, groupId=그룹1] Notifying assignor about the new Assignment(partitions=[])
+INFO  2022-07-29 14:00:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:288] - [Consumer clientId=consumer-그룹1-7, groupId=그룹1] Adding newly assigned partitions: 
+INFO  2022-07-29 14:00:07[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: partitions assigned: []
+INFO  2022-07-29 14:00:10[http-nio-8080-exec-1] [[/]:173] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+INFO  2022-07-29 14:00:10[http-nio-8080-exec-1] [DispatcherServlet:525] - Initializing Servlet 'dispatcherServlet'
+INFO  2022-07-29 14:00:10[http-nio-8080-exec-1] [DispatcherServlet:547] - Completed initialization in 2 ms
+INFO  2022-07-29 14:00:38[http-nio-8080-exec-3] [HikariDataSource:110] - HikariPool-2 - Starting...
+INFO  2022-07-29 14:00:38[http-nio-8080-exec-3] [HikariDataSource:123] - HikariPool-2 - Start completed.
+INFO  2022-07-29 14:00:46[http-nio-8080-exec-7] [TestController:134] - enterCommunity{"auth":"test2","communityId":1}
+INFO  2022-07-29 14:00:46[http-nio-8080-exec-10] [TestController:140] - getChannels{"communityId":1}
+INFO  2022-07-29 14:00:46[http-nio-8080-exec-1] [TestController:145] - getChannelTabs{"communityId":1}
+INFO  2022-07-29 14:01:05[MessageBroker-1] [WebSocketMessageBrokerStats:128] - WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 1 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(1)-CONNECTED(1)-DISCONNECT(0)], stompBrokerRelay[null], inboundChannel[pool size = 6, active threads = 0, queued tasks = 0, completed tasks = 6], outboundChannel[pool size = 1, active threads = 0, queued tasks = 0, completed tasks = 1], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 2, completed tasks = 4]
+INFO  2022-07-29 14:01:14[http-nio-8080-exec-8] [TestController:134] - enterCommunity{"auth":"test2","communityId":2}
+INFO  2022-07-29 14:01:18[http-nio-8080-exec-9] [TestController:134] - enterCommunity{"auth":"test2","communityId":1}
+INFO  2022-07-29 14:01:18[http-nio-8080-exec-10] [TestController:140] - getChannels{"communityId":1}
+INFO  2022-07-29 14:01:18[http-nio-8080-exec-1] [TestController:145] - getChannelTabs{"communityId":1}
+INFO  2022-07-29 14:01:23[http-nio-8080-exec-8] [TestController:134] - enterCommunity{"auth":"test2","communityId":1}
+INFO  2022-07-29 14:01:23[http-nio-8080-exec-9] [TestController:140] - getChannels{"communityId":1}
+INFO  2022-07-29 14:01:23[http-nio-8080-exec-10] [TestController:145] - getChannelTabs{"communityId":1}
+INFO  2022-07-29 14:31:05[MessageBroker-1] [WebSocketMessageBrokerStats:128] - WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 3 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(3)-CONNECTED(3)-DISCONNECT(2)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 36], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 7], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 2, completed tasks = 437]
+INFO  2022-07-29 15:01:05[MessageBroker-5] [WebSocketMessageBrokerStats:128] - WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 3 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(3)-CONNECTED(3)-DISCONNECT(2)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 36], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 7], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 2, completed tasks = 870]
+INFO  2022-07-29 15:31:05[MessageBroker-2] [WebSocketMessageBrokerStats:128] - WebSocketSession[1 current WS(1)-HttpStream(0)-HttpPoll(0), 3 total, 0 closed abnormally (0 connect failure, 0 send limit, 0 transport error)], stompSubProtocol[processed CONNECT(3)-CONNECTED(3)-DISCONNECT(2)], stompBrokerRelay[null], inboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 36], outboundChannel[pool size = 0, active threads = 0, queued tasks = 0, completed tasks = 7], sockJsScheduler[pool size = 8, active threads = 1, queued tasks = 2, completed tasks = 1303]
