@@ -294,11 +294,40 @@ pre{
     background-color: #738CD9;
 }
 
+.lockIcon{
+    display: inline-block;
+    height:1.1em;
+    width:1.1em;
+    margin-left: 2px;
+    padding-top: 1.5px;
+    overflow:hidden ;
+    border-radius: 0.1em;
+}
+
+/* .unlockIcon{
+    display: inline-block;
+    height:1.1em;
+    width:1.1em;
+    padding-top: 1.5px;
+    overflow:hidden ;
+    border-radius: 0.1em;
+} */
+
+.contractIcon{
+    display: inline-block;
+    height:1.1em;
+    width:1.1em;
+    padding-top: 1.5px;
+    overflow:hidden ;
+    border-radius: 0.1em;
+}
+
 .userIcon{
     display: inline-block;
     height:1em;
     width:0.8em;
     margin-left: 3px;
+    padding-right: 3px;
     overflow:hidden ;
     border-radius: 0.1em;
 }
@@ -359,7 +388,7 @@ pre{
     text-align: center;
 }
 
-.clubComponemtWarpper{
+.clubComponentWrapper{
     height: calc(100% - 45px);
 }
 

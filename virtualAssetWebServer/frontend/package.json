@@ -21,11 +21,12 @@
     "react-kakao-login": "^2.1.0",
     "react-scripts": "^5.0.1",
     "react-stomp": "^5.1.0",
+    "react-table": "^7.8.0",
     "sockjs": "^0.3.24",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "set HOST=211.193.12.31&&react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
