@@ -2,8 +2,6 @@ package com.virtualAsset.webServer.controller;
 
 import java.time.LocalDateTime;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -41,7 +39,7 @@ public class KafkaController {
         message.setTimestamp(LocalDateTime.now().toString());
         log.info("Produce message : " + message.toString());
         try {
-            kafkaTemplate.send(KafkaConstants.KAFKA_TOPIC, message).get();
+        	log.info(kafkaTemplate.send(KafkaConstants.KAFKA_TOPIC, message).get().toString());
         } catch (Exception e) {
         	e.printStackTrace();
             return new ErrorResponseBody(StatusCodes.MSG_SEND_FAIL, e.getMessage());
@@ -56,8 +54,9 @@ public class KafkaController {
     }
     
     @MessageMapping("/sendMessage")
-    @SendTo("/topic/group")
+    @SendTo("/topic/channel")
     public KafkaMSG broadcastGroupMessage(@Payload KafkaMSG message) {
+    	log.info("broadcastGroupMessage - "+message.toString());
         return message;
     }
     

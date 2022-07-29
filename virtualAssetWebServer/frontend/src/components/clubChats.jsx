@@ -1,15 +1,13 @@
 
 import { IconPlus } from "./cssIcons";
 import { useEffect, useState } from "react";
-import SocketJsClient from "react-stomp";
-import StompJs from "stompjs";
-import SockJS from "sockjs-client";
-import TEST_IP from "../scripts/setTestIp";
 import chatAPI from "../scripts/chatAxios";
 import customAxiosData from "../scripts/customAxiosData";
 import { useRef } from "react";
 import LoadingSpinner from "./loadingSpinner";
 import "react-contexify/dist/ReactContexify.css";
+import SocketJsClient from "react-stomp";
+
 import {
     Menu,
     Item,
@@ -19,13 +17,11 @@ import {
     theme,
     animation
 } from "react-contexify";
+import TEST_IP from "../scripts/setTestIp";
 
 
 function ClubChat(props) {
-    const sockJS= SockJS(`http://${TEST_IP}:8080/api/my-chat/`);
-    const client= new StompJs.Client({
-        brokerURL:'/api/my-chat/'
-    })
+
     const [chatFocus, setChatFocus] = useState(false);
     const [inputBarHeight, setInputBarHeight] = useState(1);
     const [chatMessasges, setChatMessages] = useState([]);
@@ -140,10 +136,16 @@ function ClubChat(props) {
     }
 
     const handleMessageSubmit = (msg, contentType) => {
-        console.log(props.currChannelId);
-        chatAPI.sendMessage(props.auth.userInfo.nick, contentType, props.currChannelId, msg, (res) => {
-            console.log("sent", res);
-        });
+        console.log(props.selectedChannel);
+        chatAPI.sendMessage(
+            props.auth.userInfo.id,
+            contentType,
+            props.selectedChannel,
+            msg,
+            (res) => {
+                console.log("sent", res);
+            }
+        );
     }
 
     const getMoreMessages = (index) => {
@@ -163,20 +165,20 @@ function ClubChat(props) {
                 scrollPosition(res.length);
             }
             else {
-                setNoMoreMsg(true);
+                setNoMoreMsg(true); 
             }
             msgLoading.current = false;
         })
     }
-
-    useEffect(() => {
+    const reloadMsgsLast=()=>{
         console.log("props.clubPage.viewClass === '' =>", props.clubPage.viewClass === '')
+        console.log("reload messages channel -",props.selectedChannel);
         delDateSeparation();
-        
         setChatMessages([]);
+
         if (props.clubPage.viewClass === '') {
             if (chatMessasges.length === 0) {
-                customAxiosData("/getMsgsLast", {channel: props.currChannelId }, (res) => {
+                customAxiosData("/getMsgsLast", {channel: props.selectedChannel }, (res) => {
                     res = res.map((c, i) => {
                         if (c.author === props.auth.userInfo.nick) {
                             c.isMine = true;
@@ -199,7 +201,10 @@ function ClubChat(props) {
                 setChatMessages([]);
             }
         }
-    }, [props.clubPage.viewClass, props.currChannelId])
+    }
+    useEffect(() => {
+        reloadMsgsLast();
+    }, [props.clubPage.viewClass])
 
     //메세지 timestamp formatter
     const formattingTimestamp = (timestamp) => {
@@ -352,10 +357,7 @@ function ClubChat(props) {
     const [showVoteMaker,setShowVoteMaker]=useState(false);
     const onMakeVoteClick=(e)=>{
         let data={voteName:"테스트 투표",voteDesc:"테스트 투표의 설명은 이렇게 보이게 됩니다. 길면 두줄만 보여주고 자른 후 투표창에서 전문을 보여주는게 깔끔하지 싶습니다.", voteSelection:[{id: 1, name:"1번 선택지"},{id: 2, name:"2번 선택지"},{id: 3, name:"3번 선택지"},{id: 4, name:"4번 선택지"}]}
-        chatAPI.sendMessage(props.auth.userInfo.nick,"vote",JSON.stringify(data),(res)=>{
-            console.log("vote sent", res);
-        })
-        console.log(data);
+        handleMessageSubmit(JSON.stringify(data),"vote");
     }
 
     return (
@@ -373,13 +375,12 @@ function ClubChat(props) {
             <div className="chatView"
                 style={{ height: 'calc(100% - ' + (33 + inputBarHeight) + 'px)' }}
                 onScroll={chatScrollHandle}>
-                {/* 
                 <SocketJsClient
                     url={`http://${TEST_IP}:8080/api/my-chat/`} 
-                    topics={["/topic/channel/"+props.currChannelId]}
+                    topics={["/topic/channel/"+props.selectedChannel]}
                     onMessage={(msg) => onMessageReceived(msg)}
                     debug={true}
-                />*/}
+                />
                 <MsgLoader noMoreMsg={noMoreMsg} />
                 <div className="chatWrapper">
                     {chatMessasges.map((c, i) => (

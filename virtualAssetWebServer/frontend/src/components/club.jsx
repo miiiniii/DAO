@@ -4,7 +4,7 @@ import "./club.css";
 import ClubChannels from "./clubChannels";
 import ClubChat from "./clubChats";
 import ClubInfos from "./clubInfos";
-import ContractForm from "./contractForm"
+import ContractForm from "./contractForm";
 
 export default function Club(props) {
     const [touchStart, setTouchStart] = useState({ coord: null, timeStamp: null });
@@ -23,7 +23,8 @@ export default function Club(props) {
     const [isMember,setIsMember]=useState(false);
     const [isLoading, setIsLoading]=useState(true);
     const [channelTabs, setChannelTabs]=useState([]);
-    const [selectedChannel, setSelectedChannel]=useState();
+    const [selectedChannel, setSelectedChannel] = useState();
+
 
     //community 입장시 맴버인지 체크
     useEffect(() => {
@@ -158,7 +159,6 @@ export default function Club(props) {
                 />
                 <ClubInfos clubView={clubView} setClubSettingView={setClubSettingView} setWriteContract={setWriteContract} />
                 <ClubChat
-                    currChannelId={selectedChannel}
                     clubView={clubView}
                     clubPage={props.clubPage}
                     auth={props.auth}

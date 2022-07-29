@@ -15,13 +15,46 @@ import BankAccount from './components/bankAccount';
 import Asset from './components/asset';
 import Club from './components/club';
 import customAxiosData from './scripts/customAxiosData';
+import StompJs from "stompjs";
+import SockJS from "sockjs-client";
+import TEST_IP from "./scripts/setTestIp";
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 function App() {
   useScript("https://kit.fontawesome.com/51db22a717.js");
 
+  /*
+  //socket connection
+  //const sockJS= SockJS(`http://${TEST_IP}:8080/api/my-chat/`);
+  const client = new StompJs.Client({
+    brokerURL: `http://${TEST_IP}:3000/api/my-chat/`,  
+    connectHeaders: {
+      login: 'user',
+      passcode: 'password',
+    },
+    debug: (str) => {
+      console.log(str);
+    },
+    reconnectDelay: 5000, //자동 재 연결
+    heartbeatIncoming: 4000,
+    heartbeatOutgoing: 4000,
+  })
 
+  if (typeof WebSocket !== 'function') {
+    client.webSocketFactory = function () {
+      return new SockJS(`http://${TEST_IP}:3000/api/my-chat/`);
+    };
+  }
+
+  client.onConnect = (data) => {
+
+  }
+  client.onStompError = (data) => {
+    console.log('Broker reported error: ' + data.headers['message']);
+    console.log('Additional details: ' + data.body);
+  }
+  */
 
   //********임시 로딩타임 1000ms 추후 로딩 기능 넣으면 동적으로 변경*********/
   const tempLoadingTime = 1000;

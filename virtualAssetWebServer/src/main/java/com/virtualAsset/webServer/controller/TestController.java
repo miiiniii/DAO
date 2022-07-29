@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.virtualAsset.webServer.commons.KafkaConstants;
 import com.virtualAsset.webServer.commons.StatusCodes;
 import com.virtualAsset.webServer.dataAccessObject.AuthDAO;
 import com.virtualAsset.webServer.dataAccessObject.CommunityDAO;
@@ -117,11 +116,13 @@ public class TestController {
 
 	@PostMapping("/getMsgsLast")
 	public List<KafkaMSG> getMsgsLast(@RequestBody JSONObject data, HttpServletRequest request) {
+		log.info("get messages last 30 on channel:"+data.getAsString("channel"));
 		return msgRecordDAO.selectLast30Messages(data.getAsString("channel"));
 	}
 
 	@PostMapping("/getMsgsFrom")
 	public List<KafkaMSG> getMsgsFrom(@RequestBody JSONObject data, HttpServletRequest request) {
+		log.info("get messages last 30 from index:"+data.getAsString("index")+" on channel:"+data.getAsString("channel"));
 		log.info("getMsgsFrom"+data.toString());
 		return msgRecordDAO.select30MessagesFrom(data.getAsString("channel"), (int) data.getAsNumber("index"));
 	}

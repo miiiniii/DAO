@@ -6,8 +6,10 @@ import customAxiosData from "../scripts/customAxiosData";
 
 function ClubChannels(props) {
     const onChannelClick=(e)=>{
+        console.log("channel change from", props.selectedChannel,"to",e.target.id);
         props.setSelectedChannel(parseInt(e.target.id));
     }
+
     return (<div className={"channelWindowWrapper" + (props.clubView.magX === 0 ? " transition" : "") + (props.clubView.mode === "club" ? " clubView" : "")} style={(props.clubView.magX !== 0 && props.clubView.mode === "") ? { left: props.clubView.magX > 0 ? 0 : props.clubView.magX } : {}}>
         {props.channelTabs.map((ct,i)=>(
             <ChannelTab

@@ -24,6 +24,7 @@ const chatAPI = {
             content: text,
             topic: topic,
         };
+        console.log("req send msg",msg);
         axios(
             {
                 url: `/api/kafka/publish`,
