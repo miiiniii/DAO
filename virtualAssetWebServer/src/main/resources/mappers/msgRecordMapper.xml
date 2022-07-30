@@ -7,6 +7,7 @@
 	<resultMap id="recordMsg" type="com.virtualAsset.webServer.entity.KafkaMSG">
 		<result column="msg_id" property="msgId" jdbcType="BIGINT" javaType="Long"/>
 		<result column="author" property="author" jdbcType="VARCHAR" javaType="String"/>
+		<result column="user_nick" property="author" jdbcType="VARCHAR" javaType="String"/>
 		<result column="content_type" property="contentType" jdbcType="VARCHAR" javaType="String"/>
 		<result column="content" property="content" jdbcType="VARCHAR" javaType="String"/>
 		<result column="timestamp" property="timestamp" jdbcType="VARCHAR" javaType="String"/>
@@ -36,16 +37,19 @@
     </select>
     <select id="selectLast30Messages" resultMap="recordMsg">
         select
-        	"msg_id",
-            "author",
-            "content_type",
-            "content",
-            "timestamp",
-            "topic",
-            "is_edited"
+        	sub."msg_id",
+            "user"."user_nick",
+            sub."content_type",
+            sub."content",
+            sub."timestamp",
+            sub."topic",
+            sub."is_edited"
         from (
         	select * from "chat_msgs" where "topic" like '${topic}' order by "msg_id" DESC limit 30
         ) sub
+        left join
+        "user"
+        on sub."author"="user"."user_id"
         order by "msg_id" ASC
             
     </select>
@@ -59,7 +63,7 @@
             "topic",
             "is_edited"
         from (
-        	select * from "chat_msgs" where where "topic" like '${topic}' and "msg_id" <![CDATA[<]]> ${index} order by "msg_id" DESC limit 30
+        	select * from "chat_msgs" where "topic" like '${topic}' and "msg_id" <![CDATA[<]]> ${index} order by "msg_id" DESC limit 30
         ) sub
         order by "msg_id" ASC
             

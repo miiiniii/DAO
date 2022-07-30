@@ -55,14 +55,13 @@ public class KafkaController {
         }
         return new DefaultResponseBody(StatusCodes.MSG_SEND_SUCCESS);
     }
-    /*
     @MessageMapping("/sendMessage")
     @SendTo("/topic/channel")
     public KafkaMSG broadcastGroupMessage(@Payload KafkaMSG message) {
     	log.info("broadcastGroupMessage - "+message.toString());
         return message;
     }
-    */
+    
 	@Autowired
     SimpMessagingTemplate template;
 	@Autowired
@@ -73,8 +72,10 @@ public class KafkaController {
             groupId = KafkaConstants.GROUP_ID
     )
     public void listen(KafkaMSG message) {
+    	try {
         message.setAuthor(authDAO.getUserInfo(message.getAuthor()).getNick());
         log.info("Listen - "+message.toString());
         template.convertAndSend("/topic/channel/"+message.getTopic(), message);
+    	}catch(Exception e) {e.printStackTrace();}
     }
 }

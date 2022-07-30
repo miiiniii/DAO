@@ -6,17 +6,17 @@ import customAxiosData from "../scripts/customAxiosData";
 
 function ClubChannels(props) {
     const onChannelClick=(e)=>{
-        console.log("channel change from", props.selectedChannel,"to",e.target.id);
-        props.setSelectedChannel(parseInt(e.target.id));
+        console.log("channel change from", props.selectedChannel.id,"to",e.target.id);
+        props.changeChannel(parseInt(e.target.id));
     }
 
     return (<div className={"channelWindowWrapper" + (props.clubView.magX === 0 ? " transition" : "") + (props.clubView.mode === "club" ? " clubView" : "")} style={(props.clubView.magX !== 0 && props.clubView.mode === "") ? { left: props.clubView.magX > 0 ? 0 : props.clubView.magX } : {}}>
         {props.channelTabs.map((ct,i)=>(
             <ChannelTab
-                key={ct.id}
+                key={"channelTab-"+ct.id}
                 channels={props.channels.filter(c=>ct.id===c.tabId)}
                 channelTabName={ct.name}
-                selectedChannel={props.selectedChannel}
+                selectedChannel={props.selectedChannel.id}
                 onChannelClick={onChannelClick}
             />
         ))}
@@ -31,13 +31,13 @@ function ChannelTab(props) {
             <ul>
                 {channels.map((c, i) => (
                     <ChannelList
-                        key={c.id}
+                        key={"channel-"+c.id}
                         channelName={c.name}
                         channelId={c.id}
                         isClub={c.club}
                         channelMembers={c.memberCnt===0?null:c.memberCnt}
                         contractStatus={c.contractStatus}
-                        isSelected={c.id===props.selectedChannel}
+                        isSelected={c.id===(props.selectedChannel||{name:null, id:null})}
                         onClick={props.onChannelClick}/>
                 ))}
             </ul>

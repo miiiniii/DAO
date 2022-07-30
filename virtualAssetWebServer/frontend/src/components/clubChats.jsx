@@ -7,6 +7,7 @@ import { useRef } from "react";
 import LoadingSpinner from "./loadingSpinner";
 import "react-contexify/dist/ReactContexify.css";
 import SocketJsClient from "react-stomp";
+import MenuBtnSvg from "../Icons/MenuBtn.svg";
 
 import {
     Menu,
@@ -87,7 +88,7 @@ function ClubChat(props) {
         console.log("chatList", chatMessasges.length);
         scrollBottom();
         if (chatMessasges.length !== 0) setTimeout(() => addDateSeparation(), 10);
-    }, [chatMessasges])
+    }, [chatMessasges,document.getElementsByClassName("chatView")[0]])
 
     const scrollPosition = (length) => {
         console.log("scrollPosition");
@@ -140,7 +141,7 @@ function ClubChat(props) {
         chatAPI.sendMessage(
             props.auth.userInfo.id,
             contentType,
-            props.selectedChannel,
+            props.selectedChannel.id,
             msg,
             (res) => {
                 console.log("sent", res);
@@ -149,7 +150,8 @@ function ClubChat(props) {
     }
 
     const getMoreMessages = (index) => {
-        customAxiosData("/getMsgsFrom", { index: index, channel:props.currChannelId }, (res) => {
+        console.log("req more msgs.");
+        customAxiosData("/getMsgsFrom", { index: index, channel:props.selectedChannel.id }, (res) => {
             if (res.length !== 0) {
                 res = res.map((c, i) => {
                     if (c.author === props.auth.userInfo.nick) {
@@ -171,40 +173,34 @@ function ClubChat(props) {
         })
     }
     const reloadMsgsLast=()=>{
-        console.log("props.clubPage.viewClass === '' =>", props.clubPage.viewClass === '')
-        console.log("reload messages channel -",props.selectedChannel);
         delDateSeparation();
         setChatMessages([]);
+        console.log("del messages");
+        setNoMoreMsg(false);
 
         if (props.clubPage.viewClass === '') {
-            if (chatMessasges.length === 0) {
-                customAxiosData("/getMsgsLast", {channel: props.selectedChannel }, (res) => {
-                    res = res.map((c, i) => {
-                        if (c.author === props.auth.userInfo.nick) {
-                            c.isMine = true;
-                        }
-                        else {
-                            c.isMine = false;
-                        }
-                        return c;
-                    })
-                    console.log("get past messages", res);
-                    setChatMessages(res.concat(chatMessasges));
-                    scrollPosition(res.length);
-                    if (res.length < 30) setNoMoreMsg(true);
+            if(props.selectedChannel.id===null)return;
+            console.log("reload messages channel -", props.selectedChannel);
+            customAxiosData("/getMsgsLast", { channel: props.selectedChannel.id }, (res) => {
+                res = res.map((c, i) => {
+                    if (c.author === props.auth.userInfo.nick) {
+                        c.isMine = true;
+                    }
+                    else {
+                        c.isMine = false;
+                    }
+                    return c;
                 })
-            }
-        } else {
-            if (chatMessasges.length !== 0) {
-                console.log("del messages");
-                setNoMoreMsg(false);
-                setChatMessages([]);
-            }
+                console.log("get past messages", res);
+                setChatMessages(res);
+                scrollPosition(res.length);
+                if (res.length < 30) setNoMoreMsg(true);
+            })
         }
     }
     useEffect(() => {
         reloadMsgsLast();
-    }, [props.clubPage.viewClass])
+    }, [props.clubPage.viewClass, props.selectedChannel])
 
     //메세지 timestamp formatter
     const formattingTimestamp = (timestamp) => {
@@ -280,6 +276,8 @@ function ClubChat(props) {
         }
     }, [props.clubView.mode])
 
+    //투표
+
 
 
     //context menu
@@ -310,6 +308,7 @@ function ClubChat(props) {
         setChatTouchEvent(e);
         let target = e.target;
         while (!Array.from(target.classList).includes("chat")) {
+            if(Array.from(target.classList).includes("voteWrapper"))return;
             target = target.parentElement;
         }
         setChatTouchInfo({
@@ -350,7 +349,18 @@ function ClubChat(props) {
         }
     }
 
-
+    const onChatTabClick=(e)=>{
+        let target = e.target;
+        if (Array.from(target.classList).includes("channelBtn")){
+            props.setClubView({magX:0, mode:'channel'});
+            return;
+        }
+        if (Array.from(target.classList).includes("infoBtn")){
+            props.setClubView({magX:0, mode:'club'});
+            return;
+        }
+        props.setClubView({magX:0, mode:''});
+    }
 
 
     //투표
@@ -359,7 +369,6 @@ function ClubChat(props) {
         let data={voteName:"테스트 투표",voteDesc:"테스트 투표의 설명은 이렇게 보이게 됩니다. 길면 두줄만 보여주고 자른 후 투표창에서 전문을 보여주는게 깔끔하지 싶습니다.", voteSelection:[{id: 1, name:"1번 선택지"},{id: 2, name:"2번 선택지"},{id: 3, name:"3번 선택지"},{id: 4, name:"4번 선택지"}]}
         handleMessageSubmit(JSON.stringify(data),"vote");
     }
-
     return (
         <div className={"chatWindowWrapper"
             + (props.clubView.magX === 0 ? " transition" : "")
@@ -370,14 +379,14 @@ function ClubChat(props) {
                     + (props.clubView.mode === "club" ? '-70% + ' : (props.clubView.mode === "channel" ? "70% + " : ''))
                     + props.clubView.magX + 'px)'
             } : {}}
-            onClick={props.onClick}>
-            <div className="chatNavBar">@휴게실<div className="channel"></div><div className="info"></div></div>
+            onClick={onChatTabClick}>
+            <div id="chatNavBar"><div className="channelBtn">@{props.selectedChannel.name}</div><img className="infoBtn" src={MenuBtnSvg} width='20px' ></img></div>
             <div className="chatView"
                 style={{ height: 'calc(100% - ' + (33 + inputBarHeight) + 'px)' }}
                 onScroll={chatScrollHandle}>
                 <SocketJsClient
                     url={`http://${TEST_IP}:8080/api/my-chat/`} 
-                    topics={["/topic/channel/"+props.selectedChannel]}
+                    topics={["/topic/channel/"+props.selectedChannel.id]}
                     onMessage={(msg) => onMessageReceived(msg)}
                     debug={true}
                 />
@@ -385,7 +394,7 @@ function ClubChat(props) {
                 <div className="chatWrapper">
                     {chatMessasges.map((c, i) => (
                             <Message
-                            key={i}
+                            key={"msg-"+i}
                             id={c.msgId}
                             userPic={null}
                             role="직책"
@@ -398,7 +407,8 @@ function ClubChat(props) {
                             onContextOpen={onContextOpen}
                             onChatTouchEnd={onChatTouchEnd}
                             onChatTouchMove={onChatTouchMove}
-                            onChatTouchStart={onChatTouchStart} />
+                            onChatTouchStart={onChatTouchStart} 
+                            onClickVoteOpen={props.onClickVoteOpen}/>
                     ))}
 
                 </div>
@@ -464,15 +474,13 @@ function Message(props){
                 onContextOpen={props.onContextOpen}
                 onChatTouchEnd={props.onChatTouchEnd}
                 onChatTouchMove={props.onChatTouchMove}
-                onChatTouchStart={props.onChatTouchStart}/>
+                onChatTouchStart={props.onChatTouchStart}
+                onClickVoteOpen={props.onClickVoteOpen||((e)=>{console.log("openVote",e)})}/>
             )
     }
 }
 function Vote(props){
     let content=JSON.parse(props.contents)
-    const onOpenVoteClick=(e,id)=>{
-        console.log("openVote - ",id,e);
-    }
     return (
         <div id={props.id} className="chat"
             onContextMenu={props.onContextOpen}
@@ -488,11 +496,11 @@ function Vote(props){
                         <p style={{ fontSize: "20px" }}>{content.voteName}</p>
                         <div className="voteDesc">{content.voteDesc}</div>
                         {content.voteSelection.map((c, i) => (
-                            <div className="voteSelection">
+                            <div key={"voteSelc-"+i} className="voteSelection">
                                 {c.name}
                             </div>
                         ))}
-                        <div className="openVote" onClick={(e, id=props.id)=>onOpenVoteClick(e,id)}>투표 보기</div>
+                        <div className="openVote" onClick={props.onClickVoteOpen}>투표 보기</div>
                     </div>
                 </div>
             </div>

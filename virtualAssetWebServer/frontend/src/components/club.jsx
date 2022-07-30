@@ -23,8 +23,12 @@ export default function Club(props) {
     const [isMember,setIsMember]=useState(false);
     const [isLoading, setIsLoading]=useState(true);
     const [channelTabs, setChannelTabs]=useState([]);
-    const [selectedChannel, setSelectedChannel] = useState();
+    const [selectedChannel, setSelectedChannel] = useState({name:null, id:null});
 
+    const changeChannel=(id)=>{
+        let temp=channels.filter(c=>c.id===id)[0];
+        setSelectedChannel({name:temp.name, id:temp.id});
+    }
 
     //community 입장시 맴버인지 체크
     useEffect(() => {
@@ -42,7 +46,7 @@ export default function Club(props) {
                 customAxiosData("/getChannels", {communityId:props.clubPage.id}, (data)=>{
                     console.log( "channels:", data);
                     setChannels(data);
-                    data.map((c,i)=>{if(c.default){console.log("default",c); setSelectedChannel(c.id); return false;}})
+                    data.map((c,i)=>{if(c.default){console.log("default",c); setSelectedChannel({name: c.name, id: c.id}); return false;}})
                 })
                 customAxiosData("/getChannelTabs",{communityId:props.clubPage.id},(data)=>{
                     console.log( "channelTabs:", data);
@@ -155,15 +159,15 @@ export default function Club(props) {
                     channelTabs={channelTabs}
                     channels={channels}
                     selectedChannel={selectedChannel}
-                    setSelectedChannel={setSelectedChannel}
+                    changeChannel={changeChannel}
                 />
                 <ClubInfos clubView={clubView} setClubSettingView={setClubSettingView} setWriteContract={setWriteContract} />
                 <ClubChat
+                    setClubView={setClubView}
                     clubView={clubView}
                     clubPage={props.clubPage}
                     auth={props.auth}
-                    onClick={() => { setClubView({ magX: 0, mode: '' }) }}
-                    selectedChannel={selectedChannel} />
+                    selectedChannel={selectedChannel}/>
             </div>
             {clubSettingView?(
                             <div className="clubSettingPage">
