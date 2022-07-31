@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useRef } from "react";
 import customAxiosData from "../scripts/customAxiosData";
+import lock from "../Icons/lock_white.png";
+// import unlock from "../Icons/unlock_white.png";
+import contract from "../Icons/doc_white.png";
 
 
 function ClubChannels(props) {
@@ -35,6 +38,7 @@ function ChannelTab(props) {
                         channelName={c.name}
                         channelId={c.id}
                         isClub={c.club}
+                        private={c.private}
                         channelMembers={c.memberCnt===0?null:c.memberCnt}
                         contractStatus={c.contractStatus}
                         isSelected={c.id===(props.selectedChannel||{name:null, id:null})}
@@ -46,14 +50,36 @@ function ChannelTab(props) {
 }
 
 function ChannelList(props) {
-    return (
-        <li id={props.channelId}
+    if(props.isClub) {
+        return (
+            <li id={props.channelId}
             onClick={props.onClick}
             className={(props.isSelected || false ? 'currChannel ' : '') + 'channelBanner'} 
-            style={(props.contractStatus != null) ? { opacity: '0.5' } : {}}>{(props.icon != null) ? (<img src={props.icon} alt="img" />) : ''}{props.channelName}{props.contractStatus != null ? (<span style={{ fontSize: 'small' }}>&nbsp;[{props.contractStatus}]</span>) : ''}{props.tag != null ? (<span style={{ fontSize: 'small' }}>&nbsp;#{props.tag}</span>) : ''}{props.channelMembers != null ? (<span style={{ float: 'right', fontSize: '0.8em' }}>{props.channelMembers}
-            <div className="userIcon"><div></div><div></div></div></span>) : ''}
+            style={(props.contractStatus != null) ? { opacity: '0.5' } : {}}>
+                {(props.icon != null) ? (<img src={props.icon} alt="img" />) : ''}
+                {props.channelName}
+                {props.contractStatus != null ? (<span style={{ fontSize: 'small' }}>&nbsp;[{props.contractStatus}]</span>) : ''}
+                {props.tag != null ? (<span style={{ fontSize: 'small' }}>&nbsp;#{props.tag}</span>) : ''}
+                {props.channelMembers != null ? (<span style={{ float: 'right', fontSize: '0.8em' }}><div className="userIcon"><div></div><div></div></div>{props.channelMembers}</span>) : ''}
+                {props.private === true ? (<span style={{ float: 'right', fontSize: '0.8em' }}><img className='lockIcon' src={lock} alt=""/><div></div><div></div></span>) : ''}
+                <span style={{ float: 'right', fontSize: '0.8em' }}><img className='contractIcon' src={contract} alt=""/><div></div><div></div></span>
+            </li>
+        ) 
+    }
+    else {
+        return (
+            <li id={props.channelId}
+            onClick={props.onClick}
+            className={(props.isSelected || false ? 'currChannel ' : '') + 'channelBanner'} 
+            style={(props.contractStatus != null) ? { opacity: '0.5' } : {}}>
+                {(props.icon != null) ? (<img src={props.icon} alt="img" />) : ''}
+                {props.channelName}
+                {props.contractStatus != null ? (<span style={{ fontSize: 'small' }}>&nbsp;[{props.contractStatus}]</span>) : ''}
+                {props.tag != null ? (<span style={{ fontSize: 'small' }}>&nbsp;#{props.tag}</span>) : ''}
+                {props.private === true ? (<span style={{ float: 'right', fontSize: '0.8em' }}><img className='lockIcon' src={lock} alt=""/><div></div><div></div></span>) : ''}
         </li>
-    )
+        )
+    }
 }
 
 export default ClubChannels;

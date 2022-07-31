@@ -1,0 +1,77 @@
+/* .Text {
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.5;
+} */
+
+.Container {
+    position: absolute;
+    overflow: auto;
+    transition: 0.3s, opacity 0s;
+    padding-top: 2%;
+    background-color: rgb(75, 82, 90);
+    color: #F1EDE9;
+    text-align: center; 
+}
+
+.App {
+    border-radius: 0.5rem;
+    padding-top: 5%;
+    /* background-color: rgb(55, 59, 64); */
+    color: #F1EDE9;
+}
+
+.Table {
+    margin-top: 35%;
+    margin-left: 3%;
+    margin-right: 3%;
+    padding: 3%;
+    /* width: 100%;
+    height: 100%; */
+    font-size: 20px;
+    color: #F1EDE9;
+    /* display: flex; */
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    background-color:  rgb(55, 59, 64);
+    border-radius: 0.8rem;
+    text-align: center;
+}
+
+table {
+    /* background-color: #222426; */
+    color: #F1EDE9;
+    border-collapse: collapse;
+    padding: 1em;
+    /* border-spacing: 10px; */
+    /* border: 1px solid #738CD9; */
+    border-radius: 10%;
+}
+
+th {
+    /* background: #738CD9; */
+    /* border-bottom: 3px solid #F1EDE9; */
+    color: #738CD9;
+    padding: 0.5em;
+}
+
+td {
+    padding: 0.5em;
+}
+
+.refreshButton {
+    position: relative;
+    padding: 17px 30px;
+    margin-top: 15%;
+    /* transform: translateX(-50%) translateY(-50%); */
+    /* width: fit-content;
+    height: fit-content; */
+    background: #738CD9;
+    border: 0;
+    border-radius: 100px;
+    font-weight: 900;
+    font-size: medium;
+    color: #fff;
+    /* box-shadow: 0px 0px 12px #A7AABC; */
+}

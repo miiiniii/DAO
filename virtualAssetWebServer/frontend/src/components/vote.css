@@ -1,0 +1,70 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: auto;
+    background-color: #4b525a;
+    
+}
+
+.wrapper {
+    background: rgb(55, 59, 64);
+    border-radius: 10%;
+    max-width: 380px;
+    width: 100%;
+    padding: 25px;
+}
+
+.wrapper header {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.wrapper .pollArea {
+    margin: 20px 0 15px 0;
+}
+
+.pollArea label {
+    color: #f1ede9;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 8px 15px;
+    border: 2px solid #738cd9;
+}
+
+label .row {
+    display: flex;
+    justify-content: space-between;
+}
+
+label .row .column {
+    display: flex;
+    align-items: center;
+}
+
+label .row .circle {
+    height: 14px;
+    width: 14px;
+    position: relative;
+    display: block;
+    margin-right: 10px;
+    border: 2px solid #f1ede9;
+    border-radius: 50%;
+}
+
+.row .circle::after {
+    content: "";
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    background-color: #f1ede9;
+    top: 2px;
+    left: 2px;
+    border-radius: inherit;
+}
+
+label .row span {
+    font-size: 16px;
+    font-weight: 16px;
+}

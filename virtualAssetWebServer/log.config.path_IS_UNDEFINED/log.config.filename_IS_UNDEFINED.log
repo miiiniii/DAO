@@ -1,0 +1,61 @@
+DEBUG 2022-07-29 13:42:28[File Watcher] [Restarter:249] - Restarting application
+DEBUG 2022-07-29 13:42:28[Thread-11] [Restarter:305] - Stopping application
+DEBUG 2022-07-29 13:42:28[Thread-11] [ApplicationAvailabilityBean:77] - Application availability state ReadinessState changed from ACCEPTING_TRAFFIC to REFUSING_TRAFFIC
+DEBUG 2022-07-29 13:42:28[Thread-11] [AnnotationConfigServletWebServerApplicationContext:1049] - Closing org.springframework.boot.web.servlet.context.AnnotationConfigServletWebServerApplicationContext@6f292463, started on Wed Jul 27 17:26:48 KST 2022
+DEBUG 2022-07-29 13:42:28[Thread-11] [DefaultLifecycleProcessor:365] - Stopping beans in phase 2147483647
+DEBUG 2022-07-29 13:42:28[Thread-11] [DefaultLifecycleProcessor:238] - Bean 'stompWebSocketHandlerMapping' completed its stop procedure
+DEBUG 2022-07-29 13:42:28[Thread-11] [DefaultLifecycleProcessor:238] - Bean 'subProtocolWebSocketHandler' completed its stop procedure
+DEBUG 2022-07-29 13:42:28[Thread-11] [DefaultLifecycleProcessor:238] - Bean 'simpAnnotationMethodMessageHandler' completed its stop procedure
+INFO  2022-07-29 13:42:28[Thread-11] [SimpleBrokerMessageHandler:137] - Stopping...
+INFO  2022-07-29 13:42:28[Thread-11] [SimpleBrokerMessageHandler:137] - BrokerAvailabilityEvent[available=false, SimpleBrokerMessageHandler [org.springframework.messaging.simp.broker.DefaultSubscriptionRegistry@650c8c8b]]
+INFO  2022-07-29 13:42:28[Thread-11] [SimpleBrokerMessageHandler:137] - Stopped.
+DEBUG 2022-07-29 13:42:28[Thread-11] [DefaultLifecycleProcessor:238] - Bean 'simpleBrokerMessageHandler' completed its stop procedure
+DEBUG 2022-07-29 13:42:28[Thread-11] [DefaultLifecycleProcessor:238] - Bean 'userDestinationMessageHandler' completed its stop procedure
+DEBUG 2022-07-29 13:42:28[Thread-11] [DefaultLifecycleProcessor:238] - Bean 'webServerGracefulShutdown' completed its stop procedure
+DEBUG 2022-07-29 13:42:28[Thread-11] [DefaultLifecycleProcessor:365] - Stopping beans in phase 2147483646
+DEBUG 2022-07-29 13:42:28[Thread-11] [DefaultLifecycleProcessor:238] - Bean 'webServerStartStop' completed its stop procedure
+DEBUG 2022-07-29 13:42:28[Thread-11] [DefaultLifecycleProcessor:365] - Stopping beans in phase 2147483547
+DEBUG 2022-07-29 13:42:28[Thread-11] [ConsumerNetworkClient:189] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Received user wakeup
+DEBUG 2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerNetworkClient:512] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Raising WakeupException in response to user wakeup
+DEBUG 2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:313] - Commit list: {}
+DEBUG 2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:740] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Executing onLeavePrepare with generation Generation{generationId=657, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'} and memberId consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980
+INFO  2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:1048] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Member consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980 sending LeaveGroup request to coordinator 223.194.70.105:33233 (id: 2147483646 rack: null) due to the consumer unsubscribed from all topics
+DEBUG 2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [NetworkClient:512] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Sending LEAVE_GROUP request with header RequestHeader(apiKey=LEAVE_GROUP, apiVersion=4, clientId=consumer-그룹1-3, correlationId=82543) and timeout 30000 to node 2147483646: LeaveGroupRequestData(groupId='그룹1', memberId='', members=[MemberIdentity(memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', groupInstanceId=null)])
+INFO  2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:966] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Resetting generation due to: consumer pro-actively leaving the group
+INFO  2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: consumer pro-actively leaving the group
+INFO  2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaConsumer:1075] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Unsubscribed all topics or patterns and assigned partitions
+DEBUG 2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ThreadPoolTaskScheduler:218] - Shutting down ExecutorService
+DEBUG 2022-07-29 13:42:28[kafka-coordinator-heartbeat-thread | 그룹1] [ConsumerCoordinator:1458] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Heartbeat thread has closed
+DEBUG 2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:740] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Executing onLeavePrepare with generation Generation{generationId=-1, memberId='', protocol='null'} and memberId 
+INFO  2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:966] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Resetting generation due to: consumer pro-actively leaving the group
+INFO  2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:988] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Request joining group due to: consumer pro-actively leaving the group
+DEBUG 2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [NetworkClient:870] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Received LEAVE_GROUP response from node 2147483646 for request with header RequestHeader(apiKey=LEAVE_GROUP, apiVersion=4, clientId=consumer-그룹1-3, correlationId=82543): LeaveGroupResponseData(throttleTimeMs=0, errorCode=0, members=[MemberResponse(memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', groupInstanceId=null, errorCode=0)])
+DEBUG 2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [ConsumerCoordinator:1083] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] LeaveGroup response with Generation{generationId=657, memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', protocol='range'} returned successfully: ClientResponse(receivedTimeMs=1659069748514, latencyMs=12, disconnected=false, requestHeader=RequestHeader(apiKey=LEAVE_GROUP, apiVersion=4, clientId=consumer-그룹1-3, correlationId=82543), responseBody=LeaveGroupResponseData(throttleTimeMs=0, errorCode=0, members=[MemberResponse(memberId='consumer-그룹1-3-aabe25c8-9502-4079-b903-bbd0e4588980', groupInstanceId=null, errorCode=0)]))
+INFO  2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:659] - Metrics scheduler closed
+INFO  2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:663] - Closing reporter org.apache.kafka.common.metrics.JmxReporter
+INFO  2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [Metrics:669] - Metrics reporters closed
+INFO  2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [AppInfoParser:83] - App info kafka.consumer for consumer-그룹1-3 unregistered
+DEBUG 2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaConsumer:2398] - [Consumer clientId=consumer-그룹1-3, groupId=그룹1] Kafka consumer has been closed
+INFO  2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:292] - 그룹1: Consumer stopped
+DEBUG 2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaMessageListenerContainer:313] - KafkaMessageListenerContainer [id=org.springframework.kafka.KafkaListenerEndpointContainer#0-0, clientIndex=-0, topicPartitions=[]] stopped normally
+DEBUG 2022-07-29 13:42:28[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [DefaultLifecycleProcessor:238] - Bean 'org.springframework.kafka.config.internalKafkaListenerEndpointRegistry' completed its stop procedure
+DEBUG 2022-07-29 13:42:28[Thread-11] [ThreadPoolTaskScheduler:218] - Shutting down ExecutorService 'messageBrokerTaskScheduler'
+DEBUG 2022-07-29 13:42:28[Thread-11] [ThreadPoolTaskExecutor:218] - Shutting down ExecutorService 'brokerChannelExecutor'
+DEBUG 2022-07-29 13:42:28[Thread-11] [ThreadPoolTaskExecutor:218] - Shutting down ExecutorService 'clientOutboundChannelExecutor'
+DEBUG 2022-07-29 13:42:28[Thread-11] [ThreadPoolTaskExecutor:218] - Shutting down ExecutorService 'clientInboundChannelExecutor'
+INFO  2022-07-29 13:42:28[Thread-11] [HikariDataSource:350] - HikariPool-1 - Shutdown initiated...
+DEBUG 2022-07-29 13:42:28[Thread-11] [HikariPool:421] - HikariPool-1 - Before shutdown stats (total=10, active=0, idle=10, waiting=0)
+DEBUG 2022-07-29 13:42:28[HikariPool-1 connection closer] [PoolBase:134] - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@e7f85d0: (connection evicted)
+DEBUG 2022-07-29 13:42:28[HikariPool-1 connection closer] [PoolBase:134] - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@b87a6f: (connection evicted)
+DEBUG 2022-07-29 13:42:28[HikariPool-1 connection closer] [PoolBase:134] - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@487eea0: (connection evicted)
+DEBUG 2022-07-29 13:42:28[HikariPool-1 connection closer] [PoolBase:134] - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@41857054: (connection evicted)
+DEBUG 2022-07-29 13:42:28[HikariPool-1 connection closer] [PoolBase:134] - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@33263cb1: (connection evicted)
+DEBUG 2022-07-29 13:42:28[HikariPool-1 connection closer] [PoolBase:134] - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@700e53b8: (connection evicted)
+DEBUG 2022-07-29 13:42:28[HikariPool-1 connection closer] [PoolBase:134] - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@4b4741f7: (connection evicted)
+DEBUG 2022-07-29 13:42:28[HikariPool-1 connection closer] [PoolBase:134] - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@21aa8f1b: (connection evicted)
+DEBUG 2022-07-29 13:42:28[HikariPool-1 connection closer] [PoolBase:134] - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@236bfc2b: (connection evicted)
+DEBUG 2022-07-29 13:42:28[HikariPool-1 connection closer] [PoolBase:134] - HikariPool-1 - Closing connection org.postgresql.jdbc.PgConnection@21faf86d: (connection evicted)
+DEBUG 2022-07-29 13:42:28[Thread-11] [HikariPool:421] - HikariPool-1 - After shutdown stats (total=0, active=0, idle=0, waiting=0)
+INFO  2022-07-29 13:42:28[Thread-11] [HikariDataSource:352] - HikariPool-1 - Shutdown completed.
+DEBUG 2022-07-29 13:42:28[Thread-11] [RestartClassLoader:85] - Created RestartClassLoader org.springframework.boot.devtools.restart.classloader.RestartClassLoader@35cffa0c
+DEBUG 2022-07-29 13:42:28[Thread-11] [Restarter:281] - Starting application com.virtualAsset.webServer.VirtualAssetWebServerApplication with URLs [file:/C:/Users/violi/Documents/APL2022/VirtualAsset-WebServer/virtualAssetWebServer/target/classes/]
