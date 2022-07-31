@@ -16,7 +16,7 @@
 	</resultMap>
 	
 	<update id="updateMessage" parameterType="com.virtualAsset.webServer.entity.KafkaMSG">
-        update
+        update "chat_msgs"
             "content" = #{content},
             "is_edited" = #{isEdited}
         where 
@@ -33,7 +33,21 @@
             "topic",
             "is_edited"
         from 
-            "msg_id"
+            "chat_msgs"
+    </select>
+    <select id="selectMessageById" resultMap="recordMsg">
+        select
+        	"msg_id",
+            "author",
+            "content_type",
+            "content",
+            "timestamp",
+            "topic",
+            "is_edited"
+        from 
+            "chat_msgs"
+        where
+            "msg_id"=#{id}
     </select>
     <select id="selectLast30Messages" resultMap="recordMsg">
         select

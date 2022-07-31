@@ -8,6 +8,7 @@ public interface MsgRecordDAO {
 	public List<KafkaMSG> selectAllMessages();
 	public List<KafkaMSG> selectLast30Messages(String topic);
 	public List<KafkaMSG> select30MessagesFrom(String topic, int index);
+	public KafkaMSG selectMessageById(Long id);
 	public int insertMessage(KafkaMSG msg);
 	public int updateMessage(KafkaMSG msg);
 }

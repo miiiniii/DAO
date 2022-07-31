@@ -363,9 +363,16 @@ function ClubChat(props) {
 
     //투표
     const [showVoteMaker,setShowVoteMaker]=useState(false);
+    
     const onMakeVoteClick=(e)=>{
-        let data={voteName:"테스트 투표",voteDesc:"테스트 투표의 설명은 이렇게 보이게 됩니다. 길면 두줄만 보여주고 자른 후 투표창에서 전문을 보여주는게 깔끔하지 싶습니다.", voteSelection:[{id: 1, name:"1번 선택지"},{id: 2, name:"2번 선택지"},{id: 3, name:"3번 선택지"},{id: 4, name:"4번 선택지"}]}
-        handleMessageSubmit(JSON.stringify(data),"vote");
+       let target=e.target;
+       while(!Array.from(target.classList).includes("chat")){
+            target=target.parentElement;
+       }
+       console.log("getMsgById",target.id);
+       customAxiosData("/getMsgById",{id:target.id},(res)=>{
+        console.log(res);
+       })
     }
     return (
         <div className={"chatWindowWrapper"

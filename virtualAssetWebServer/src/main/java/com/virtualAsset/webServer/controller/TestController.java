@@ -119,7 +119,11 @@ public class TestController {
 		log.info("get messages last 30 on channel:"+data.getAsString("channel"));
 		return msgRecordDAO.selectLast30Messages(data.getAsString("channel"));
 	}
-
+	@PostMapping("/getMsgById")
+	public KafkaMSG getMsgById(@RequestBody JSONObject data, HttpServletRequest request) {
+		log.info("get message by id:"+Long.parseLong(data.getAsString("id"))+" - ["+request.getRemoteAddr()+"]");
+		return msgRecordDAO.selectMessageById(Long.parseLong(data.getAsString("id")));
+	}
 	@PostMapping("/getMsgsFrom")
 	public List<KafkaMSG> getMsgsFrom(@RequestBody JSONObject data, HttpServletRequest request) {
 		log.info("get messages last 30 from index:"+data.getAsString("index")+" on channel:"+data.getAsString("channel"));
