@@ -21,6 +21,8 @@ import {
 import TEST_IP from "../scripts/setTestIp";
 
 
+
+
 function ClubChat(props) {
 
     const [chatFocus, setChatFocus] = useState(false);
@@ -30,7 +32,6 @@ function ClubChat(props) {
     const [noMoreMsg, setNoMoreMsg] = useState(false);
     const msgLoading = useRef(false);
     const [chatTouchEvent, setChatTouchEvent] = useState();
-
 
     //수정요청
     const requestDeleteMessage=(id)=>{
@@ -102,6 +103,7 @@ function ClubChat(props) {
     }
 
     const chatScrollHandle = (e) => {
+        
         if(props.clubPage.viewClass!=='')return;
         let lastChatHeight=document.getElementsByClassName("chat");
         if (lastChatHeight.length ===0 )return;
@@ -276,9 +278,6 @@ function ClubChat(props) {
         }
     }, [props.clubView.mode])
 
-    //투표
-
-
 
     //context menu
     const [chatTouchInfo, setChatTouchInfo] = useState({ timer: null, isTouched: false, target:null});
@@ -361,7 +360,6 @@ function ClubChat(props) {
         }
         props.setClubView({magX:0, mode:''});
     }
-
 
     //투표
     const [showVoteMaker,setShowVoteMaker]=useState(false);

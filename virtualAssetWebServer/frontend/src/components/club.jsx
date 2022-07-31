@@ -149,7 +149,7 @@ export default function Club(props) {
     if (props.auth !== undefined && props.auth.code === 1000 && isMember) {
         return (<div className={"clubPage" + props.clubPage.viewClass}>
             <p className="clubNavBar"><span className="backBtn" onClick={clubBackClick}><i className="fa fa-arrow-left"></i></span><span className="clubName">클럽 이름</span></p>
-            <div className="clubComponentWrapper"
+            <div className="clubComponemtWarpper"
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}
                 onTouchEnd={handleTouchEnd}

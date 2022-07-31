@@ -59,25 +59,30 @@ function ChannelList(props) {
                 {(props.icon != null) ? (<img src={props.icon} alt="img" />) : ''}
                 {props.channelName}
                 {props.contractStatus != null ? (<span style={{ fontSize: 'small' }}>&nbsp;[{props.contractStatus}]</span>) : ''}
+
+                <div style={{height: 'calc(0.8em + 3px)'}}>
                 {props.tag != null ? (<span style={{ fontSize: 'small' }}>&nbsp;#{props.tag}</span>) : ''}
-                {props.channelMembers != null ? (<span style={{ float: 'right', fontSize: '0.8em' }}><div className="userIcon"><div></div><div></div></div>{props.channelMembers}</span>) : ''}
-                {props.private === true ? (<span style={{ float: 'right', fontSize: '0.8em' }}><img className='lockIcon' src={lock} alt=""/><div></div><div></div></span>) : ''}
-                <span style={{ float: 'right', fontSize: '0.8em' }}><img className='contractIcon' src={contract} alt=""/><div></div><div></div></span>
+                {props.channelMembers != null ? (<span style={{ float: 'right', fontSize: '0.8em'}}><div className="userIcon"><div></div><div></div></div>{props.channelMembers}</span>) : ''}
+                {props.private === true ? (<span style={{ float: 'right', fontSize: '0.8em' }}><img className='lockIcon' src={lock} alt=""/></span>) : ''}
+                <span style={{ float: 'right', fontSize: '0.8em' }}><img className='contractIcon' src={contract} alt=""/></span>
+                </div>
             </li>
         ) 
     }
     else {
         return (
             <li id={props.channelId}
-            onClick={props.onClick}
-            className={(props.isSelected || false ? 'currChannel ' : '') + 'channelBanner'} 
-            style={(props.contractStatus != null) ? { opacity: '0.5' } : {}}>
+                onClick={props.onClick}
+                className={(props.isSelected || false ? 'currChannel ' : '') + 'channelBanner'}>
+
                 {(props.icon != null) ? (<img src={props.icon} alt="img" />) : ''}
                 {props.channelName}
-                {props.contractStatus != null ? (<span style={{ fontSize: 'small' }}>&nbsp;[{props.contractStatus}]</span>) : ''}
+                <br/>
                 {props.tag != null ? (<span style={{ fontSize: 'small' }}>&nbsp;#{props.tag}</span>) : ''}
-                {props.private === true ? (<span style={{ float: 'right', fontSize: '0.8em' }}><img className='lockIcon' src={lock} alt=""/><div></div><div></div></span>) : ''}
-        </li>
+                {props.private === true ? (
+                    <span style={{ float: 'right', fontSize: '0.8em' }}>
+                        <img className='lockIcon' src={lock} alt="" /></span>) : ''}
+            </li>
         )
     }
 }
