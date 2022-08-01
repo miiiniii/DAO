@@ -12,7 +12,8 @@ module.exports = function(app) {
 
       //*우성주 z동*/target:'http://192.168.0.6:8080',
       //*우성주 t동*/target:'http://192.168.0.148:8080',
-
+      //*박선민 t동*/target:'http://192.168.0.149:8080',
+      //*박선민 로컬*/target:'http://172.30.1.21:8080',
       //*지상은 로컬*/target:'http://172.30.1.34:3000',
 
       changeOrigin: true,

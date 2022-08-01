@@ -5,6 +5,7 @@ import ClubChannels from "./clubChannels";
 import ClubChat from "./clubChats";
 import ClubInfos from "./clubInfos";
 import ContractForm from "./contractForm";
+import MakeVotepvoteDesc from "./makeVote";
 
 export default function Club(props) {
     const [touchStart, setTouchStart] = useState({ coord: null, timeStamp: null });
@@ -15,9 +16,9 @@ export default function Club(props) {
     const [writeContract,setWriteContract]=useState(false);
     const [contractType,setContractType]=useState();
     const [viewContract,setViewContract]=useState(false);
-
+    const [clubVoteView,setClubVoteView]=useState(false);
     const [sign,setSign]=useState(null);
-
+    const [clubMakeVoteView,setclubMakeVoteView]=useState(false);
 
     const [channels, setChannels]=useState([]);
     const [isMember,setIsMember]=useState(false);
@@ -72,10 +73,22 @@ export default function Club(props) {
             setClubSettingView(false);
             return;
         }
+
+        else if(clubVoteView){
+            setClubVoteView(false);
+            return;
+        }
+
         else if(writeContract){
             setWriteContract(false);
             return;
         }
+
+        else if(clubMakeVoteView){  //이 이름은 투표생성창 말하는 것. 이게 활성화되어있으면 뒤로가기 눌렀을 때 채팅창으로 가도록 하는 것임. //투표생성하기 버튼 눌렀을 때 뒤로가기로 해보자 나중에
+            setclubMakeVoteView(false);
+            return;
+        }
+
         props.hideClubPage();
     }
 
@@ -167,7 +180,10 @@ export default function Club(props) {
                     clubView={clubView}
                     clubPage={props.clubPage}
                     auth={props.auth}
-                    selectedChannel={selectedChannel}/>
+                    selectedChannel={selectedChannel}
+                    onClickVoteOpen={()=>{setClubVoteView(true)}}
+                    onClickMakeVote={()=>{setclubMakeVoteView(true)}}
+                    />
             </div>
             {clubSettingView?(
                             <div className="clubSettingPage">
@@ -191,6 +207,20 @@ export default function Club(props) {
             ):(
                 <></>
             ) }
+
+            {clubVoteView?(
+                
+                <MakeVotepvoteDesc auth={props.auth} selectedChannel={selectedChannel}></MakeVotepvoteDesc>
+            ):(
+                <></>
+            ) }
+
+            {clubMakeVoteView?(
+                <MakeVotepvoteDesc auth={props.auth} selectedChannel={selectedChannel}></MakeVotepvoteDesc>
+            ):(
+                <></>
+            ) }
+
             {writeContract?(
                 <div className="clubSettingPage">
                      <div>

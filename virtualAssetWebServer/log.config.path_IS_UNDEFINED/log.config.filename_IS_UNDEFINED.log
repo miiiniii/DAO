@@ -1,0 +1,3 @@
+DEBUG 2022-08-01 13:35:14[restartedMain] [ApplicationServletEnvironment:302] - Activating profiles []
+INFO  2022-08-01 13:35:14[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+INFO  2022-08-01 13:35:14[restartedMain] [DevToolsPropertyDefaultsPostProcessor:255] - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'

@@ -485,6 +485,7 @@ pre{
 
 .voteDesc{
     display: -webkit-box;
+    margin-left:3px;
     text-overflow: ellipsis;
     overflow: hidden;
     text-align: left;

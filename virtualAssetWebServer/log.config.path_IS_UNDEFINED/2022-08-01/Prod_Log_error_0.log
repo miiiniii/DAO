@@ -1,0 +1,30 @@
+ERROR 2022-08-01 01:23:29[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaConsumerConfig:38] - can't deserialize null
+ERROR 2022-08-01 06:51:07[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+ERROR 2022-08-01 13:25:35[org.springframework.kafka.KafkaListenerEndpointContainer#0-0-C-1] [KafkaConsumerConfig:38] - can't deserialize null
+ERROR 2022-08-01 13:31:29[restartedMain] [LoggingFailureAnalysisReporter:40] - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+

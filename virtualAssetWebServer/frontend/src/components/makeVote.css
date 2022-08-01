@@ -1,0 +1,156 @@
+.clubSettingPage {
+    background-color: #373B40;
+}
+
+.voteInputItemWrapper {
+    width: 280px;
+    /*margin-top: 15px;*/
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    color: var(--highlight-font-color);
+}
+
+.voteInputWrapper {
+    padding-top: 60px;
+    /* margin-left: 20px; */
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: pre-line;
+}
+
+.voteNameIn {
+    border-radius: 4px;
+    width: 280px;
+    height: 37px;
+    background: #f1ede9;
+    margin-top: 5px;
+}
+
+.voteNameIn input {
+    border: none;
+    width: 260px;
+    font-size: 20px;
+    margin-left: 10px;
+    height: 37px;
+    background: #f1ede9;
+}
+
+.voteDescIn {
+    border-radius: 4px;
+    width: 280px;
+    height: 90px;
+    background: #f1ede9;
+    margin-top: 5px;
+}
+
+.voteDescIn input {
+    border: none;
+    width: 260px;
+    font-size: 20px;
+    margin-left: 10px;
+    height: 70px;
+    background: #f1ede9;
+    /* vertical-align: top; */
+}
+
+/* input:focus {
+    outline: none;
+} */
+
+.optionItemWrapper {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 20px;
+    color: var(--highlight-font-color);
+}
+
+.optionInBtn {
+    margin-top: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.optionIn {
+    border-radius: 4px;
+    width: 210px;
+    height: 37px;
+    background: #f1ede9;
+}
+
+.optionIn input {
+    /* margin-top: 5px; */
+    border: none;
+    width: 190px;
+    font-size: 20px;
+    margin-left: 10px;
+    height: 37px;
+    background: #f1ede9;
+}
+
+.optionInBtn button {
+    border-radius: 50px;
+    margin-left: 15px;
+    width: 50px;
+    height: 37px;
+    background: var(--highlight-font-color);
+    color: var(--font-color);
+    border: solid 1px var(--highlight-font-color);
+    font-size: 16px;
+}
+
+.addSelectionBtn{
+    margin-left:10px;
+}
+
+.voteSelectionn{
+    margin: 0;
+    height:20px;
+    width:210px;
+    font-size: 20px;
+    color:#ffffff;
+    /*background-color:#ffffff ;*/
+    /*margin-left:-80px;*/
+    }
+    
+    input[type="radio"] {
+        margin-top: -1px;
+        vertical-align: middle;
+    }   /*버튼이랑 이름 줄 맞추기
+
+   /* label {
+        vertical-align: -1px
+    }*/
+    
+.AddedBtn{
+    height:35px;        
+    margin-left: -140px;
+    margin-top:7px;
+
+}
+
+.input_chk {
+    width: 13px;
+    height: 13px;
+    vertical-align: text-top
+}
+
+.CreateVoteBtn {
+    position: absolute;
+    bottom: 200px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 20px;
+    font-weight: bold;
+    display: inline;
+    background-color: var(--highlight-font-color);
+    padding: 12px 30px;
+    border-radius: 50px;
+}

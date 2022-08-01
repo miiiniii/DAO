@@ -23,7 +23,8 @@ public class WebConfig implements WebMvcConfigurer {
 		//*권예빈 로컬*/final String ip= "192.168.137.179";
 		//*우성주 z동*/final String ip= "192.168.0.6";
 		//*우성주 t동*/final String ip= "192.168.0.148";
-
+		//*박선민 t동*/final String ip ="192.168.0.149";
+		//*박선민 로컬 */final String ip="172.30.1.21";
 		//*양식*/final String ip= "127.0.0.1";
 		
 		

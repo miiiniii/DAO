@@ -9,5 +9,6 @@
 
 //*우성주 z동*/const TEST_IP='192.168.0.6';
 //*우성주 t동*/const TEST_IP='192.168.0.148';
-
+//*박선민 t동*/const TEST_IP='192.168.0.149';
+//*박선민 로컬*/const TEST_IP='172.30.1.21';
 export default TEST_IP;
